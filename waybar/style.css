@@ -111,6 +111,8 @@ tooltip label{
 #backlight {
     background: @crust;
     padding: 0 10px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 #tray {
