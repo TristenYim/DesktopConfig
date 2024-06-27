@@ -98,6 +98,21 @@ tooltip label{
     margin-left: 8px;
 }
 
+#battery {
+    background: @crust;
+    padding-left: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 8px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+#backlight {
+    background: @crust;
+    padding: 0 10px;
+}
+
 #tray {
     background: @crust;
     padding: 0 10px;
