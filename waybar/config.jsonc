@@ -132,7 +132,7 @@
     },
 
     "pulseaudio": {
-        "format": "{icon} {volume}%",
+        "format": "{icon}  {volume}%",
         "format-muted": "",
         "on-click": "$HOME/.config/waybar/scripts/volume --toggle",
         "on-click-right": "pavucontrol",

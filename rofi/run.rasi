@@ -7,7 +7,7 @@
 window {
     border:           2px ;
     border-radius:    20px ;
-    background-color: #1e1e2eBF;
+    background-color: var(base-window);
     border-color: var(lavender);
     font: "Merienda 15";
     transparency:     "real";
@@ -21,7 +21,7 @@ mainbox {
 }
 inputbar {
     padding:          8px;
-    background-color: var(surface0);
+    background-color: var(surface0-inputbar);
     border: 8px;
     border-radius: 20px;
     text-color:       var(text);
@@ -35,14 +35,14 @@ icon-keyboard {
     expand: false;
 }
 entry {
-    background-color: inherit;
+    background-color: transparent;
     text-color: var(blue);
     placeholder: "Run...";
     placeholder-color: var(subtext0);
     cursor-color: var(subtext0);
 }
 case-indicator {
-    background-color: inherit;
+    background-color: transparent;
     text-color: inherit;
 }
 listview {
@@ -69,7 +69,7 @@ element selected {
     background-color: var(blue);
 }
 element-text {
-    background-color: inherit;
+    background-color: transparent;
     text-color:       inherit;
 }
 element-icon {
