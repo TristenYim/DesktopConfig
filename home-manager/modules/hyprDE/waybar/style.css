@@ -1,0 +1,199 @@
+@import "catppuccin.css";
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Merienda";
+    font-weight: bold;
+    font-size: 18px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(0, 0, 0, 0);
+    border-radius: 20px;
+    padding: 0 10px;
+    color: @rosewater;
+}
+
+tooltip {
+    background: @base;
+    opacity: 0.8;
+    border-radius: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: @surface0;
+}
+
+tooltip label{
+    color: #cdd6f4;
+}
+
+#workspaces {
+    color: black;
+    background: @yellow;
+    border-radius: 20px;
+    padding: 0 10px;
+    padding-left: 0px;
+    padding-right:0px;
+    margin-right: 8px;
+}
+
+#workspaces button {
+    color: black;
+    background: transparent;
+    padding-left: 9px;
+    padding-right: 9px;
+    border-radius: 20px;
+}
+
+#workspaces button.active {
+    color: black;
+    background: @peach;
+    padding-left: 9px;
+    padding-right: 9px;
+    border-radius: 20px;
+}
+
+#workspaces button:hover {
+    color: black;
+    background: @peach;
+    padding-left: 9px;
+    padding-right: 9px;
+    border-radius: 20px;
+}
+
+#custom-power_btn {
+    color: black;
+    background: @maroon;
+    padding: 0 10px;
+    padding-left: 16px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    margin-left: 4px;
+}
+
+#custom-lock_screen {
+    color: black;
+    background: @maroon;
+    padding: 0 10px;
+}
+
+#idle_inhibitor {
+    color: black;
+    background: @maroon;
+    padding: 0 10px;
+    padding-right: 22px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+#window {
+    color:black;
+    background: @pink;
+    padding: 0 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 20px;
+    margin-left: 8px;
+}
+
+#battery {
+    background: @crust;
+    padding-left: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 8px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+#backlight {
+    background: @crust;
+    padding: 0 10px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+#tray {
+    background: @crust;
+    padding: 0 10px;
+    margin-left: 8px;
+    border-radius: 20px;
+}
+
+#clock {
+    color: black;
+    background: @green;
+    padding: 0 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 20px;
+}
+
+#custom-updates {
+    color: black;
+    background: @teal;
+    padding: 0 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+    border-radius: 20px;
+    margin-left: 8px;
+}
+
+#pulseaudio {
+    color: black;
+    background: @blue;
+    padding: 0px 10px;
+    padding-left: 16px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+#pulseaudio.microphone {
+    color: black;
+    background: @blue;
+    padding: 0px 10px;
+    padding-right: 16px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-left: -4px;
+    margin-right: 8px;
+}
+
+#cpu {
+    color: black;
+    background: @mauve;
+    padding: 0px 10px;
+    padding-left: 18px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+#memory {
+    color: black;
+    background: @mauve;
+    padding: 0px 10px;
+}
+
+#temperature {
+    color: black;
+    background: @mauve;
+    padding: 0px 10px;
+}
+
+#temperature.critical {
+    color: #e92d4d;
+}
+
+#network {
+    color: black;
+    background: @mauve;
+    padding: 0px 10px;
+    padding-right: 18px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-right: 4px;
+}
