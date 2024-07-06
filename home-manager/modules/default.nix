@@ -30,7 +30,7 @@
         ( lib.mkIf config.hyprDE.enable {
             bash-home.enable = lib.mkDefault true;
           # hyprland-home.enable = lib.mkDefault true;
-          # kitty-home.enable = lib.mkDefault true;
+            kitty-home.enable = lib.mkDefault true;
             rofi-home.enable = lib.mkDefault true;
             waybar-home.enable = lib.mkDefault true;
             wlogout-home.enable = lib.mkDefault true;
