@@ -3,6 +3,7 @@
         ./keybinds.nix
         ./windows-workspaces.nix
         ./environment/env_var.nix
+        ./environment/env_var_nvidia.nix
     ];
 
     options = {

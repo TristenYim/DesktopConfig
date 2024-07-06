@@ -22,6 +22,7 @@
   # Override default options
   git-home.enable = true;
   hyprDE.enable = true;
+  firefox-home.enable = false;
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -75,10 +76,9 @@
   #
   #  /etc/profiles/per-user/fathom/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = {
-    # EDITOR = "emacs";
-      EDITOR = "vim";
-  };
+  # home.sessionVariables = {
+      # EDITOR = "emacs";
+  # };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

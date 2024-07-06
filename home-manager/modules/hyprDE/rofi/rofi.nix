@@ -9,7 +9,7 @@
     {
         programs.rofi = {
             enable = true;
-	    terminal = "kitty";
+	        terminal = "kitty";
             package = pkgs.rofi-wayland;
         };
     };
