@@ -49,11 +49,10 @@
                 "size 75% 75%, class:^(feh)$"
                 "animation popin, class:^(kitty)$,title:^(update-sys)$"
                 "animation popin, class:^(thunar)$"
-                "stayfocused, class:^(Rofi)$"
+                "stayfocused, class:^(rofi)$"
                 "maximize, class:^(openrgb)$"
                 # "opaque, class:^(photo.exe)$"
                 # "nodim, class:^(photo.exe)$"
-
             ];
 
             ##############

@@ -209,10 +209,12 @@
 
                     "network" = {
                         format-ethernet = " {bandwidthTotalBits}";
+                        format-wifi = "󰖩 {bandwidthTotalBits}";
+                        format-disconnected = "";
                         interval = 10;
                         max-length = 10;
-                        format-disconnected = "";
                         tooltip-format-ethernet = "IP: {ipaddr},  {bandwidthUpBits},  {bandwidthDownBits}, {ifname}";
+                        tooltip-format-wifi = "IP: {ipaddr},  {bandwidthUpBits},  {bandwidthDownBits}, {ifname}";
                     };
                 }
             ];

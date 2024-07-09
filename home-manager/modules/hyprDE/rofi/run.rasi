@@ -8,7 +8,7 @@ window {
     border:           2px ;
     border-radius:    20px ;
     background-color: var(base-window);
-    border-color: var(lavender);
+    border-color: var(sky);
     font: "Merienda 15";
     transparency:     "real";
     width: 600;
