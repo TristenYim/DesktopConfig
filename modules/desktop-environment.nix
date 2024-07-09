@@ -5,6 +5,7 @@
         hyprland.enable = lib.mkEnableOption "Enables Hyprland";
         mako.enable = lib.mkEnableOption "Enables mako";
         mpv.enable = lib.mkEnableOption "Enables mpv";
+        nerdfonts.enable = lib.mkEnableOption "Enables Nerd Fonts";
         thunar.enable = lib.mkEnableOption "Enables Thunar";
         xfce.enable = lib.mkEnableOption "Enables Xfce";
     };
@@ -18,6 +19,7 @@
             mako.enable = lib.mkDefault true;
             mousepad.enable = lib.mkDefault true;
             mpv.enable = lib.mkDefault true;
+            nerdfonts.enable = lib.mkDefault true;
             thunar.enable = lib.mkDefault true;
         }
 
@@ -53,6 +55,13 @@
         ( lib.mkIf config.mpv.enable {
             environment.systemPackages = [
                 pkgs.mpv
+            ];
+        })
+
+        # Nerd Fonts
+        ( lib.mkIf config.mpv.enable {
+            fonts.packages = [
+                pkgs.nerdfonts
             ];
         })
 

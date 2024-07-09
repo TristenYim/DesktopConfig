@@ -82,7 +82,7 @@
                 };
                 os = {
                     disabled = false;
-                    format = "[ $symbol](bg:#a3aed2 fg:#090c0c)";
+                    format = "[  $symbol](bg:#a3aed2 fg:#090c0c)"; # Be proud that you're using nix!
                     symbols = {
                         Alpaquita = " ";
                         Alpine = " ";
@@ -111,7 +111,7 @@
                         MidnightBSD = " ";
                         Mint = " ";
                         NetBSD = " ";
-                        NixOS = " ";
+                        NixOS = "";
                         OpenBSD = "󰈺 ";
                         openSUSE = " ";
                         OracleLinux = "󰌷 ";
