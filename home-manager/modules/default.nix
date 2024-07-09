@@ -5,6 +5,7 @@
         ./general/firefox.nix
         ./general/git.nix
         ./general/ranger.nix
+        ./general/starship.nix
         ./hyprDE/hypr/hyprland.nix
         ./hyprDE/kitty.nix
         ./hyprDE/rofi/rofi.nix
@@ -22,13 +23,14 @@
     config = lib.mkMerge 
     [
         {
+            bash-home.enable = lib.mkDefault true;
+            starship-home.enable = lib.mkDefault true;
             catppuccin-home.enable = lib.mkDefault true;
             firefox-home.enable = lib.mkDefault true;
             ranger-home.enable = lib.mkDefault true;
         }
 
         ( lib.mkIf config.hyprDE.enable {
-            bash-home.enable = lib.mkDefault true;
           # hyprland-home.enable = lib.mkDefault true;
             kitty-home.enable = lib.mkDefault true;
             rofi-home.enable = lib.mkDefault true;
