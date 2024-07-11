@@ -9,11 +9,19 @@
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        nixgl = {
+            url = "github:guibou/nixGL";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
-    outputs = { nixpkgs, home-manager, hyprland, catppuccin, ... }@inputs:
+    outputs = { nixpkgs, home-manager, hyprland, catppuccin, nixgl, ... }@inputs:
       let 
         system = "x86_64-linux";
+        pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            overlays = [ nixgl.overlay ];
+        };
       in {
         nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
             inherit system;
@@ -24,7 +32,8 @@
         };
 
         homeConfigurations.fathom = home-manager.lib.homeManagerConfiguration {
-            pkgs = nixpkgs.legacyPackages.${system};
+          # pkgs = nixpkgs.legacyPackages.${system};
+            inherit pkgs;
             modules = [ 
                 ./home-manager/fathom/home.nix 
                 catppuccin.homeManagerModules.catppuccin
@@ -33,7 +42,8 @@
         };
 
         homeConfigurations.tdoggy = home-manager.lib.homeManagerConfiguration {
-            pkgs = nixpkgs.legacyPackages.${system};
+          # pkgs = nixpkgs.legacyPackages.${system};
+            inherit pkgs;
             modules = [ 
                 ./home-manager/tdoggy/home.nix
                 catppuccin.homeManagerModules.catppuccin

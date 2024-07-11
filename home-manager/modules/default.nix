@@ -1,9 +1,12 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, ... }: 
+
+{
     imports = [
         ./general/bash.nix
         ./general/catppuccin.nix
         ./general/firefox.nix
         ./general/git.nix
+        ./general/nixGLOpt.nix
         ./general/ranger.nix
         ./general/starship.nix
         ./hyprDE/hypr/hyprland.nix
@@ -28,6 +31,7 @@
             catppuccin-home.enable = lib.mkDefault true;
             firefox-home.enable = lib.mkDefault true;
             ranger-home.enable = lib.mkDefault true;
+            nixGLPrefix = "${pkgs.nixgl.auto.nixGLDefault}/bin/nixGL ";
         }
 
         ( lib.mkIf config.hyprDE.enable {

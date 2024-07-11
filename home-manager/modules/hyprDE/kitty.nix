@@ -1,5 +1,10 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, ... }: 
 
+# Import the nixGL wrapper
+let nixGLWrap = import ../general/nixGLFunct.nix { 
+    inherit config pkgs; 
+};
+in {
     # Set a toggle to enable kitty
     options = {
         kitty-home.enable = lib.mkEnableOption "Enables kitty with Home Manager";
@@ -9,6 +14,7 @@
     {
         programs.kitty = {
             enable = true;
+            package = (nixGLWrap pkgs.kitty);
             settings = {
                 font_family = "jetbrains mono nerd font";
                 font_size = "15";
