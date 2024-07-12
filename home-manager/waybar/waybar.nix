@@ -45,7 +45,7 @@
                     ];
 
                     "custom/power_btn" = {
-                        format = "";
+                        format = "";
                         on-click = "sh -c '(sleep 0.5s; wlogout --protocol layer-shell)' & disown";
                         tooltip = false;
                     };
