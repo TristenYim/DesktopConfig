@@ -219,5 +219,15 @@
                 }
             ];
         };
+
+        home.file = {
+            ".config/waybar/catppuccin.css" = {
+                source = config.lib.file.mkOutOfStoreSymlink ../resources/catppuccin.css;
+            };
+            ".config/waybar/scripts" = {
+                source = config.lib.file.mkOutOfStoreSymlink ./scripts;
+                recursive = true;
+            };
+        };
     };
 }

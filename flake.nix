@@ -35,7 +35,7 @@
           # pkgs = nixpkgs.legacyPackages.${system};
             inherit pkgs;
             modules = [ 
-                ./home-manager/fathom/home.nix 
+                ./home-manager/accounts/fathom-home.nix 
                 catppuccin.homeManagerModules.catppuccin
                 hyprland.homeManagerModules.default
             ];
@@ -45,7 +45,7 @@
           # pkgs = nixpkgs.legacyPackages.${system};
             inherit pkgs;
             modules = [ 
-                ./home-manager/tdoggy/home.nix
+                ./home-manager/accounts/tdoggy-home.nix
                 catppuccin.homeManagerModules.catppuccin
             ];
         };

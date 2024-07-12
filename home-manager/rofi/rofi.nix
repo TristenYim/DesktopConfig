@@ -12,5 +12,14 @@
 	        terminal = "kitty";
             package = pkgs.rofi-wayland;
         };
+
+        home.file = {
+            ".config/rofi/catppuccin.rasi" = {
+                source = config.lib.file.mkOutOfStoreSymlink ./catppuccin.rasi;
+            };
+            ".config/rofi/run.rasi" = {
+                source = config.lib.file.mkOutOfStoreSymlink ./run.rasi;
+            };
+        };
     };
 }

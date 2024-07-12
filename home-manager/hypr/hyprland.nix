@@ -1,4 +1,11 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, ... }: 
+
+# Import the nixGL wrapper
+let nixGLWrap = import ../../general/nixGLWrapper.nix { 
+    inherit config pkgs; 
+};
+in {
+
     imports = [
         ./keybinds.nix
         ./windows-workspaces.nix
@@ -15,6 +22,7 @@
         wayland.windowManager.hyprland = 
         {
             enable = true;
+            package = (nixGLWrap pkgs.hyprland);
             settings = 
             {
                 # This is an example Hyprland config file.
@@ -153,10 +161,10 @@
 
                 # https://wiki.hyprland.org/Configuring/Variables/#input
                 input = {
-                    kb_layout = "us";
-                    kb_variant = "dvorak";
+                    kb_layout = "us, us, us";
+                    kb_variant = "dvorak, dvorak-intl, "; # A blank value implies qwerty
                     kb_model = "";
-                    kb_options = "";
+                    kb_options = "grp:ralt_rshift_toggle"; # Unintuitively, this is LALT + RSHIFT, not RALT
                     kb_rules = "";
 
                     follow_mouse = 1;

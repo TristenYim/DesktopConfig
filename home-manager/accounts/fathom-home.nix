@@ -3,8 +3,8 @@
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "tdoggy";
-  home.homeDirectory = "/home/tdoggy";
+  home.username = "fathom";
+  home.homeDirectory = "/home/fathom";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -16,11 +16,13 @@
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
   imports = [
-      ../modules
+      ../default.nix
   ];
 
   # Override default options
-  xfconf-home.enable = true;  
+  git-home.enable = true;
+  hyprDE.enable = true;
+  firefox-home.enable = false;
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -72,12 +74,11 @@
   #
   # or
   #
-  #  /etc/profiles/per-user/tdoggy/etc/profile.d/hm-session-vars.sh
+  #  /etc/profiles/per-user/fathom/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = {
-    # EDITOR = "emacs";
-      EDITOR = "vim";
-  };
+  # home.sessionVariables = {
+      # EDITOR = "emacs";
+  # };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

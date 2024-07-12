@@ -2,18 +2,18 @@
 
 {
     imports = [
-        ./general/bash.nix
-        ./general/catppuccin.nix
-        ./general/firefox.nix
-        ./general/git.nix
-        ./general/nixGLOpt.nix
-        ./general/ranger.nix
-        ./general/starship.nix
-        ./hyprDE/hypr/hyprland.nix
-        ./hyprDE/kitty.nix
-        ./hyprDE/rofi/rofi.nix
-        ./hyprDE/waybar/waybar.nix
-        ./hyprDE/wlogout/wlogout.nix
+        ./terminal/bash.nix
+        ./terminal/git.nix
+        ./terminal/kitty.nix
+        ./terminal/ranger.nix
+        ./terminal/starship.nix
+        ./nixGL/nixGLOpt.nix
+        ./hypr/hyprland.nix
+        ./rofi/rofi.nix
+        ./waybar/waybar.nix
+        ./wlogout/wlogout.nix
+        ./catppuccin.nix
+        ./firefox.nix
         ./xfce.nix
     ];
     
@@ -31,11 +31,11 @@
             catppuccin-home.enable = lib.mkDefault true;
             firefox-home.enable = lib.mkDefault true;
             ranger-home.enable = lib.mkDefault true;
-            nixGLPrefix = "${pkgs.nixgl.auto.nixGLDefault}/bin/nixGL ";
+            nixGLPrefix = "${pkgs.nixgl.auto.nixGLDefault}/bin/nixGL";
         }
 
         ( lib.mkIf config.hyprDE.enable {
-          # hyprland-home.enable = lib.mkDefault true;
+        #   hyprland-home.enable = lib.mkDefault true;
             kitty-home.enable = lib.mkDefault true;
             rofi-home.enable = lib.mkDefault true;
             waybar-home.enable = lib.mkDefault true;

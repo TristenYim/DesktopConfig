@@ -7,5 +7,4 @@ In any case, here is a list operations I have yet to implement declaratively. Im
 # Imperative List:
  - Install Nix. This should be self-evident. See https://nixos.org
  - Initially install Home Manager. This can be done declaratively in NixOS, but not with Nix. However, Home Manager can declaratively manage itself __after__ install. See https://nix-community.github.io/home-manager/
- - Manage symlinks for modular themeing for rofi, waybar, and wlogout
  - Install and manage hyprland. Currently, installing hyprland using home-manager breaks outside of NixOS
