@@ -1,0 +1,125 @@
+format = "[░▒▓](#a3aed2)\\\\\n$os\\\\\n[](bg:#769ff0 fg:#a3aed2)\\\\\n$directory\\\\\n[](fg:#769ff0 bg:#394260)\\\\\n$git_branch\\\\\n$git_status\\\\\n[](fg:#394260 bg:#212736)\\\\\n$nodejs\\\\\n$rust\\\\\n$golang\\\\\n$php\\\\\n[](fg:#212736 bg:#1d2230)\\\\\n$time\\\\\n[ ](fg:#1d2230)\n$character\n"
+palette = "catppuccin_mocha"
+[directory]
+format = "[ $path ]($style)"
+style = "fg:#e3e5e5 bg:#769ff0"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+Documents = "󰈙 "
+Downloads = " "
+Music = " "
+Pictures = " "
+
+[git_branch]
+format = "[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)"
+style = "bg:#394260"
+symbol = ""
+
+[git_status]
+format = "[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)"
+style = "bg:#394260"
+
+[golang]
+format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)"
+style = "bg:#212736"
+symbol = ""
+
+[nodejs]
+format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)"
+style = "bg:#212736"
+symbol = ""
+
+[os]
+disabled = false
+format = "[  $symbol](bg:#a3aed2 fg:#090c0c)"
+
+[os.symbols]
+AlmaLinux = " "
+Alpaquita = " "
+Alpine = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Kali = " "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = ""
+OpenBSD = "󰈺 "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+RedHatEnterprise = " "
+Redhat = " "
+Redox = "󰀘 "
+RockyLinux = " "
+SUSE = " "
+Solus = "󰠳 "
+Ubuntu = " "
+Unknown = " "
+Void = " "
+Windows = "󰍲 "
+openSUSE = " "
+
+[palettes.catppuccin_mocha]
+base = "#1e1e2e"
+blue = "#89b4fa"
+crust = "#11111b"
+flamingo = "#f2cdcd"
+green = "#a6e3a1"
+lavender = "#b4befe"
+mantle = "#181825"
+maroon = "#eba0ac"
+mauve = "#cba6f7"
+overlay0 = "#6c7086"
+overlay1 = "#7f849c"
+overlay2 = "#9399b2"
+peach = "#fab387"
+pink = "#f5c2e7"
+red = "#f38ba8"
+rosewater = "#f5e0dc"
+sapphire = "#74c7ec"
+sky = "#89dceb"
+subtext0 = "#a6adc8"
+subtext1 = "#bac2de"
+surface0 = "#313244"
+surface1 = "#45475a"
+surface2 = "#585b70"
+teal = "#94e2d5"
+text = "#cdd6f4"
+yellow = "#f9e2af"
+
+[php]
+format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)"
+style = "bg:#212736"
+symbol = ""
+
+[rust]
+format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)"
+style = "bg:#212736"
+symbol = ""
+
+[time]
+disabled = false
+format = "[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)"
+style = "bg:#1d2230"
+time_format = "%R"
