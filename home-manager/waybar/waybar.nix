@@ -46,14 +46,14 @@
 
                     "custom/power_btn" = {
                         format = "";
-                        on-click = "sh -c '(sleep 0.5s; wlogout --protocol layer-shell)' & disown";
-                        tooltip = false;
+                        on-click = "sh -c '(wlogout --protocol layer-shell)' & disown";
+                        tooltip-format = "Logout";
                     };
 
                     "custom/lock_screen" = {
-                        format = "";
-                        on-click = "sh -c '(sleep 0.5s; swaylock)' & disown";
-                        tooltip = false;
+                        format = "󰷛";
+                        on-click = "sh -c '(swaylock)' & disown";
+                        tooltip-format = "Lock";
                     };
 
                     "idle_inhibitor" = {
@@ -152,7 +152,7 @@
                         on-click-right = "pavucontrol";
                         on-scroll-up = "$HOME/.config/waybar/scripts/volume --inc";
                         on-scroll-down = "$HOME/.config/waybar/scripts/volume --dec";
-                        scroll-step = 5;
+                        scroll-step = 1;
                         format-icons = {
                             headphone = "";
                             hands-free = "";
@@ -160,23 +160,23 @@
                             phone = "";
                             portable = "";
                             car = "";
-                            default = ["" "" ""];
+                            default = ["" "" " "];
                         };
                         tooltip = true;
-                        tooltip-format = "{icon} at {volume}%";
+                        tooltip-format = "{icon}  {volume}%";
                     };
 
                     "pulseaudio#microphone" = {
                         format = "{format_source}";
                         format-source = " {volume}%";
-                        format-source-muted = "";
+                        format-source-muted = " ";
                         on-click = "$HOME/.config/waybar/scripts/volume --toggle-mic";
                         on-click-right = "pavucontrol";
                         on-scroll-up = "$HOME/.config/waybar/scripts/volume --mic-inc";
                         on-scroll-down = "$HOME/.config/waybar/scripts/volume --mic-dec";
-                        scroll-step = 5;
+                        scroll-step = 1;
                         tooltip = true;
-                        tooltip-format = " at {volume}%";
+                        tooltip-format = " {volume}%";
                     };
 
                     "cpu" = {
@@ -215,6 +215,7 @@
                         max-length = 10;
                         tooltip-format-ethernet = "IP: {ipaddr},  {bandwidthUpBits},  {bandwidthDownBits}, {ifname}";
                         tooltip-format-wifi = "IP: {ipaddr},  {bandwidthUpBits},  {bandwidthDownBits}, {ifname}";
+                        on-click = "nm-connection-editor";
                     };
                 }
             ];
