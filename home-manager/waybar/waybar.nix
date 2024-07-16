@@ -149,7 +149,7 @@
                         format = "{icon}  {volume}%";
                         format-muted = "";
                         on-click = "$HOME/.config/waybar/scripts/volume --toggle";
-                        on-click-right = "pavucontrol";
+                        on-click-right = "pavucontrol --tab 3";
                         on-scroll-up = "$HOME/.config/waybar/scripts/volume --inc";
                         on-scroll-down = "$HOME/.config/waybar/scripts/volume --dec";
                         scroll-step = 1;
@@ -171,7 +171,7 @@
                         format-source = " {volume}%";
                         format-source-muted = " ";
                         on-click = "$HOME/.config/waybar/scripts/volume --toggle-mic";
-                        on-click-right = "pavucontrol";
+                        on-click-right = "pavucontrol --tab 4";
                         on-scroll-up = "$HOME/.config/waybar/scripts/volume --mic-inc";
                         on-scroll-down = "$HOME/.config/waybar/scripts/volume --mic-dec";
                         scroll-step = 1;
@@ -190,7 +190,7 @@
 
                     "memory" = {
                         interval = 10;
-                        format = " {used:0.1f}GiB";
+                        format = " {used:0.1f} GiB";
                         max-length = 10;
                         format-alt-click = "click-right";
                         format-alt = " {percentage}%";
