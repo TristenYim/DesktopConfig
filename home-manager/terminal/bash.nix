@@ -14,6 +14,9 @@
                 LOCALE_ARCHIVE = "$(nix-build '<nixpkgs>' -A glibcLocales)/lib/locale/locale-archive";
                 EDITOR = "vim";
             };
+            shellAliases = {
+                hms = "home-manager switch --flake ~/nix --impure";
+            };
             bashrcExtra = "
                 #
                 # ~/.bashrc
