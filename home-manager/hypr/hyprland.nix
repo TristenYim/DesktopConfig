@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }: 
 
 # Import the nixGL wrapper
-let nixGLWrap = import ../../general/nixGLWrapper.nix { 
+let nixGLWrap = import ../nixGL/nixGLWrapper.nix { 
     inherit config pkgs; 
 };
 in {

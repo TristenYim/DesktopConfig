@@ -25,6 +25,7 @@
                         "custom/power_btn"
                         "custom/lock_screen"
                         "idle_inhibitor"
+                      # "mpris"
                         "hyprland/window"
                         "battery"
                         "backlight"
@@ -63,6 +64,18 @@
                             deactivated = "󰛑";
                         };
                         tooltip = true;
+                    };
+
+                    "mpris" = {
+                        format = "DEFAULT: {player_icon} {dynamic}";
+                        format-paused = "DEFAULT: {status_icon} <i>{dynamic}</i>";
+                        player-icons = {
+                            default = "▶";
+                            mpv = "🎵";
+                        };
+                        status-icons = {
+                            paused = "⏸";
+                        };
                     };
 
                     "hyprland/window" = {

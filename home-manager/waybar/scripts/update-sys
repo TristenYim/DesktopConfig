@@ -12,7 +12,7 @@ fi
 AUR=$(yay -Qua | wc -l)
 OFFICIAL=$(checkupdates | wc -l)
 FLATPAK=$(flatpak update | wc -l)
-if [[ "flatpak" = "2" ]]
+if [[ "FLATPAK" = "3" ]]
 then
     ((FLATPAK = 0))
 else
