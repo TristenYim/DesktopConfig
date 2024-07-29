@@ -25,8 +25,8 @@
                         "custom/power_btn"
                         "custom/lock_screen"
                         "idle_inhibitor"
-                      # "mpris"
-                        "hyprland/window"
+                        "mpris"
+                      # "hyprland/window"
                         "battery"
                         "backlight"
                         "tray"
@@ -67,15 +67,18 @@
                     };
 
                     "mpris" = {
-                        format = "DEFAULT: {player_icon} {dynamic}";
-                        format-paused = "DEFAULT: {status_icon} <i>{dynamic}</i>";
+                        interval = 1;
+                        format = "{player_icon} [{position}/{length}] {title} | {artist}";
+                        format-paused = "{status_icon} [{position}/{length}] {title} | {artist}";
                         player-icons = {
-                            default = "▶";
-                            mpv = "🎵";
+                            default = "▶ ";
+                            cider = " ";
                         };
                         status-icons = {
-                            paused = "⏸";
+                            paused = "⏸ ";
                         };
+                        song-len = 20;
+                        artist-len = 20;
                     };
 
                     "hyprland/window" = {
