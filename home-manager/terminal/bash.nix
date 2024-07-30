@@ -17,11 +17,14 @@
             shellAliases = {
                 hms = "home-manager switch --flake ~/nix --impure";
             };
-            bashrcExtra = "
+            bashrcExtra = ''
                 #
                 # ~/.bashrc
                 #
-                
+
+                # Import local bashrc additions
+                [ -f $HOME/.local_bashrc ] && . $HOME/.local_bashrc
+
                 # If not running interactively, don't do anything
                 [[ $- != *i* ]] && return
                 
@@ -103,7 +106,7 @@
                 ################################################################################
                 
                 eval \"$(starship init bash)\"
-            ";
+            '';
         };
     };
 }
