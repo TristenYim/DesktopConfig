@@ -4,18 +4,25 @@
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
         catppuccin.url = "github:catppuccin/nix";
-        hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
         home-manager = {
             url = "github:nix-community/home-manager";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+        hyprland = {
+            url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
             inputs.nixpkgs.follows = "nixpkgs";
         };
         nixgl = {
             url = "github:guibou/nixGL";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        nixvim = {
+            url = "github:nix-community/nixvim";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
-    outputs = { nixpkgs, home-manager, hyprland, catppuccin, nixgl, ... }@inputs:
+    outputs = { nixpkgs, catppuccin, home-manager, hyprland, nixvim, nixgl, ... }@inputs:
       let 
         system = "x86_64-linux";
         pkgs = import nixpkgs {
@@ -38,6 +45,7 @@
                 ./home-manager/accounts/fathom-home.nix 
                 catppuccin.homeManagerModules.catppuccin
                 hyprland.homeManagerModules.default
+                nixvim.homeManagerModules.nixvim
             ];
         };
 
@@ -47,6 +55,7 @@
             modules = [ 
                 ./home-manager/accounts/tdoggy-home.nix
                 catppuccin.homeManagerModules.catppuccin
+                nixvim.homeManagerModules.nixvim
             ];
         };
     };

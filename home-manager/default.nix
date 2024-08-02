@@ -8,6 +8,7 @@
         ./terminal/ranger.nix
         ./terminal/starship.nix
         ./nixGL/nixGLOpt.nix
+        ./nixvim/nixvim.nix
         ./hypr/hyprland.nix
         ./rofi/rofi.nix
         ./swaylock/swaylock.nix
@@ -28,10 +29,11 @@
     [
         {
             bash-home.enable = lib.mkDefault true;
-            starship-home.enable = lib.mkDefault true;
             catppuccin-home.enable = lib.mkDefault true;
             firefox-home.enable = lib.mkDefault true;
+            nixvim-home.enable = lib.mkDefault true;
             ranger-home.enable = lib.mkDefault true;
+            starship-home.enable = lib.mkDefault true;
             nixGLPrefix = "${pkgs.nixgl.auto.nixGLDefault}/bin/nixGL";
         }
 
