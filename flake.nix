@@ -30,11 +30,21 @@
             overlays = [ nixgl.overlay ];
         };
       in {
-        nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        nixosConfigurations.test-surface = nixpkgs.lib.nixosSystem {
             inherit system;
             modules = [
-                ./hosts/unfathomable-surface/configuration.nix
+                ./hosts/test-surface/configuration.nix
                 catppuccin.nixosModules.catppuccin
+            ];
+        };
+
+        homeConfigurations."fathom@test-surface" = home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            modules = [ 
+                ./home-manager/accounts/fathom-test-surface.nix 
+                catppuccin.homeManagerModules.catppuccin
+                hyprland.homeManagerModules.default
+                nixvim.homeManagerModules.nixvim
             ];
         };
 
@@ -42,7 +52,7 @@
           # pkgs = nixpkgs.legacyPackages.${system};
             inherit pkgs;
             modules = [ 
-                ./home-manager/accounts/fathom-home.nix 
+                ./home-manager/accounts/fathom-default.nix 
                 catppuccin.homeManagerModules.catppuccin
                 hyprland.homeManagerModules.default
                 nixvim.homeManagerModules.nixvim
@@ -53,7 +63,7 @@
           # pkgs = nixpkgs.legacyPackages.${system};
             inherit pkgs;
             modules = [ 
-                ./home-manager/accounts/tdoggy-home.nix
+                ./home-manager/accounts/tdoggy-default.nix
                 catppuccin.homeManagerModules.catppuccin
                 nixvim.homeManagerModules.nixvim
             ];

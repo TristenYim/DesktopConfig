@@ -38,7 +38,7 @@
         }
 
         ( lib.mkIf config.hyprDE.enable {
-        #   hyprland-home.enable = lib.mkDefault true;
+            hyprland-home.enable = lib.mkDefault true;
             kitty-home.enable = lib.mkDefault true;
             rofi-home.enable = lib.mkDefault true;
             swaylock-home.enable = lib.mkDefault true;

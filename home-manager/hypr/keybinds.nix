@@ -75,15 +75,15 @@
                 #################
 
                 "$mainMod, SPACE, exec, rofi -theme $HOME/.config/rofi/run.rasi -show drun"
-                "$mainMod, M, exec, [float;size 75% 75%] nixGL kitty vim $HOME/.config/hypr/"
+                "$mainMod, M, exec, [float;size 75% 75%] kitty vim $HOME/.config/hypr/"
 
-                "$mainMod, APOSTROPHE, exec, nixGL kitty"
-                "$mainMod SHIFT, APOSTROPHE, exec, [float;size 75% 75%] nixGL kitty" # General purpose floating terminal
+                "$mainMod, APOSTROPHE, exec, kitty"
+                "$mainMod SHIFT, APOSTROPHE, exec, [float;size 75% 75%] kitty" # General purpose floating terminal
                 "$mainMod, U, exec, [float;size 60% 60%] thunar"
                 "$mainMod SHIFT, U, exec, thunar"
                 "$mainMod, J, exec, grim -g \"$(slurp)\" - | swappy -f -"
                 "$mainMod, O, exec, firefox"
-                "$mainMod, GRAVE, exec, [float;maximize] nixGL kitty btop"
+                "$mainMod, GRAVE, exec, [float;maximize] kitty btop"
             ];
 
             # Move/resize windows with mainMod + LMB/RMB and dragging

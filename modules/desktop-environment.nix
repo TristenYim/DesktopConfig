@@ -19,7 +19,7 @@
             mako.enable = lib.mkDefault true;
             mousepad.enable = lib.mkDefault true;
             mpv.enable = lib.mkDefault true;
-            nerdfonts.enable = lib.mkDefault true;
+          # nerdfonts.enable = lib.mkDefault true; # TODO: Figure out how to make NerdFonts build
             thunar.enable = lib.mkDefault true;
         }
 
