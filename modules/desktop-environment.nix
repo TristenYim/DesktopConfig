@@ -19,11 +19,11 @@
             mako.enable = lib.mkDefault true;
             mousepad.enable = lib.mkDefault true;
             mpv.enable = lib.mkDefault true;
-          # nerdfonts.enable = lib.mkDefault true; # TODO: Figure out how to make NerdFonts build
+            nerdfonts.enable = lib.mkDefault true;
             thunar.enable = lib.mkDefault true;
         }
 
-        # Catpuccin
+        # Catppuccin
         ( lib.mkIf config.catppuccin-local.enable {
             catppuccin = {
                 enable = true;
@@ -59,7 +59,7 @@
         })
 
         # Nerd Fonts
-        ( lib.mkIf config.mpv.enable {
+        ( lib.mkIf config.nerdfonts.enable {
             fonts.packages = [
                 pkgs.nerdfonts
             ];

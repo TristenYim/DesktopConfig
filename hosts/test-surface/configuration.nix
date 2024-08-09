@@ -59,9 +59,11 @@
     users-tdoggy.enable = true;
 
     # Enable modules
-    catppuccin.enable = true;
+    catppuccin-local.enable = true;
     darktable.enable = true;
     flatpak.enable = true;
+    obs.enable = true;
+    prusaSlicer.enable = true;
     xfce.enable = true;
 
     # List packages installed in system profile. To search, run:

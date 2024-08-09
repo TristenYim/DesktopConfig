@@ -12,9 +12,11 @@
         ./hypr/hyprland.nix
         ./rofi/rofi.nix
         ./swaylock/swaylock.nix
+        ./theme/catppuccin.nix
+        ./theme/gtk.nix
+        ./theme/qt.nix
         ./waybar/waybar.nix
         ./wlogout/wlogout.nix
-        ./catppuccin.nix
         ./firefox.nix
         ./xfce.nix
     ];
@@ -31,8 +33,10 @@
             bash-home.enable = lib.mkDefault true;
             catppuccin-home.enable = lib.mkDefault true;
             firefox-home.enable = lib.mkDefault true;
+            gtk-home.enable = lib.mkDefault true;
             nixvim-home.enable = lib.mkDefault true;
             ranger-home.enable = lib.mkDefault true;
+            qt-home.enable = lib.mkDefault true;
             starship-home.enable = lib.mkDefault true;
             nixGLPrefix = "${pkgs.nixgl.auto.nixGLDefault}/bin/nixGL";
         }

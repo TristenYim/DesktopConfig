@@ -1,7 +1,9 @@
 { config, pkgs, lib, ... }: {
     options = {
+        anki.enable = lib.mkEnableOption "Enables Anki";
         darktable.enable = lib.mkEnableOption "Enables darktable";
         libreOffice.enable = lib.mkEnableOption "Enables LibreOffice";
+        prusaSlicer.enable = lib.mkEnableOption "Enables PrusaSlicer";
         slack.enable = lib.mkEnableOption "Enables Slack";
         zoom.enable = lib.mkEnableOption "Enables Zoom";
     };
@@ -10,10 +12,18 @@
     config = lib.mkMerge
     [
         {
+            anki.enable = lib.mkDefault true;
             libreOffice.enable = lib.mkDefault true;
             slack.enable = lib.mkDefault true;
             zoom.enable = lib.mkDefault true;
         }
+
+        # Anki
+        ( lib.mkIf config.anki.enable {
+            environment.systemPackages = [
+                pkgs.anki
+            ];
+        })
 
         # darktable
         ( lib.mkIf config.darktable.enable {
@@ -26,6 +36,13 @@
         ( lib.mkIf config.libreOffice.enable {
             environment.systemPackages = [
                 pkgs.libreoffice-fresh
+            ];
+        })
+
+        # PrusaSlicer
+        ( lib.mkIf config.prusaSlicer.enable {
+            environment.systemPackages = [
+                pkgs.prusa-slicer
             ];
         })
 

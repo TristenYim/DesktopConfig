@@ -6,8 +6,7 @@
     ];
 
     config = {
-        # Enable configuration of Firefox
-        firefox-home.enable = lib.mkForce false;
+        firefox-home.enable = lib.mkForce true;
         hyprland-home.enable = lib.mkForce true;
 
         # Reset packages to default instead of nixGL wrapped ones on NixOS
