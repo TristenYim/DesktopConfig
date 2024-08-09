@@ -13,6 +13,7 @@
         ./rofi/rofi.nix
         ./swaylock/swaylock.nix
         ./theme/catppuccin.nix
+        ./theme/cursor.nix
         ./theme/gtk.nix
         ./theme/qt.nix
         ./waybar/waybar.nix
@@ -32,6 +33,7 @@
         {
             bash-home.enable = lib.mkDefault true;
             catppuccin-home.enable = lib.mkDefault true;
+            cursor-home.enable = lib.mkDefault true;
             firefox-home.enable = lib.mkDefault true;
             gtk-home.enable = lib.mkDefault true;
             nixvim-home.enable = lib.mkDefault true;

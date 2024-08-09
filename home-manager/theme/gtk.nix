@@ -9,11 +9,6 @@
     {
         gtk = {
             enable = true;
-            cursorTheme = {
-                name = "Qogir-dark";
-                package = pkgs.qogir-icon-theme;
-                size = 24;
-            };
             font = {
                 name = "System-ui";
                 size = 12;
