@@ -1,4 +1,10 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, inputs, ... }: {
+    # Note that inputs is from the terrible "extraSpecialArgs" syntax
+
+    imports = [
+        ./bookmarks.nix
+        ./engines.nix
+    ];
 
     # Set a toggle to enable Firefox
     options = {
@@ -12,42 +18,37 @@
 
             # This "user" profile will be automatically added by home manager.
             profiles.user = {
-                bookmarks = [
-                    {
-                        name = "toolbar";
-                        toolbar = true;
-                        bookmarks = [
-                            {
-                                name = "Onshape";
-                                url = "https://cad.onshape.com/signin";
-                            }
-                            {
-                                name = "Canvas";
-                                url = "http://cascadia.instructure.com";
-                            }
-                        ];
-                    }
+                extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+                    bitwarden
+                    dearrow
+                    ublacklist
+                    ublock-origin
+                    sponsorblock
+                    web-scrobbler
                 ];
 
                 # See "about:config" for more settings.
                 settings = {
                     "app.shield.optoutstudies.enabled" = false;
+                    "browser.aboutConfig.showWarning" = false;
                     "browser.discovery.enabled" = false;
                     "browser.download.useDownloadDir" = false;
                     "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
                     "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
                     "browser.preferences.defaultPerformanecSettings.enabled" = false;
-                    "browser.privatebrowsing.autostart" = true;
                     "browser.search.suggest.enabled.private" = true;
                     "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
                     "browser.urlbar.suggest.quicksuggest.sponsored" = false;
                     "datareporting.healthreport.uploadEnabled" = false;
                     "extensions.pocket.enabled" = false;
                     "geo.enabled" = false;
+                    "signon.rememberSignons" = false;
                     "privacy.firstparty.isolate" = true;
                     "privacy.donottrackheader.enabled" = true;
                     "privacy.globalprivacycontrol.enabled" = true;
                     "privacy.sanitize.sanitizeOnShutdown" = true;
+                    "pref.privacy.disable_button.view_passwords" = false;
+                    "trailhead.firstrun.didSeeAboutWelcome" = true;
                 };
             };
 

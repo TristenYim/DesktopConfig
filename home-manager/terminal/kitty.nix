@@ -14,7 +14,7 @@ in {
     {
         programs.kitty = {
             enable = true;
-            package = lib.mkDefault "(nixGLWrap pkgs.kitty)";
+            package = lib.mkDefault (nixGLWrap pkgs.kitty);
             settings = {
                 font_family = "jetbrains mono nerd font";
                 font_size = "15";

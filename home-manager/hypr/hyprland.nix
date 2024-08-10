@@ -22,7 +22,7 @@ in {
         wayland.windowManager.hyprland = 
         {
             enable = true;
-            package = lib.mkDefault "(nixGLWrap pkgs.hyprland)";
+            package = lib.mkDefault (nixGLWrap pkgs.hyprland);
             settings = 
             {
                 # This is an example Hyprland config file.

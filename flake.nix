@@ -4,6 +4,10 @@
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
         catppuccin.url = "github:catppuccin/nix";
+        firefox-addons = {
+            url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
         home-manager = {
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -22,7 +26,7 @@
         };
     };
 
-    outputs = { nixpkgs, catppuccin, home-manager, hyprland, nixvim, nixgl, ... }@inputs:
+    outputs = { nixpkgs, catppuccin, firefox-addons, home-manager, hyprland, nixvim, nixgl, ... }@inputs:
       let 
         system = "x86_64-linux";
         pkgs = import nixpkgs {
@@ -40,6 +44,14 @@
 
         homeConfigurations."fathom@test-surface" = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
+
+            # Thanks a lot VimJoyer for making this tutorial
+            # using this god-awful syntax that doesn't tell
+            # you anything about what this option does.
+
+            # Seriously, what does "extraSpecialArgs" mean?
+            extraSpecialArgs = { inherit inputs; };
+
             modules = [ 
                 ./home-manager/accounts/fathom-test-surface.nix 
                 catppuccin.homeManagerModules.catppuccin

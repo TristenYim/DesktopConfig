@@ -22,7 +22,6 @@
   # Override default options
   git-home.enable = true;
   hyprDE.enable = true;
-  firefox-home.enable = false;
   hyprland-home.enable = false; # Disabled outside of NixOS due to nixGL having issues with Hyprland
 
   # The home.packages option allows you to install Nix packages into your

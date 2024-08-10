@@ -2,6 +2,7 @@
 
 {
     imports = [
+        ./firefox/firefox.nix
         ./terminal/bash.nix
         ./terminal/git.nix
         ./terminal/kitty.nix
@@ -18,7 +19,6 @@
         ./theme/qt.nix
         ./waybar/waybar.nix
         ./wlogout/wlogout.nix
-        ./firefox.nix
         ./xfce.nix
     ];
     
