@@ -3,6 +3,7 @@
         catppuccin-local.enable = lib.mkEnableOption "Enables Catppuccin";
         feh.enable = lib.mkEnableOption "Enables feh";
         hyprland.enable = lib.mkEnableOption "Enables Hyprland";
+        hyprde.enable = lib.mkEnableOption "Enables a custom \"desktop environment\" based on Hyprland";
         mako.enable = lib.mkEnableOption "Enables mako";
         mpv.enable = lib.mkEnableOption "Enables mpv";
         nerdfonts.enable = lib.mkEnableOption "Enables Nerd Fonts";
@@ -13,16 +14,6 @@
     # Allows us to combine multiple modules into one file
     config = lib.mkMerge
     [
-        {
-            feh.enable = lib.mkDefault true;
-            hyprland.enable = lib.mkDefault true;
-            mako.enable = lib.mkDefault true;
-            mousepad.enable = lib.mkDefault true;
-            mpv.enable = lib.mkDefault true;
-            nerdfonts.enable = lib.mkDefault true;
-            thunar.enable = lib.mkDefault true;
-        }
-
         # Catppuccin
         ( lib.mkIf config.catppuccin-local.enable {
             catppuccin = {
@@ -37,6 +28,18 @@
             environment.systemPackages = [
                 pkgs.feh
             ];
+        })
+
+        # HyprDE
+        ( lib.mkIf config.hyprde.enable {
+            catppuccin-local.enable = true;
+            feh.enable = lib.mkDefault true;
+            hyprland.enable = lib.mkDefault true;
+            mako.enable = lib.mkDefault true;
+            mousepad.enable = lib.mkDefault true;
+            mpv.enable = lib.mkDefault true;
+            nerdfonts.enable = lib.mkDefault true;
+            thunar.enable = lib.mkDefault true;
         })
 
         # Hyprland
@@ -67,12 +70,12 @@
 
         # Thunar
         ( lib.mkIf config.thunar.enable {
-          # programs.thunar = {
-          #     enable = true;
-          #     plugins = [
-          #         pkgs.xfce.thunar-archive-plugin
-          #     ];
-          # };
+            programs.thunar = {
+                enable = true;
+                plugins = [
+                    pkgs.xfce.thunar-archive-plugin
+                ];
+            };
         })
 
         # Xfce
