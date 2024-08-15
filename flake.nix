@@ -34,6 +34,13 @@
             overlays = [ nixgl.overlay ];
         };
       in {
+	nixosConfigurations.unfathomable-main = nixpkgs.lib.nixosSystem {
+            inherit system;
+            modules = [
+                ./hosts/unfathomable-main/configuration.nix
+                catppuccin.nixosModules.catppuccin
+            ];
+        };
         nixosConfigurations.test-surface = nixpkgs.lib.nixosSystem {
             inherit system;
             modules = [
@@ -41,6 +48,17 @@
                 catppuccin.nixosModules.catppuccin
             ];
         };
+
+        homeConfigurations."fathom@unfathomable-main" = home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            extraSpecialArgs = { inherit inputs; };
+            modules = [
+                ./home-manager/accounts/fathom-unfathomable-main.nix
+                catppuccin.homeManagerModules.catppuccin
+                hyprland.homeManagerModules.default
+                nixvim.homeManagerModules.nixvim
+            ];
+	};
 
         homeConfigurations."fathom@test-surface" = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
