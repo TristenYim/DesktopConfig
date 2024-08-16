@@ -4,17 +4,19 @@ let
     rootPartition = "/dev/disk/by-uuid/909d9564-7ff5-44a4-b327-d7356acb10cd";
 in
 {
-    # fileSystems."/" = {
-    #     device = "none";
-    #     fsType = "tmpfs";
-    #     options = [ "defaults" "size=4G" "mode=755" ];
-    # };
+    fileSystems."/" = {
+        device = "none";
+        fsType = "tmpfs";
+        neededForBoot = true;
+        options = [ "defaults" "size=4G" "mode=755" ];
+    };
 
-    # fileSystems."/pers" = {
-    #     device = rootPartition;
-    #     fsType = "btrfs";
-    #     options = [ "subvol=@" ];
-    # };
+    fileSystems."/pers" = {
+        device = rootPartition;
+        fsType = "btrfs";
+        neededForBoot = true;
+        options = [ "subvol=@persist" ];
+    };
 
     fileSystems."/nix" = {
         device = rootPartition;

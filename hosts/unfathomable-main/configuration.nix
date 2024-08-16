@@ -14,6 +14,7 @@ boot.supportedFilesystems = [ "ntfs" ];
     [
         ./hardware-configuration.nix # Include the results of the hardware scan
         ./filesystem.nix
+        ./persist.nix
         ./../../modules
     ];
 
@@ -21,6 +22,13 @@ boot.supportedFilesystems = [ "ntfs" ];
 
     # Define a user account. Don't forget to set a password with ‘passwd’
     # somebody-user.enable = true;
+
+    # Import Home Manager profiles
+    # home-manager.users.fathom = { ... }: {
+    #     imports = [
+    #         ../home-manager/accounts/fathom-unfathomable-main.nix
+    #     ];
+    # };
 
     # Enable custom modules
     darktable.enable = true;

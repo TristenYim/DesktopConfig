@@ -4,6 +4,7 @@
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
         catppuccin.url = "github:catppuccin/nix";
+        impermanence.url = "github:nix-community/impermanence";
         firefox-addons = {
             url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -14,10 +15,6 @@
         };
         hyprland = {
             url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-        impermanence = {
-            url = "github:nix-community/impermanence";
             inputs.nixpkgs.follows = "nixpkgs";
         };
         nixgl = {
@@ -56,14 +53,13 @@
 
         homeConfigurations."fathom@unfathomable-main" = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
-
+ 
             # Thanks a lot VimJoyer for making this tutorial
             # using this god-awful syntax that doesn't tell
             # you anything about what this option does.
 
             # Seriously, what does "extraSpecialArgs" mean?
             extraSpecialArgs = { inherit inputs; };
-
             modules = [
                 ./home-manager/accounts/fathom-unfathomable-main.nix
                 catppuccin.homeManagerModules.catppuccin

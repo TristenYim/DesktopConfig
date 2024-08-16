@@ -18,6 +18,7 @@
                 description = "unfathomable-surface";
                 extraGroups = [ "networkmanager" "wheel" "nix-config-perms" ];
                 packages = with pkgs; [];
+                initialPassword = "123456";
             };
         })
 

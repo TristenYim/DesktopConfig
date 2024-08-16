@@ -23,7 +23,7 @@
     };
 
     fileSystems."/boot" = lib.mkDefault
-      { device = "/dev/disk/by-uuid/EAFE-443A";
+      { device = "/dev/disk/by-uuid/D38C-EFED";
         fsType = "vfat";
         options = [ "fmask=0022" "dmask=0022" ];
     };
