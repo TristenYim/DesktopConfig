@@ -1,11 +1,11 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 
 {
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
-    home.username = "fathom";
-    home.homeDirectory = "/home/fathom";
- 
+    home.username = "{exampleuser}";
+    home.homeDirectory = "/home/{exampleuser}"; # REPLACEME {exampleuser}
+
     # This value determines the Home Manager release that your configuration is
     # compatible with. This helps avoid breakage when a new Home Manager release
     # introduces backwards incompatible changes.
@@ -13,16 +13,7 @@
     # You should not change this value, even if you update Home Manager. If you do
     # want to update the value, then make sure to first check the Home Manager
     # release notes.
-    home.stateVersion = "24.05"; # Please read the comment before changing.
-
-    imports = [
-        ../default.nix
-    ];
-
-    # Override default options
-    git-home.enable = true;
-    hyprDE.enable = true;
-    hyprland-home.enable = lib.mkDefault false; # Disabled by default because of issues with nixGL.
+    home.stateVersion = "{XX.XX}"; # Please read the comment before changing. # REPLACEME {XX.XX}
 
     # The home.packages option allows you to install Nix packages into your
     # environment.
@@ -41,7 +32,7 @@
         # # configuration. For example, this adds a command 'my-hello' to your
         # # environment:
         # (pkgs.writeShellScriptBin "my-hello" ''
-        #     echo "Hello, ${config.home.username}!"
+        #   echo "Hello, ${config.home.username}!"
         # '')
     ];
 
@@ -76,10 +67,10 @@
     #
     #  /etc/profiles/per-user/fathom/etc/profile.d/hm-session-vars.sh
     #
-    # home.sessionVariables = {
-          # EDITOR = "emacs";
-    # };
+    home.sessionVariables = {
+        # EDITOR = "emacs";
+    };
 
     # Let Home Manager install and manage itself.
-    programs.home-manager.enable = lib.mkDefault true;
+    programs.home-manager.enable = true;
 }

@@ -6,7 +6,7 @@
     ];
 
     config = {
-        hyprland-home.enable = lib.mkForce true;
+        hyprland-home.enable = true;
 
         # Reset packages to default instead of nixGL wrapped ones on NixOS
         programs.kitty.package = pkgs.kitty;

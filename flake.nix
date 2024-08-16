@@ -35,14 +35,31 @@
             overlays = [ nixgl.overlay ];
         };
       in {
-	nixosConfigurations.unfathomable-main = nixpkgs.lib.nixosSystem {
+	    nixosConfigurations.unfathomable-main = nixpkgs.lib.nixosSystem {
             inherit system;
             modules = [
                 ./hosts/unfathomable-main/configuration.nix
                 catppuccin.nixosModules.catppuccin
                 impermanence.nixosModules.impermanence
+
+                # Import Home Manager profiles
+                home-manager.nixosModules.home-manager {
+                    home-manager = {
+                        useGlobalPkgs = true;
+                        extraSpecialArgs = { inherit inputs; };
+                        users.fathom = {
+                            imports = [
+                                ./home-manager/accounts/fathom-unfathomable-main.nix
+                                catppuccin.homeManagerModules.catppuccin
+                                hyprland.homeManagerModules.default
+                                nixvim.homeManagerModules.nixvim
+                            ];
+                        };
+                    };
+                }
             ];
         };
+
         nixosConfigurations.test-surface = nixpkgs.lib.nixosSystem {
             inherit system;
             modules = [
@@ -50,23 +67,6 @@
                 catppuccin.nixosModules.catppuccin
             ];
         };
-
-        homeConfigurations."fathom@unfathomable-main" = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
- 
-            # Thanks a lot VimJoyer for making this tutorial
-            # using this god-awful syntax that doesn't tell
-            # you anything about what this option does.
-
-            # Seriously, what does "extraSpecialArgs" mean?
-            extraSpecialArgs = { inherit inputs; };
-            modules = [
-                ./home-manager/accounts/fathom-unfathomable-main.nix
-                catppuccin.homeManagerModules.catppuccin
-                hyprland.homeManagerModules.default
-                nixvim.homeManagerModules.nixvim
-            ];
-	};
 
         homeConfigurations."fathom@test-surface" = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
@@ -80,7 +80,6 @@
         };
 
         homeConfigurations.fathom = home-manager.lib.homeManagerConfiguration {
-          # pkgs = nixpkgs.legacyPackages.${system};
             inherit pkgs;
             modules = [ 
                 ./home-manager/accounts/fathom-default.nix 
@@ -91,7 +90,6 @@
         };
 
         homeConfigurations.tdoggy = home-manager.lib.homeManagerConfiguration {
-          # pkgs = nixpkgs.legacyPackages.${system};
             inherit pkgs;
             modules = [ 
                 ./home-manager/accounts/tdoggy-default.nix
