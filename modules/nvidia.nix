@@ -1,5 +1,5 @@
 # NVidia hardware configuration
-# See https://nixos.wiki/wiki/Nvidia
+# See https://nixos.wiki/wiki/Nvidia for more
 
 { config, lib, ... }: {
     options = {

@@ -16,6 +16,10 @@
             url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        impermanence = {
+            url = "github:nix-community/impermanence";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
         nixgl = {
             url = "github:guibou/nixGL";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -26,7 +30,7 @@
         };
     };
 
-    outputs = { nixpkgs, catppuccin, firefox-addons, home-manager, hyprland, nixvim, nixgl, ... }@inputs:
+    outputs = { nixpkgs, catppuccin, firefox-addons, impermanence, home-manager, hyprland, nixvim, nixgl, ... }@inputs:
       let 
         system = "x86_64-linux";
         pkgs = import nixpkgs {
@@ -39,6 +43,7 @@
             modules = [
                 ./hosts/unfathomable-main/configuration.nix
                 catppuccin.nixosModules.catppuccin
+                impermanence.nixosModules.impermanence
             ];
         };
         nixosConfigurations.test-surface = nixpkgs.lib.nixosSystem {
@@ -51,7 +56,14 @@
 
         homeConfigurations."fathom@unfathomable-main" = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
+
+            # Thanks a lot VimJoyer for making this tutorial
+            # using this god-awful syntax that doesn't tell
+            # you anything about what this option does.
+
+            # Seriously, what does "extraSpecialArgs" mean?
             extraSpecialArgs = { inherit inputs; };
+
             modules = [
                 ./home-manager/accounts/fathom-unfathomable-main.nix
                 catppuccin.homeManagerModules.catppuccin
@@ -62,14 +74,7 @@
 
         homeConfigurations."fathom@test-surface" = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
-
-            # Thanks a lot VimJoyer for making this tutorial
-            # using this god-awful syntax that doesn't tell
-            # you anything about what this option does.
-
-            # Seriously, what does "extraSpecialArgs" mean?
             extraSpecialArgs = { inherit inputs; };
-
             modules = [ 
                 ./home-manager/accounts/fathom-test-surface.nix 
                 catppuccin.homeManagerModules.catppuccin
