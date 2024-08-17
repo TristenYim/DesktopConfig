@@ -23,8 +23,8 @@
     ];
     
     options = {
-        hyprDE.enable = lib.mkEnableOption "Enables my custom Hyprland DE";
-        xfceDE.enable = lib.mkEnableOption "Enables XFCE";
+        hyprDE-home.enable = lib.mkEnableOption "Enables my custom Hyprland desktop environment";
+        xfce-home.enable = lib.mkEnableOption "Enables XFCE";
     };
 
     # DE-independent defaults
@@ -43,7 +43,7 @@
             nixGLPrefix = "${pkgs.nixgl.auto.nixGLDefault}/bin/nixGL";
         }
 
-        ( lib.mkIf config.hyprDE.enable {
+        ( lib.mkIf config.hyprDE-home.enable {
             hyprland-home.enable = lib.mkDefault true;
             kitty-home.enable = lib.mkDefault true;
             rofi-home.enable = lib.mkDefault true;
@@ -52,7 +52,7 @@
             wlogout-home.enable = lib.mkDefault true;
         })
 
-        ( lib.mkIf config.xfceDE.enable {
+        ( lib.mkIf config.xfce-home.enable {
             xfconf-home.enable = lib.mkDefault true;
         })
     ];

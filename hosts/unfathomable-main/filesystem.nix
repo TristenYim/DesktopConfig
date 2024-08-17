@@ -4,26 +4,43 @@ let
     rootPartition = "/dev/disk/by-uuid/909d9564-7ff5-44a4-b327-d7356acb10cd";
 in
 {
-    fileSystems."/" = {
-        device = "none";
-        fsType = "tmpfs";
-        neededForBoot = true;
-        options = [ "defaults" "size=4G" "mode=755" ];
-    };
+    # For some reason this was not enabled in the hardware configuration, even though I have an an hdd
+    boot.supportedFilesystems = [ "ntfs" ];
 
-    fileSystems."/pers" = {
-        device = rootPartition;
-        fsType = "btrfs";
-        neededForBoot = true;
-        options = [ "subvol=@persist" ];
-    };
+    # Required for persisting in home-manager
+    programs.fuse.userAllowOther = true;
 
-    fileSystems."/nix" = {
-        device = rootPartition;
-        fsType = "btrfs";
-        neededForBoot = true;
-        options = [ "subvol=@nix" ];
-    };
+    fileSystems = {
 
-    # The boot partition is configured using the defaults in hardware-configuration.nix
+        # The boot partition is configured using the defaults in hardware-configuration.nix
+
+        "/" = {
+            device = "none";
+            fsType = "tmpfs";
+            neededForBoot = true;
+            options = [ "defaults" "size=4G" "mode=755" ];
+        };
+
+        "/nix" = {
+            device = rootPartition;
+            fsType = "btrfs";
+            neededForBoot = true;
+            options = [ "subvol=@nix" ];
+        };
+
+        "/pers" = {
+            device = rootPartition;
+            fsType = "btrfs";
+            neededForBoot = true;
+            options = [ "subvol=@persist" ];
+        };
+
+        "/pers/home" = {
+            device = rootPartition;
+            fsType = "btrfs";
+            neededForBoot = true;
+            depends = [ "/pers" ];
+            options = [ "subvol=@home" ];
+        };
+    };
 }

@@ -11,6 +11,13 @@
             enable = true;
             userEmail = "unfathomy@proton.me";
             userName = "TristenYim";
+            extraConfig = {
+                safe = {
+                    directory = [
+                        "/etc/nixos"
+                    ];
+                };
+            };
         };
     };
 }

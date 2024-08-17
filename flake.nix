@@ -49,10 +49,11 @@
                         extraSpecialArgs = { inherit inputs; };
                         users.fathom = {
                             imports = [
-                                ./home-manager/accounts/fathom-unfathomable-main.nix
+                                ./users/fathom-unfathomable-main.nix
                                 catppuccin.homeManagerModules.catppuccin
                                 hyprland.homeManagerModules.default
                                 nixvim.homeManagerModules.nixvim
+                                impermanence.nixosModules.home-manager.impermanence
                             ];
                         };
                     };
@@ -72,7 +73,7 @@
             inherit pkgs;
             extraSpecialArgs = { inherit inputs; };
             modules = [ 
-                ./home-manager/accounts/fathom-test-surface.nix 
+                ./users/fathom-test-surface.nix 
                 catppuccin.homeManagerModules.catppuccin
                 hyprland.homeManagerModules.default
                 nixvim.homeManagerModules.nixvim
@@ -82,7 +83,7 @@
         homeConfigurations.fathom = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             modules = [ 
-                ./home-manager/accounts/fathom-default.nix 
+                ./users/fathom-default.nix 
                 catppuccin.homeManagerModules.catppuccin
                 hyprland.homeManagerModules.default
                 nixvim.homeManagerModules.nixvim
@@ -92,7 +93,7 @@
         homeConfigurations.tdoggy = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             modules = [ 
-                ./home-manager/accounts/tdoggy-default.nix
+                ./users/tdoggy-default.nix
                 catppuccin.homeManagerModules.catppuccin
                 nixvim.homeManagerModules.nixvim
             ];

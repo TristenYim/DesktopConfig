@@ -6,9 +6,9 @@
 
     config = lib.mkMerge
     [
-        # For some reason this must be made default here
         {
            users-fathom.enable = lib.mkDefault true;
+           users.groups.nixos-config-editor = {}; # Group for giving (local) users write access to /etc/nixos
         }
 
         # fathom, the productivity account
@@ -16,7 +16,7 @@
             users.users.fathom = {
                 isNormalUser = true;
                 description = "unfathomable-surface";
-                extraGroups = [ "networkmanager" "wheel" "nix-config-perms" ];
+                extraGroups = [ "networkmanager" "wheel" "nixos-config-editor" ];
                 packages = with pkgs; [];
                 initialPassword = "123456";
             };
@@ -27,7 +27,7 @@
             users.users.tdoggy = {
                 isNormalUser = true;
                 description = "tdoggied-surface";
-                extraGroups = [ "networkmanager" "wheel" "nix-config-perms" ];
+                extraGroups = [ "networkmanager" "wheel" "nixos-config-editor" ];
                 packages = with pkgs; [];
             };
         })
