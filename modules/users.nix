@@ -14,21 +14,19 @@
         # fathom, the productivity account
         ( lib.mkIf config.users-fathom.enable {
             users.users.fathom = {
-                isNormalUser = true;
-                description = "unfathomable-surface";
-                extraGroups = [ "networkmanager" "wheel" "nixos-config-editor" ];
-                packages = with pkgs; [];
-                initialPassword = "123456";
+                isNormalUser = lib.mkDefault true;
+                description = lib.mkDefault "For productivity. Use with Hyprland.";
+                extraGroups = lib.mkDefault [ "networkmanager" "wheel" "nixos-config-editor" ];
+                initialPassword = lib.mkDefault "123456";
             };
         })
 
         # tdoggy, the gaming account 
         ( lib.mkIf config.users-tdoggy.enable {
             users.users.tdoggy = {
-                isNormalUser = true;
-                description = "tdoggied-surface";
-                extraGroups = [ "networkmanager" "wheel" "nixos-config-editor" ];
-                packages = with pkgs; [];
+                isNormalUser = lib.mkDefault true;
+                description = lib.mkDefault "For gaming. Use with XFCE.";
+                extraGroups = lib.mkDefault [ "networkmanager" "wheel" "nixos-config-editor" ];
             };
         })
     ];

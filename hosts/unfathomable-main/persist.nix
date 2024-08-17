@@ -1,4 +1,4 @@
-# Declares persistent files
+# Declares persistent files and directories
 # These are NOT erased on reboot in the impermanence setup
 { config, pkgs, ... }: {
     environment.persistence."/pers" = {
@@ -11,7 +11,7 @@
             "/var/lib/systemd/coredump" # Systemd coredump logs
         ];
         files = [
-            # "/etc/shadow" # Stores system passwords
+            # Put your files here
         ];
     };
 }

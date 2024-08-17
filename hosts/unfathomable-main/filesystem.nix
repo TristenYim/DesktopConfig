@@ -10,6 +10,9 @@ in
     # Required for persisting in home-manager
     programs.fuse.userAllowOther = true;
 
+    # Required for importing user password hash files
+    users.mutableUsers = false;
+
     fileSystems = {
 
         # The boot partition is configured using the defaults in hardware-configuration.nix
