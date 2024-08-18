@@ -2,6 +2,7 @@
     options = {
         bottles.enable = lib.mkEnableOption "Use Bottles!";
         btop.enable = lib.mkEnableOption "Enables BTOP++";
+        copyq.enable = lib.mkEnableOption "Enables CopyQ";
         flatpak.enable = lib.mkEnableOption "Enables flatpak";
         grimSwappy.enable = lib.mkEnableOption "Enables grim + swappy screenshot tools";
         neofetch.enable = lib.mkEnableOption "Enables neofetch";
@@ -15,13 +16,6 @@
     config = lib.mkMerge
     [
         {
-            environment.etc."current-system-packages".text =
-              let
-                packages = builtins.map (p: "${p.name}") config.environment.systemPackages;
-                sortedUnique = builtins.sort builtins.lessThan (lib.unique packages);
-                formatted = builtins.concatStringsSep "\n" sortedUnique;
-              in
-                formatted; 
             bottles.enable = lib.mkDefault true;
             btop.enable = lib.mkDefault true;
             flatpak.enable = lib.mkDefault true;
@@ -31,13 +25,12 @@
             sddm.enable = lib.mkDefault true;
             vim.enable = lib.mkDefault true;
 
-            # TODO: ADD THUNAR ARCHIVE MANAGER SINCE NIXOS ISN'T DOING IT
-            environment.systemPackages = [
-                pkgs.unzip
+            environment.pathsToLink = [
+                "/share/zsh"
             ];
         }
 
-        # Flatpak
+        # Flatpak, alternative package installer
         ( lib.mkIf config.flatpak.enable {
             services.flatpak.enable = true;
             xdg.portal = {            
@@ -49,17 +42,24 @@
             };
         })
 
-        # Use Bottles!
+        # Use Bottles! GUI Wine bottler
         ( lib.mkIf config.btop.enable {
             environment.systemPackages = [
                 pkgs.bottles
             ];
         })
 
-        # Btop++
+        # Btop++, task manager
         ( lib.mkIf config.btop.enable {
             environment.systemPackages = [
                 pkgs.btop
+            ];
+        })
+
+        # CopyQ, cliboard manager
+        ( lib.mkIf config.btop.enable {
+            environment.systemPackages = [
+                pkgs.copyq
             ];
         })
 
@@ -78,23 +78,28 @@
             ];
         })
 
-        # Pulseaudio
+        # Pulseaudio, sound server
         ( lib.mkIf config.pulse.enable {
-            hardware.pulseaudio.enable = true;
+            hardware.pulseaudio = {
+                enable = true;
+                package = pkgs.pulseaudioFull;
+                support32Bit = true;
+            };
+            nixpkgs.config.pulseaudio = true;
+
             environment.systemPackages = [
                 pkgs.pavucontrol
-                pkgs.pulseaudioFull
             ];
         })
 
-        # Ranger
+        # Ranger, TUI file manager
         ( lib.mkIf config.ranger.enable {
             environment.systemPackages = [
                 pkgs.ranger
             ];
         })
 
-        # SDDM
+        # SDDM, display (login) manager
         ( lib.mkIf config.sddm.enable {
             environment.systemPackages = [
                 pkgs.libsForQt5.sddm

@@ -3,11 +3,13 @@
 {
     imports = [
         ./firefox/firefox.nix
+        ./terminal/alias.nix
         ./terminal/bash.nix
         ./terminal/git.nix
         ./terminal/kitty.nix
         ./terminal/ranger.nix
         ./terminal/starship.nix
+        ./terminal/zsh.nix
         ./nixGL/nixGLOpt.nix
         ./nixvim/nixvim.nix
         ./hypr/hyprland.nix
@@ -31,6 +33,7 @@
     config = lib.mkMerge 
     [
         {
+            alias-home.enable = lib.mkDefault true;
             bash-home.enable = lib.mkDefault true;
             catppuccin-home.enable = lib.mkDefault true;
             cursor-home.enable = lib.mkDefault true;
@@ -40,6 +43,7 @@
             ranger-home.enable = lib.mkDefault true;
             qt-home.enable = lib.mkDefault true;
             starship-home.enable = lib.mkDefault true;
+            # zsh-home.enable = lib.mkDefault true;
             nixGLPrefix = "${pkgs.nixgl.auto.nixGLDefault}/bin/nixGL";
         }
 

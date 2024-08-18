@@ -15,6 +15,7 @@
                 safe = {
                     directory = [
                         "/etc/nixos"
+                        "/media/Hdd/SchoolNotes"
                     ];
                 };
             };
