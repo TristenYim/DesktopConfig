@@ -15,6 +15,7 @@
                 EDITOR = "vim";
             };
             shellAliases = {
+                sudo = "sudo ";
                 hms = "home-manager switch --flake ~/nix --impure";
                 nrb = "nixos-rebuild boot --flake /etc/nixos";
                 nrs = "nixos-rebuild switch --flake /etc/nixos";

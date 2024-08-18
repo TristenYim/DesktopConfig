@@ -41,6 +41,7 @@
                     "browser.urlbar.suggest.quicksuggest.sponsored" = false;
                     "datareporting.healthreport.uploadEnabled" = false;
                     "extensions.pocket.enabled" = false;
+                    "extensions.autoDisableScopes" = 0;
                     "geo.enabled" = false;
                     "signon.rememberSignons" = false;
                     "privacy.firstparty.isolate" = true;

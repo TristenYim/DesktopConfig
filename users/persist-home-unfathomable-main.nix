@@ -11,11 +11,12 @@
             "Pictures"
             "Videos"
 
-            ".local/fathom/.local/share/nvim/site/spell" # Nvim spell-check files
+            ".local/share/nvim/site/spell" # Nvim spell-check files
             ".local/share/fonts" # Local fonts
+            ".mozilla/firefox/user" # All firefox data
         ];
         files = [
-            ".bash_history"
+            ".bash_history" # Stores command history
         ];
         allowOther = true;
     };
