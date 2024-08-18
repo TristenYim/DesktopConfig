@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, pkgs24-05, lib, ... }:
 
 {
     imports = [
@@ -12,5 +12,6 @@
         # Reset packages to default instead of nixGL wrapped ones on NixOS
         programs.kitty.package = pkgs.kitty;
         wayland.windowManager.hyprland.package = pkgs.hyprland;
+        # wayland.windowManager.hyprland.package = pkgs24-05.hyprland;
     };
 }

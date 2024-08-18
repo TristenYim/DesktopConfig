@@ -20,8 +20,8 @@
                 "$mainMod, A, exec, swaylock"
                 "$mainMod SHIFT, A, exec, wlogout --protocol layer-shell"
                 "$mainMod SHIFT, R, exit,"
-                #$mainMod, P, pseudo, # dwindle
-                #$mainMod, COMMA, togglesplit, # dwindle
+                # $mainMod, P, pseudo, # dwindle
+                # $mainMod, COMMA, togglesplit, # dwindle
 
                 # Move focus with mainMod + arrow keys
                 "$mainMod, left, movefocus, l"
@@ -66,7 +66,7 @@
                 "$mainMod SHIFT, 9, movetoworkspace, 9"
                 "$mainMod SHIFT, 0, movetoworkspace, 10"
 
-                # Scroll through existing workspaces with mainMod + scroll                "
+                # Scroll through existing workspaces with mainMod + scroll
                 "$mainMod, mouse_down, workspace, e+1"
                 "$mainMod, mouse_up, workspace, e-1"
 
@@ -83,7 +83,10 @@
                 "$mainMod SHIFT, U, exec, thunar"
                 "$mainMod, J, exec, grim -g \"$(slurp)\" - | swappy -f -"
                 "$mainMod, O, exec, firefox"
-                "$mainMod, GRAVE, exec, [float;maximize] kitty btop"
+
+                # These programs are in special workspaces
+                "$mainMod, GRAVE, togglespecialworkspace, BTOP"
+                "$mainMod, GRAVE, togglespecialworkspace, CIDER"
             ];
 
             # Move/resize windows with mainMod + LMB/RMB and dragging

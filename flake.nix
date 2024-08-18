@@ -3,6 +3,7 @@
 
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+        nixpkgs24-05.url = "github:nixos/nixpkgs/nixos-24.05";
         catppuccin.url = "github:catppuccin/nix";
         impermanence.url = "github:nix-community/impermanence";
         firefox-addons = {
@@ -15,7 +16,12 @@
         };
         hyprland = {
             url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-            inputs.nixpkgs.follows = "nixpkgs";
+            inputs.nixpkgs.follows = "nixpkgs24-05";
+        };
+        hycov = {
+            url = "github:DreamMaoMao/hycov";
+            inputs.nixpkgs.follows = "nixpkgs24-05";
+            inputs.hyprland.follows = "hyprland";
         };
         nixgl = {
             url = "github:guibou/nixGL";
@@ -27,16 +33,22 @@
         };
     };
 
-    outputs = { nixpkgs, catppuccin, firefox-addons, impermanence, home-manager, hyprland, nixvim, nixgl, ... }@inputs:
+    outputs = { nixpkgs, nixpkgs24-05, catppuccin, firefox-addons, impermanence, home-manager, hyprland, hycov, nixvim, nixgl, ... }@inputs:
       let 
         system = "x86_64-linux";
         pkgs = import nixpkgs {
             system = "x86_64-linux";
             overlays = [ nixgl.overlay ];
         };
+        pkgs24-05 = import nixpkgs24-05 {
+            system = "x86_64-linux";
+        };
       in {
 	    nixosConfigurations.unfathomable-main = nixpkgs.lib.nixosSystem {
             inherit system;
+            specialArgs = {
+                inherit pkgs24-05;
+            };
             modules = [
                 ./hosts/unfathomable-main/configuration.nix
                 catppuccin.nixosModules.catppuccin
@@ -46,7 +58,13 @@
                 home-manager.nixosModules.home-manager {
                     home-manager = {
                         useGlobalPkgs = true;
-                        extraSpecialArgs = { inherit inputs; };
+
+                        # These are custom arguments
+                        extraSpecialArgs = { 
+                            inherit inputs; # Allows us to reference everything in inputs without having to explicitly import it
+                            inherit pkgs24-05;
+                        };
+
                         users.fathom = {
                             imports = [
                                 ./users/fathom-unfathomable-main.nix

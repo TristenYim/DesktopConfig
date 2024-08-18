@@ -7,7 +7,9 @@ let nixGLWrap = import ../nixGL/nixGLWrapper.nix {
 in {
 
     imports = [
+        ./hypridle.nix
         ./keybinds.nix
+        ./plugins.nix
         ./windows-workspaces.nix
         ./environment/env_var.nix
         ./environment/env_var_nvidia.nix
@@ -135,6 +137,7 @@ in {
                         "borderangle, 1, 8, default"
                         "fade, 1, 7, default"
                         "workspaces, 1, 6, default"
+                        "specialWorkspace, 1, 6, default, slidefadevert -100%"
                     ];
                 };
 

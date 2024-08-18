@@ -31,6 +31,7 @@
                 ### FLOAT ###
                 #############
 
+                "float, class:^(nm-connection-editor)$"
                 "float, class:^(nwg-look)$"
                 "float, class:^(openrgb)$"
                 "float, class:^(org.pulseaudio.pavucontrol)"
@@ -49,7 +50,6 @@
                 "size 75% 75%, class:^(feh)$"
                 "animation popin, class:^(kitty)$,title:^(update-sys)$"
                 "animation popin, class:^(thunar)$"
-                "stayfocused, class:^(rofi)$"
                 "maximize, class:^(openrgb)$"
                 # "opaque, class:^(photo.exe)$"
                 # "nodim, class:^(photo.exe)$"
@@ -74,6 +74,10 @@
                 "1, monitor:$mon1, default:true"
                 "name:Chat, monitor:$mon2, on-created-empty:hyprctl dispatch exec slack && /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=com.discordapp.Discord com.discordapp.Discord --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto"
             ];
+
+            ##########################
+            ### SPECIAL WORKSPACES ###
+            ##########################
         };
     };
 }

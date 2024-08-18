@@ -44,7 +44,9 @@
         }
 
         ( lib.mkIf config.hyprDE-home.enable {
+            # hycov-home.enable = lib.mkDefault true; # We'll worry about this later
             hyprland-home.enable = lib.mkDefault true;
+            hypridle-home.enable = lib.mkDefault true;
             kitty-home.enable = lib.mkDefault true;
             rofi-home.enable = lib.mkDefault true;
             swaylock-home.enable = lib.mkDefault true;

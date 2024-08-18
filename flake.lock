@@ -268,6 +268,34 @@
         "type": "github"
       }
     },
+    "hycov": {
+      "inputs": {
+        "hyprland": [
+          "hyprland"
+        ],
+        "nixpkgs": [
+          "nixpkgs24-05"
+        ],
+        "systems": [
+          "hycov",
+          "hyprland",
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1719328349,
+        "narHash": "sha256-upIUl8IE5ow+CJKa2SIo3OL/djarGVr8pNe1j05uW1A=",
+        "owner": "DreamMaoMao",
+        "repo": "hycov",
+        "rev": "de15cdd6bf2e46cbc69735307f340b57e2ce3dd0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DreamMaoMao",
+        "repo": "hycov",
+        "type": "github"
+      }
+    },
     "hyprcursor": {
       "inputs": {
         "hyprlang": [
@@ -305,7 +333,7 @@
         "hyprutils": "hyprutils",
         "hyprwayland-scanner": "hyprwayland-scanner",
         "nixpkgs": [
-          "nixpkgs"
+          "nixpkgs24-05"
         ],
         "systems": "systems",
         "xdph": "xdph"
@@ -505,6 +533,22 @@
         "type": "github"
       }
     },
+    "nixpkgs24-05": {
+      "locked": {
+        "lastModified": 1723688146,
+        "narHash": "sha256-sqLwJcHYeWLOeP/XoLwAtYjr01TISlkOfz+NG82pbdg=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "c3d4ac725177c030b1e289015989da2ad9d56af0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixvim": {
       "inputs": {
         "devshell": "devshell",
@@ -560,10 +604,12 @@
         "catppuccin": "catppuccin",
         "firefox-addons": "firefox-addons",
         "home-manager": "home-manager",
+        "hycov": "hycov",
         "hyprland": "hyprland",
         "impermanence": "impermanence",
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs",
+        "nixpkgs24-05": "nixpkgs24-05",
         "nixvim": "nixvim"
       }
     },
