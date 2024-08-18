@@ -86,7 +86,7 @@
 
                 # These programs are in special workspaces
                 "$mainMod, GRAVE, togglespecialworkspace, BTOP"
-                "$mainMod, GRAVE, togglespecialworkspace, CIDER"
+                "$mainMod, E, togglespecialworkspace, CIDER"
             ];
 
             # Move/resize windows with mainMod + LMB/RMB and dragging

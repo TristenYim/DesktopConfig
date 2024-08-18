@@ -73,11 +73,9 @@
             workspace = [
                 "1, monitor:$mon1, default:true"
                 "name:Chat, monitor:$mon2, on-created-empty:hyprctl dispatch exec slack && /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=com.discordapp.Discord com.discordapp.Discord --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto"
+                "workspace = special:BTOP, on-created-empty: [maximize] kitty btop"
+                "workspace = special:CIDER, on-created-empty: [float; size 1000 800; move 10 50] cider"
             ];
-
-            ##########################
-            ### SPECIAL WORKSPACES ###
-            ##########################
         };
     };
 }

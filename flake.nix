@@ -3,7 +3,7 @@
 
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-        nixpkgs24-05.url = "github:nixos/nixpkgs/nixos-24.05";
+        # nixpkgs24-05.url = "github:nixos/nixpkgs/nixos-24.05";
         catppuccin.url = "github:catppuccin/nix";
         impermanence.url = "github:nix-community/impermanence";
         firefox-addons = {
@@ -15,12 +15,14 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         hyprland = {
+            # url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=918d8340afd652b011b937d29d5eea0be08467f5";
             url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-            inputs.nixpkgs.follows = "nixpkgs24-05";
+            # inputs.nixpkgs.follows = "nixpkgs24-05";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
         hycov = {
             url = "github:DreamMaoMao/hycov";
-            inputs.nixpkgs.follows = "nixpkgs24-05";
+            # inputs.nixpkgs.follows = "nixpkgs24-05";
             inputs.hyprland.follows = "hyprland";
         };
         nixgl = {
@@ -33,22 +35,22 @@
         };
     };
 
-    outputs = { nixpkgs, nixpkgs24-05, catppuccin, firefox-addons, impermanence, home-manager, hyprland, hycov, nixvim, nixgl, ... }@inputs:
+    outputs = { nixpkgs, catppuccin, firefox-addons, impermanence, home-manager, hyprland, hycov, nixvim, nixgl, ... }@inputs:
       let 
         system = "x86_64-linux";
         pkgs = import nixpkgs {
             system = "x86_64-linux";
             overlays = [ nixgl.overlay ];
         };
-        pkgs24-05 = import nixpkgs24-05 {
-            system = "x86_64-linux";
-        };
+        # pkgs24-05 = import nixpkgs24-05 {
+        #     system = "x86_64-linux";
+        # };
       in {
 	    nixosConfigurations.unfathomable-main = nixpkgs.lib.nixosSystem {
             inherit system;
-            specialArgs = {
-                inherit pkgs24-05;
-            };
+            # specialArgs = {
+            #     inherit pkgs24-05;
+            # };
             modules = [
                 ./hosts/unfathomable-main/configuration.nix
                 catppuccin.nixosModules.catppuccin
@@ -62,7 +64,7 @@
                         # These are custom arguments
                         extraSpecialArgs = { 
                             inherit inputs; # Allows us to reference everything in inputs without having to explicitly import it
-                            inherit pkgs24-05;
+                            # inherit pkgs24-05;
                         };
 
                         users.fathom = {
