@@ -1,7 +1,8 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, nixos-cli, ... }: {
     options = {
         btop.enable = lib.mkEnableOption "Enables BTOP++";
         flatpak.enable = lib.mkEnableOption "Enables flatpak";
+        nixos-cli.enable = lib.mkEnableOption "Enables nixos-cli";
         pulse.enable = lib.mkEnableOption "Enables PulseAudio";
         ranger.enable = lib.mkEnableOption "Enables ranger";
         sddm.enable = lib.mkEnableOption "Enables SDDM";
@@ -14,6 +15,7 @@
         {
             btop.enable = lib.mkDefault true;
             flatpak.enable = lib.mkDefault true;
+            nixos-cli.enable = lib.mkDefault true;
             pulse.enable = lib.mkDefault true;
             ranger.enable = lib.mkDefault true;
             sddm.enable = lib.mkDefault true;
@@ -23,6 +25,13 @@
                 "/share/zsh"
             ];
         }
+
+        # Btop++, task manager
+        ( lib.mkIf config.btop.enable {
+            environment.systemPackages = [
+                pkgs.btop
+            ];
+        })
 
         # Flatpak, alternative package installer
         ( lib.mkIf config.flatpak.enable {
@@ -36,11 +45,11 @@
             };
         })
 
-        # Btop++, task manager
-        ( lib.mkIf config.btop.enable {
-            environment.systemPackages = [
-                pkgs.btop
-            ];
+        # nixos-cli, adds a better cli for NixOS operations
+        ( lib.mkIf config.nixos-cli.enable {
+            services.nixos-cli = {
+                enable = true;
+            };
         })
 
         # Pulseaudio, sound server

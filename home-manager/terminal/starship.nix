@@ -24,6 +24,7 @@
                     $git_status\\
                     [](fg:#394260 bg:#212736)\\
                     $nodejs\\
+                    $nix_shell\\
                     $rust\\
                     $golang\\
                     $php\\
@@ -43,6 +44,8 @@
                         "Downloads" = " ";
                         "Music" = " ";
                         "Pictures" = " ";
+                        "/etc/nixos" = "etc/  ";
+                        "/nix/store" = "nix/ 󰀻 ";
                     };
                 };
                 git_branch = {
@@ -58,6 +61,13 @@
                     symbol = "";
                     style = "bg:#212736";
                     format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)";
+                };
+                nix_shell = {
+                    style = "bg:#212736";
+                    impure_msg = "[ impure 󰼩 ](fg:#f38ba8 bg:#212736)";
+                    pure_msg = "[ pure!! 󱩰 ](fg:#a6e3a1 bg:#212736)";
+                    unknown_msg = "[ ??? 󱓣 ](fg:#769ff0 bg:#212736)";
+                    format = "[[$state \\($name\\) \\[nix-shell\\]](fg:#769ff0 bg:#212736)]($style)";
                 };
                 rust = {
                     symbol = "";

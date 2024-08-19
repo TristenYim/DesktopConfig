@@ -3,16 +3,16 @@
     {
         wayland.windowManager.hyprland.settings =
         {
-            ####################
-            ### KEYBINDINGSS ###
-            ####################
+            ###################
+            ### KEYBINDINGS ###
+            ###################
 
             # See https://wiki.hyprland.org/Configuring/Keywords/ for more
             "$mainMod" = "SUPER";
 
-            ########################
-            ### WINDOW MANAGMENT ###
-            ########################
+            #########################
+            ### WINDOW MANAGEMENT ###
+            #########################
 
             bind = [
                 "$mainMod, ESCAPE, killactive,"
@@ -75,18 +75,18 @@
                 #################
 
                 "$mainMod, SPACE, exec, rofi -theme $HOME/.config/rofi/run.rasi -show drun"
-                "$mainMod, M, exec, [float;size 75% 75%] kitty vim $HOME/.config/hypr/"
 
                 "$mainMod, APOSTROPHE, exec, kitty"
                 "$mainMod SHIFT, APOSTROPHE, exec, [float;size 75% 75%] kitty" # General purpose floating terminal
                 "$mainMod, U, exec, [float;size 60% 60%] thunar"
                 "$mainMod SHIFT, U, exec, thunar"
-                "$mainMod, J, exec, grim -g \"$(slurp)\" - | swappy -f -"
+                "$mainMod, J, exec, grim -g \"$(slurp -w 0)\" - | swappy -f -"
                 "$mainMod, O, exec, firefox"
 
                 # These programs are in special workspaces
                 "$mainMod, GRAVE, togglespecialworkspace, BTOP"
                 "$mainMod, E, togglespecialworkspace, CIDER"
+                "$mainMod, M, togglespecialworkspace, CONFIG"
             ];
 
             # Move/resize windows with mainMod + LMB/RMB and dragging

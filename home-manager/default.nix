@@ -3,6 +3,7 @@
 {
     imports = [
         ./desktop-apps.nix
+        ./image-utils.nix
         ./firefox/firefox.nix
         ./terminal/alias.nix
         ./terminal/bash.nix
@@ -54,6 +55,7 @@
             hypridle-home.enable = lib.mkDefault true;
             kitty-home.enable = lib.mkDefault true;
             rofi-home.enable = lib.mkDefault true;
+            screenshot-home.enable = lib.mkDefault true;
             swaylock-home.enable = lib.mkDefault true;
             waybar-home.enable = lib.mkDefault true;
             wlogout-home.enable = lib.mkDefault true;

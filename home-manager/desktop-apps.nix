@@ -11,7 +11,6 @@
         cider-home.enable = lib.mkEnableOption "Enables Cider";
         copyq-home.enable = lib.mkEnableOption "Enables CopyQ";
         darktable-home.enable = lib.mkEnableOption "Enables darktable";
-        feh-home.enable = lib.mkEnableOption "Enables feh";
         libreOffice-home.enable = lib.mkEnableOption "Enables LibreOffice";
         grimSwappy-home.enable = lib.mkEnableOption "Enables grim + swappy screenshot tools";
         mako-home.enable = lib.mkEnableOption "Enables mako";
@@ -89,19 +88,6 @@
         # darktable
         ( lib.mkIf config.darktable-home.enable {
             home.packages = [ pkgs.darktable ];
-        })
-
-        # feh
-        ( lib.mkIf config.feh-home.enable {
-            home.packages = [ pkgs.feh ];
-        })
-
-        # Grim + Swappy screenshot utils
-        ( lib.mkIf config.grimSwappy-home.enable {
-            home.packages = [
-                pkgs.grim
-                pkgs.swappy
-            ];
         })
 
         # LibreOffice

@@ -29,13 +29,17 @@
             url = "github:guibou/nixGL";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        nixos-cli = {
+            url = "github:water-sucks/nixos";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
         nixvim = {
             url = "github:nix-community/nixvim";
             inputs.nixpkgs.follows = "nixpkgs";
         };
     };
 
-    outputs = { nixpkgs, catppuccin, firefox-addons, impermanence, home-manager, hyprland, hycov, nixvim, nixgl, ... }@inputs:
+    outputs = { nixpkgs, catppuccin, firefox-addons, impermanence, home-manager, hyprland, hycov, nixvim, nixos-cli, nixgl, ... }@inputs:
       let 
         system = "x86_64-linux";
         pkgs = import nixpkgs {
@@ -55,6 +59,7 @@
                 ./hosts/unfathomable-main/configuration.nix
                 catppuccin.nixosModules.catppuccin
                 impermanence.nixosModules.impermanence
+                nixos-cli.nixosModules.nixos-cli
 
                 # Import Home Manager profiles
                 home-manager.nixosModules.home-manager {
