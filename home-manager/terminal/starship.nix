@@ -15,27 +15,28 @@
                 
                 format = lib.concatStrings [
                     ''
-                    [░▒▓](#a3aed2)\\
+                    [░▒▓](peach)\\
                     $os\\
-                    [](bg:#769ff0 fg:#a3aed2)\\
+                    [](fg:peach bg:yellow)\\
                     $directory\\
-                    [](fg:#769ff0 bg:#394260)\\
+                    [](fg:yellow bg:lavender)\\
                     $git_branch\\
                     $git_status\\
-                    [](fg:#394260 bg:#212736)\\
-                    $nodejs\\
+                    [](fg:lavender bg:surface1)\\
                     $nix_shell\\
+                    $nodejs\\
                     $rust\\
                     $golang\\
                     $php\\
-                    [](fg:#212736 bg:#1d2230)\\
+                    $git_metrics\\
+                    [](fg:surface1 bg:surface0)\\
                     $time\\
-                    [ ](fg:#1d2230)
+                    [ ](fg:surface0)
                     $character
                     ''
                 ];
                 directory = {
-                    style = "fg:#e3e5e5 bg:#769ff0";
+                    style = "fg:surface0 bg:yellow";
                     format = "[ $path ]($style)";
                     truncation_length = 3;
                     truncation_symbol = "…/";
@@ -44,55 +45,65 @@
                         "Downloads" = " ";
                         "Music" = " ";
                         "Pictures" = " ";
-                        "/etc/nixos" = "etc/  ";
-                        "/nix/store" = "nix/ 󰀻 ";
+                        "home" = "󰚡 ";
+                        "/media/Hdd" = "…/󱛟 ";
+                        "/pers" = " ";
+                        # "/etc/nixos" = "…/ ";
+                        "/nix/store" = "…/ 󰀻 ";
                     };
                 };
                 git_branch = {
                     symbol = "";
-                    style = "bg:#394260";
-                    format = "[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)";
+                    style = "fg:surface1 bg:lavender";
+                    format = "[ $symbol $branch ]($style)";
                 };
                 git_status = {
-                    style = "bg:#394260";
-                    format = "[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)";
+                    style = "fg:surface1 bg:lavender";
+                    format = "[($all_status$ahead_behind )]($style)";
+                };
+                git_metrics = {
+                    disabled = false;
+                    added_style = "fg:green bg:surface1";
+                    deleted_style = "fg:red bg:surface1";
+                    only_nonzero_diffs = false;
+                    format = "[ \\(](fg:text bg:surface1)([+$added]($added_style))[/](fg:text bg:surface1)([-$deleted]($deleted_style)[\\) ](fg:text bg:surface1))";
                 };
                 nodejs = {
                     symbol = "";
-                    style = "bg:#212736";
-                    format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)";
+                    style = "fg:text bg:surface1";
+                    format = "[ $symbol ($version) ]($style)";
                 };
                 nix_shell = {
-                    style = "bg:#212736";
-                    impure_msg = "[ impure 󰼩 ](fg:#f38ba8 bg:#212736)";
-                    pure_msg = "[ pure!! 󱩰 ](fg:#a6e3a1 bg:#212736)";
-                    unknown_msg = "[ ??? 󱓣 ](fg:#769ff0 bg:#212736)";
-                    format = "[[$state \\($name\\) \\[nix-shell\\]](fg:#769ff0 bg:#212736)]($style)";
+                    style = "fg:mauve bg:surface1";
+                    impure_msg = "[ impure 󰼩 ](fg:red bg:surface1)";
+                    pure_msg = "[ pure!! 󱩰 ](fg:green bg:surface1)";
+                    unknown_msg = "[ ??? 󱓣 ](fg:mauve bg:surface1)";
+                    format = "[$state \\[nix-shell: $name\\]]($style)";
                 };
                 rust = {
                     symbol = "";
-                    style = "bg:#212736";
-                    format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)";
+                    style = "fg:text bg:surface1";
+                    format = "[ $symbol ($version) ]($style)";
                 };
                 golang = {
                     symbol = "";
-                    style = "bg:#212736";
-                    format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)";
+                    style = "fg:text bg:surface1";
+                    format = "[ $symbol ($version) ]($style)";
                 };
                 php = {
                     symbol = "";
-                    style = "bg:#212736";
-                    format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)";
+                    style = "fg:text bg:surface1";
+                    format = "[ $symbol ($version) ]($style)";
                 };
                 time = {
                     disabled = false;
                     time_format = "%R"; # Hour:Minute Format
-                    style = "bg:#1d2230";
-                    format = "[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)";
+                    style = "fg:text bg:surface0";
+                    format = "[  $time ]($style)";
                 };
                 os = {
                     disabled = false;
-                    format = "[  $symbol](bg:#a3aed2 fg:#090c0c)"; # Be proud that you're using nix!
+                    format = "[  $symbol](fg:base bg:peach)"; # Be proud that you're using nix!
                     symbols = {
                         Alpaquita = " ";
                         Alpine = " ";
