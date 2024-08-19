@@ -2,6 +2,7 @@
 
 {
     imports = [
+        ./desktop-apps.nix
         ./firefox/firefox.nix
         ./terminal/alias.nix
         ./terminal/bash.nix

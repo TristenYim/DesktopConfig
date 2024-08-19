@@ -1,11 +1,7 @@
 { config, pkgs, lib, ... }: {
     options = {
-        bottles.enable = lib.mkEnableOption "Use Bottles!";
         btop.enable = lib.mkEnableOption "Enables BTOP++";
-        copyq.enable = lib.mkEnableOption "Enables CopyQ";
         flatpak.enable = lib.mkEnableOption "Enables flatpak";
-        grimSwappy.enable = lib.mkEnableOption "Enables grim + swappy screenshot tools";
-        neofetch.enable = lib.mkEnableOption "Enables neofetch";
         pulse.enable = lib.mkEnableOption "Enables PulseAudio";
         ranger.enable = lib.mkEnableOption "Enables ranger";
         sddm.enable = lib.mkEnableOption "Enables SDDM";
@@ -16,12 +12,10 @@
     config = lib.mkMerge
     [
         {
-            bottles.enable = lib.mkDefault true;
             btop.enable = lib.mkDefault true;
             flatpak.enable = lib.mkDefault true;
-            grimSwappy.enable = lib.mkDefault true;
-            neofetch.enable = lib.mkDefault true;
             pulse.enable = lib.mkDefault true;
+            ranger.enable = lib.mkDefault true;
             sddm.enable = lib.mkDefault true;
             vim.enable = lib.mkDefault true;
 
@@ -42,39 +36,10 @@
             };
         })
 
-        # Use Bottles! GUI Wine bottler
-        ( lib.mkIf config.btop.enable {
-            environment.systemPackages = [
-                pkgs.bottles
-            ];
-        })
-
         # Btop++, task manager
         ( lib.mkIf config.btop.enable {
             environment.systemPackages = [
                 pkgs.btop
-            ];
-        })
-
-        # CopyQ, cliboard manager
-        ( lib.mkIf config.btop.enable {
-            environment.systemPackages = [
-                pkgs.copyq
-            ];
-        })
-
-        # Grim + Swappy screenshot utils
-        ( lib.mkIf config.grimSwappy.enable {
-            environment.systemPackages = [
-                pkgs.grim
-                pkgs.swappy
-            ];
-        })
-
-        # Neofetch
-        ( lib.mkIf config.neofetch.enable {
-            environment.systemPackages = [
-                pkgs.neofetch
             ];
         })
 

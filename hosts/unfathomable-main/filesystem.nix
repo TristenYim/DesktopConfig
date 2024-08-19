@@ -49,7 +49,7 @@ in
         "/media/Hdd" = {
             device = "/dev/disk/by-uuid/0C22944922943A22";
             fsType = "ntfs";
-            options = [ "gid=users" "mode=775" ]
+            options = [ "gid=users" "mode=775" ];
         };
     };
 }

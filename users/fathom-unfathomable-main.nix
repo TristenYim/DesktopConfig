@@ -7,7 +7,9 @@
     ];
 
     config = {
-        hyprland-home.enable = true;
+        bottles-home.enable = true;
+        darktable-home.enable = true;
+        neofetch-home.enable = true;
 
         # Reset packages to default instead of nixGL wrapped ones on NixOS
         programs.kitty.package = pkgs.kitty;

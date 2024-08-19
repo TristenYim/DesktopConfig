@@ -23,12 +23,9 @@
     users.users.fathom.initialPassword = null;
 
     # Enable custom modules
-    darktable.enable = true;
     flatpak.enable = true;
-    hyprde.enable = true;
+    hyprDE.enable = true;
     nvidia.enable = true;
-    obs.enable = true;
-    prusaSlicer.enable = true;
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions

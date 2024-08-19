@@ -7,7 +7,8 @@
     # Override local module defaults
     git-home.enable = lib.mkDefault true;
     hyprDE-home.enable = lib.mkDefault true;
-    hyprland-home.enable = lib.mkDefault false; # Disabled by default because of issues with nixGL.
+    forSchool-home.enable = lib.mkDefault true;
+    forRobotics-home.enable = lib.mkDefault true;
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = lib.mkDefault true;
