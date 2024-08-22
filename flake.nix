@@ -20,11 +20,19 @@
             # inputs.nixpkgs.follows = "nixpkgs24-05";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        hycov = {
-            url = "github:DreamMaoMao/hycov";
-            # inputs.nixpkgs.follows = "nixpkgs24-05";
-            inputs.hyprland.follows = "hyprland";
-        };
+        # hycov = {
+        #     url = "github:DreamMaoMao/hycov";
+        #     inputs.nixpkgs.follows = "nixpkgs24-05";
+        #     inputs.hyprland.follows = "hyprland";
+        # };
+        # hyprland-plugins = {
+        #     url = "github:hyprwm/hyprland-plugins";
+        #     inputs.hyprland.follows = "hyprland";
+        # };
+        # hyprspace = {
+        #     url = "github:KZDKM/Hyprspace";
+        #     inputs.hyprland.follows = "hyprland";
+        # };
         nixgl = {
             url = "github:guibou/nixGL";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -39,7 +47,7 @@
         };
     };
 
-    outputs = { nixpkgs, catppuccin, firefox-addons, impermanence, home-manager, hyprland, hycov, nixvim, nixos-cli, nixgl, ... }@inputs:
+    outputs = { nixpkgs, catppuccin, firefox-addons, impermanence, home-manager, hyprland, nixvim, nixos-cli, nixgl, ... }@inputs:
       let 
         system = "x86_64-linux";
         pkgs = import nixpkgs {

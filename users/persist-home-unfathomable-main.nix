@@ -14,7 +14,7 @@
             ".ssh" # Stores a lot of information, including github keys and trusted host
             ".local/share/nvim/site/spell" # Nvim spell-check files
             ".local/share/fonts" # Local fonts
-            ".mozilla/firefox/user" # All firefox data
+            ".mozilla" # All firefox data
         ];
         files = [
             ".bash_history" # Stores command history
