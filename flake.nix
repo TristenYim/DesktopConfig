@@ -131,5 +131,6 @@
                 nixvim.homeManagerModules.nixvim
             ];
         };
+        devShells.x86_64-linux.wine-builder = (import ./shells/wine-builder.nix { inherit pkgs; }); 
     };
 }

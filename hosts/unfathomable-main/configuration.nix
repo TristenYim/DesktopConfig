@@ -16,6 +16,8 @@
 
     networking.hostName = "unfathomable-main"; # Define your hostname
 
+    powerManagement.cpuFreqGovernor = "performance"; # We want maximum performance on a desktop
+
     # Define a user account. Don't forget to set a password with ‘passwd’
     # somebody-user.enable = true;
 
