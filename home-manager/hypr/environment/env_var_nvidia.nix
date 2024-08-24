@@ -5,7 +5,7 @@
             cursor = {
                 no_hardware_cursors = true;
             };
-            # render.explicit_sync = 0;
+            render.explicit_sync = 0;
             env = [ 
                 # Environment Variables NVIDIA Specific
 
