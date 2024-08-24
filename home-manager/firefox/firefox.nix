@@ -15,6 +15,7 @@
     {
         programs.firefox = {
             enable = true;
+            package = pkgs.firefox-beta;
 
             # This "user" profile will be automatically added by home manager.
             profiles.user = {

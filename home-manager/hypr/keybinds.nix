@@ -81,7 +81,7 @@
                 "$mainMod, U, exec, [float;size 60% 60%] thunar"
                 "$mainMod SHIFT, U, exec, thunar"
                 "$mainMod, J, exec, grim -g \"$(slurp -w 0)\" - | swappy -f -"
-                "$mainMod, O, exec, firefox"
+                "$mainMod, O, exec, firefox-beta"
 
                 # These programs are in special workspaces
                 "$mainMod, GRAVE, togglespecialworkspace, BTOP"

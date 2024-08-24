@@ -18,6 +18,9 @@
 
     powerManagement.cpuFreqGovernor = "performance"; # We want maximum performance on a desktop
 
+    # Use the latest kernel
+    boot.kernelPackages = pkgs.linuxPackages_latest;
+
     # Define a user account. Don't forget to set a password with ‘passwd’
     # somebody-user.enable = true;
 

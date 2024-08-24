@@ -42,8 +42,12 @@
                 # Accessible via 'nvidia-settings'.
                 nvidiaSettings = true;
 
+                # Ensures the GPU is always awake, even when running without a GUI
+                # Enabling this to potentially fix boot errors
+                nvidiaPersistenced = true;
+
                 # Select the driver version
-                package = config.boot.kernelPackages.nvidiaPackages.stable;
+                package = config.boot.kernelPackages.nvidiaPackages.beta;
             };
         };
     });

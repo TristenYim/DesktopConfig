@@ -40,6 +40,7 @@
                 "float, class:^(qt5ct)$"
                 "float, title:^(update-sys)$"
                 "float, class:^(Zoom)$"
+                "float, class:^(photo.exe)$"
 
                 ############
                 ### MISC ###
@@ -51,8 +52,13 @@
                 "animation popin, class:^(kitty)$,title:^(update-sys)$"
                 "animation popin, class:^(thunar)$"
                 "maximize, class:^(openrgb)$"
-                # "opaque, class:^(photo.exe)$"
-                # "nodim, class:^(photo.exe)$"
+                "noblur, class:^(photo.exe)$"
+                "noborder, class:^(photo.exe)$"
+                "nodim, class:^(photo.exe)$"
+                # "nomaxsize, class:^(photo.exe)$"
+                "norounding, class:^(photo.exe)$"
+                # "suppressevent maximize, class:^(photo.exe)$"
+                # "fullscreenstate 0 2, class:^(photo.exe)$"
             ];
 
             ##############

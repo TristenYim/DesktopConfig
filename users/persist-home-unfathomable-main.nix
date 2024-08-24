@@ -14,9 +14,7 @@
             ".ssh" # Stores a lot of information, including github keys and trusted host
             ".local/share/nvim/site/spell" # Nvim spell-check files
             ".local/share/fonts" # Local fonts
-            ".local/share/bottles/bottles" # Wine bottles for Use Bottles!
-            ".local/share/bottles/runners" # Wine versions for Use Bottles!
-            ".local/share/bottles/templates" # Windows drive template for Use Bottles!
+            ".local/share/bottles" # Use Bottles! for Affinity Photo
             ".mozilla/firefox/user" # Firefox user profile
         ];
         files = [
