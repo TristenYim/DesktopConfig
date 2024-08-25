@@ -22,6 +22,21 @@
             };
         };
 
+        # Required modules for vGPU passthrough
+        boot = {
+            initrd.kernelModules = [
+                "vfio_pci"
+                "vfio"
+                "vfio_iommu_type1"
+            ];
+
+            kernelParams = [
+                "intel_iommu=on"
+                "iommu=pt"
+                "vfio-pic.ids=10de:1c82,10de:0fb9"
+            ];
+        };
+
         # Enable virt-manager, a GUI virtual machine manager
         programs.virt-manager.enable = true;
 

@@ -73,6 +73,6 @@ pkgs.mkShell {
 
         # The included wine version is only for using Winetricks
         winetricks
-        wineWow64Packages.minimal
+        wineWow64Packages.wayland
     ];
 }

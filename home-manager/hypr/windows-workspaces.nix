@@ -57,8 +57,8 @@
                 "nodim, class:^(photo.exe)$"
                 # "nomaxsize, class:^(photo.exe)$"
                 "norounding, class:^(photo.exe)$"
-                # "suppressevent maximize, class:^(photo.exe)$"
-                # "fullscreenstate 0 2, class:^(photo.exe)$"
+                # "suppressevent fullscreen, class:^(photo.exe)$"
+                "fullscreenstate 0 2, class:^(photo.exe)$"
             ];
 
             ##############
