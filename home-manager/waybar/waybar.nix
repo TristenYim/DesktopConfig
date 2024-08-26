@@ -7,6 +7,9 @@
  
     config = lib.mkIf config.waybar-home.enable 
     {
+        home.packages = [
+            pkgs.waybar
+        ];
         programs.waybar = {
             enable = true;
             style = ./style.css;

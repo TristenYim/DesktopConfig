@@ -1,9 +1,10 @@
-{ config, pkgs, pkgs24-05, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 {
     imports = [
         ./fathom-default.nix
         ./persist-home-unfathomable-main.nix
+        ./../secrets/home.nix # This contains information that's too sensitive to put on github
     ];
 
     config = {

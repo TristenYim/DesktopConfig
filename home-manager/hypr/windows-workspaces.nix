@@ -78,7 +78,7 @@
 
             workspace = [
                 "1, monitor:$mon1, default:true"
-                "name:Chat, monitor:$mon2, on-created-empty:hyprctl dispatch exec slack && /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=com.discordapp.Discord com.discordapp.Discord --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto"
+                "name:Chat, monitor:$mon2, on-created-empty:hyprctl dispatch exec slack && flatpak run --branch=stable --arch=x86_64 --command=com.discordapp.Discord com.discordapp.Discord --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto"
                 "special:BTOP, on-created-empty: [maximize] kitty btop"
                 "special:CIDER, on-created-empty: [float; size 1000 800; move 10 50] cider"
                 "special:CONFIG, on-created-empty: [maximize] kitty nvim /etc/nixos"

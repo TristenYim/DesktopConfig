@@ -11,8 +11,13 @@
         ./filesystem.nix
         ./persist.nix
         ./../../modules
-        ./../../users/PASSWORDHASH-fathom.nix # This is for keeping the password file outside of git history
+        ./../../secrets/nixos.nix # This contains information that's too sensitive to put on github
     ];
+
+    console = {
+        earlySetup = true;
+        keyMap = "us";
+    };
 
     networking.hostName = "unfathomable-main"; # Define your hostname
 
@@ -24,7 +29,8 @@
     # Define a user account. Don't forget to set a password with ‘passwd’
     # somebody-user.enable = true;
 
-    # Disable default password and source local hashed password
+    # Disable default password
+    # Note that the password is declared in secrets
     users.users.fathom.initialPassword = null;
 
     # Enable custom modules

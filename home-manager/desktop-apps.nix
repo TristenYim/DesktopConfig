@@ -10,6 +10,7 @@
         chromium-home.enable = lib.mkEnableOption "Enables Chromium";
         cider-home.enable = lib.mkEnableOption "Enables Cider";
         copyq-home.enable = lib.mkEnableOption "Enables CopyQ";
+        cryfs-home.enable = lib.mkEnableOption "Enables CryFS";
         darktable-home.enable = lib.mkEnableOption "Enables darktable";
         libreOffice-home.enable = lib.mkEnableOption "Enables LibreOffice";
         grimSwappy-home.enable = lib.mkEnableOption "Enables grim + swappy screenshot tools";
@@ -32,6 +33,7 @@
         {
             chromium-home.enable = lib.mkDefault true;
             cider-home.enable = lib.mkDefault true;
+            cryfs-home.enable = lib.mkDefault true;
             mousepad-home.enable = lib.mkDefault true;
             mpv-home.enable = lib.mkDefault true;
             neofetch-home.enable = lib.mkDefault true;
@@ -80,9 +82,14 @@
             home.packages = [ pkgs.cider ];
         })
 
-        # CopyQ, cliboard manager
+        # CopyQ, clipboard manager
         ( lib.mkIf config.copyq-home.enable {
             home.packages = [ pkgs.copyq ];
+        })
+
+        # CryFS, encryption tool
+        ( lib.mkIf config.cryfs-home.enable {
+            home.packages = [ pkgs.cryfs ];
         })
 
         # darktable

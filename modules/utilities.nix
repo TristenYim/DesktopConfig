@@ -1,7 +1,9 @@
 { config, pkgs, lib, nixos-cli, ... }: {
     options = {
         btop.enable = lib.mkEnableOption "Enables BTOP++";
+        envfs.enable = lib.mkEnableOption "Enables envfs";
         flatpak.enable = lib.mkEnableOption "Enables flatpak";
+        killall.enable = lib.mkEnableOption "Enables killall";
         nixos-cli.enable = lib.mkEnableOption "Enables nixos-cli";
         pulse.enable = lib.mkEnableOption "Enables PulseAudio";
         ranger.enable = lib.mkEnableOption "Enables ranger";
@@ -14,7 +16,9 @@
     [
         {
             btop.enable = lib.mkDefault true;
+            envfs.enable = lib.mkDefault true;
             flatpak.enable = lib.mkDefault true;
+            killall.enable = lib.mkDefault true;
             nixos-cli.enable = lib.mkDefault true;
             pulse.enable = lib.mkDefault true;
             ranger.enable = lib.mkDefault true;
@@ -28,9 +32,12 @@
 
         # Btop++, task manager
         ( lib.mkIf config.btop.enable {
-            environment.systemPackages = [
-                pkgs.btop
-            ];
+            environment.systemPackages = [ pkgs.btop ];
+        })
+
+        # Envfs, restores some FHS compliance
+        ( lib.mkIf config.envfs.enable {
+            services.envfs.enable = true;
         })
 
         # Flatpak, alternative package installer
@@ -43,6 +50,11 @@
                 ];
                 config.common.default = "gtk";
             };
+        })
+
+        # Killall, which does what you'd expect
+        ( lib.mkIf config.killall.enable {
+            environment.systemPackages = [ pkgs.killall ];
         })
 
         # nixos-cli, adds a better cli for NixOS operations
@@ -68,16 +80,12 @@
 
         # Ranger, TUI file manager
         ( lib.mkIf config.ranger.enable {
-            environment.systemPackages = [
-                pkgs.ranger
-            ];
+            environment.systemPackages = [ pkgs.ranger ];
         })
 
         # SDDM, display (login) manager
         ( lib.mkIf config.sddm.enable {
-            environment.systemPackages = [
-                pkgs.libsForQt5.sddm
-            ];
+            environment.systemPackages = [ pkgs.libsForQt5.sddm ];
 
             services = {
                 displayManager.sddm = {

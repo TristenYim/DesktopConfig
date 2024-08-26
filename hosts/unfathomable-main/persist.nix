@@ -12,6 +12,8 @@
 
             "/var/lib/libvirt/images/persistent" # Virtual machine filesystems
             "/var/lib/libvirt/qemu" # Virtual machine configurations
+
+            "/var/lib/flatpak" # Flatpak things
         ];
         files = [
             # Put your files here
