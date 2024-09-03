@@ -14,11 +14,6 @@
         ./../../secrets/nixos.nix # This contains information that's too sensitive to put on github
     ];
 
-    console = {
-        earlySetup = true;
-        keyMap = "us";
-    };
-
     networking.hostName = "unfathomable-main"; # Define your hostname
 
     powerManagement.cpuFreqGovernor = "performance"; # We want maximum performance on a desktop

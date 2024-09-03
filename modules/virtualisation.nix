@@ -20,22 +20,50 @@
                     };
                 };
             };
+
+            # Allows hotplugging of USB peripherals
+            spiceUSBRedirection.enable = true;
         };
 
         # Required modules for vGPU passthrough
-        # boot = {
-        #     initrd.kernelModules = [
-        #         "vfio_pci"
-        #         "vfio"
-        #         "vfio_iommu_type1"
-        #     ];
-        #
-        #     kernelParams = [
-        #         "intel_iommu=on"
-        #         "iommu=pt"
-        #         "vfio-pic.ids=10de:1c82,10de:0fb9"
-        #     ];
-        # };
+        boot = {
+            kernelModules = [
+                "vfio_pci"
+                # "vfio_iommu_type1"
+                # "vfio"
+
+                # Need to be loaded early, otherwise the framebuffer output will freeze
+                # See https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF#initramfs for more
+                # "nvidia"
+                # "nvidia_modeset"
+                # "nvidia_uvm"
+                # "nvidia_drm"
+            ];
+
+            kernelParams = [
+                "intel_iommu=on"
+                "iommu=pt"
+                # "vfio-pci.ids=10de:1c82,10de:0fb9"
+            ];
+        };
+
+        systemd.services.libvirtd = {
+            path =
+            let
+                env = pkgs.buildEnv {
+                    name = "qemu-hook-env";
+                    paths = with pkgs; [
+                        bash
+                        libvirt
+                        kmod
+                        systemd
+                        ripgrep
+                        sd
+                    ];
+                };
+            in
+            [env];
+        };
 
         # Enable virt-manager, a GUI virtual machine manager
         programs.virt-manager.enable = true;
