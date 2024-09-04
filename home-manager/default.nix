@@ -4,7 +4,9 @@
     imports = [
         ./desktop-apps.nix
         ./image-utils.nix
-        ./firefox/firefox.nix
+        ./hypr/hyprland.nix
+        ./mozilla/firefox.nix
+        ./mozilla/thunderbird.nix
         ./terminal/alias.nix
         ./terminal/bash.nix
         ./terminal/git.nix
@@ -14,7 +16,6 @@
         ./terminal/zsh.nix
         ./nixGL/nixGLOpt.nix
         ./nixvim/nixvim.nix
-        ./hypr/hyprland.nix
         ./rofi/rofi.nix
         ./swaylock/swaylock.nix
         ./theme/catppuccin.nix
@@ -45,6 +46,7 @@
             ranger-home.enable = lib.mkDefault true;
             qt-home.enable = lib.mkDefault true;
             starship-home.enable = lib.mkDefault true;
+            thunderbird-home.enable = lib.mkDefault true;
             # zsh-home.enable = lib.mkDefault true;
             nixGLPrefix = "${pkgs.nixgl.auto.nixGLDefault}/bin/nixGL";
         }

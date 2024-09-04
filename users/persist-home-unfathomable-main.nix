@@ -16,6 +16,7 @@
             ".local/share/fonts" # Local fonts
             ".local/share/bottles" # Use Bottles! for Affinity Photo
             ".mozilla/firefox/user" # Firefox user profile
+            ".thunderbird/user" # Thunderbird user profile
             ".config/Slack" # Slack data
             ".config/sh.cider.classic" # Cider data
         ];

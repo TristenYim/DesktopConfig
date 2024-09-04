@@ -2,8 +2,8 @@
     # Note that inputs is from the terrible "extraSpecialArgs" syntax
 
     imports = [
-        ./bookmarks.nix
-        ./engines.nix
+        ./bookmarks-firefox.nix
+        ./engines-firefox.nix
     ];
 
     # Set a toggle to enable Firefox
