@@ -52,7 +52,8 @@
                 "$mainMod, 0, workspace, 10"
 
                 # Specific-use workspaces
-                "$mainMod, F1, workspace, name:Chat"
+                "$mainMod, F1, workspace, name:CHAT"
+                "$mainMod, F2, workspace, name:MAIL"
 
                 # Move active window to a workspace with mainMod + SHIFT + [0-9]
                 "$mainMod SHIFT, 1, movetoworkspace, 1"

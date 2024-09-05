@@ -7,12 +7,6 @@
  
     config = lib.mkIf config.rofi-home.enable 
     {
-        programs.rofi = {
-            enable = true;
-	        terminal = "kitty";
-            package = pkgs.rofi-wayland;
-        };
-
         home.file = {
             ".config/rofi/catppuccin.rasi" = {
                 source = config.lib.file.mkOutOfStoreSymlink ./catppuccin.rasi;
@@ -20,6 +14,12 @@
             ".config/rofi/run.rasi" = {
                 source = config.lib.file.mkOutOfStoreSymlink ./run.rasi;
             };
+        };
+
+        programs.rofi = {
+            enable = true;
+	        terminal = "kitty";
+            package = pkgs.rofi-wayland;
         };
     };
 }

@@ -7,6 +7,16 @@
  
     config = lib.mkIf config.wlogout-home.enable 
     {
+        home.file = {
+            ".config/wlogout/catppuccin.css" = {
+                source = config.lib.file.mkOutOfStoreSymlink ../resources/catppuccin.css;
+            };
+            ".config/wlogout/assets" = {
+                source = config.lib.file.mkOutOfStoreSymlink ./assets;
+                recursive = true;
+            };
+        };
+
         programs.wlogout = {
              enable = true;
              style = ./style.css;
@@ -49,15 +59,6 @@
                      text = "Reboot";
                  }
             ];
-        };
-        home.file = {
-            ".config/wlogout/catppuccin.css" = {
-                source = config.lib.file.mkOutOfStoreSymlink ../resources/catppuccin.css;
-            };
-            ".config/wlogout/assets" = {
-                source = config.lib.file.mkOutOfStoreSymlink ./assets;
-                recursive = true;
-            };
         };
     };
 }

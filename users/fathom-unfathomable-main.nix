@@ -33,5 +33,11 @@
                 ];
             };
         };
+
+        home.file = {
+            ".local/share/Anki2" = {
+                source = config.lib.file.mkOutOfStoreSymlink /media/Hdd/SchoolNotes/Anki2; # Lets me save my flashcards in my school notes repo
+            };
+        };
     };
 }

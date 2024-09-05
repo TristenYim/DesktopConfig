@@ -7,9 +7,21 @@
  
     config = lib.mkIf config.waybar-home.enable 
     {
-        home.packages = [
-            pkgs.waybar
-        ];
+        home = { 
+            packages = [
+                pkgs.waybar
+            ];
+            file = {
+                ".config/waybar/catppuccin.css" = {
+                    source = config.lib.file.mkOutOfStoreSymlink ../resources/catppuccin.css;
+                };
+                ".config/waybar/scripts" = {
+                    source = config.lib.file.mkOutOfStoreSymlink ./scripts;
+                    recursive = true;
+                };
+            };
+        };
+
         programs.waybar = {
             enable = true;
             style = ./style.css;
@@ -29,7 +41,7 @@
                         "custom/lock_screen"
                         "idle_inhibitor"
                         "mpris"
-                      # "hyprland/window"
+                        # "hyprland/window"
                         "battery"
                         "backlight"
                         "tray"
@@ -44,7 +56,7 @@
                         "pulseaudio#microphone"
                         "cpu"
                         "memory"
-                        "temperature"
+                        # "temperature"
                         "network"
                     ];
 
@@ -149,7 +161,8 @@
                             "8" = "VIII";
                             "9" = "IX";
                             "10" = "X";
-                            "Chat" = "";
+                            "CHAT" = "󰭻";
+                            "MAIL" = " ";
                             "OVERVIEW" = "       ";
                             "default" = "uwu";
                         };
@@ -199,35 +212,35 @@
                     };
 
                     "cpu" = {
-                        interval = 10;
+                        interval = 5;
                         format = "  {usage}%";
                         max-length = 10;
                         format-alt-click = "click-right";
-                        format-alt = "";
-                        on-click = "kitty --start-as=fullscreen --title btop sh -c 'btop'";
+                        format-alt = "  {avg_frequency} GHz";
+                        on-click = "hyprctl dispatch togglespecialworkspace BTOP";
                     };
 
                     "memory" = {
-                        interval = 10;
-                        format = " {used:0.1f} GiB";
+                        interval = 5;
+                        format = "   {used:0.1f} GiB";
                         max-length = 10;
                         format-alt-click = "click-right";
-                        format-alt = " {percentage}%";
-                        on-click = "kitty --start-as=fullscreen --title btop sh -c 'btop'";
+                        format-alt = "   {percentage}%";
+                        on-click = "hyprctl dispatch togglespecialworkspace BTOP";
                     };
 
                     "temperature" = {
-                      # thermal-zone = 2;
-                      # hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
+                        # thermal-zone = 2;
+                        # hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
                         critical-threshold = 80;
                         format-critical = "{temperatureC}°C {icon}";
                         format = "{icon} {temperatureC}°C";
                         format-icons = ["" "" ""];
-                        on-click = "kitty --start-as=fullscreen --title btop sh -c 'btop'";
+                        on-click = "hyprctl dispatch togglespecialworkspace BTOP";
                     };
 
                     "network" = {
-                        format-ethernet = " {bandwidthTotalBits}";
+                        format-ethernet = "  {bandwidthTotalBits}";
                         format-wifi = "󰖩 {bandwidthTotalBits}";
                         format-disconnected = "";
                         interval = 10;
@@ -238,16 +251,6 @@
                     };
                 }
             ];
-        };
-
-        home.file = {
-            ".config/waybar/catppuccin.css" = {
-                source = config.lib.file.mkOutOfStoreSymlink ../resources/catppuccin.css;
-            };
-            ".config/waybar/scripts" = {
-                source = config.lib.file.mkOutOfStoreSymlink ./scripts;
-                recursive = true;
-            };
         };
     };
 }
