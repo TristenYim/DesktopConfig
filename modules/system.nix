@@ -1,10 +1,13 @@
 # Based on the default configuration upon a fresh install
 
-{ config, lib, ... }: {
+{ config, pkgs, lib, ... }: {
 
     # Bootloader
     boot.loader.systemd-boot.enable = lib.mkDefault true;
     boot.loader.efi.canTouchEfiVariables = lib.mkDefault true;
+
+    # Use the latest kernel
+    boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
     # networking.wireless.enable = lib.mkDefault true;  # Enables wireless support via wpa_supplicant
 

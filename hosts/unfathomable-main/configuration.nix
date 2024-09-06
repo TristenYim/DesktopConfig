@@ -14,17 +14,13 @@
         ./../../secrets/nixos.nix # This contains information that's too sensitive to put on github
     ];
 
+    console.useXkbConfig = true; # Prevents systemd-vconsole-setup.service from failing on boot
+
     networking.hostName = "unfathomable-main"; # Define your hostname
 
     powerManagement.cpuFreqGovernor = "performance"; # We want maximum performance on a desktop
 
-    # Use the latest kernel
-    boot.kernelPackages = pkgs.linuxPackages_latest;
-
-    # Define a user account. Don't forget to set a password with ‘passwd’
-    # somebody-user.enable = true;
-
-    # Disable default password
+    # Disable default password for Fathom
     # Note that the password is declared in secrets
     users.users.fathom.initialPassword = null;
 
