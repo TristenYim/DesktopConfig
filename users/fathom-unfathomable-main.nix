@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
     imports = [
@@ -16,8 +16,7 @@
         programs.kitty.package = pkgs.kitty;
 
         wayland.windowManager.hyprland = {
-            package = pkgs.hyprland;
-            # package = pkgs24-05.hyprland;
+            package = inputs.hyprland.packages."${pkgs.system}".hyprland; # For hycov
             settings = {
                 ################
                 ### MONITORS ###

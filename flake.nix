@@ -3,7 +3,6 @@
 
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-        # nixpkgs24-05.url = "github:nixos/nixpkgs/nixos-24.05";
         catppuccin.url = "github:catppuccin/nix";
         impermanence.url = "github:nix-community/impermanence";
         firefox-addons = {
@@ -15,16 +14,14 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         hyprland = {
-            # url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=918d8340afd652b011b937d29d5eea0be08467f5";
-            url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-            # inputs.nixpkgs.follows = "nixpkgs24-05";
+            url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=918d8340afd652b011b937d29d5eea0be08467f5"; # Downgrading version to 0.41.2 for hycov
+            # url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        # hycov = {
-        #     url = "github:DreamMaoMao/hycov";
-        #     inputs.nixpkgs.follows = "nixpkgs24-05";
-        #     inputs.hyprland.follows = "hyprland";
-        # };
+        hycov = {
+            url = "github:DreamMaoMao/hycov";
+            inputs.hyprland.follows = "hyprland";
+        };
         # hyprland-plugins = {
         #     url = "github:hyprwm/hyprland-plugins";
         #     inputs.hyprland.follows = "hyprland";
@@ -54,15 +51,14 @@
             system = "x86_64-linux";
             overlays = [ nixgl.overlay ];
         };
-        # pkgs24-05 = import nixpkgs24-05 {
-        #     system = "x86_64-linux";
-        # };
       in {
 	    nixosConfigurations.unfathomable-main = nixpkgs.lib.nixosSystem {
             inherit system;
-            # specialArgs = {
-            #     inherit pkgs24-05;
-            # };
+            
+            # These are custom arguments
+            specialArgs = {
+                inherit inputs; # Allows us to reference everything in inputs without having to explicitly import it
+            };
             modules = [
                 ./hosts/unfathomable-main/configuration.nix
                 catppuccin.nixosModules.catppuccin
@@ -74,12 +70,10 @@
                     home-manager = {
                         useGlobalPkgs = true;
 
-                        # These are custom arguments
+                        # Same as specialArgs but for Home Manager
                         extraSpecialArgs = { 
-                            inherit inputs; # Allows us to reference everything in inputs without having to explicitly import it
-                            # inherit pkgs24-05;
+                            inherit inputs;
                         };
-
                         users.fathom = {
                             imports = [
                                 ./users/fathom-unfathomable-main.nix

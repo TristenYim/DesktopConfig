@@ -1,15 +1,11 @@
+# Window, workspace, and layer rules
+
 { config, pkgs, lib, ... }: {
     config = lib.mkIf config.hyprland-home.enable 
     {
         wayland.windowManager.hyprland.settings =
         {
-            ##############################
-            ### WINDOWS AND WORKSPACES ###
-            ##############################
-
-            # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
-            # See https://wiki.hyprland.org/Configuring/Workspace-Rules/ for workspace rules
-
+            # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more info
             windowrulev2 = [
                 ###############
                 ### OPACITY ###
@@ -55,15 +51,12 @@
                 "noborder, class:^(photo.exe)$"
                 "nodim, class:^(photo.exe)$"
                 # "nomaxsize, class:^(photo.exe)$"
-                "norounding, class:^(photo.exe)$"
+                # "norounding, class:^(photo.exe)$" # Does not exist in 0.41.2
                 # "suppressevent fullscreen, class:^(photo.exe)$"
-                "fullscreenstate 0 2, class:^(photo.exe)$"
+                # "fullscreenstate 0 2, class:^(photo.exe)$" # Does not exist in 0.41.2
             ];
 
-            ##############
-            ### LAYERS ###
-            ##############
-
+            # See https://wiki.hyprland.org/Configuring/Window-Rules/#layer-rules for more info
             layerrule = [
                 "blur, ^(rofi)$"
                 "ignorezero, ^(rofi)$"
@@ -71,10 +64,7 @@
                 "blur, ^(gtk-layer-shell)$"
             ];
 
-            ##################
-            ### WORKSPACES ###
-            ##################
-
+            # See https://wiki.hyprland.org/Configuring/Workspace-Rules/ for more info
             workspace = [
                 "1, monitor:$mon1, default:true"
                 "name:CHAT, monitor:$mon1, on-created-empty:hyprctl dispatch exec slack && flatpak run --branch=stable --arch=x86_64 --command=com.discordapp.Discord com.discordapp.Discord --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto"

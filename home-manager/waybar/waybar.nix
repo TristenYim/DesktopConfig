@@ -163,7 +163,7 @@
                             "10" = "X";
                             "CHAT" = "󰭻";
                             "MAIL" = " ";
-                            "OVERVIEW" = "       ";
+                            "OVERVIEW" = "     ";
                             "default" = "uwu";
                         };
                     };

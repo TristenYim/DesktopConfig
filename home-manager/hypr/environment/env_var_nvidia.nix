@@ -1,3 +1,8 @@
+# Environment Variables NVIDIA Specific
+
+# See the wiki for more info as some work is required
+# https://wiki.hyprland.org/hyprland-wiki/pages/Nvidia/
+
 { config, pkgs, lib, ... }: {
     config = lib.mkIf config.hyprland-home.enable 
     {
@@ -5,13 +10,8 @@
             cursor = {
                 no_hardware_cursors = true;
             };
-            render.explicit_sync = 0;
+            # render.explicit_sync = 0; # Does not exist in 0.41.2
             env = [ 
-                # Environment Variables NVIDIA Specific
-
-                # See the wiki for more info as some work is required
-                # https://wiki.hyprland.org/hyprland-wiki/pages/Nvidia/
-
                 # Hardware acceleration on NVIDIA GPUs
                 # See Archwiki Hardware Acecleration Page for details and necessary values before setting this variable.
                 # https://wiki.archlinux.org/title/Hardware_video_acceleration

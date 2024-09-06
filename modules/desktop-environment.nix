@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs24-05, lib, ... }: {
+{ config, pkgs, lib, inputs, ... }: {
     options = {
         hyprDE.enable = lib.mkEnableOption "Enables a custom \"desktop environment\" based on Hyprland";
         xfce.enable = lib.mkEnableOption "Enables Xfce";
@@ -72,7 +72,7 @@
         ( lib.mkIf config.hyprland.enable {
             programs.hyprland = {
                 enable = true;
-                # package = pkgs24-05.hyprland;
+                package = inputs.hyprland.packages."${pkgs.system}".hyprland;
             };
         })
 

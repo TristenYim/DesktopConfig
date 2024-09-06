@@ -1,20 +1,21 @@
+# These are all of my keybinds (except ones defined in plugins)
+
+# See https://wiki.hyprland.org/Configuring/Binds/ for more info
+
 { config, pkgs, lib, ... }: {
     config = lib.mkIf config.hyprland-home.enable 
     {
         wayland.windowManager.hyprland.settings =
         {
-            ###################
-            ### KEYBINDINGS ###
-            ###################
-
-            # See https://wiki.hyprland.org/Configuring/Keywords/ for more
+            # See https://wiki.hyprland.org/Configuring/Keywords/ for more info
             "$mainMod" = "SUPER";
 
-            #########################
-            ### WINDOW MANAGEMENT ###
-            #########################
-
             bind = [
+
+                #########################
+                ### WINDOW MANAGEMENT ###
+                #########################
+
                 "$mainMod, ESCAPE, killactive,"
                 "$mainMod, PERIOD, togglefloating,"
                 "$mainMod, A, exec, swaylock"

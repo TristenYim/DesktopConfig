@@ -1,7 +1,9 @@
-{ config, pkgs24-05, lib, ... }: {
+# Hypridle is Hyprland's idle management daemon
+# Used for putting the computer "to sleep" automatically
 
-    # Set a toggle to enable hypridle
-    # By default, this is disabled
+# See https://wiki.hyprland.org/Hypr-Ecosystem/hypridle/ for more info
+
+{ config, lib, ... }: {
     options = {
         hypridle-home.enable = lib.mkEnableOption "Enables hypridle with Home Manager";
     };
@@ -10,7 +12,6 @@
     {
         services.hypridle = {
             enable = true;
-            # package = pkgs24-05.hypridle;
             settings = {
                 general = {
                     lock_cmd = "swaylock";

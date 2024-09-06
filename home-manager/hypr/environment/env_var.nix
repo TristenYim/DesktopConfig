@@ -1,13 +1,12 @@
+# Declares Hyprland environment variables
+# Due to the existence of Home Manager, this is most likely redundant
+
+# See https://wiki.hyprland.org/Configuring/Environment-variables/ for more info
+
 { config, pkgs, lib, ... }: {
     config = lib.mkIf config.hyprland-home.enable 
     {
         wayland.windowManager.hyprland.settings.env = [ 
-            #############################
-            ### ENVIRONMENT VARIABLES ###
-            #############################
-
-            # See https://wiki.hyprland.org/Configuring/Environment-variables/
-
             "XCURSOR_SIZE,24"
 
             # Set a GTK theme manually, for those who want to avoid appearance tools such as lxappearance or nwg-look
