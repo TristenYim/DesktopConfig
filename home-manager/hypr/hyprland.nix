@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: 
+{ config, pkgs, lib, inputs, ... }: 
 
 # Import the nixGL wrapper
 let nixGLWrap = import ../nixGL/nixGLWrapper.nix { 
@@ -24,7 +24,7 @@ in {
         wayland.windowManager.hyprland = 
         {
             enable = true;
-            package = lib.mkDefault (nixGLWrap pkgs.hyprland);
+            package = lib.mkDefault (nixGLWrap inputs.hyprland.packages."${pkgs.system}".hyprland); # For hycov
             settings = 
             {
                 # This is an example Hyprland config file.

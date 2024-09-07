@@ -107,6 +107,17 @@
             ];
         };
 
+        homeConfigurations."fathom@tumbling-school" = home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            extraSpecialArgs = { inherit inputs; };
+            modules = [ 
+                ./users/fathom-tumbling-school.nix 
+                catppuccin.homeManagerModules.catppuccin
+                hyprland.homeManagerModules.default
+                nixvim.homeManagerModules.nixvim
+            ];
+        };
+
         homeConfigurations.fathom = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             modules = [ 
