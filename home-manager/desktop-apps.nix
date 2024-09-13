@@ -74,7 +74,9 @@
 
         # Chromium
         ( lib.mkIf config.chromium-home.enable {
-            home.packages = [ pkgs.chromium ];
+            programs.chromium = {
+                enable = true;
+            };
         })
 
         # Cider
