@@ -5,6 +5,10 @@
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
         catppuccin.url = "github:catppuccin/nix";
         impermanence.url = "github:nix-community/impermanence";
+        # aquamarine = {
+        #     url = "git+https://github.com/hyprwm/aquamarine?submodules=1&rev=00d51a053c98d54987174d74771afa63b7bb27d3";
+        #     inputs.nixpkgs.follows = "nixpkgs";
+        # };
         firefox-addons = {
             url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
             inputs.nixpkgs.follows = "nixpkgs";

@@ -8,5 +8,6 @@
         ./users.nix
         ./utilities.nix
         ./virtualisation.nix
+        ../overlays/hyprland-overlay.nix
     ];
 }

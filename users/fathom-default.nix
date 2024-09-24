@@ -2,6 +2,7 @@
 {
     imports = [
         ../home-manager/default.nix
+        ../overlays/hyprland-overlay.nix
     ];
 
     # Override local module defaults
