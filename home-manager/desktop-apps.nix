@@ -19,6 +19,7 @@
         mpv-home.enable = lib.mkEnableOption "Enables mpv";
         neofetch-home.enable = lib.mkEnableOption "Enables neofetch";
         obs-home.enable = lib.mkEnableOption "Enables OBS Studio";
+        playerctld-home.enable = lib.mkEnableOption "Enables playerctld";
         prusaSlicer-home.enable = lib.mkEnableOption "Enables PrusaSlicer";
         qalculate-home.enable = lib.mkEnableOption "Enables Qalculate!";
         slack-home.enable = lib.mkEnableOption "Enables Slack";
@@ -47,6 +48,7 @@
             feh-home.enable = lib.mkDefault true;
             grimSwappy-home.enable = lib.mkDefault true;
             mako-home.enable = lib.mkDefault true;
+            playerctld-home.enable = lib.mkDefault true;
         })
 
         # For School
@@ -106,7 +108,10 @@
 
         # mako
         ( lib.mkIf config.mako-home.enable {
-            home.packages = [ pkgs.mako ];
+            home.packages = [ 
+                pkgs.mako
+                pkgs.libnotify
+            ];
         })
 
         # Mousepad
@@ -127,6 +132,11 @@
         # OBS Studio
         ( lib.mkIf config.obs-home.enable {
             home.packages = [ pkgs.obs-studio ];
+        })
+
+        # playerctld
+        ( lib.mkIf config.playerctld-home.enable {
+            services.playerctld.enable = true;
         })
 
         # PrusaSlicer

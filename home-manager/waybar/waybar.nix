@@ -8,9 +8,6 @@
     config = lib.mkIf config.waybar-home.enable 
     {
         home = { 
-            packages = [
-                pkgs.waybar
-            ];
             file = {
                 ".config/waybar/catppuccin.css" = {
                     source = config.lib.file.mkOutOfStoreSymlink ../resources/catppuccin.css;
@@ -92,8 +89,8 @@
                         status-icons = {
                             paused = "⏸ ";
                         };
-                        song-len = 20;
-                        artist-len = 20;
+                        title-len = 25;
+                        artist-len = 15;
                     };
 
                     "hyprland/window" = {
@@ -195,7 +192,7 @@
                             default = ["" "" " "];
                         };
                         tooltip = true;
-                        tooltip-format = "{icon}  {volume}%";
+                        tooltip-format = "{icon} {desc}";
                     };
 
                     "pulseaudio#microphone" = {
@@ -208,7 +205,7 @@
                         on-scroll-down = "$HOME/.config/waybar/scripts/volume --mic-dec";
                         scroll-step = 1;
                         tooltip = true;
-                        tooltip-format = " {volume}%";
+                        tooltip-format = " {desc}";
                     };
 
                     "cpu" = {
