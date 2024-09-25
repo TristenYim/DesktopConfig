@@ -10,7 +10,7 @@
         catppuccin = {
             enable = true;
             flavor = "mocha";
-            accent = "teal";
+            accent = "sky";
         };
 
         # Enable catppuccin in GTK and Qt

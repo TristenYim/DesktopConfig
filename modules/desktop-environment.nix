@@ -56,7 +56,7 @@
         ( lib.mkIf config.catppuccin-local.enable {
             catppuccin = {
                 enable = true;
-                accent = "teal";
+                accent = "sky";
                 flavor = "mocha";
             };
         })

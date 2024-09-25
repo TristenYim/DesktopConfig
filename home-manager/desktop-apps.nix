@@ -1,10 +1,9 @@
+# These are (mostly) GUI apps that do not need to be installed system-wide.
+
 { config, pkgs, lib, ... }: 
 
 {
     options = {
-        forRobotics-home.enable = lib.mkEnableOption "Enables common apps I use for robotics";
-        forSchool-home.enable = lib.mkEnableOption "Enables common apps I use for school";
-
         anki-home.enable = lib.mkEnableOption "Enables Anki";
         bottles-home.enable = lib.mkEnableOption "Use Bottles!";
         chromium-home.enable = lib.mkEnableOption "Enables Chromium";
@@ -13,13 +12,10 @@
         cryfs-home.enable = lib.mkEnableOption "Enables CryFS";
         darktable-home.enable = lib.mkEnableOption "Enables darktable";
         libreOffice-home.enable = lib.mkEnableOption "Enables LibreOffice";
-        grimSwappy-home.enable = lib.mkEnableOption "Enables grim + swappy screenshot tools";
-        mako-home.enable = lib.mkEnableOption "Enables mako";
         mousepad-home.enable = lib.mkEnableOption "Enables Mousepad";
         mpv-home.enable = lib.mkEnableOption "Enables mpv";
         neofetch-home.enable = lib.mkEnableOption "Enables neofetch";
         obs-home.enable = lib.mkEnableOption "Enables OBS Studio";
-        playerctld-home.enable = lib.mkEnableOption "Enables playerctld";
         prusaSlicer-home.enable = lib.mkEnableOption "Enables PrusaSlicer";
         qalculate-home.enable = lib.mkEnableOption "Enables Qalculate!";
         slack-home.enable = lib.mkEnableOption "Enables Slack";
@@ -29,41 +25,6 @@
     # Allows us to combine multiple modules into one file
     config = lib.mkMerge
     [
-
-        # These are apps that should really be on every system with a GUI.
-        {
-            chromium-home.enable = lib.mkDefault true;
-            cider-home.enable = lib.mkDefault true;
-            cryfs-home.enable = lib.mkDefault true;
-            mousepad-home.enable = lib.mkDefault true;
-            mpv-home.enable = lib.mkDefault true;
-            neofetch-home.enable = lib.mkDefault true;
-            obs-home.enable = lib.mkDefault true;
-            qalculate-home.enable = lib.mkDefault true;
-        }
-
-        # HyprDE
-        ( lib.mkIf config.hyprDE-home.enable {
-            copyq-home.enable = lib.mkDefault true;
-            feh-home.enable = lib.mkDefault true;
-            grimSwappy-home.enable = lib.mkDefault true;
-            mako-home.enable = lib.mkDefault true;
-            playerctld-home.enable = lib.mkDefault true;
-        })
-
-        # For School
-        ( lib.mkIf config.forSchool-home.enable {
-            anki-home.enable = lib.mkDefault true;
-            libreOffice-home.enable = lib.mkDefault true;
-            zoom-home.enable = lib.mkDefault true;
-        })
-
-        # For Robotics
-        ( lib.mkIf config.forRobotics-home.enable {
-            prusaSlicer-home.enable = lib.mkDefault true;
-            slack-home.enable = lib.mkDefault true;
-        })
-
         # Anki
         ( lib.mkIf config.anki-home.enable {
             home.packages = [ pkgs.anki ];
@@ -106,14 +67,6 @@
             home.packages = [ pkgs.libreoffice-fresh ];
         })
 
-        # mako
-        ( lib.mkIf config.mako-home.enable {
-            home.packages = [ 
-                pkgs.mako
-                pkgs.libnotify
-            ];
-        })
-
         # Mousepad
         ( lib.mkIf config.mousepad-home.enable {
             home.packages = [ pkgs.xfce.mousepad ];
@@ -132,11 +85,6 @@
         # OBS Studio
         ( lib.mkIf config.obs-home.enable {
             home.packages = [ pkgs.obs-studio ];
-        })
-
-        # playerctld
-        ( lib.mkIf config.playerctld-home.enable {
-            services.playerctld.enable = true;
         })
 
         # PrusaSlicer

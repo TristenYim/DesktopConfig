@@ -175,8 +175,8 @@
                     };
 
                     "pulseaudio" = {
-                        format = "{icon}  {volume}%";
-                        format-muted = "";
+                        format = "{icon} {volume}%";
+                        format-muted = "󰝟";
                         on-click = "$HOME/.config/waybar/scripts/volume --toggle";
                         on-click-right = "pavucontrol --tab 3";
                         on-scroll-up = "$HOME/.config/waybar/scripts/volume --inc";
@@ -189,7 +189,7 @@
                             phone = "";
                             portable = "";
                             car = "";
-                            default = ["" "" " "];
+                            default = ["󰕿" "󰖀 " "󰕾 "];
                         };
                         tooltip = true;
                         tooltip-format = "{icon} {desc}";
@@ -197,7 +197,7 @@
 
                     "pulseaudio#microphone" = {
                         format = "{format_source}";
-                        format-source = " {volume}%";
+                        format-source = "  {volume}%";
                         format-source-muted = " ";
                         on-click = "$HOME/.config/waybar/scripts/volume --toggle-mic";
                         on-click-right = "pavucontrol --tab 4";
@@ -205,7 +205,7 @@
                         on-scroll-down = "$HOME/.config/waybar/scripts/volume --mic-dec";
                         scroll-step = 1;
                         tooltip = true;
-                        tooltip-format = " {desc}";
+                        tooltip-format = "  {desc}";
                     };
 
                     "cpu" = {
