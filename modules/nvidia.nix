@@ -7,26 +7,32 @@
     };
 
     config = ( lib.mkIf config.nvidia.enable {
-        # Fixes TTY display issues. See https://nixos.wiki/wiki/Nvidia#Booting_to_Text_Mode for more
+        # Manually sets tty resolution
+        # Required for switching to tty with the NVIDIA framebuffer
+        # when the resolution of multiple monitors differ, for some
+        # unknown reason.
+
+        # Note: For this problem, referencing pages such
+        # https://nixos.wiki/wiki/Nvidia#Booting_to_Text_Mode
+        # did not help at all.
         boot = {
-            initrd.kernelModules = [ "nvidia" ];
-            extraModulePackages = [ config.boot.kernelPackages.nvidia_x11_beta ];
+            kernelParams = [ "video=1920x1080" ];
         };
 
         # Load NVIDIA driver for Xorg and Wayland
         services.xserver = {
-            enable = true;
-            videoDrivers = [ "nvidia" "nvidia_modeset" "nvidia_drm" ];
+            videoDrivers = [ "nvidia" ];
         };
 
         hardware = {
             # Enable OpenGL
             graphics = {
                 enable = true;
+                enable32Bit = true;
             };
 
             nvidia = {
-                # Modesetting is required
+                # Modesetting is required for Wayland
                 modesetting.enable = true;
 
                 # NVIDIA power management. Experimental, and can cause sleep/suspend to fail.

@@ -1,10 +1,20 @@
 # Based on the default configuration upon a fresh install
 
 { config, pkgs, lib, ... }: {
-
     # Bootloader
-    boot.loader.systemd-boot.enable = lib.mkDefault true;
     boot.loader.efi.canTouchEfiVariables = lib.mkDefault true;
+
+    boot.loader.grub = {
+        enable = true;
+        efiSupport = true;
+        device = "nodev";
+        configurationLimit = 10;
+        extraEntries = ''
+            menuentry 'UEFI Firmware Settings' $menuentry_id_option 'uefi-firmware' {
+                fwsetup
+            }
+        '';
+    };
 
     # Use the latest kernel
     boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;

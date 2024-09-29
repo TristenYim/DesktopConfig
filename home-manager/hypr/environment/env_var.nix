@@ -45,8 +45,15 @@
             # Disables window decorations on QT applications
             "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
 
-            #Tells QT based applications to pick your theme from qt5ct, use with Kvantum.
+            # Tells QT based applications to pick your theme from qt5ct, use with Kvantum.
             "QT_QPA_PLATFORMTHEME,qt5ct"
+
+            # Requried for firefox hardware acceleration
+            "MOZ_X11_EGL,1"
+            "MOZ_DISABLE_RDD_SANDBOX,1"
+
+            # Use native wayland for electron apps
+            "NIXOS_OZONE_WL,1"
         ];
     };
 }

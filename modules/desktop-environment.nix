@@ -14,7 +14,6 @@
     # Allows us to combine multiple modules into one file
     config = lib.mkMerge
     [
-
         # I want things to look nice by default
         {
             catppuccin.enable = lib.mkDefault true;
@@ -74,7 +73,6 @@
                 enable = true;
                 package = inputs.hyprland.packages."${pkgs.system}".hyprland;
             };
-            environment.sessionVariables.NIXOS_OZONE_WL = "1";
         })
 
         # Nerd Fonts

@@ -30,6 +30,13 @@
 
                 # See "about:config" for more settings.
                 settings = {
+                    # Hardware Acceleration
+                    # See https://wiki.archlinux.org/title/Firefox#Hardware_video_acceleration
+                    # and https://github.com/elFarto/nvidia-vaapi-driver#firefox for more details
+                    "gfx.webrender.all" = true;
+                    "gfx.x11-egl.force-enabled" = true;
+                    "media.ffmpeg.vaapi.enabled" = true;
+
                     "app.shield.optoutstudies.enabled" = false;
                     "browser.aboutConfig.showWarning" = false;
                     "browser.discovery.enabled" = false;
