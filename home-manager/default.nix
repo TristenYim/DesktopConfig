@@ -82,12 +82,14 @@
         ( lib.mkIf config.hyprDE-home.enable {
             copyq-home.enable = lib.mkDefault true;
             feh-home.enable = lib.mkDefault true;
+            file-roller-home.enable = lib.mkDefault true;
             hycov-home.enable = lib.mkDefault true;
             hyprland-home.enable = lib.mkDefault true;
             hypridle-home.enable = lib.mkDefault true;
             kitty-home.enable = lib.mkDefault true;
             mako-home.enable = lib.mkDefault true;
             playerctld-home.enable = lib.mkDefault true;
+            polkit-agent-home.enable = lib.mkDefault true;
             rofi-home.enable = lib.mkDefault true;
             screenshot-home.enable = lib.mkDefault true;
             swaylock-home.enable = lib.mkDefault true;

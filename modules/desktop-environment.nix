@@ -45,10 +45,7 @@
                 pkgs.xfce.ristretto 
                 pkgs.xterm
             ];
-            programs.thunar.plugins = with pkgs.xfce;
-            [
-                thunar-archive-plugin
-            ];
+            thunar.enable = lib.mkDefault true;
         })
 
         # Catppuccin
@@ -93,9 +90,18 @@
         ( lib.mkIf config.thunar.enable {
             programs.thunar = {
                 enable = true;
-                plugins = [
-                    pkgs.xfce.thunar-archive-plugin
+
+                # Note: Using these requires a separate polkit authentication
+                # agent and archive manager. I've left that to be configured
+                # in userspace.
+                plugins = with pkgs.xfce; [
+                    thunar-archive-plugin
+                    thunar-volman
                 ];
+            };
+            services = {
+                gvfs.enable = true; # Enables mounting and trashing
+                tumbler.enable = true; # Enables thumbnails
             };
         })
     ];

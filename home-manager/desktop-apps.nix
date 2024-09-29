@@ -11,6 +11,7 @@
         copyq-home.enable = lib.mkEnableOption "Enables CopyQ";
         cryfs-home.enable = lib.mkEnableOption "Enables CryFS";
         darktable-home.enable = lib.mkEnableOption "Enables darktable";
+        file-roller-home.enable = lib.mkEnableOption "Enables File Roller";
         libreOffice-home.enable = lib.mkEnableOption "Enables LibreOffice";
         mousepad-home.enable = lib.mkEnableOption "Enables Mousepad";
         mpv-home.enable = lib.mkEnableOption "Enables mpv";
@@ -60,6 +61,11 @@
         # darktable
         ( lib.mkIf config.darktable-home.enable {
             home.packages = [ pkgs.darktable ];
+        })
+
+        # File Roller
+        ( lib.mkIf config.file-roller-home.enable {
+            home.packages = [ pkgs.file-roller ];
         })
 
         # LibreOffice

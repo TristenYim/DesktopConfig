@@ -6,6 +6,7 @@
     options = {
         mako-home.enable = lib.mkEnableOption "Enables mako";
         playerctld-home.enable = lib.mkEnableOption "Enables playerctld";
+        polkit-agent-home.enable = lib.mkEnableOption "Enables polkit KDE agent";
     };
  
     # Allows us to combine multiple modules into one file
@@ -27,6 +28,28 @@
         # playerctld
         ( lib.mkIf config.playerctld-home.enable {
             services.playerctld.enable = true;
+        })
+       
+        # polkit KDE agent
+        ( lib.mkIf config.polkit-agent-home.enable {
+            home.packages = [
+                pkgs.polkit_gnome
+            ];
+            systemd.user.services.polkit-gnome = {
+                Unit = {
+                    Description = "PolicyKit-gnome provides an Authentication Agent for PolicyKit that integrates well with the GNOME desktop environment.";
+                    PartOf = [ "graphical-session.target" ];
+                    After = [ "graphical-session-pre.target" ];
+                };
+                Service = {
+                    Type = "simple";
+                    ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+                    Restart = "on-failure";
+                    RestartSec = 1;
+                    TimeoutStopSec = 10;
+                };
+                Install.WantedBy = [ "graphical-session.target" ];
+            };
         })
     ];
 }
