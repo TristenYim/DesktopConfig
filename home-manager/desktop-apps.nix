@@ -11,12 +11,14 @@
         copyq-home.enable = lib.mkEnableOption "Enables CopyQ";
         cryfs-home.enable = lib.mkEnableOption "Enables CryFS";
         darktable-home.enable = lib.mkEnableOption "Enables darktable";
-        file-roller-home.enable = lib.mkEnableOption "Enables File Roller";
+        fileRoller-home.enable = lib.mkEnableOption "Enables File Roller";
         libreOffice-home.enable = lib.mkEnableOption "Enables LibreOffice";
         mousepad-home.enable = lib.mkEnableOption "Enables Mousepad";
         mpv-home.enable = lib.mkEnableOption "Enables mpv";
         neofetch-home.enable = lib.mkEnableOption "Enables neofetch";
         obs-home.enable = lib.mkEnableOption "Enables OBS Studio";
+        octave-home.enable = lib.mkEnableOption "Enables GNU Octave";
+        wps-home.enable = lib.mkEnableOption "Enables ONLYOFFICE";
         prusaSlicer-home.enable = lib.mkEnableOption "Enables PrusaSlicer";
         qalculate-home.enable = lib.mkEnableOption "Enables Qalculate!";
         slack-home.enable = lib.mkEnableOption "Enables Slack";
@@ -64,11 +66,14 @@
         })
 
         # File Roller
-        ( lib.mkIf config.file-roller-home.enable {
+        ( lib.mkIf config.fileRoller-home.enable {
             home.packages = [ pkgs.file-roller ];
         })
 
         # LibreOffice
+        # NOTE: This option may be deprecated soon, I'm experimenting
+        # with WPS office, which appears to be much more compatible
+        # with MS office.
         ( lib.mkIf config.libreOffice-home.enable {
             home.packages = [ pkgs.libreoffice-fresh ];
         })
@@ -93,6 +98,11 @@
             home.packages = [ pkgs.obs-studio ];
         })
 
+        # GNU Octave
+        ( lib.mkIf config.octave-home.enable {
+            home.packages = [ pkgs.octaveFull ];
+        })
+
         # PrusaSlicer
         ( lib.mkIf config.prusaSlicer-home.enable {
             home.packages = [ pkgs.prusa-slicer ];
@@ -106,6 +116,11 @@
         # Slack
         ( lib.mkIf config.slack-home.enable {
             home.packages = [ pkgs.slack ];
+        })
+
+        # WPS Office
+        ( lib.mkIf config.wps-home.enable {
+            home.packages = [ pkgs.wpsoffice pkgs.liberation_ttf ];
         })
 
         # Zoom

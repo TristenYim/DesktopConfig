@@ -50,6 +50,7 @@
             cryfs-home.enable = lib.mkDefault true;
             cursor-home.enable = lib.mkDefault true;
             firefox-home.enable = lib.mkDefault true;
+            fileRoller-home.enable = lib.mkDefault true;
             gtk-home.enable = lib.mkDefault true;
             mousepad-home.enable = lib.mkDefault true;
             mpv-home.enable = lib.mkDefault true;
@@ -68,7 +69,8 @@
         # These are modules which should be enabled on school accounts
         ( lib.mkIf config.forSchool-home.enable {
             anki-home.enable = lib.mkDefault true;
-            libreOffice-home.enable = lib.mkDefault true;
+            octave-home.enable = lib.mkDefault true;
+            wps-home.enable = lib.mkDefault true;
             zoom-home.enable = lib.mkDefault true;
         })
 
@@ -82,7 +84,6 @@
         ( lib.mkIf config.hyprDE-home.enable {
             copyq-home.enable = lib.mkDefault true;
             feh-home.enable = lib.mkDefault true;
-            file-roller-home.enable = lib.mkDefault true;
             hycov-home.enable = lib.mkDefault true;
             hyprland-home.enable = lib.mkDefault true;
             hypridle-home.enable = lib.mkDefault true;

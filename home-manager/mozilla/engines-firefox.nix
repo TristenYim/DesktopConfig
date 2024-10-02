@@ -45,6 +45,15 @@
                     definedAliases = [ "@np" ];
                 };
 
+                # This is the standard Marriam-Webster dictionary
+                "Merriam-Webster" = {
+                    urls = [{
+                        template = "https://www.merriam-webster.com/dictionary/{searchTerms}";
+                    }];
+
+                    definedAliases = [ "@mw" ];
+                };
+
                 # This translates a word from English to Español
                 "WR English to Español" = {
                     urls = [{
