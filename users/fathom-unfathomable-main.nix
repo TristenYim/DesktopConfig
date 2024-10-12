@@ -3,7 +3,7 @@
 {
     imports = [
         ./fathom-default.nix
-        ./persist-home-unfathomable-main.nix
+        ./persist-fathom-unfathomable-main.nix
         ./../secrets/home.nix # This contains information that's too sensitive to put on github
     ];
 

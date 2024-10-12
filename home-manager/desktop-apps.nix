@@ -12,6 +12,7 @@
         cryfs-home.enable = lib.mkEnableOption "Enables CryFS";
         darktable-home.enable = lib.mkEnableOption "Enables darktable";
         fileRoller-home.enable = lib.mkEnableOption "Enables File Roller";
+        heroic-home.enable = lib.mkEnableOption "Enables Heroic";
         libreOffice-home.enable = lib.mkEnableOption "Enables LibreOffice";
         mousepad-home.enable = lib.mkEnableOption "Enables Mousepad";
         mpv-home.enable = lib.mkEnableOption "Enables mpv";
@@ -22,6 +23,7 @@
         prusaSlicer-home.enable = lib.mkEnableOption "Enables PrusaSlicer";
         qalculate-home.enable = lib.mkEnableOption "Enables Qalculate!";
         slack-home.enable = lib.mkEnableOption "Enables Slack";
+        steam-home.enable = lib.mkEnableOption "Enables Slack";
         zoom-home.enable = lib.mkEnableOption "Enables Zoom";
     };
 
@@ -70,6 +72,11 @@
             home.packages = [ pkgs.file-roller ];
         })
 
+        # Heroic
+        ( lib.mkIf config.heroic-home.enable {
+            home.packages = [ pkgs.heroic ];
+        })
+
         # LibreOffice
         # NOTE: This option may be deprecated soon, I'm experimenting
         # with WPS office, which appears to be much more compatible
@@ -116,6 +123,11 @@
         # Slack
         ( lib.mkIf config.slack-home.enable {
             home.packages = [ pkgs.slack ];
+        })
+
+        # Steam
+        ( lib.mkIf config.steam-home.enable {
+            home.packages = [ pkgs.steam ];
         })
 
         # WPS Office

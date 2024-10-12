@@ -51,6 +51,7 @@
             cursor-home.enable = lib.mkDefault true;
             firefox-home.enable = lib.mkDefault true;
             fileRoller-home.enable = lib.mkDefault true;
+            git-home.enable = lib.mkDefault true;
             gtk-home.enable = lib.mkDefault true;
             mousepad-home.enable = lib.mkDefault true;
             mpv-home.enable = lib.mkDefault true;

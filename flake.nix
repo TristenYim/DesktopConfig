@@ -78,14 +78,24 @@
                         extraSpecialArgs = { 
                             inherit inputs;
                         };
-                        users.fathom = {
-                            imports = [
-                                ./users/fathom-unfathomable-main.nix
-                                catppuccin.homeManagerModules.catppuccin
-                                hyprland.homeManagerModules.default
-                                nixvim.homeManagerModules.nixvim
-                                impermanence.nixosModules.home-manager.impermanence
-                            ];
+                        users = {
+                            fathom = {
+                                imports = [
+                                    ./users/fathom-unfathomable-main.nix
+                                    catppuccin.homeManagerModules.catppuccin
+                                    hyprland.homeManagerModules.default
+                                    nixvim.homeManagerModules.nixvim
+                                    impermanence.nixosModules.home-manager.impermanence
+                                ];
+                            };
+                            tdoggy = {
+                                imports = [
+                                    ./users/tdoggy-unfathomable-main.nix
+                                    catppuccin.homeManagerModules.catppuccin
+                                    nixvim.homeManagerModules.nixvim
+                                    impermanence.nixosModules.home-manager.impermanence
+                                ];
+                            };
                         };
                     };
                 }

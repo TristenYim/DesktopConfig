@@ -23,12 +23,15 @@
     # Disable default password for Fathom
     # Note that the password is declared in secrets
     users.users.fathom.initialPassword = null;
+    
+    users-tdoggy.enable = true;
 
     # Enable custom modules
     flatpak.enable = true;
     hyprDE.enable = true;
     nvidia.enable = true;
     virtualisation.enable = true;
+    xfce.enable = true;
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
