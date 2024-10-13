@@ -5,7 +5,7 @@
         zsh-home.enable = lib.mkEnableOption "Enables zsh configuration";
     };
  
-    config = lib.mkIf config.bash-home.enable 
+    config = lib.mkIf config.zsh-home.enable 
     {
         programs.zsh = {
             enable = true;

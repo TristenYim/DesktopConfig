@@ -13,6 +13,7 @@
         ./mozilla/thunderbird.nix
         ./terminal/alias.nix
         ./terminal/bash.nix
+        ./terminal/basic-packages.nix
         ./terminal/git.nix
         ./terminal/kitty.nix
         ./terminal/ranger.nix

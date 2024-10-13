@@ -9,7 +9,7 @@
     {
         home.file = {
             ".config/wlogout/catppuccin.css" = {
-                source = config.lib.file.mkOutOfStoreSymlink ../resources/catppuccin.css;
+                source = config.lib.file.mkOutOfStoreSymlink ../../resources/catppuccin.css;
             };
             ".config/wlogout/assets" = {
                 source = config.lib.file.mkOutOfStoreSymlink ./assets;
