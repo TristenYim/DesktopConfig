@@ -58,6 +58,8 @@
         })
 
         # kitty
+        # Note that this is only enabled to have a terminal enabled by default - It doesn't
+        # need to be enabled system-wide to work.
         ( lib.mkIf config.kitty.enable {
             environment.systemPackages = [
                 pkgs.kitty

@@ -55,8 +55,13 @@
     # Configure console keymap
     console.keyMap = lib.mkDefault "dvorak";
 
-    # Enable flakes and the nix command
-    nix.settings.experimental-features = lib.mkDefault [ "nix-command" "flakes" ];
+    nix = {
+        # Enable flakes and the nix command
+        settings.experimental-features = lib.mkDefault [ "nix-command" "flakes" ];
+
+        # Automatically optimise (hard link duplicate files) in the store
+        optimise.automatic = true;
+    };
 
     # Allow unfree packages
     nixpkgs.config.allowUnfree = lib.mkDefault true;
@@ -70,6 +75,9 @@
     # };
 
     # List services that you want to enable:
+
+    # Enable SSD trimming (weekly by default)
+    services.fstrim.enable = true;
 
     # Enable the OpenSSH daemon
     # services.openssh.enable = lib.mkDefault true;

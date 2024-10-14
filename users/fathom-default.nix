@@ -22,6 +22,6 @@
             EDITOR = "nvim";
         };
 
-        stateVersion = lib.mkDefault "24.05"; # Please read the comment in ../home-manager/resources/default.nix before changing.
+        stateVersion = lib.mkDefault "24.05";
     };
 }

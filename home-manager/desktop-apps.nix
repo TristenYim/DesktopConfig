@@ -2,6 +2,10 @@
 
 { config, pkgs, lib, ... }: 
 let
+    # I genuinely have to copy and paste these function definitions because Nix
+    # doesn't provide a clean way to separate a group of functions into another
+    # file. Or at least not one that can be searched for.
+
     # Adds a set of packages when an enable option is true.
     # Note that since every option in my home-manager configuration adds
     # "-home" to the end of its option names, the "-home" is excluded
