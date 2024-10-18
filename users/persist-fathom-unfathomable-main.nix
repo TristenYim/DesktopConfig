@@ -23,7 +23,7 @@
             ".config/PrusaSlicer" # Prusa Slicer data
         ];
         files = [
-            ".bash_history" # Stores command history
+            ".command_history"
         ];
         allowOther = true;
     };

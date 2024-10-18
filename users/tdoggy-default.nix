@@ -17,8 +17,9 @@
         username = lib.mkDefault "tdoggy";
         homeDirectory = lib.mkDefault "/home/tdoggy";
 
-        sessionVariables = lib.mkDefault {
-            EDITOR = "nvim";
+        sessionVariables = {
+            FLAKE = lib.mkDefault "~/nix";
+            EDITOR = lib.mkDefault "nvim";
         };
     
         stateVersion = lib.mkDefault "24.05"; 

@@ -11,6 +11,7 @@
         bottles-home.enable = true;
         darktable-home.enable = true;
         neofetch-home.enable = true;
+        zsh-home.enable = true;
 
         # Reset packages to default instead of nixGL wrapped ones on NixOS
         programs.kitty.package = pkgs.kitty;
@@ -33,9 +34,15 @@
             };
         };
 
-        home.file = {
-            ".local/share/Anki2" = {
-                source = config.lib.file.mkOutOfStoreSymlink /media/Hdd/SchoolNotes/Anki2; # Lets me save my flashcards in my school notes repo
+        home = {
+            sessionVariables = {
+                FLAKE = "/etc/nixos";
+            };
+
+            file = {
+                ".local/share/Anki2" = {
+                    source = config.lib.file.mkOutOfStoreSymlink /media/Hdd/SchoolNotes/Anki2; # Lets me save my flashcards in my school notes repo
+                };
             };
         };
     };

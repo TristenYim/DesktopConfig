@@ -14,6 +14,7 @@
                 LOCALE_ARCHIVE = "$(nix-build '<nixpkgs>' -A glibcLocales)/lib/locale/locale-archive";
                 EDITOR = "nvim";
             };
+            historyFile = "$HOME/.command_history";
         };
     };
 }

@@ -14,26 +14,24 @@
                 # Note: This is just a copy of Tokyo Night
                 
                 format = lib.concatStrings [
-                    ''
-                    [░▒▓](peach)\\
-                    $os\\
-                    [](fg:peach bg:yellow)\\
-                    $directory\\
-                    [](fg:yellow bg:lavender)\\
-                    $git_branch\\
-                    $git_status\\
-                    [](fg:lavender bg:surface1)\\
-                    $nix_shell\\
-                    $nodejs\\
-                    $rust\\
-                    $golang\\
-                    $php\\
-                    $git_metrics\\
-                    [](fg:surface1 bg:surface0)\\
-                    $time\\
-                    [ ](fg:surface0)
-                    $character
-                    ''
+                    "[░▒▓](peach)"
+                    "$os"
+                    "[](fg:peach bg:yellow)"
+                    "$directory"
+                    "[](fg:yellow bg:lavender)"
+                    "$git_branch"
+                    "$git_status"
+                    "[](fg:lavender bg:surface1)"
+                    "$nix_shell"
+                    "$nodejs"
+                    "$rust"
+                    "$golang"
+                    "$php"
+                    "$git_metrics"
+                    "[](fg:surface1 bg:surface0)"
+                    "$time"
+                    "[\n](fg:surface0)"
+                    "$character"
                 ];
                 directory = {
                     style = "fg:surface0 bg:yellow";

@@ -18,8 +18,9 @@
         username = lib.mkDefault "fathom";
         homeDirectory = lib.mkDefault "/home/fathom";
 
-        sessionVariables = lib.mkDefault {
-            EDITOR = "nvim";
+        sessionVariables = {
+            FLAKE = lib.mkDefault "~/nix";
+            EDITOR = lib.mkDefault "nvim";
         };
 
         stateVersion = lib.mkDefault "24.05";
