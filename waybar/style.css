@@ -33,34 +33,32 @@ tooltip label{
     color: black;
     background: @yellow;
     border-radius: 20px;
-    padding: 0 10px;
-    padding-left: 0px;
-    padding-right:0px;
+    padding: 0;
     margin-right: 8px;
 }
 
 #workspaces button {
     color: black;
     background: transparent;
-    padding-left: 9px;
-    padding-right: 9px;
+    border: 20px;
     border-radius: 20px;
+    min-width: 20px;
 }
 
 #workspaces button.active {
     color: black;
     background: @peach;
-    padding-left: 9px;
-    padding-right: 9px;
+    border: 20px;
     border-radius: 20px;
+    min-width: 20px;
 }
 
 #workspaces button:hover {
     color: black;
     background: @peach;
-    padding-left: 9px;
-    padding-right: 9px;
+    border: 20px;
     border-radius: 20px;
+    min-width: 20px;
 }
 
 #custom-power_btn {
@@ -86,6 +84,16 @@ tooltip label{
     padding-right: 22px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+}
+
+#mpris {
+    color:black;
+    background: @pink;
+    padding: 0 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 20px;
+    margin-left: 8px;
 }
 
 #window {

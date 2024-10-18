@@ -1,39 +1,49 @@
-format = "[░▒▓](#a3aed2)\\\\\n$os\\\\\n[](bg:#769ff0 fg:#a3aed2)\\\\\n$directory\\\\\n[](fg:#769ff0 bg:#394260)\\\\\n$git_branch\\\\\n$git_status\\\\\n[](fg:#394260 bg:#212736)\\\\\n$nodejs\\\\\n$rust\\\\\n$golang\\\\\n$php\\\\\n[](fg:#212736 bg:#1d2230)\\\\\n$time\\\\\n[ ](fg:#1d2230)\n$character\n"
+format = "[░▒▓](peach)$os[](fg:peach bg:yellow)$directory[](fg:yellow bg:lavender)$git_branch$git_status[](fg:lavender bg:surface1)$nodejs$rust$golang$php$git_metrics[](fg:surface1 bg:surface0)$time[\n](fg:surface0)$character"
 palette = "catppuccin_mocha"
 [directory]
 format = "[ $path ]($style)"
-style = "fg:#e3e5e5 bg:#769ff0"
+style = "fg:surface0 bg:yellow"
 truncation_length = 3
 truncation_symbol = "…/"
 
 [directory.substitutions]
+"/media/Hdd" = "…/󱛟 "
+"/pers" = " "
 Documents = "󰈙 "
 Downloads = " "
 Music = " "
 Pictures = " "
+home = "󰚡 "
 
 [git_branch]
-format = "[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)"
-style = "bg:#394260"
+format = "[ $symbol $branch ]($style)"
+style = "fg:surface1 bg:lavender"
 symbol = ""
 
+[git_metrics]
+added_style = "fg:green bg:surface1"
+deleted_style = "fg:red bg:surface1"
+disabled = false
+format = "[ \\(](fg:text bg:surface1)([+$added]($added_style))[/](fg:text bg:surface1)([-$deleted]($deleted_style)[\\) ](fg:text bg:surface1))"
+only_nonzero_diffs = false
+
 [git_status]
-format = "[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)"
-style = "bg:#394260"
+format = "[($all_status$ahead_behind )]($style)"
+style = "fg:surface1 bg:lavender"
 
 [golang]
-format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)"
-style = "bg:#212736"
+format = "[ $symbol ($version) ]($style)"
+style = "fg:text bg:surface1"
 symbol = ""
 
 [nodejs]
-format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)"
-style = "bg:#212736"
+format = "[ $symbol ($version) ]($style)"
+style = "fg:text bg:surface1"
 symbol = ""
 
 [os]
 disabled = false
-format = "[  $symbol](bg:#a3aed2 fg:#090c0c)"
+format = "[ $symbol](fg:base bg:peach)"
 
 [os.symbols]
 AlmaLinux = " "
@@ -109,17 +119,17 @@ text = "#cdd6f4"
 yellow = "#f9e2af"
 
 [php]
-format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)"
-style = "bg:#212736"
+format = "[ $symbol ($version) ]($style)"
+style = "fg:text bg:surface1"
 symbol = ""
 
 [rust]
-format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)"
-style = "bg:#212736"
+format = "[ $symbol ($version) ]($style)"
+style = "fg:text bg:surface1"
 symbol = ""
 
 [time]
 disabled = false
-format = "[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)"
-style = "bg:#1d2230"
+format = "[  $time ]($style)"
+style = "fg:text bg:surface0"
 time_format = "%R"

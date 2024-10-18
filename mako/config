@@ -1,0 +1,30 @@
+max-visible=5
+sort=-time
+
+layer=top
+anchor=top-right
+
+font=Merienda 10
+background-color=#1e1e2e
+text-color=#cdd6f4
+width=300
+height=100
+margin=10
+padding=5
+border-size=2
+border-color=#89b4fa
+border-radius=5
+progress-color=over #313244
+icons=true
+max-icon-size=64
+
+markup=true
+actions=true
+format=<b>%s</b>\n%b
+default-timeout=0
+ignore-timeout=false
+
+
+[urgency=high]
+border-color=#fab387
+
