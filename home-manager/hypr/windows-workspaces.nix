@@ -14,12 +14,9 @@
                 "opacity 0.6 0.6, title:^(btop)$"
                 "opacity 0.8 0.8, class:^(kitty)$"
                 "opacity 0.8 0.8, class:^(mousepad)$"
-                "opacity 0.65 0.65, class:^(nwg-look)$"
                 "opacity 0.65 0.65, class:^(openrgb)$"
                 "opacity 0.65 0.65, class:^(org.pulseaudio.pavucontrol)$"
                 "opacity 0.65 0.65, class:^(qalculate-gtk)$"
-                "opacity 0.65 0.65, class:^(qt5ct)$"
-                "opacity 0.65 0.65, class:^(qt6ct)$"
                 "opacity 0.8 0.8, class:^(thunar)$"
 
                 #############
@@ -27,13 +24,9 @@
                 #############
 
                 "float, class:^(nm-connection-editor)$"
-                "float, class:^(nwg-look)$"
                 "float, class:^(openrgb)$"
                 "float, class:^(org.pulseaudio.pavucontrol)"
                 "float, class:^(qalculate-gtk)$"
-                "float, class:^(qt6ct)$"
-                "float, class:^(qt5ct)$"
-                "float, title:^(update-sys)$"
                 "float, class:^(Zoom)$"
                 "float, class:^(photo.exe)$"
 

@@ -11,6 +11,7 @@ in {
 
     config = {
         forRobotics-home.enable = false;
+        zsh-home.enable = true;
 
         # Broken outside of nixos
         anki-home.enable = false;

@@ -12,16 +12,20 @@
                 enable = true;
                 autosuggestion = {
                     enable = true;
-                    strategy = [ "completion" "history" ];
+                    strategy = [ "completion" ];
                 };
                 dotDir = ".config/zsh";
                 history = {
                     path = "$HOME/.command_history";
+                    share = false;
                 };
                 sessionVariables = {
                     LOCALE_ARCHIVE = "$(nix-build '<nixpkgs>' -A glibcLocales)/lib/locale/locale-archive";
                     EDITOR = "nvim";
                 };
+                initExtra = ''
+                    setopt INC_APPEND_HISTORY
+                '';
             };
             kitty.settings.shell = "$HOME/.nix-profile/bin/zsh";
         };

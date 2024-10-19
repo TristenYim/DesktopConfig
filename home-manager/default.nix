@@ -66,6 +66,7 @@
             thunderbird-home.enable = lib.mkDefault true;
             # zsh-home.enable = lib.mkDefault true;
             nixGLPrefix = "${pkgs.nixgl.auto.nixGLDefault}/bin/nixGL";
+            nixpkgs.config.allowUnfree = lib.mkDefault true; # This is the one setting that I want on at absolutely all times. Having to separate unfree and free packages is only detrimental to the user in my opinion.
         }
 
         # These are modules which should be enabled on school accounts

@@ -48,7 +48,7 @@
             # Tells QT based applications to pick your theme from qt5ct, use with Kvantum.
             "QT_QPA_PLATFORMTHEME,qt5ct"
 
-            # Requried for firefox hardware acceleration
+            # Required for Firefox hardware acceleration
             "MOZ_X11_EGL,1"
             "MOZ_DISABLE_RDD_SANDBOX,1"
 
