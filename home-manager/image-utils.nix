@@ -16,7 +16,7 @@
                 file.".config/feh/themes" = {
                     enable = true;
                     text = ''
-                        default --scale-down
+                        feh --scale-down
                     '';
                 };
             };

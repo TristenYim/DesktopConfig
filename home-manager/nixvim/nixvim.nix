@@ -51,6 +51,7 @@
                 expandtab = true; # Insert a tab as spaces instead of the tab character
                 mouse = "a";
 
+                cursorline = true;
                 number = true;
                 spell = true; # Enable spell checking
                 spelllang = "en_us,es"; # Allows checking of English and Spanish words
@@ -67,7 +68,9 @@
                 # See https://nix-community.github.io/nixvim/colorschemes/catppuccin for more
 
                 enable = true;
-                settings.flavour = "mocha";
+                settings = {
+                    flavour = "mocha";
+                };
             };
         };
     };

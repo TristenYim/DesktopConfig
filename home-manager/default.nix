@@ -6,6 +6,7 @@
     imports = [
         ./desktop-apps.nix
         ./image-utils.nix
+        ./mime.nix
         ./services.nix
         ./xfce.nix
         ./hypr/hyprland.nix
@@ -56,17 +57,17 @@
             gtk-home.enable = lib.mkDefault true;
             mousepad-home.enable = lib.mkDefault true;
             mpv-home.enable = lib.mkDefault true;
-            neofetch-home.enable = lib.mkDefault true;
+            mime-home.enable = lib.mkDefault true;
             nixvim-home.enable = lib.mkDefault true;
+            wlclip-home.enable = lib.mkDefault true;
             obs-home.enable = lib.mkDefault true;
             qalculate-home.enable = lib.mkDefault true;
             qt-home.enable = lib.mkDefault true;
             ranger-home.enable = lib.mkDefault true;
             starship-home.enable = lib.mkDefault true;
             thunderbird-home.enable = lib.mkDefault true;
-            # zsh-home.enable = lib.mkDefault true;
+            zsh-home.enable = lib.mkDefault true;
             nixGLPrefix = "${pkgs.nixgl.auto.nixGLDefault}/bin/nixGL";
-            nixpkgs.config.allowUnfree = lib.mkDefault true; # This is the one setting that I want on at absolutely all times. Having to separate unfree and free packages is only detrimental to the user in my opinion.
         }
 
         # These are modules which should be enabled on school accounts

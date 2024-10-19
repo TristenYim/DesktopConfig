@@ -23,10 +23,12 @@ in
     options = {
         cryfs-home.enable = lib.mkEnableOption "Enables CryFS";
         neofetch-home.enable = lib.mkEnableOption "Enables neofetch";
+        wlclip-home.enable = lib.mkEnableOption "Enables WL clip";
     };
 
     config = lib.mkMerge [
         ( enableHomePkgSameOptName "cryfs" )
         ( enableHomePkgSameOptName "neofetch" )
+        ( enableHomePkgWith "wl-clipboard-rs" "wlclip" )
     ];
 }

@@ -11,7 +11,6 @@ in {
 
     config = {
         forRobotics-home.enable = false;
-        zsh-home.enable = true;
 
         # Broken outside of nixos
         anki-home.enable = false;
@@ -39,5 +38,7 @@ in {
                 source = config.lib.file.mkOutOfStoreSymlink Documents/SchoolNotes/Anki2; # Lets me save my flashcards in my school notes repo
             };
         };
+            
+        nixpkgs.config.allowUnfree = lib.mkDefault true;
     };
 }

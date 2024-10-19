@@ -6,7 +6,6 @@
 
             # The Freedesktop directories, except for useless ones like "Desktop"
             "Documents"
-            "Downloads"
             "Music"
             "Pictures"
             "Videos"
