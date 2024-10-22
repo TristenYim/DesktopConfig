@@ -61,7 +61,7 @@ in {
                     "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
                     "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
                     # "swww init"
-                    "waybar"
+                    # "waybar"
                     # "mako"
                     "blueman-applet"
                     "nm-applet --indicator"

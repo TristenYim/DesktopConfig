@@ -33,9 +33,15 @@ in {
             };
         };
 
-        home.file = {
-            ".local/share/Anki2" = {
-                source = config.lib.file.mkOutOfStoreSymlink Documents/SchoolNotes/Anki2; # Lets me save my flashcards in my school notes repo
+        home = {
+            sessionVariables = {
+                FLAKE = "~/nix";
+            };
+
+            file = {
+                ".local/share/Anki2" = {
+                    source = config.lib.file.mkOutOfStoreSymlink Documents/SchoolNotes/Anki2; # Lets me save my flashcards in my school notes repo
+                };
             };
         };
             

@@ -1,5 +1,8 @@
-{ config, pkgs, lib, inputs, ... }:
-
+{ config, pkgs, inputs, ... }:
+let
+    makeBar = ( import ../home-manager/waybar/makeBar.nix );
+    styler = ( import ../home-manager/waybar/styleMaker.nix );
+in
 {
     imports = [
         ./fathom-default.nix
@@ -32,6 +35,19 @@
                     "DP-1,1920x1080@120,2560x0,1.0"
                 ];
             };
+        };
+
+        programs.waybar = {
+            settings =
+            [   
+                (makeBar "bar1" "HDMI-A-1")
+                (makeBar "bar2" "DP-1")
+            ];
+            style = (
+                styler.makeGlobal + 
+                styler.makeUnique "bar1" 24 10 10 21 10 + 
+                styler.makeUnique "bar2" 20 8 8 18 8
+            );
         };
 
         home = {

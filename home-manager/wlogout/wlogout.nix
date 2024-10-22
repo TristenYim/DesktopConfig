@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }: {
+{ config, lib, ... }: {
+
+    # Define the CSS style in a separate file
+    imports = [ 
+        ./style.nix 
+    ];
 
     # Set a toggle to enable wlogout
     options = {
@@ -8,9 +13,6 @@
     config = lib.mkIf config.wlogout-home.enable 
     {
         home.file = {
-            ".config/wlogout/catppuccin.css" = {
-                source = config.lib.file.mkOutOfStoreSymlink ../../resources/catppuccin.css;
-            };
             ".config/wlogout/assets" = {
                 source = config.lib.file.mkOutOfStoreSymlink ./assets;
                 recursive = true;
@@ -19,7 +21,6 @@
 
         programs.wlogout = {
              enable = true;
-             style = ./style.css;
 
              # See https://github.com/ArtsyMacav/wlogout#config for more
              layout = [
