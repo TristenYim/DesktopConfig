@@ -1,11 +1,10 @@
-{ config, pkgs, lib, inputs, ... }: 
+{ config, pkgs, lib,  ... }: 
 
-# Import the nixGL wrapper
+# Import the nixGL wrapper function.
 let nixGLWrap = import ../nixGL/nixGLWrapper.nix { 
     inherit config pkgs; 
 };
 in {
-
     imports = [
         ./hypridle.nix
         ./keybinds.nix
@@ -24,29 +23,14 @@ in {
         wayland.windowManager.hyprland = 
         {
             enable = true;
-            package = lib.mkDefault (nixGLWrap inputs.hyprland.packages."${pkgs.system}".hyprland); # For hycov
+            package = lib.mkDefault (nixGLWrap pkgs.hyprland); # For hycov
             settings = 
             {
-                # This is an example Hyprland config file.
-                # Refer to the wiki for more information.
-                # https://wiki.hyprland.org/Configuring/Configuring-Hyprland/
-
                 # Please note not all available settings / options are set here.
                 # For a full list, see the wiki
-
-                # You can split this configuration into multiple files
-                # Create your files separately and then link them to this file like this:
-                # source = ~/.config/hypr/myColors.conf
+                # https://wiki.hyprland.org/Configuring/Configuring-Hyprland/
 
                 # Monitors must be manually configured per-computer, and is not included in the repo
-                #source = $HOME/.config/hypr/environment/monitors.conf
-
-                #source = $HOME/.config/hypr/keybinds.conf
-                #source = $HOME/.config/hypr/windows_workspaces.conf
-                #source = $HOME/.config/hypr/environment/env_var.conf
-                #source = $HOME/.config/hypr/environment/env_var_nvidia.conf
-                #source = $HOME/.config/hypr/environment/catppuccin.conf
-                #source = $HOME/.config/hypr/plugins.conf
 
                 #################
                 ### AUTOSTART ###
@@ -181,7 +165,7 @@ in {
 
                 # https://wiki.hyprland.org/Configuring/Variables/#gestures
                 gestures = {
-                    # See https://wiki.hyprland.org/Configuring/Variables/ for more
+                    # See https://wiki.hyprland.org/Configuring/Variables/ for more information
                     workspace_swipe = "off";
                 };
             };

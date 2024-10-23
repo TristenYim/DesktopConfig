@@ -20,7 +20,7 @@ in
         programs.kitty.package = pkgs.kitty;
 
         wayland.windowManager.hyprland = {
-            package = inputs.hyprland.packages."${pkgs.system}".hyprland; # For hycov
+            package = pkgs.hyprland; # For hycov
             settings = {
                 ################
                 ### MONITORS ###

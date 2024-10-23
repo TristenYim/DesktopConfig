@@ -8,6 +8,7 @@
         ./image-utils.nix
         ./mime.nix
         ./services.nix
+        ./swaylock.nix
         ./xfce.nix
         ./hypr/hyprland.nix
         ./mozilla/firefox.nix
@@ -23,13 +24,13 @@
         ./nixGL/nixGLOpt.nix
         ./nixvim/nixvim.nix
         ./rofi/rofi.nix
-        ./swaylock/swaylock.nix
         ./theme/catppuccin.nix
         ./theme/cursor.nix
         ./theme/gtk.nix
         ./theme/qt.nix
         ./waybar/waybar.nix
         ./wlogout/wlogout.nix
+        ../overlays/hyprland-overlay.nix
     ];
     
     options = {
@@ -39,10 +40,9 @@
         xfce-home.enable = lib.mkEnableOption "Enables XFCE";
     };
 
-    # DE-independent defaults
     config = lib.mkMerge 
     [
-        # These are modules which should be enabled by default regardless of the use case
+        # These should be enabled by default regardless of the use case
         {
             alias-home.enable = lib.mkDefault true;
             bash-home.enable = lib.mkDefault true;
@@ -102,7 +102,7 @@
             wlogout-home.enable = lib.mkDefault true;
         })
 
-        # These modules are used in my fallback DE
+        # These modules are used for XFCE profiles
         ( lib.mkIf config.xfce-home.enable {
             xfconf-home.enable = lib.mkDefault true;
         })

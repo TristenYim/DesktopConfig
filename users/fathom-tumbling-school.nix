@@ -16,6 +16,11 @@ in {
         anki-home.enable = false;
         zoom-home.enable = false;
 
+        # Remove unneeded apps to save space
+        chromium-home.enable = false;
+        polkit-agent-home.enable = false;
+        obs-home.enable = false;
+
         wayland.windowManager.hyprland = {
             package = nixGLWrap inputs.hyprland.packages."${pkgs.system}".hyprland; # For hycov
             settings = {
@@ -33,15 +38,9 @@ in {
             };
         };
 
-        home = {
-            sessionVariables = {
-                FLAKE = "~/nix";
-            };
-
-            file = {
-                ".local/share/Anki2" = {
-                    source = config.lib.file.mkOutOfStoreSymlink Documents/SchoolNotes/Anki2; # Lets me save my flashcards in my school notes repo
-                };
+        home.file = {
+            ".local/share/Anki2" = {
+                source = config.lib.file.mkOutOfStoreSymlink Documents/SchoolNotes/Anki2; # Lets me save my flashcards in my school notes repo
             };
         };
             

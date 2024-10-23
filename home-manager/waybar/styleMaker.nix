@@ -2,6 +2,8 @@ let
     catppuccin = (import ../theme/catppuccin-colors.nix);
 in
 {
+    # These style options are defined globally since they don't change regardless of how
+    # the waybar is customized. This function must only be called once per style.
     makeGlobal =
     ''
         * {
@@ -77,7 +79,19 @@ in
         #config {
             background: ${catppuccin.teal};
         }
+
+        #battery {
+            color: white;
+        }
+
+        #backlight {
+            color: white;
+        }
     '';
+
+    # The purpose of this function is to allow the sizing of the bar to be customized
+    # to ensure the bar is readable on monitors with differing resolutions.
+    # The style is assigned to the given name.
     makeUnique = name: borderRadius: paddingInternal: paddingGroup: fontSize: gapWidth:
     let
         borderString = "border-radius: ${toString borderRadius}px";
