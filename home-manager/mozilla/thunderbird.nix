@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ config, lib, ... }: {
 
     # Set a toggle to enable Thunderbird
     # By default, this is disabled
@@ -18,7 +18,7 @@
                     "mail.shell.checkDefaultClient" = false;
                     "mail.tabs.drawInTitlebar" = false;
                     "mailnews.start_page.enabled" = false;
-                    "network.cookie.cookieBehavior" = 2;
+                    # "network.cookie.cookieBehavior" = 2; # In practice, this option ends up being extremely annoying since it prevents signing into certain emails.
                     "places.history.enabled" = false;
                     "privacy.clearOnShutdown.cache" = true;
                     "privacy.donottrackheader.enabled" = true;

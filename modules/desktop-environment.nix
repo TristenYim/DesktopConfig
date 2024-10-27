@@ -1,8 +1,10 @@
-{ config, pkgs, lib, inputs, ... }: {
+{ config, pkgs, lib, ... }: 
+let
+    myLib = import ../resources/myLib.nix { inherit config pkgs lib; };
+in
+{
     options = {
-        hyprDE.enable = lib.mkEnableOption "Enables a custom \"desktop environment\" based on Hyprland";
         xfce.enable = lib.mkEnableOption "Enables Xfce";
-
         catppuccin-local.enable = lib.mkEnableOption "Enables Catppuccin";
         kitty.enable = lib.mkEnableOption "Enables kitty";
         hyprland.enable = lib.mkEnableOption "Enables Hyprland";
@@ -60,11 +62,7 @@
         # kitty
         # Note that this is only enabled to have a terminal enabled by default - It doesn't
         # need to be enabled system-wide to work.
-        ( lib.mkIf config.kitty.enable {
-            environment.systemPackages = [
-                pkgs.kitty
-            ];
-        })
+        ( myLib.nixos.enablePkgSameOptName "kitty" )
 
         # Hyprland
         ( lib.mkIf config.hyprland.enable {
@@ -82,11 +80,7 @@
         })
 
         # Swaylock
-        ( lib.mkIf config.swaylock.enable {
-            environment.systemPackages = [
-                pkgs.swaylock-effects
-            ];
-        })
+        ( myLib.nixos.enablePkgWith "swaylock-effects" "swaylock" )
 
         # Thunar
         ( lib.mkIf config.thunar.enable {

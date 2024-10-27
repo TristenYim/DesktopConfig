@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ config, lib, ... }: {
 
     config = lib.mkIf config.firefox-home.enable 
     {
@@ -79,6 +79,14 @@
                                 name = "Home Manager Manual";
                                 url = "https://nix-community.github.io/home-manager";
                             }
+                            {
+                                name = "NixOS Options";
+                                url = "https://nixos.org/manual/nixos/unstable/options";
+                            }
+                            {
+                                name = "Home Manager Options";
+                                url = "https://nix-community.github.io/home-manager/options.xhtml";
+                            }
                         ];
                     }
                     {
@@ -88,10 +96,6 @@
                     {
                         name = "WAMAP";
                         url = "https://www.wamap.org";
-                    }
-                    {
-                        name = "vistas";
-                        url = "https://www.vhlcentral.com";
                     }
                 ];
             }

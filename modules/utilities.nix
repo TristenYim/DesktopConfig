@@ -1,4 +1,8 @@
-{ config, pkgs, lib, nixos-cli, ... }: {
+{ config, pkgs, lib, nixos-cli, ... }: 
+let
+    myLib = import ../resources/myLib.nix { inherit config pkgs lib; };
+in
+{
     options = {
         btop.enable = lib.mkEnableOption "Enables BTOP++";
         envfs.enable = lib.mkEnableOption "Enables envfs";
@@ -15,25 +19,13 @@
     config = lib.mkMerge
     [
         {
-            btop.enable = lib.mkDefault true;
-            envfs.enable = lib.mkDefault true;
-            flatpak.enable = lib.mkDefault true;
-            killall.enable = lib.mkDefault true;
-            nixos-cli.enable = lib.mkDefault true;
-            pulse.enable = lib.mkDefault true;
-            ranger.enable = lib.mkDefault true;
-            sddm.enable = lib.mkDefault true;
-            vim.enable = lib.mkDefault true;
-
             environment.pathsToLink = [
                 "/share/zsh"
             ];
         }
 
-        # Btop++, task manager
-        ( lib.mkIf config.btop.enable {
-            environment.systemPackages = [ pkgs.btop ];
-        })
+        # Btop++, added to ensure a system monitor exists without Home Manager
+        ( myLib.nixos.enablePkgSameOptName "btop" )
 
         # Envfs, restores some FHS compliance
         ( lib.mkIf config.envfs.enable {
@@ -53,9 +45,7 @@
         })
 
         # Killall, which does what you'd expect
-        ( lib.mkIf config.killall.enable {
-            environment.systemPackages = [ pkgs.killall ];
-        })
+        ( myLib.nixos.enablePkgSameOptName "killall" )
 
         # nixos-cli, adds a better cli for NixOS operations
         ( lib.mkIf config.nixos-cli.enable {
@@ -79,10 +69,8 @@
             ];
         })
 
-        # Ranger, TUI file manager
-        ( lib.mkIf config.ranger.enable {
-            environment.systemPackages = [ pkgs.ranger ];
-        })
+        # Ranger, added to ensure a decent TUI file manager exists without Home Manager
+        ( myLib.nixos.enablePkgSameOptName "ranger" )
 
         # SDDM, display (login) manager
         ( lib.mkIf config.sddm.enable {
@@ -97,11 +85,7 @@
             };
         })
 
-        # vim
-        ( lib.mkIf config.vim.enable {
-            environment.systemPackages = [
-                pkgs.vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-            ];
-        })
+        # vim, added to ensure a decent text editor exists even without Home Manager
+        ( myLib.nixos.enablePkgSameOptName "vim" )
     ];
 }

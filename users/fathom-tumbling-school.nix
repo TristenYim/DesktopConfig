@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, ... }:
 
 # Import the nixGL wrapper
 let nixGLWrap = import ../home-manager/nixGL/nixGLWrapper.nix { 
@@ -22,7 +22,7 @@ in {
         obs-home.enable = false;
 
         wayland.windowManager.hyprland = {
-            package = nixGLWrap inputs.hyprland.packages."${pkgs.system}".hyprland; # For hycov
+            package = nixGLWrap pkgs.hyprland; # For hycov
             settings = {
                 ################
                 ### MONITORS ###

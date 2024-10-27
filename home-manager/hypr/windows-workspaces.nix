@@ -1,6 +1,6 @@
 # Window, workspace, and layer rules
 
-{ config, pkgs, lib, ... }: {
+{ config, lib, ... }: {
     config = lib.mkIf config.hyprland-home.enable 
     {
         wayland.windowManager.hyprland.settings =
@@ -64,7 +64,7 @@
                 "name:MAIL, monitor:$mon1, on-created-empty:hyprctl dispatch exec thunderbird"
                 "special:BTOP, on-created-empty: [maximize] kitty btop"
                 "special:CIDER, on-created-empty: [float; size 1000 800; move 10 50] cider"
-                "special:CONFIG, on-created-empty: [maximize] kitty nvim /etc/nixos"
+                "special:CONFIG, on-created-empty: [maximize] kitty nvim $FLAKE"
             ];
         };
     };

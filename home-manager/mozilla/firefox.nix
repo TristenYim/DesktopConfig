@@ -50,6 +50,8 @@
                     "datareporting.healthreport.uploadEnabled" = false;
                     "extensions.pocket.enabled" = false;
                     "extensions.autoDisableScopes" = 0;
+                    "extensions.formautofill.addresses.enabled" = false;
+                    "extensions.formautofill.creditCards.enabled" = false;
                     "geo.enabled" = false;
                     "signon.rememberSignons" = false;
                     "privacy.firstparty.isolate" = true;
@@ -62,8 +64,11 @@
             };
 
             # These are workspace policy settings that apply for all users of the browser.
-            # Most of these can be set locally in the profile, but redundency ensures these won't be changed.
+            # Most of these can be set locally in the profile, but policies ensure these cannot ever be disabled.
+            # See https://mozilla.github.io/policy-templates/ for more information.
             policies = {
+                AutofillAddressEnabled = false;
+                AutofillCreditCardEnabled = false;
                 DisablePocket = true;
                 DisableTelemetry = true;
                 EnableTrackingProtection = true;

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ config, lib, ... }: {
     options = {
         users-fathom.enable = lib.mkEnableOption "Enables fathom, the productivity user. fathom uses Hyprland.";
         users-tdoggy.enable = lib.mkEnableOption "Enables tdoggy, the gaming user. tdoggy uses Xfce.";
@@ -7,7 +7,6 @@
     config = lib.mkMerge
     [
         {
-           users-fathom.enable = lib.mkDefault true;
            users.groups.nixos-config-editor = {}; # Group for giving (local) users write access to /etc/nixos
         }
 

@@ -1,15 +1,15 @@
 # Based on the default configuration upon a fresh install
 
-{ config, pkgs, lib, ... }: {
+{ pkgs, lib, ... }: {
     # Bootloader
     boot.loader.efi.canTouchEfiVariables = lib.mkDefault true;
 
     boot.loader.grub = {
-        enable = true;
-        efiSupport = true;
-        device = "nodev";
-        configurationLimit = 10;
-        extraEntries = ''
+        enable = lib.mkDefault true;
+        efiSupport = lib.mkDefault true;
+        device = lib.mkDefault "nodev";
+        configurationLimit = lib.mkDefault 10;
+        extraEntries = lib.mkDefault ''
             menuentry 'UEFI Firmware Settings' $menuentry_id_option 'uefi-firmware' {
                 fwsetup
             }
@@ -60,7 +60,7 @@
         settings.experimental-features = lib.mkDefault [ "nix-command" "flakes" ];
 
         # Automatically optimise (hard link duplicate files) in the store
-        optimise.automatic = true;
+        optimise.automatic = lib.mkDefault true;
     };
 
     # Allow unfree packages
@@ -77,7 +77,7 @@
     # List services that you want to enable:
 
     # Enable SSD trimming (weekly by default)
-    services.fstrim.enable = true;
+    services.fstrim.enable = lib.mkDefault true;
 
     # Enable the OpenSSH daemon
     # services.openssh.enable = lib.mkDefault true;

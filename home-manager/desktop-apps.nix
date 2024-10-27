@@ -2,26 +2,7 @@
 
 { config, pkgs, lib, ... }: 
 let
-    # I genuinely have to copy and paste these function definitions because Nix
-    # doesn't provide a clean way to separate a group of functions into another
-    # file. Or at least not one that can be searched for.
-
-    # Adds a set of packages when an enable option is true.
-    # Note that since every option in my home-manager configuration adds
-    # "-home" to the end of its option names, the "-home" is excluded
-    # from the argument.
-    enableHomePkgsWith = packageList: optionNameWithoutHome:
-        lib.mkIf config.${optionNameWithoutHome + "-home"}.enable { 
-            home.packages = packageList; 
-        };
-
-    # Enables a single package when an option name is true.
-    enableHomePkgWith = packageName: optionNameWithoutHome:
-        enableHomePkgsWith [ pkgs.${packageName} ] optionNameWithoutHome;
-
-    # Enables a single package with an identically named option.
-    enableHomePkgSameOptName = name:
-        enableHomePkgWith name name;
+    myLib = import ../resources/myLib.nix { inherit config pkgs lib; };
 in
 {
     options = {
@@ -49,24 +30,24 @@ in
     # Allows us to combine multiple modules into one file
     config = lib.mkMerge
     [
-        ( enableHomePkgSameOptName "anki" )
-        ( enableHomePkgSameOptName "bottles" )
-        ( enableHomePkgSameOptName "cider" )
-        ( enableHomePkgSameOptName "copyq" )
-        ( enableHomePkgSameOptName "darktable" )
-        ( enableHomePkgWith "file-roller" "fileRoller" )
-        ( enableHomePkgSameOptName "heroic" )
-        ( enableHomePkgWith "libreoffice-fresh" "libreOffice" )
-        ( enableHomePkgsWith [ pkgs.xfce.mousepad ] "mousepad" )
-        ( enableHomePkgSameOptName "mpv" )
-        ( enableHomePkgWith "obs-studio" "obs" )
-        ( enableHomePkgWith "octaveFull" "octave" )
-        ( enableHomePkgWith "prusa-slicer" "prusaSlicer" )
-        ( enableHomePkgWith "qalculate-qt" "qalculate" )
-        ( enableHomePkgSameOptName "slack" )
-        ( enableHomePkgSameOptName "steam" )
-        ( enableHomePkgsWith [ pkgs.wpsoffice pkgs.liberation_ttf ] "wps" )
-        ( enableHomePkgWith "zoom-us" "zoom" )
+        ( myLib.home.enablePkgSameOptName "anki" )
+        ( myLib.home.enablePkgSameOptName "bottles" )
+        ( myLib.home.enablePkgSameOptName "cider" )
+        ( myLib.home.enablePkgSameOptName "copyq" )
+        ( myLib.home.enablePkgSameOptName "darktable" )
+        ( myLib.home.enablePkgWith "file-roller" "fileRoller" )
+        ( myLib.home.enablePkgSameOptName "heroic" )
+        ( myLib.home.enablePkgWith "libreoffice-fresh" "libreOffice" )
+        ( myLib.home.enablePkgsWith [ pkgs.xfce.mousepad ] "mousepad" )
+        ( myLib.home.enablePkgSameOptName "mpv" )
+        ( myLib.home.enablePkgWith "obs-studio" "obs" )
+        ( myLib.home.enablePkgWith "octaveFull" "octave" )
+        ( myLib.home.enablePkgWith "prusa-slicer" "prusaSlicer" )
+        ( myLib.home.enablePkgWith "qalculate-qt" "qalculate" )
+        ( myLib.home.enablePkgSameOptName "slack" )
+        ( myLib.home.enablePkgSameOptName "steam" )
+        ( myLib.home.enablePkgsWith [ pkgs.wpsoffice pkgs.liberation_ttf ] "wps" )
+        ( myLib.home.enablePkgWith "zoom-us" "zoom" )
 
         ( lib.mkIf config.chromium-home.enable {
             programs.chromium = {
@@ -75,6 +56,6 @@ in
         })
 
         # For an unknown reason, the line below doesn't work
-        # ( enableHomePkgWith "xfce.mousepad" "mousepad" )
+        # ( myLib.home.enablePkgWith "xfce.mousepad" "mousepad" )
     ];
 }
