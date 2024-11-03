@@ -13,7 +13,7 @@
         ./users.nix
         ./utilities.nix
         ./virtualisation.nix
-        ../overlays/hyprland-overlay.nix
+        # ../overlays/hyprland-overlay.nix
     ];
 
     options = {
@@ -29,7 +29,8 @@
             killall.enable = lib.mkDefault true;
             nerdfonts.enable = lib.mkDefault true;
             nixos-cli.enable = lib.mkDefault true;
-            pulse.enable = lib.mkDefault true;
+            # pulse.enable = lib.mkDefault true;
+            pipewire.enable = lib.mkDefault true;
             ranger.enable = lib.mkDefault true;
             sddm.enable = lib.mkDefault true;
             vim.enable = lib.mkDefault true;

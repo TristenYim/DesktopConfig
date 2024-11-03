@@ -2,13 +2,15 @@
     description = "Nixos config flake";
 
     inputs = {
+        aquamarine = {
+            type = "git";
+            url = "https://github.com/hyprwm/aquamarine";
+            rev = "e6ea0e0808003392da3a6237c090f133b1d9863b";
+            submodules = true;
+        };
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
         catppuccin.url = "github:catppuccin/nix";
         impermanence.url = "github:nix-community/impermanence";
-        # aquamarine = {
-        #     url = "git+https://github.com/hyprwm/aquamarine?submodules=1&rev=00d51a053c98d54987174d74771afa63b7bb27d3";
-        #     inputs.nixpkgs.follows = "nixpkgs";
-        # };
         firefox-addons = {
             url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -18,22 +20,23 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         hyprland = {
-            url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=918d8340afd652b011b937d29d5eea0be08467f5"; # Downgrading version to 0.41.2 for hycov
-            # url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+            type = "git";
+            # url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=918d8340afd652b011b937d29d5eea0be08467f5";
+            url = "https://github.com/hyprwm/Hyprland";
+            # submodules = 1;
+            ref = "refs/tags/v0.44.1";
+            submodules = true;
             inputs.nixpkgs.follows = "nixpkgs";
+            inputs.aquamarine.follows = "aquamarine";
         };
         hycov = {
-            url = "github:DreamMaoMao/hycov";
+            # So far, this is the best window/workspace overview plugin I've found
+            # Hyprswitch, hyprexpo, and hyprspace are all useful but don't have window overview
+            # behavior like in Gnome or MacOS.
+            # url = "github:DreamMaoMao/hycov";
+            url = "github:bighu630/hycov"; # Using a fork that's actually actively maintained.
             inputs.hyprland.follows = "hyprland";
         };
-        # hyprland-plugins = {
-        #     url = "github:hyprwm/hyprland-plugins";
-        #     inputs.hyprland.follows = "hyprland";
-        # };
-        # hyprspace = {
-        #     url = "github:KZDKM/Hyprspace";
-        #     inputs.hyprland.follows = "hyprland";
-        # };
         nixgl = {
             url = "github:guibou/nixGL";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -48,7 +51,7 @@
         };
     };
 
-    outputs = { nixpkgs, catppuccin, firefox-addons, impermanence, home-manager, hyprland, nixvim, nixos-cli, nixgl, ... }@inputs:
+    outputs = { nixpkgs, catppuccin, impermanence, home-manager, hyprland, nixvim, nixos-cli, nixgl, ... }@inputs:
       let 
         system = "x86_64-linux";
         pkgs = import nixpkgs {
@@ -102,25 +105,6 @@
             ];
         };
 
-        nixosConfigurations.test-surface = nixpkgs.lib.nixosSystem {
-            inherit system;
-            modules = [
-                ./hosts/test-surface/configuration.nix
-                catppuccin.nixosModules.catppuccin
-            ];
-        };
-
-        homeConfigurations."fathom@test-surface" = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            extraSpecialArgs = { inherit inputs; };
-            modules = [ 
-                ./users/fathom-test-surface.nix 
-                catppuccin.homeManagerModules.catppuccin
-                hyprland.homeManagerModules.default
-                nixvim.homeManagerModules.nixvim
-            ];
-        };
-
         homeConfigurations."fathom@tumbling-school" = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             extraSpecialArgs = { inherit inputs; };
@@ -150,6 +134,5 @@
                 nixvim.homeManagerModules.nixvim
             ];
         };
-        devShells.x86_64-linux.wine-builder = (import ./shells/wine-builder.nix { inherit pkgs; }); 
     };
 }

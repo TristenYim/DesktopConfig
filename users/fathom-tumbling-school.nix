@@ -22,7 +22,7 @@ in {
         obs-home.enable = false;
 
         wayland.windowManager.hyprland = {
-            package = nixGLWrap pkgs.hyprland; # For hycov
+            # package = nixGLWrap pkgs.hyprland; # For hycov
             settings = {
                 ################
                 ### MONITORS ###

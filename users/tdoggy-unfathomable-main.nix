@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
+{ ... }:
 
 {
     imports = [
@@ -8,5 +8,9 @@
 
     config = {
         neofetch-home.enable = true;
+
+        home.sessionVariables = {
+            FLAKE = "/etc/nixos";
+        };
     };
 }

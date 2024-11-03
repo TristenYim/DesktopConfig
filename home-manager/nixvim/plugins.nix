@@ -61,7 +61,8 @@
                             ]
                         ];
                     };
-                    colorscheme = "ayu_mirage";
+                    # colorscheme = "ayu_mirage";
+                    colorscheme = "catppuccin";
                     component = {
                         poweredbynix = "󱄅  Powered by Nix!";
                     };
@@ -127,6 +128,8 @@
             # Of course, there are a lot more plugins available.
             # You can find an up-to-date list here:
             # https://nixvim.pta2002.com/plugins
+
+            web-devicons.enable = true; # Required to use nvim-tree
         };
 
         # What about plugins not available as a module?

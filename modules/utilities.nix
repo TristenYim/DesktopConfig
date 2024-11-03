@@ -1,4 +1,4 @@
-{ config, pkgs, lib, nixos-cli, ... }: 
+{ config, pkgs, lib, ... }: 
 let
     myLib = import ../resources/myLib.nix { inherit config pkgs lib; };
 in
@@ -10,6 +10,7 @@ in
         killall.enable = lib.mkEnableOption "Enables killall";
         nixos-cli.enable = lib.mkEnableOption "Enables nixos-cli";
         pulse.enable = lib.mkEnableOption "Enables PulseAudio";
+        pipewire.enable = lib.mkEnableOption "Enables PipeWire";
         ranger.enable = lib.mkEnableOption "Enables ranger";
         sddm.enable = lib.mkEnableOption "Enables SDDM";
         vim.enable = lib.mkEnableOption "Enables vim";
@@ -62,6 +63,23 @@ in
                 support32Bit = true;
             };
             nixpkgs.config.pulseaudio = true;
+
+            environment.systemPackages = [
+                pkgs.pavucontrol
+                pkgs.pamixer
+            ];
+        })
+
+        # PipeWire, the better sound server and more
+        ( lib.mkIf config.pipewire.enable {
+            services.pipewire = {
+                enable = true;
+                pulse.enable = true;
+                alsa = {
+                    enable = true;
+                    support32Bit = true;
+                };
+            };
 
             environment.systemPackages = [
                 pkgs.pavucontrol

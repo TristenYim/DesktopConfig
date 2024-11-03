@@ -30,7 +30,7 @@
         ./theme/qt.nix
         ./waybar/waybar.nix
         ./wlogout/wlogout.nix
-        ../overlays/hyprland-overlay.nix
+        # ../overlays/hyprland-overlay.nix
     ];
     
     options = {
