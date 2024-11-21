@@ -58,9 +58,9 @@
                 # Accessible via 'nvidia-settings'.
                 nvidiaSettings = true;
 
-                # Ensures the GPU is always awake, even when running without a GUI
-                # Enabling this to potentially fix boot errors
-                nvidiaPersistenced = true;
+                # Ensures the GPU is always awake, even when running without a GUI if true
+                # Setting to false to enable GPU passthrough
+                nvidiaPersistenced = false;
 
                 # Select the driver version
                 package = config.boot.kernelPackages.nvidiaPackages.beta;

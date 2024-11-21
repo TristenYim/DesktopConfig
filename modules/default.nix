@@ -12,7 +12,7 @@
         ./system.nix
         ./users.nix
         ./utilities.nix
-        ./virtualisation.nix
+        ./virtualisation/virtualisation.nix
         # ../overlays/hyprland-overlay.nix
     ];
 

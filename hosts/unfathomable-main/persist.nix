@@ -1,6 +1,6 @@
 # Declares persistent files and directories
 # These are NOT erased on reboot in the impermanence setup
-{ config, pkgs, ... }: {
+{ ... }: {
     environment.persistence."/pers" = {
         hideMounts = true;
         directories = [
@@ -12,6 +12,7 @@
 
             "/var/lib/libvirt/images/persistent" # Virtual machine filesystems
             "/var/lib/libvirt/qemu" # Virtual machine configurations
+            "/var/lib/libvirt/hooks/custom" # Virtual machine configurations
 
             "/var/lib/flatpak" # Flatpak things
         ];

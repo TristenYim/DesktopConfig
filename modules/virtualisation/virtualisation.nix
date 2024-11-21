@@ -1,5 +1,9 @@
 # This enables creating virtual machines
 { config, pkgs, lib, ... }: {
+    imports = [
+        ./passthrough.nix
+    ];
+
     options = {
         virtualisation.enable = lib.mkEnableOption "Enables the creation of virtual machines";
     };
@@ -19,50 +23,11 @@
                         packages = [ pkgs.OVMFFull.fd ];
                     };
                 };
+                hooks.qemu.custom = ./qemu.sh;
             };
 
             # Allows hotplugging of USB peripherals
             spiceUSBRedirection.enable = true;
-        };
-
-        # Required modules for vGPU passthrough
-        boot = {
-            kernelModules = [
-                "vfio_pci"
-                # "vfio_iommu_type1"
-                # "vfio"
-
-                # Need to be loaded early, otherwise the framebuffer output will freeze
-                # See https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF#initramfs for more
-                # "nvidia"
-                # "nvidia_modeset"
-                # "nvidia_uvm"
-                # "nvidia_drm"
-            ];
-
-            kernelParams = [
-                "intel_iommu=on"
-                "iommu=pt"
-                # "vfio-pci.ids=10de:1c82,10de:0fb9"
-            ];
-        };
-
-        systemd.services.libvirtd = {
-            path =
-            let
-                env = pkgs.buildEnv {
-                    name = "qemu-hook-env";
-                    paths = with pkgs; [
-                        bash
-                        libvirt
-                        kmod
-                        systemd
-                        ripgrep
-                        sd
-                    ];
-                };
-            in
-            [env];
         };
 
         # Enable virt-manager, a GUI virtual machine manager
@@ -75,10 +40,11 @@
         environment.systemPackages = with pkgs; [
             virtio-win
             win-spice
+            virtiofsd
         ];
 
         # Add users to the libvirtd group to allow them to create VMs
         users.users."fathom".extraGroups = [ "libvirtd" ];
-        # users.users."tdoggy".extraGroups = if config.users-tdoggy.enable then [ "libvirtd" ] else [];
+        users.users."tdoggy".extraGroups = [ "libvirtd" ];
     });
 }
