@@ -41,13 +41,9 @@ in {
                 # Or execute your favorite apps at launch like this:
 
                 exec-once = [
-                    # "hypridle"
                     "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
                     "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
                     "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
-                    # "swww init"
-                    # "waybar"
-                    # "mako"
                     "blueman-applet"
                     "nm-applet --indicator"
                     "wl-paste --watch cliphist store"
@@ -67,6 +63,7 @@ in {
                     border_size = 2;
 
                     # https://wiki.hyprland.org/Configuring/Variables/#variable-types for info about colors
+                    # Note that the catppuccin module allows these variables to be referenced outside nix code
                     "col.active_border" = "$sky";
                     "col.inactive_border" = "$surface0";
 
@@ -107,7 +104,7 @@ in {
                         dim_strength = 0.3;
                 };
 
-                # https://wiki.hyprland.org/Configuring/Variables/#animations
+                # See https://wiki.hyprland.org/Configuring/Variables/#animations for all options
                 animations = {
                     enabled = true;
 
@@ -126,6 +123,10 @@ in {
                     ];
                 };
 
+                ##############
+                ### LAYOUT ###
+                ##############
+
                 # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
                 dwindle = {
                     pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
@@ -137,17 +138,11 @@ in {
                     new_status = "master";
                 };
 
-                # See https://wiki.hyprland.org/Configuring/Variables/ for more
-                misc = {
-                    disable_hyprland_logo = false;
-                    force_default_wallpaper = 2;
-                };
-
                 #############
                 ### INPUT ###
                 #############
 
-                # https://wiki.hyprland.org/Configuring/Variables/#input
+                # See https://wiki.hyprland.org/Configuring/Variables/#input for all options
                 input = {
                     kb_layout = "us, us, us";
                     kb_variant = "dvorak, dvorak-intl, "; # A blank value implies qwerty
@@ -164,10 +159,24 @@ in {
                     sensitivity = "-0.2"; # -1.0 - 1.0, 0 means no modification.
                 };
 
-                # https://wiki.hyprland.org/Configuring/Variables/#gestures
+                # See https://wiki.hyprland.org/Configuring/Variables/#gestures for all options
                 gestures = {
-                    # See https://wiki.hyprland.org/Configuring/Variables/ for more information
                     workspace_swipe = "off";
+                };
+
+                #############
+                ### OTHER ###
+                #############
+
+                # See https://wiki.hyprland.org/Configuring/Variables/#misc for all options
+                misc = {
+                    force_default_wallpaper = 2;
+                    disable_autoreload = true;
+                };
+
+                render = {
+                    explicit_sync = 1;
+                    explicit_sync_kms = 1;
                 };
             };
         };

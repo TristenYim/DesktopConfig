@@ -3,14 +3,13 @@
 # See the wiki for more info as some work is required
 # https://wiki.hyprland.org/hyprland-wiki/pages/Nvidia/
 
-{ config, pkgs, lib, ... }: {
+{ config, lib, ... }: {
     config = lib.mkIf config.hyprland-home.enable 
     {
         wayland.windowManager.hyprland.settings = {
             cursor = {
                 no_hardware_cursors = true;
             };
-            # render.explicit_sync = 0; # Does not exist in 0.41.2
             env = [ 
                 # Hardware acceleration on NVIDIA GPUs
                 # See Archwiki Hardware Acecleration Page for details and necessary values before setting this variable.
@@ -25,16 +24,10 @@
                 "GBM_BACKEND,nvidia-drm"
                 "__GLX_VENDOR_LIBRARY_NAME,nvidia"
 
-                # Controls if G-Sync capable monitors should use Variable Refresh Rate (VRR)
-                # See Nvidia Documentation for details.
-                # https://download.nvidia.com/XFree86/Linux-32bit-ARM/375.26/README/openglenvvariables.html
-                #env = __GL_GSYNC_ALLOWED,
-
-                # Controls if Adaptive Sync should be used. Recommended to set as “0” to avoid having problems on some games.   
-                #env = __GL_VRR_ALLOWED,
-
                 # use legacy DRM interface instead of atomic mode setting. Might fix flickering issues.
-                #env = WLR_DRM_NO_ATOMIC,1
+                # "WLR_DRM_NO_ATOMIC,1"
+                
+                "NVD_BACKEND,direct"
             ];
         };
     };
