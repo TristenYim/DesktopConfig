@@ -96,13 +96,13 @@ in
 
         # SDDM, display (login) manager
         ( lib.mkIf config.sddm.enable {
-            environment.systemPackages = [ pkgs.libsForQt5.sddm ];
-
             services = {
                 displayManager.sddm = {
                      enable = true;
                      wayland.enable = true;
-                     catppuccin.assertQt6Sddm = false;
+                     catppuccin.enable = false;
+                     # package = pkgs.kdePackages.sddm;
+                     # catppuccin.assertQt6Sddm = false;
                 };
             };
         })
