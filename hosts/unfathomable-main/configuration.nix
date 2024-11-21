@@ -27,7 +27,6 @@
     users-tdoggy.enable = true;
 
     # Enable custom modules
-    flatpak.enable = true;
     hyprDE.enable = true;
     nvidia.enable = true;
     xfce.enable = true;
@@ -36,6 +35,9 @@
         enable = true;
         passthrough.enable = true;
     };
+
+    flatpak.enable = true;
+    cryptsetup.enable = true;
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions

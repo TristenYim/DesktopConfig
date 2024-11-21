@@ -1,5 +1,5 @@
 # Filesystem setup for impermanence
-{ config, lib, ... }: 
+{ ... }: 
 let
     rootPartition = "/dev/disk/by-uuid/909d9564-7ff5-44a4-b327-d7356acb10cd";
 in
@@ -46,11 +46,22 @@ in
             options = [ "subvol=@home" ];
         };
 
+        "/media/VMs" = {
+            device = rootPartition;
+            fsType = "btrfs";
+            options = [ "subvol=@vms" ];
+        };
+
         "/media/Hdd" = {
             device = "/dev/disk/by-uuid/0C22944922943A22";
             fsType = "ntfs";
-            # options = [ "gid=users" "mode=775" ];
             options = [ "permissions" ];
+        };
+
+        "/var/lib/libvirt/images/persistent" = {
+            device = "/media/VMs/persistent";
+            depends = [ "/media/VMs" ];
+            options = [ "bind" ];
         };
     };
 }

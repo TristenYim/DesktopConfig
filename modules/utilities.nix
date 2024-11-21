@@ -5,6 +5,7 @@ in
 {
     options = {
         btop.enable = lib.mkEnableOption "Enables BTOP++";
+        cryptsetup.enable = lib.mkEnableOption "Enables cryptsetup";
         envfs.enable = lib.mkEnableOption "Enables envfs";
         flatpak.enable = lib.mkEnableOption "Enables flatpak";
         killall.enable = lib.mkEnableOption "Enables killall";
@@ -27,6 +28,9 @@ in
 
         # Btop++, added to ensure a system monitor exists without Home Manager
         ( myLib.nixos.enablePkgSameOptName "btop" )
+
+        # Cryptsetup, used to create dm-crypt/LUKS devices
+        ( myLib.nixos.enablePkgSameOptName "cryptsetup" )
 
         # Envfs, restores some FHS compliance
         ( lib.mkIf config.envfs.enable {
