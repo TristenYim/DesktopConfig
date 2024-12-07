@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 # Import the nixGL wrapper
 let nixGLWrap = import ../home-manager/nixGL/nixGLWrapper.nix { 
@@ -23,6 +23,7 @@ in {
 
         wayland.windowManager.hyprland = {
             # package = nixGLWrap pkgs.hyprland; # For hycov
+            package = nixGLWrap inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
             settings = {
                 ################
                 ### MONITORS ###
