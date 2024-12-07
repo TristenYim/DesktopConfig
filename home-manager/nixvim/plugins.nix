@@ -82,10 +82,10 @@
                 servers = {
                     bashls.enable = true;
                     cssls.enable = true;
-
-                    # markdown_oxide.enable = true;
-                    # matlab_ls.enable = true;
+                    markdown_oxide.enable = true;
+                    matlab_ls.enable = true;
                     nixd.enable = true;
+                    texlab.enable = true;
                 };
             };
 
@@ -97,6 +97,20 @@
                 # for NixVim specific documentation (Note: Look in the "settings" tab)
 
                 enable = true;
+            };
+            
+            nvim-jdtls = {
+                # Extends Java LSP support.
+
+                # See https://github.com/mfussenegger/nvim-jdtls for more
+                # Or https://nix-community.github.io/nixvim/plugins/nvim-jdtls.html
+                # for NixVim specific documentation
+
+                enable = true;
+
+                cmd = [
+                    (lib.getExe pkgs.jdt-language-server)
+                ];
             };
 
             nvim-tree = {
@@ -123,6 +137,15 @@
                 settings = {
                     highlight.enable = true;
                 };
+            };
+
+            vimtex= {
+                # VimTeX allows compiling LaTeX to PDF documents.
+
+                # See https://github.com/lervag/vimtex for more
+                # Or https://nix-community.github.io/nixvim/plugins/vimtex
+                # for NixVim specific documentation
+                enable = true;
             };
 
             # Of course, there are a lot more plugins available.
