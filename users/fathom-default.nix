@@ -19,7 +19,7 @@
         homeDirectory = lib.mkDefault "/home/fathom";
 
         sessionVariables = {
-            FLAKE = lib.mkDefault "~/nix";
+            FLAKE = lib.mkDefault "$FLAKE/nix";
             EDITOR = lib.mkDefault "nvim";
         };
 
