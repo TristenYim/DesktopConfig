@@ -1,8 +1,4 @@
 { config, pkgs, inputs, ... }:
-let
-    makeBar = ( import ../home-manager/waybar/makeBar.nix );
-    styler = ( import ../home-manager/waybar/styleMaker.nix );
-in
 {
     imports = [
         ./fathom-default.nix
@@ -38,7 +34,12 @@ in
             };
         };
 
-        programs.waybar = {
+        programs.waybar = 
+        let
+            makeBar = ( import ../home-manager/waybar/makeBar.nix );
+            styler = ( import ../home-manager/waybar/styleMaker.nix );
+        in
+        {
             settings =
             [   
                 (makeBar "bar1" "HDMI-A-1")

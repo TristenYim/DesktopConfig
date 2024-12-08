@@ -1,3 +1,5 @@
+## This is an attribute set of functions designed to assist 
+## making waybar styles.
 let
     catppuccin = (import ../theme/catppuccin-colors.nix);
 in
@@ -89,8 +91,8 @@ in
         }
     '';
 
-    # The purpose of this function is to allow the sizing of the bar to be customized
-    # to ensure the bar is readable on monitors with differing resolutions.
+    # This is to allow the sizing of the bar to be customized to ensure
+    # the bar is readable on monitors with differing resolutions.
     # The style is assigned to the given name.
     makeUnique = name: borderRadius: paddingInternal: paddingGroup: fontSize: gapWidth:
     let
