@@ -2,100 +2,112 @@
 
 # See https://wiki.hyprland.org/Configuring/Binds/ for more info
 
-{ config, pkgs, lib, ... }: {
+{ config, lib, ... }: {
     config = lib.mkIf config.hyprland-home.enable 
     {
-        wayland.windowManager.hyprland.settings =
-        {
-            # See https://wiki.hyprland.org/Configuring/Keywords/ for more info
-            "$mainMod" = "SUPER";
+        wayland.windowManager.hyprland = 
+        let
+            helpers = import ./helpers.nix { inherit lib; };
 
-            bind = [
+            # These binds are shared between the main layout and altl submap,
+            # with the only difference being that in the main submap, SUPER
+            # must also be held.
+            sharedBinds = 
+                # General window management
+                [
+                    ", ESCAPE, killactive,"
+                    ", BACKSPACE, killactive,"
+                    ", PERIOD, togglefloating,"
+                    # ", P, pseudo," # dwindle
+                    # ", COMMA, togglesplit," # dwindle
+                ]
 
-                #########################
-                ### WINDOW MANAGEMENT ###
-                #########################
+                # Move focus
+                ++ helpers.bindsWithSameDispatcher [ ", LEFT" ", A" ] "movefocus, l"
+                ++ helpers.bindsWithSameDispatcher [ ", RIGHT" ", E" ] "movefocus, r"
+                ++ helpers.bindsWithSameDispatcher [ ", UP" ", COMMA" ] "movefocus, u"
+                ++ helpers.bindsWithSameDispatcher [ ", DOWN" ", O" ] "movefocus, d"
 
-                "$mainMod, ESCAPE, killactive,"
-                "$mainMod, PERIOD, togglefloating,"
-                "$mainMod, A, exec, swaylock"
-                "$mainMod SHIFT, A, exec, wlogout --protocol layer-shell"
-                "$mainMod SHIFT, R, exit,"
-                # $mainMod, P, pseudo, # dwindle
-                # $mainMod, COMMA, togglesplit, # dwindle
+                # Swap windows
+                ++ helpers.bindsWithSameDispatcher [ " SHIFT, LEFT" ", H" ] "swapwindow, l"
+                ++ helpers.bindsWithSameDispatcher [ " SHIFT, RIGHT" ", N" ] "swapwindow, r"
+                ++ helpers.bindsWithSameDispatcher [ " SHIFT, UP" ", C" ] "swapwindow, u"
+                ++ helpers.bindsWithSameDispatcher [ " SHIFT, DOWN" ", T" ] "swapwindow, d"
 
-                # Move focus with mainMod + arrow keys
-                "$mainMod, left, movefocus, l"
-                "$mainMod, right, movefocus, r"
-                "$mainMod, up, movefocus, u"
-                "$mainMod, down, movefocus, d"
-
-                # Swap windows with mainMod + shift + arrow keys
-                "$mainMod SHIFT, left, swapwindow, l"
-                "$mainMod SHIFT, right, swapwindow, r"
-                "$mainMod SHIFT, up, swapwindow, u"
-                "$mainMod SHIFT, down, swapwindow, d"
-
-                ##################
-                ### WORKSPACES ###
-                ##################
-
-                # Switch workspaces with mainMod + [0-9]
-                "$mainMod, 1, workspace, 1"
-                "$mainMod, 2, workspace, 2"
-                "$mainMod, 3, workspace, 3"
-                "$mainMod, 4, workspace, 4"
-                "$mainMod, 5, workspace, 5"
-                "$mainMod, 6, workspace, 6"
-                "$mainMod, 7, workspace, 7"
-                "$mainMod, 8, workspace, 8"
-                "$mainMod, 9, workspace, 9"
-                "$mainMod, 0, workspace, 10"
+                # Move (window to) workspace
+                ++ helpers.bindForEachWorkspaceSelf "" "workspace" 
+                ++ helpers.bindForEachWorkspaceSelf " SHIFT" "movetoworkspace"
 
                 # Specific-use workspaces
-                "$mainMod, F1, workspace, name:CHAT"
-                "$mainMod, F2, workspace, name:MAIL"
+                ++ [
+                    ", F1, workspace, name:CHAT"
+                    ", F2, workspace, name:MAIL"
+                ]
+    
+                # Scroll through existing workspaces
+                ++ [
+                    ", mouse_down, workspace, e+1"
+                    ", mouse_up, workspace, e-1"
+                ];
+        in
+        {
+            settings = {
+                # See https://wiki.hyprland.org/Configuring/Keywords/ for more info
+                bind = (
+                    # System
+                    helpers.prependSuper[
+                        ", SEMICOLON, exec, swaylock"
+                        " SHIFT, SEMICOLON, exec, wlogout --protocol layer-shell"
+                        " SHIFT, R, exit,"
+                    ] 
+    
+                    # Enter submaps
+                    ++ [ ", ALT_L, submap, altl" ]
 
-                # Move active window to a workspace with mainMod + SHIFT + [0-9]
-                "$mainMod SHIFT, 1, movetoworkspace, 1"
-                "$mainMod SHIFT, 2, movetoworkspace, 2"
-                "$mainMod SHIFT, 3, movetoworkspace, 3"
-                "$mainMod SHIFT, 4, movetoworkspace, 4"
-                "$mainMod SHIFT, 5, movetoworkspace, 5"
-                "$mainMod SHIFT, 6, movetoworkspace, 6"
-                "$mainMod SHIFT, 7, movetoworkspace, 7"
-                "$mainMod SHIFT, 8, movetoworkspace, 8"
-                "$mainMod SHIFT, 9, movetoworkspace, 9"
-                "$mainMod SHIFT, 0, movetoworkspace, 10"
+                    ++ helpers.prependSuper sharedBinds
 
-                # Scroll through existing workspaces with mainMod + scroll
-                "$mainMod, mouse_down, workspace, e+1"
-                "$mainMod, mouse_up, workspace, e-1"
+                    ++ helpers.prependSuper [
+                        # Launching
+                        ", SPACE, exec, rofi -theme $HOME/.config/rofi/run.rasi -show drun"
+    
+                        ", APOSTROPHE, exec, kitty"
+                        " SHIFT, APOSTROPHE, exec, [float;size 75% 75%] kitty" # General purpose floating terminal
+                        ", U, exec, [float;size 60% 60%] thunar"
+                        " SHIFT, U, exec, thunar"
+                        ", J, exec, grim -g \"$(slurp -w 0)\" - | swappy -f -"
+                        ", Q, exec, firefox-beta"
+    
+                        # These programs are in special workspaces
+                        ", GRAVE, togglespecialworkspace, BTOP"
+                        ", P, togglespecialworkspace, CIDER"
+                        ", M, togglespecialworkspace, CONFIG"
+                    ]
+                );
+    
+                # Move/resize windows
+                bindm = helpers.prependSuper [
+                    ", mouse:272, movewindow"
+                    ", mouse:273, resizewindow"
+                ];
+            };
 
-                #################
-                ### LAUNCHING ###
-                #################
+            ###############
+            ### SUBMAPS ###
+            ###############
 
-                "$mainMod, SPACE, exec, rofi -theme $HOME/.config/rofi/run.rasi -show drun"
-
-                "$mainMod, APOSTROPHE, exec, kitty"
-                "$mainMod SHIFT, APOSTROPHE, exec, [float;size 75% 75%] kitty" # General purpose floating terminal
-                "$mainMod, U, exec, [float;size 60% 60%] thunar"
-                "$mainMod SHIFT, U, exec, thunar"
-                "$mainMod, J, exec, grim -g \"$(slurp -w 0)\" - | swappy -f -"
-                "$mainMod, O, exec, firefox-beta"
-
-                # These programs are in special workspaces
-                "$mainMod, GRAVE, togglespecialworkspace, BTOP"
-                "$mainMod, E, togglespecialworkspace, CIDER"
-                "$mainMod, M, togglespecialworkspace, CONFIG"
-            ];
-
-            # Move/resize windows with mainMod + LMB/RMB and dragging
-            bindm = [
-                "$mainMod, mouse:272, movewindow"
-                "$mainMod, mouse:273, resizewindow"
-            ];
+            extraConfig = (helpers.makeSubmap
+                "altl"
+                (
+                    # Exit submap
+                    helpers.bindsWithSameDispatcher [ ", ALT_L" ", ENTER" ", SUPER_L" ] "submap, reset"
+                    ++ sharedBinds
+                )
+                [
+                    # Move/resize windows
+                    ", mouse:272, movewindow"
+                    ", mouse:273, resizewindow"
+                ]
+            );
         };
     };
 }

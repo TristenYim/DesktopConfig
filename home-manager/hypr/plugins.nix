@@ -8,16 +8,17 @@
 
     config = lib.mkIf config.hycov-home.enable
     {
-        wayland.windowManager.hyprland = {
+        wayland.windowManager.hyprland = 
+        let
+            helpers = import ./helpers.nix { inherit lib; };
+        in
+        {
             plugins = [
                 inputs.hycov.packages.${pkgs.system}.hycov
             ];
 
             settings = {
-                bind = [
-                    "$mainMod, TAB, hycov:enteroverview"
-                    "$mainMod, TAB, submap, overview"
-                ];
+                bind = helpers.bindWithManyDispatchers "SUPER, TAB" [ "hycov:enteroverview" "submap, overview" ];
 
                 # See https://github.com/DreamMaoMao/hycov?tab=readme-ov-file#usage-hyprlandconf for more
                 plugin = {
@@ -48,73 +49,37 @@
             };
 
             # As far as I can tell, submaps must be declared in hyprland syntax due to the dependence on order
-            extraConfig = ''
-                submap = overview 
+            extraConfig = (helpers.makeSubmap
+                "overview"
+                (
+                    # Move focus
+                    helpers.bindsWithSameDispatcher [ ", A" ", LEFT" ] "hycov:movefocus, leftcross"
+                    ++ helpers.bindsWithSameDispatcher [ ", E" ", RIGHT" ] "hycov:movefocus, rightcross"
+                    ++ helpers.bindsWithSameDispatcher [ ", COMMA" ", UP" ] "hycov:movefocus, upcross"
+                    ++ helpers.bindsWithSameDispatcher [ ", O" ", DOWN" ] "hycov:movefocus, downcross"
 
-                # Move focus
-                bind = , a, hycov:movefocus, leftcross
-                bind = , e, hycov:movefocus, rightcross
-                bind = , COMMA, hycov:movefocus, upcross
-                bind = , o, hycov:movefocus, downcross
-                bind = , left, hycov:movefocus, leftcross
-                bind = , right, hycov:movefocus, rightcross
-                bind = , up, hycov:movefocus, upcross
-                bind = , down, hycov:movefocus, downcross
-                
-                # Kill windows
-                bind = , ESCAPE, killactive,
-                bind = , mouse:273, killactive,
-                
-                # Enter workspace keybinds
-                bind = , 1, hycov:leaveoverview
-                bind = , 1, workspace, 1
-                bind = , 1, submap, reset
-                bind = , 2, hycov:leaveoverview
-                bind = , 2, workspace, 2
-                bind = , 2, submap, reset
-                bind = , 3, hycov:leaveoverview
-                bind = , 3, workspace, 3
-                bind = , 3, submap, reset
-                bind = , 4, hycov:leaveoverview
-                bind = , 4, workspace, 4
-                bind = , 4, submap, reset
-                bind = , 5, hycov:leaveoverview
-                bind = , 5, workspace, 5
-                bind = , 5, submap, reset
-                bind = , 6, hycov:leaveoverview
-                bind = , 6, workspace, 6
-                bind = , 6, submap, reset
-                bind = , 7, hycov:leaveoverview
-                bind = , 7, workspace, 7
-                bind = , 7, submap, reset
-                bind = , 8, hycov:leaveoverview
-                bind = , 8, workspace, 8
-                bind = , 8, submap, reset
-                bind = , 9, hycov:leaveoverview
-                bind = , 9, workspace, 9
-                bind = , 9, submap, reset
-                bind = , 0, hycov:leaveoverview
-                bind = , 0, workspace, 10
-                bind = , 0, submap, reset
-                bind = , F1, hycov:leaveoverview
-                bind = , F1, workspace, name:CHAT
-                bind = , F1, submap, reset
-                bind = , F2, hycov:leaveoverview
-                bind = , F2, workspace, name:MAIL
-                bind = , F2, submap, reset
-                
-                # Leave overview
-                bind = , TAB, hycov:leaveoverview
-                bind = , TAB, submap, reset
-                bind = , RETURN, hycov:leaveoverview
-                bind = , RETURN, submap, reset
-                bind = , SPACE, hycov:leaveoverview
-                bind = , SPACE, submap, reset
-                bind = , mouse:272, hycov:leaveoverview
-                bind = , mouse:272, submap, reset
-                
-                submap = reset
-            '';
+                    # Kill windows
+                    ++ helpers.bindsWithSameDispatcher
+                        [ ", ESCAPE" ", BACKSPACE" ", mouse:273" ] "killactive"
+
+                    # Enter workspace keybinds
+                    ++ helpers.bindForEachWorkspace "" "hycov:leaveoverview"
+                    ++ helpers.bindForEachWorkspaceSelf "" "workspace"
+                    ++ helpers.bindForEachWorkspace "" "submap, reset"
+
+                    # Leave overview
+                    ++ helpers.bindsWithSameDispatcher
+                        [ ", TAB" ", RETURN" ", SPACE" ", mouse:272" ] "hycov:leaveoverview"
+                    ++ helpers.bindsWithSameDispatcher
+                        [ ", TAB" ", RETURN" ", SPACE" ", mouse:272"] "submap, reset"
+
+                    ++ helpers.bindWithManyDispatchers
+                        ", F1" [ "hycov:leaveoverview" "workspace, name:CHAT" "submap, reset" ]
+                    ++ helpers.bindWithManyDispatchers 
+                        ", F1" [ "hycov:leaveoverview" "workspace, name:MAIL" "submap, reset"]
+                )
+                [] 
+            );
         };
     };
 }
