@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ lib, ... }:
 {
     imports = [
         ../home-manager/default.nix
@@ -19,7 +19,7 @@
         homeDirectory = lib.mkDefault "/home/fathom";
 
         sessionVariables = {
-            FLAKE = lib.mkDefault "$FLAKE/nix";
+            FLAKE = lib.mkDefault "$HOME/nix";
             EDITOR = lib.mkDefault "nvim";
         };
 
