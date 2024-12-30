@@ -85,6 +85,17 @@
                     markdown_oxide.enable = true;
                     matlab_ls.enable = true;
                     nixd.enable = true;
+                    omnisharp = {
+                        enable = true;
+                        autostart = true;
+                        cmd = [
+                            "${pkgs.omnisharp-roslyn}/lib/omnisharp-roslyn/OmniSharp"
+                            "--languageserver"
+                            "--hostPID"
+                            "--tostring(pid)"
+                        ];
+                        rootDir = "nil";
+                    };
                     texlab.enable = true;
                 };
             };
