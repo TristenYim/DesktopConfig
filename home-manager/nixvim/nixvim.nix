@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ config, lib, ... }: {
 
     imports = [
         ./plugins.nix
@@ -55,6 +55,8 @@
                 number = true;
                 spell = true; # Enable spell checking
                 spelllang = "en_us,es"; # Allows checking of English and Spanish words
+                foldmethod = "expr"; # Collapses text based on language-provided information
+                foldexpr = "nvim_treesitter#foldexpr()";
             };
 
             # Of course, we can still use comfy vimscript:

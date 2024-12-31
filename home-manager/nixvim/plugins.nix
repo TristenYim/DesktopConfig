@@ -70,33 +70,40 @@
             };
 
             lsp = {
-                # Lsp is required for features such as autocompletion and linting
-
-                # Why? I don't know, the neovim community is terrible at explaining how things work.
-                # The words that are used when explaining what things do (such as "fuzzy finding") are
-                # never explained, rendering any explanations derived from them useless.
+                # Lsp provides detailed language information to the editor,
+                # enabling features such as autocompletion and linting
 
                 enable = true;
+
+                inlayHints = true;
                 
                 # These are the languages to support.
                 servers = {
                     bashls.enable = true;
+                    csharp_ls = {
+                        enable = true;
+                    };
                     cssls.enable = true;
                     markdown_oxide.enable = true;
                     matlab_ls.enable = true;
                     nixd.enable = true;
-                    omnisharp = {
-                        enable = true;
-                        autostart = true;
-                        cmd = [
-                            "${pkgs.omnisharp-roslyn}/lib/omnisharp-roslyn/OmniSharp"
-                            "--languageserver"
-                            "--hostPID"
-                            "--tostring(pid)"
-                        ];
-                        rootDir = "nil";
-                    };
                     texlab.enable = true;
+                };
+            };
+
+            lsp-lines = {
+                # Renders more prominent errors and warnings
+
+                enable = true;
+            };
+
+            lsp-signature = {
+                # Shows function signature when calling it
+
+                enable = true;
+
+                settings = {
+                    hint_prefix = ""; # The panda is cringe
                 };
             };
 
