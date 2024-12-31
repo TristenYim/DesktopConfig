@@ -7,7 +7,7 @@
     ];
 
     config = {
-        bottles-home.enable = true;
+        # bottles-home.enable = true;
         darktable-home.enable = true;
         neofetch-home.enable = true;
         zsh-home.enable = true;

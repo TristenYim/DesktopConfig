@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: 
+{ lib, ... }: 
 {
     imports = [
         ../home-manager/default.nix
@@ -6,9 +6,9 @@
 
     # Override local module defaults
     xfce-home.enable = lib.mkDefault true;  
-    bottles-home.enable = true;
+    # bottles-home.enable = true;
     steam-home.enable = true;
-    heroic-home.enable = true;
+    # heroic-home.enable = true;
 
     # Let Home Manager install and manage itself
     programs.home-manager.enable = lib.mkDefault true;

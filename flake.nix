@@ -5,7 +5,7 @@
         aquamarine = {
             type = "git";
             url = "https://github.com/hyprwm/aquamarine";
-            rev = "e6ea0e0808003392da3a6237c090f133b1d9863b";
+            ref = "refs/tags/v0.5.1";
             submodules = true;
         };
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -24,7 +24,7 @@
             # url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=918d8340afd652b011b937d29d5eea0be08467f5";
             url = "https://github.com/hyprwm/Hyprland";
             # submodules = 1;
-            ref = "refs/tags/v0.44.1";
+            ref = "refs/tags/v0.46.2";
             submodules = true;
             inputs.nixpkgs.follows = "nixpkgs";
             inputs.aquamarine.follows = "aquamarine";
@@ -34,7 +34,7 @@
             # Hyprswitch, hyprexpo, and hyprspace are all useful but don't have window overview
             # behavior like in Gnome or MacOS.
             # url = "github:DreamMaoMao/hycov";
-            url = "github:bighu630/hycov"; # Using a fork that's actually actively maintained.
+            url = "github:TristenYim/hycov"; # Using my fork which actually builds with Nix
             inputs.hyprland.follows = "hyprland";
         };
         nixgl = {

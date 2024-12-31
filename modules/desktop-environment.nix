@@ -76,9 +76,7 @@ in
 
         # Nerd Fonts
         ( lib.mkIf config.nerdfonts.enable {
-            fonts.packages = [
-                pkgs.nerdfonts
-            ];
+            fonts.packages = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
         })
 
         # Swaylock
