@@ -34,7 +34,7 @@
             # Hyprswitch, hyprexpo, and hyprspace are all useful but don't have window overview
             # behavior like in Gnome or MacOS.
             # url = "github:DreamMaoMao/hycov";
-            url = "github:TristenYim/hycov"; # Using my fork which actually builds with Nix
+            url = "github:bighu630/hycov"; # Using a fork which actually builds with Nix
             inputs.hyprland.follows = "hyprland";
         };
         nixgl = {

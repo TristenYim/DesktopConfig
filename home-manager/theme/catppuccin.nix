@@ -22,7 +22,8 @@
         };
 
         # Having catppuccin enabled here causes build issues with my custom config
-        programs.rofi.catppuccin.enable = false;
-        programs.waybar.catppuccin.enable = false;
+        catppuccin.rofi.enable = false;
+        catppuccin.waybar.enable = false;
+        catppuccin.wlogout.enable = false;
     };
 }

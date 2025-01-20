@@ -45,6 +45,7 @@
                     expandedSidePanelWeight: 2
                     mainPanelSplitMode: flexible
                     enlargedSideViewLocation: left
+                    wrapLinesInStagingView: true
                     language: auto
                     timeFormat: 02 Jan 06
                     shortTimeFormat: 3:04PM
@@ -79,6 +80,7 @@
                         show: true
                     showListFooter: true
                     showFileTree: true
+                    showNumstatInFilesView: false
                     showRandomTip: true
                     showCommandLog: true
                     showBottomLine: true
@@ -93,7 +95,7 @@
                     showDivergenceFromBaseBranch: none
                     commandLogSize: 8
                     splitDiff: auto
-                    windowSize: normal
+                    screenMode: normal
                     border: rounded
                     animateExplosion: true
                     portraitMode: auto
@@ -108,6 +110,7 @@
                     statusPanelView: dashboard
                     switchToFilesAfterStashPop: true
                     switchToFilesAfterStashApply: true
+                    switchTabsWithPanelJumpKeys: false
                 git:
                     paging:
                         colorArg: always
@@ -317,7 +320,6 @@
                         bulkMenu: b
                     commitMessage:
                         commitMenu: <c-o>
-
             '';
         })
     ];
