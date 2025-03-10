@@ -21,9 +21,6 @@
             windowBinds = import ./window-binds.nix { inherit helpers; };
             launchers = import ./launchers.nix;
             otherBinds = import ./other-binds.nix;
-
-            ## Submaps
-            submaps = import ./submaps.nix { inherit helpers; inherit workspaceBinds; inherit windowBinds; };
         in
 
         {
@@ -35,14 +32,10 @@
                         ++ otherBinds.allBinds
                         ++ workspaceBinds.allBinds
                     )
-    
-                    ++ submaps.altL.enter
                 );
     
                 bindm = helpers.prependSuper windowBinds.allBindms;
             };
-
-            extraConfig = submaps.altL.config;
         };
     };
 }

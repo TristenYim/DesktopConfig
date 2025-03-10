@@ -30,11 +30,14 @@
             inputs.aquamarine.follows = "aquamarine";
         };
         hycov = {
-            # So far, this is the best window/workspace overview plugin I've found
-            # Hyprswitch, hyprexpo, and hyprspace are all useful but don't have window overview
-            # behavior like in Gnome or MacOS.
-            # url = "github:DreamMaoMao/hycov";
             url = "github:bighu630/hycov"; # Using a fork which actually builds with Nix
+            inputs.hyprland.follows = "hyprland";
+        };
+        hyprspace = {
+            # Experimenting with using Hyprspace alongside or as a replacement to hycov
+            type = "git";
+            url = "https://github.com/KZDKM/Hyprspace";
+            rev = "9f2cce0a237b2add8c928567672b622aa537273e";
             inputs.hyprland.follows = "hyprland";
         };
         nixgl = {

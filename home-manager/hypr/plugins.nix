@@ -1,28 +1,32 @@
 # Manages Hyprland plugins
 # Note that since this is done using Home Manager, there is no need to use hyprpm
 
-{ config, pkgs, lib, inputs, ... }: {
+{ config, pkgs, lib, inputs, ... }: 
+let
+    helpers = import ./helpers.nix { inherit lib; };
+    windowBinds = import ./keybinds/window-binds.nix { inherit helpers; };
+    workspaceBinds = import ./keybinds/workspace-binds.nix { inherit helpers; };
+in
+{
     options = {
-        hycov-home.enable = lib.mkEnableOption "Enables the hycov plugin with Home Manager";
+        hyprland-home.plugins.hycov.enable = lib.mkEnableOption "Enables the hycov plugin with Home Manager";
+        hyprland-home.plugins.hyprspace.enable = lib.mkEnableOption "Enables the hyprspace plugin with Home Manager";
     };
 
-    config = lib.mkIf config.hycov-home.enable
-    {
-        wayland.windowManager.hyprland = 
-        let
-            helpers = import ./helpers.nix { inherit lib; };
-        in
-        {
-            plugins = [
-                inputs.hycov.packages.${pkgs.system}.hycov
-            ];
+    config = lib.mkMerge
+    [
+        ( lib.mkIf config.hyprland-home.plugins.hycov.enable {
+            wayland.windowManager.hyprland = 
+            {
+                plugins = [
+                    inputs.hycov.packages.${pkgs.system}.hycov
+                ];
 
-            settings = {
-                bind = helpers.bindWithManyDispatchers "SUPER, TAB" [ "hycov:enteroverview" "submap, overview" ];
+                settings = {
+                    bind = helpers.bindWithManyDispatchers "SUPER, TAB" [ "hycov:enteroverview" "submap, overview" ];
 
-                # See https://github.com/DreamMaoMao/hycov?tab=readme-ov-file#usage-hyprlandconf for more
-                plugin = {
-                    hycov = {
+                    # See https://github.com/DreamMaoMao/hycov?tab=readme-ov-file#usage-hyprlandconf for more
+                    plugin.hycov = {
                         "overview_gappo" = 60; # gaps width from screen edge
                         "overview_gappi" = 24; # gaps width from clients
                         "enable_hotarea" = 0; # enable mouse cursor hotarea, when cursor enter hotarea, it will toggle overview
@@ -46,40 +50,75 @@
                         "raise_float_to_top" = 1; # raise the window that is floating before to top after leave overview mode
                     };
                 };
+
+                # As far as I can tell, submaps must be declared in hyprland syntax due to the dependence on order
+                extraConfig = (helpers.makeSubmap
+                    "overview"
+                    (
+                        # Move focus
+                        helpers.bindsWithSameDispatcher [ ", A" ", LEFT" ] "hycov:movefocus, leftcross"
+                        ++ helpers.bindsWithSameDispatcher [ ", E" ", RIGHT" ] "hycov:movefocus, rightcross"
+                        ++ helpers.bindsWithSameDispatcher [ ", COMMA" ", UP" ] "hycov:movefocus, upcross"
+                        ++ helpers.bindsWithSameDispatcher [ ", O" ", DOWN" ] "hycov:movefocus, downcross"
+
+                        # Kill windows
+                        ++ helpers.bindsWithSameDispatcher
+                            [ ", ESCAPE" ", BACKSPACE" ", mouse:273" ] "killactive"
+
+                        # Enter workspace keybinds
+                        ++ helpers.bindForEachWorkspace "" "hycov:leaveoverview"
+                        ++ helpers.bindForEachWorkspaceSelf "" "workspace"
+                        ++ helpers.bindForEachWorkspace "" "submap, reset"
+
+                        # Leave overview
+                        ++ helpers.bindsWithSameDispatcher
+                            [ ", TAB" ", RETURN" ", SPACE" ", mouse:272" ] "hycov:leaveoverview"
+                        ++ helpers.bindsWithSameDispatcher
+                            [ ", TAB" ", RETURN" ", SPACE" ", mouse:272"] "submap, reset"
+
+                        ++ helpers.bindWithManyDispatchers
+                            ", F1" [ "hycov:leaveoverview" "workspace, name:CHAT" "submap, reset" ]
+                        ++ helpers.bindWithManyDispatchers 
+                            ", F1" [ "hycov:leaveoverview" "workspace, name:MAIL" "submap, reset"]
+                    )
+                    [] 
+                );
             };
+        })
+        ( lib.mkIf config.hyprland-home.plugins.hyprspace.enable {
+            wayland.windowManager.hyprland = {
+                plugins = [
+                    inputs.hyprspace.packages.${pkgs.system}.Hyprspace
+                ];
 
-            # As far as I can tell, submaps must be declared in hyprland syntax due to the dependence on order
-            extraConfig = (helpers.makeSubmap
-                "overview"
-                (
-                    # Move focus
-                    helpers.bindsWithSameDispatcher [ ", A" ", LEFT" ] "hycov:movefocus, leftcross"
-                    ++ helpers.bindsWithSameDispatcher [ ", E" ", RIGHT" ] "hycov:movefocus, rightcross"
-                    ++ helpers.bindsWithSameDispatcher [ ", COMMA" ", UP" ] "hycov:movefocus, upcross"
-                    ++ helpers.bindsWithSameDispatcher [ ", O" ", DOWN" ] "hycov:movefocus, downcross"
+                settings = {
+                    bind = helpers.bindWithManyDispatchers ", ALT_L" [ "overview:open, all" "submap, altl" ];
+                    
+                    plugin.overview = {
+                        autoScroll = false;
+                        exitOnClick = false;
+                        switchOnDrop = true;
+                        showNewWorkspace = false;
+                        showEmptyWorkspace = false;
+                    };
+                };
 
-                    # Kill windows
-                    ++ helpers.bindsWithSameDispatcher
-                        [ ", ESCAPE" ", BACKSPACE" ", mouse:273" ] "killactive"
+                extraConfig = (helpers.makeSubmap
+                    "altl"
+                    (
+                        # Exit overview
+                        helpers.bindsWithSameDispatcher [ ", ESCAPE" ", ALT_L" ", ENTER" ", SUPER_L" ] "overview:close, all"
+                        ++ helpers.bindsWithSameDispatcher [ ", ESCAPE" ", ALT_L" ", ENTER" ", SUPER_L" ] "submap, reset"
 
-                    # Enter workspace keybinds
-                    ++ helpers.bindForEachWorkspace "" "hycov:leaveoverview"
-                    ++ helpers.bindForEachWorkspaceSelf "" "workspace"
-                    ++ helpers.bindForEachWorkspace "" "submap, reset"
-
-                    # Leave overview
-                    ++ helpers.bindsWithSameDispatcher
-                        [ ", TAB" ", RETURN" ", SPACE" ", mouse:272" ] "hycov:leaveoverview"
-                    ++ helpers.bindsWithSameDispatcher
-                        [ ", TAB" ", RETURN" ", SPACE" ", mouse:272"] "submap, reset"
-
-                    ++ helpers.bindWithManyDispatchers
-                        ", F1" [ "hycov:leaveoverview" "workspace, name:CHAT" "submap, reset" ]
-                    ++ helpers.bindWithManyDispatchers 
-                        ", F1" [ "hycov:leaveoverview" "workspace, name:MAIL" "submap, reset"]
-                )
-                [] 
-            );
-        };
-    };
+                        ++ windowBinds.allBinds
+                        ++ workspaceBinds.jumpTo
+                        ++ workspaceBinds.moveWindowTo
+                        ++ workspaceBinds.forAll
+                        ++ workspaceBinds.scroll
+                    )
+                    []
+                );
+            };
+        })
+    ];
 }
