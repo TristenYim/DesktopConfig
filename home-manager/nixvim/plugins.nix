@@ -164,6 +164,9 @@
                 # Or https://nix-community.github.io/nixvim/plugins/vimtex
                 # for NixVim specific documentation
                 enable = true;
+
+                # Gives the compiler access to every LaTeX package.
+                texlivePackage = pkgs.texliveFull;
             };
 
             # Of course, there are a lot more plugins available.
