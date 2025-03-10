@@ -90,6 +90,7 @@
             feh-home.enable = lib.mkDefault true;
             hycov-home.enable = lib.mkDefault true;
             hyprland-home.enable = lib.mkDefault true;
+            hyprland-home.binds.default = lib.mkDefault true;
             hypridle-home.enable = lib.mkDefault true;
             kitty-home.enable = lib.mkDefault true;
             mako-home.enable = lib.mkDefault true;

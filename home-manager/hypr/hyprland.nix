@@ -7,9 +7,9 @@ let nixGLWrap = import ../nixGL/nixGLWrapper.nix {
 in {
     imports = [
         ./hypridle.nix
-        ./keybinds.nix
         ./plugins.nix
         ./windows-workspaces.nix
+        ./keybinds/default.nix
         ./environment/env_var.nix
         ./environment/env_var_nvidia.nix
     ];
@@ -23,7 +23,6 @@ in {
         wayland.windowManager.hyprland = 
         {
             enable = true;
-            # package = lib.mkDefault (nixGLWrap pkgs.hyprland); # For hycov
             package = lib.mkDefault (nixGLWrap inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland);
             settings = 
             {

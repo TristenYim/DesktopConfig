@@ -1,0 +1,48 @@
+# These are all of my keybinds (except ones defined in plugins)
+
+# See https://wiki.hyprland.org/Configuring/Binds/ for more info
+
+{ config, lib, ... }: {
+    options = {
+        hyprland-home.binds.default = lib.mkEnableOption "Enables the default HyprDE binds";
+    };
+
+    config = lib.mkIf config.hyprland-home.binds.default 
+    {
+        wayland.windowManager.hyprland = 
+
+        let
+            ## Helper functions used to abstract certain repetitive operations
+            helpers = import ../helpers.nix { inherit lib; };
+
+            ## Modules containing lists of binds. These lists can be added 
+            ## together and modified to create a customized bind config
+            workspaceBinds = import ./workspace-binds.nix { inherit helpers; };
+            windowBinds = import ./window-binds.nix { inherit helpers; };
+            launchers = import ./launchers.nix;
+            otherBinds = import ./other-binds.nix;
+
+            ## Submaps
+            submaps = import ./submaps.nix { inherit helpers; inherit workspaceBinds; inherit windowBinds; };
+        in
+
+        {
+            settings = {
+                bind = (
+                    helpers.prependSuper (
+                        windowBinds.allBinds
+                        ++ launchers.allBinds
+                        ++ otherBinds.allBinds
+                        ++ workspaceBinds.allBinds
+                    )
+    
+                    ++ submaps.altL.enter
+                );
+    
+                bindm = helpers.prependSuper windowBinds.allBindms;
+            };
+
+            extraConfig = submaps.altL.config;
+        };
+    };
+}
