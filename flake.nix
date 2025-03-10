@@ -59,50 +59,87 @@
             overlays = [ nixgl.overlay ];
         };
       in {
-	    nixosConfigurations.unfathomable-main = nixpkgs.lib.nixosSystem {
-            inherit system;
-            
-            # These are custom arguments
-            specialArgs = {
-                inherit inputs; # Allows us to reference everything in inputs without having to explicitly import it
+	    nixosConfigurations = {
+            unfathomable-main = nixpkgs.lib.nixosSystem {
+                inherit system;
+                
+                # These are custom arguments
+                specialArgs = {
+                    inherit inputs; # Allows us to reference everything in inputs without having to explicitly import it
+                };
+                modules = [
+                    ./hosts/unfathomable-main/configuration.nix
+                    catppuccin.nixosModules.catppuccin
+                    impermanence.nixosModules.impermanence
+                    nixos-cli.nixosModules.nixos-cli
+
+                    # Import Home Manager profiles
+                    home-manager.nixosModules.home-manager {
+                        home-manager = {
+                            useGlobalPkgs = true;
+
+                            # Same as specialArgs but for Home Manager
+                            extraSpecialArgs = { 
+                                inherit inputs;
+                            };
+                            users = {
+                                fathom = {
+                                    imports = [
+                                        ./users/fathom-unfathomable-main.nix
+                                        catppuccin.homeManagerModules.catppuccin
+                                        hyprland.homeManagerModules.default
+                                        nixvim.homeManagerModules.nixvim
+                                        impermanence.nixosModules.home-manager.impermanence
+                                    ];
+                                };
+                                tdoggy = {
+                                    imports = [
+                                        ./users/tdoggy-unfathomable-main.nix
+                                        catppuccin.homeManagerModules.catppuccin
+                                        nixvim.homeManagerModules.nixvim
+                                        impermanence.nixosModules.home-manager.impermanence
+                                    ];
+                                };
+                            };
+                        };
+                    }
+                ];
             };
-            modules = [
-                ./hosts/unfathomable-main/configuration.nix
-                catppuccin.nixosModules.catppuccin
-                impermanence.nixosModules.impermanence
-                nixos-cli.nixosModules.nixos-cli
+            shallow-ISO = nixpkgs.lib.nixosSystem {
+                inherit system;
 
-                # Import Home Manager profiles
-                home-manager.nixosModules.home-manager {
-                    home-manager = {
-                        useGlobalPkgs = true;
+                specialArgs = {
+                    inherit inputs;
+                };
+                
+                modules = [
+                    ./hosts/shallow-ISO/configuration.nix
+                    catppuccin.nixosModules.catppuccin
+                    nixos-cli.nixosModules.nixos-cli
 
-                        # Same as specialArgs but for Home Manager
-                        extraSpecialArgs = { 
-                            inherit inputs;
-                        };
-                        users = {
-                            fathom = {
-                                imports = [
-                                    ./users/fathom-unfathomable-main.nix
-                                    catppuccin.homeManagerModules.catppuccin
-                                    hyprland.homeManagerModules.default
-                                    nixvim.homeManagerModules.nixvim
-                                    impermanence.nixosModules.home-manager.impermanence
-                                ];
+                    home-manager.nixosModules.home-manager {
+                        home-manager = {
+                            useGlobalPkgs = true;
+
+                            # Same as specialArgs but for Home Manager
+                            extraSpecialArgs = { 
+                                inherit inputs;
                             };
-                            tdoggy = {
-                                imports = [
-                                    ./users/tdoggy-unfathomable-main.nix
-                                    catppuccin.homeManagerModules.catppuccin
-                                    nixvim.homeManagerModules.nixvim
-                                    impermanence.nixosModules.home-manager.impermanence
-                                ];
+
+                            users = {
+                                nixos = {
+                                    imports = [
+                                        ./users/nixos-shallow-ISO.nix
+                                        catppuccin.homeManagerModules.catppuccin
+                                        hyprland.homeManagerModules.default
+                                        nixvim.homeManagerModules.nixvim
+                                    ];
+                                };
                             };
                         };
-                    };
-                }
-            ];
+                    }
+                ];
+            };
         };
 
         homeConfigurations."fathom@tumbling-school" = home-manager.lib.homeManagerConfiguration {
