@@ -7,6 +7,8 @@
 
     # Override local module defaults
     git-home.enable = lib.mkDefault true;
+    jan-home.enable = lib.mkDefault true;
+
     hyprDE-home.enable = lib.mkDefault true;
     forSchool-home.enable = lib.mkDefault true;
     forRobotics-home.enable = lib.mkDefault true;

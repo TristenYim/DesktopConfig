@@ -14,6 +14,7 @@ in
         darktable-home.enable = lib.mkEnableOption "Enables darktable";
         fileRoller-home.enable = lib.mkEnableOption "Enables File Roller (For managing archives)";
         heroic-home.enable = lib.mkEnableOption "Enables Heroic Games Launcher (For playing Epic Games)";
+        jan-home.enable = lib.mkEnableOption "Enables Jan local AI";
         libreOffice-home.enable = lib.mkEnableOption "Enables LibreOffice";
         mousepad-home.enable = lib.mkEnableOption "Enables Mousepad";
         mpv-home.enable = lib.mkEnableOption "Enables mpv";
@@ -37,6 +38,7 @@ in
         ( myLib.home.enablePkgSameOptName "darktable" )
         ( myLib.home.enablePkgWith "file-roller" "fileRoller" )
         ( myLib.home.enablePkgSameOptName "heroic" )
+        ( myLib.home.enablePkgSameOptName "jan" )
         ( myLib.home.enablePkgWith "libreoffice-fresh" "libreOffice" )
         ( myLib.home.enablePkgsWith [ pkgs.xfce.mousepad ] "mousepad" )
         ( myLib.home.enablePkgSameOptName "mpv" )

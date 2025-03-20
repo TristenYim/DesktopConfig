@@ -17,6 +17,7 @@
             ".mozilla/firefox/user" # Firefox user profile
             ".thunderbird/user" # Thunderbird user profile
             ".config/Cider/Themes" # Cider themes
+            ".config/Jan" # Jan AI models and history
             ".config/Slack" # Slack data
             ".config/sh.cider.classic" # Cider data
             ".config/PrusaSlicer" # Prusa Slicer data
