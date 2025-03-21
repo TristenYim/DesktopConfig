@@ -16,7 +16,7 @@
     # Special workspaces
     specialAll = specialBtop ++ specialCider ++ specialConfig;
 
-    specialBtop = [ ", GRAVE, togglespecialworkspace, BTOP" ];
+    specialBtop = [ ", B, togglespecialworkspace, BTOP" ];
     specialCider = [ ", P, togglespecialworkspace, CIDER" ];
     specialConfig = [ ", M, togglespecialworkspace, CONFIG" ];
 
