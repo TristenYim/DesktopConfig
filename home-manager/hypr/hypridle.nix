@@ -25,7 +25,7 @@
                     }
                     {
                         timeout = 600;
-                        on-timeout = "killall slack && killall discord && hyprctl dispatch dpms off";
+                        on-timeout = "hyprctl dispatch dpms off & killall slack & killall Discord";
                         on-resume = "hyprctl dispatch dpms on";
                     }
                 ];
