@@ -672,6 +672,27 @@
         "url": "https://github.com/KZDKM/Hyprspace"
       }
     },
+    "hyprsplit": {
+      "inputs": {
+        "hyprland": [
+          "hyprland"
+        ]
+      },
+      "locked": {
+        "lastModified": 1735686875,
+        "narHash": "sha256-G+fgzjGNkYl5y6XL9K67ixCPEhb02J45cS9uicdC110=",
+        "ref": "refs/tags/v0.46.2",
+        "rev": "495a38cd17c7c2d98ded470431783a0373e69312",
+        "revCount": 57,
+        "type": "git",
+        "url": "https://github.com/shezdy/hyprsplit"
+      },
+      "original": {
+        "ref": "refs/tags/v0.46.2",
+        "type": "git",
+        "url": "https://github.com/shezdy/hyprsplit"
+      }
+    },
     "hyprutils": {
       "inputs": {
         "nixpkgs": [
@@ -1135,6 +1156,7 @@
         "hycov": "hycov",
         "hyprland": "hyprland",
         "hyprspace": "hyprspace",
+        "hyprsplit": "hyprsplit",
         "impermanence": "impermanence",
         "nixgl": "nixgl",
         "nixos-cli": "nixos-cli",

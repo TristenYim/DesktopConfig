@@ -11,6 +11,7 @@ in
     options = {
         hyprland-home.plugins.hycov.enable = lib.mkEnableOption "Enables the hycov plugin with Home Manager";
         hyprland-home.plugins.hyprspace.enable = lib.mkEnableOption "Enables the hyprspace plugin with Home Manager";
+        hyprland-home.plugins.hyprsplit.enable = lib.mkEnableOption "Enables the hyprsplit plugin with Home Manager";
     };
 
     config = lib.mkMerge
@@ -113,12 +114,19 @@ in
                         ++ windowBinds.allBinds
                         ++ workspaceBinds.jumpTo
                         ++ workspaceBinds.moveWindowTo
+                        ++ workspaceBinds.switchMonitor
+                        ++ workspaceBinds.swapMonitorWorkspaces
                         ++ workspaceBinds.forAll
                         ++ workspaceBinds.scroll
                     )
                     []
                 );
             };
+        })
+        ( lib.mkIf config.hyprland-home.plugins.hyprsplit.enable {
+            wayland.windowManager.hyprland.plugins = [
+                inputs.hyprsplit.packages.${pkgs.system}.hyprsplit
+            ];
         })
     ];
 }

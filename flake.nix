@@ -21,9 +21,7 @@
         };
         hyprland = {
             type = "git";
-            # url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=918d8340afd652b011b937d29d5eea0be08467f5";
             url = "https://github.com/hyprwm/Hyprland";
-            # submodules = 1;
             ref = "refs/tags/v0.46.2";
             submodules = true;
             inputs.nixpkgs.follows = "nixpkgs";
@@ -38,6 +36,13 @@
             type = "git";
             url = "https://github.com/KZDKM/Hyprspace";
             rev = "9f2cce0a237b2add8c928567672b622aa537273e";
+            inputs.hyprland.follows = "hyprland";
+        };
+        hyprsplit = {
+            # Numbers workspaces per-monitor instead of globally
+            type = "git";
+            url = "https://github.com/shezdy/hyprsplit";
+            ref = "refs/tags/v0.46.2";
             inputs.hyprland.follows = "hyprland";
         };
         nixgl = {

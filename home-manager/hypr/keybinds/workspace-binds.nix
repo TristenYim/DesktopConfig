@@ -1,11 +1,15 @@
 { helpers }: rec
 
 {
-    allBinds = jumpTo ++ moveWindowTo ++ forAll ++ specialAll ++ scroll;
+    allBinds = jumpTo ++ moveWindowTo ++ switchMonitor ++ swapMonitorWorkspaces ++ forAll ++ specialAll ++ scroll;
 
     # Moves (the active) window to one of the main workspaces
-    jumpTo = helpers.bindForEachWorkspaceSelf "" "workspace";
-    moveWindowTo = helpers.bindForEachWorkspaceSelf " SHIFT" "movetoworkspace";
+    jumpTo = helpers.bindForEachWorkspaceSelf "" "split:workspace";
+    moveWindowTo = helpers.bindForEachWorkspaceSelf " SHIFT" "split:movetoworkspace";
+
+    # Multi-monitor management
+    switchMonitor = [ ", GRAVE, focusmonitor, +1" ];
+    swapMonitorWorkspaces = [ "SHIFT, GRAVE, split:swapactiveworkspaces, current +1" ];
 
     # Jumps to workspaces with special uses
     forAll = forChat ++ forMail;
@@ -21,5 +25,5 @@
     specialConfig = [ ", M, togglespecialworkspace, CONFIG" ];
 
     # Scrolls between workspaces
-    scroll = [ ", mouse_up, workspace, e-1" ", mouse_down, workspace, e+1" ];
+    scroll = [ ", mouse_up, split:workspace, e-1" ", mouse_down, workspace, e+1" ];
 }

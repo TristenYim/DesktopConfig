@@ -146,6 +146,18 @@ name: display: {
             "8" = "VIII";
             "9" = "IX";
             "10" = "X";
+
+            ## Workspaces 11-20 are used by hyprsplit
+            "11" = "I";
+            "12" = "II";
+            "13" = "III";
+            "14" = "IV";
+            "15" = "V";
+            "16" = "VI";
+            "17" = "VII";
+            "18" = "VIII";
+            "19" = "IX";
+            "20" = "X";
             "CHAT" = "󰭻";
             "MAIL" = " ";
             "OVERVIEW" = "     ";
