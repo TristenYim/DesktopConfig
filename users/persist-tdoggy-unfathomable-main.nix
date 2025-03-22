@@ -10,7 +10,7 @@
             "Pictures"
             "Videos"
 
-            ".ssh" # Stores a lot of information, including github keys and trusted host
+            ".ssh" # Stores a lot of information, including github keys and trusted hosts
             ".config/heroic" # Heroic data
             ".local/share/nvim/site/spell" # Nvim spell-check files
             ".local/share/bottles" # Use Bottles! for gaming
@@ -20,7 +20,8 @@
             ".config/sh.cider.classic" # Cider data
         ];
         files = [
-            ".bash_history" # Stores command history
+            ".bash_history" # Command history
+            ".nvidia-settings-rc" # Nvidia graphics and display settings
         ];
         allowOther = true;
     };

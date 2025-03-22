@@ -18,8 +18,15 @@
                 "commands/custom/<Super>space" = "xfce4-appfinder";
                 "commands/custom/<Super>u" = "thunar";
             };
+            xfce4-terminal = {
+                "run-custom-command" = true;
+                "custom-command" = "zsh";
+            };
             xfwm4 = {
                 "general/use_compositing" = false;
+            };
+            xsettings = {
+                "Net/ThemeName" = "catppuccin-mocha-lavender-standard+default";
             };
         };
     };
