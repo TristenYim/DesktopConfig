@@ -22,6 +22,9 @@
                         enable = true;
                         packages = [ pkgs.OVMFFull.fd ];
                     };
+
+                    # Enables VM filesystem mounts
+                    vhostUserPackages = [ pkgs.virtiofsd ];
                 };
                 hooks.qemu.custom = ./qemu.sh;
             };
