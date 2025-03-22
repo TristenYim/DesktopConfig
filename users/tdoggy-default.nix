@@ -7,6 +7,7 @@
     # Override local module defaults
     xfce-home.enable = lib.mkDefault true;  
     bottles-home.enable = true;
+    prismLauncher-home.enable = true;
     steam-home.enable = true;
     heroic-home.enable = true;
 

@@ -22,6 +22,7 @@ in
         octave-home.enable = lib.mkEnableOption "Enables GNU Octave";
         wps-home.enable = lib.mkEnableOption "Enables WPS Office";
         prusaSlicer-home.enable = lib.mkEnableOption "Enables PrusaSlicer";
+        prismLauncher-home.enable = lib.mkEnableOption "Enables PrusaSlicer";
         qalculate-home.enable = lib.mkEnableOption "Enables Qalculate!";
         slack-home.enable = lib.mkEnableOption "Enables Slack";
         steam-home.enable = lib.mkEnableOption "Enables Steam";
@@ -44,6 +45,7 @@ in
         ( myLib.home.enablePkgSameOptName "mpv" )
         ( myLib.home.enablePkgWith "obs-studio" "obs" )
         ( myLib.home.enablePkgWith "octaveFull" "octave" )
+        ( myLib.home.enablePkgWith "prismlauncher" "prismLauncher" )
         ( myLib.home.enablePkgWith "prusa-slicer" "prusaSlicer" )
         ( myLib.home.enablePkgWith "qalculate-qt" "qalculate" )
         ( myLib.home.enablePkgSameOptName "slack" )

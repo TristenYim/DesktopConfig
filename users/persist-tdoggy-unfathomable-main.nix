@@ -14,6 +14,7 @@
             ".config/heroic" # Heroic data
             ".local/share/nvim/site/spell" # Nvim spell-check files
             ".local/share/bottles" # Use Bottles! for gaming
+            ".local/share/PrismLauncher" # Prism Launcher (Minecraft) data
             ".local/share/Steam" # Steam user data
             ".mozilla/firefox/user" # Firefox user profile
             ".config/Cider/Themes" # Cider themes
