@@ -60,6 +60,8 @@ in
             };
         })
 
+        ( myLib.nixos.persistIf "flatpak" [ "/var/lib/flatpak" ] [ ] )
+
         # Killall, which does what you'd expect
         ( myLib.nixos.enablePkgSameOptName "killall" )
 

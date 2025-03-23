@@ -24,6 +24,13 @@
         # Enables a single package with an identically named option.
         enablePkgSameOptName = name:
             enablePkgWith name name;
+        persistIf = optionName: directories: files: 
+            lib.mkIf (config.${optionName + "-home"}.enable && config.persistence-home.enable) {
+                home.persistence."/pers/${config.home.homeDirectory}" = {
+                    directories = directories;
+                    files = files;
+                };
+            };
     };
     nixos = rec {
         enablePkgWith = packageName: optionName:
@@ -34,5 +41,12 @@
             };
         enablePkgSameOptName = name:
             enablePkgWith name name;
+        persistIf = optionName: directories: files: 
+            lib.mkIf (config.${optionName}.enable && config.persistence.enable) {
+                environment.persistence."/pers" = {
+                    directories = directories;
+                    files = files;
+                };
+            };
     };
 }

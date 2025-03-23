@@ -2,7 +2,6 @@
 {
     imports = [
         ./fathom-default.nix
-        ./persist-fathom-unfathomable-main.nix
         ./../secrets/home.nix # This contains information that's too sensitive to put on github
     ];
 
@@ -11,6 +10,7 @@
         darktable-home.enable = true;
         neofetch-home.enable = true;
         zsh-home.enable = true;
+        persistence-home.enable = true;
 
         # Reset packages to default instead of nixGL wrapped ones on NixOS
         programs.kitty.package = pkgs.kitty;

@@ -7,6 +7,7 @@
         ./desktop-apps.nix
         ./image-utils.nix
         ./mime.nix
+        ./persistence.nix
         ./services.nix
         ./swaylock.nix
         ./xfce.nix

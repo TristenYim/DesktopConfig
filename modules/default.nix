@@ -12,6 +12,7 @@
         ./system.nix
         ./users.nix
         ./utilities.nix
+        ./persistence.nix
         ./virtualisation/virtualisation.nix
         # ../overlays/hyprland-overlay.nix
         ../overlays/unchartedScripts/default.nix

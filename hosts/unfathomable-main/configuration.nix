@@ -9,7 +9,6 @@
     [
         ./hardware-configuration.nix # Include the results of the hardware scan
         ./filesystem.nix
-        ./persist.nix
         ./../../modules
         ./../../secrets/nixos.nix # This contains information that's too sensitive to put on github
     ];
@@ -30,6 +29,7 @@
     hyprDE.enable = true;
     nvidia.enable = true;
     xfce.enable = true;
+    persistence.enable = true;
 
     virtualisation = {
         enable = true;
