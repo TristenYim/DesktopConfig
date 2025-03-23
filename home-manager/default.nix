@@ -35,10 +35,10 @@
     ];
     
     options = {
-        forRobotics-home.enable = lib.mkEnableOption "Enables common apps I use for robotics";
-        forSchool-home.enable = lib.mkEnableOption "Enables common apps I use for school";
-        hyprDE-home.enable = lib.mkEnableOption "Enables my custom Hyprland desktop environment";
-        xfce-home.enable = lib.mkEnableOption "Enables XFCE";
+        forRobotics-home.enable = lib.mkEnableOption "common apps I use for robotics";
+        forSchool-home.enable = lib.mkEnableOption "common apps I use for school";
+        hyprDE-home.enable = lib.mkEnableOption "my custom Hyprland desktop environment";
+        xfce-home.enable = lib.mkEnableOption "XFCE";
     };
 
     config = lib.mkMerge 

@@ -4,9 +4,9 @@
 
 {
     options = {
-        mako-home.enable = lib.mkEnableOption "Enables mako";
-        playerctld-home.enable = lib.mkEnableOption "Enables playerctld";
-        polkit-agent-home.enable = lib.mkEnableOption "Enables polkit KDE agent";
+        mako-home.enable = lib.mkEnableOption "mako";
+        playerctld-home.enable = lib.mkEnableOption "playerctld";
+        polkit-agent-home.enable = lib.mkEnableOption "polkit KDE agent";
     };
  
     # Allows us to combine multiple modules into one file

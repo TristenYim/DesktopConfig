@@ -1,7 +1,7 @@
 { config, lib, ... }: 
 {
     options = {
-        waybar-home.enable = lib.mkEnableOption "Enables Waybar with Home Manager";
+        waybar-home.enable = lib.mkEnableOption "Waybar";
     };
  
     config = lib.mkIf config.waybar-home.enable 

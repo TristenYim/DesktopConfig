@@ -3,7 +3,7 @@
     # Set a toggle to enable Thunderbird
     # By default, this is disabled
     options = {
-        thunderbird-home.enable = lib.mkEnableOption "Enables Thunderbird with Home Manager";
+        thunderbird-home.enable = lib.mkEnableOption "Thunderbird";
     };
  
     config = lib.mkIf config.thunderbird-home.enable 

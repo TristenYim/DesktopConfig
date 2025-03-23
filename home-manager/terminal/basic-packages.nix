@@ -6,8 +6,8 @@ let
 in
 {
     options = {
-        cryfs-home.enable = lib.mkEnableOption "Enables CryFS";
-        neofetch-home.enable = lib.mkEnableOption "Enables neofetch";
+        cryfs-home.enable = lib.mkEnableOption "CryFS";
+        neofetch-home.enable = lib.mkEnableOption "neofetch";
         wlclip-home.enable = lib.mkEnableOption "Enables WL clip";
     };
 

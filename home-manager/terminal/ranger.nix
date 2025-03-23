@@ -2,7 +2,7 @@
 
     # Set a toggle to enable ranger
     options = {
-        ranger-home.enable = lib.mkEnableOption "Enables ranger with Home Manager";
+        ranger-home.enable = lib.mkEnableOption "ranger";
     };
  
     config = lib.mkIf config.ranger-home.enable 

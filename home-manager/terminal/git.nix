@@ -2,8 +2,8 @@
 
     # Set a toggle to enable git
     options = {
-        git-home.enable = lib.mkEnableOption "Enables git with Home Manager";
-        lazygit-home.enable = lib.mkEnableOption "Enables git with Home Manager";
+        git-home.enable = lib.mkEnableOption "git";
+        lazygit-home.enable = lib.mkEnableOption "git";
     };
  
     config = lib.mkMerge

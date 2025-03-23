@@ -9,9 +9,9 @@ let
 in
 {
     options = {
-        hyprland-home.plugins.hycov.enable = lib.mkEnableOption "Enables the hycov plugin with Home Manager";
-        hyprland-home.plugins.hyprspace.enable = lib.mkEnableOption "Enables the hyprspace plugin with Home Manager";
-        hyprland-home.plugins.hyprsplit.enable = lib.mkEnableOption "Enables the hyprsplit plugin with Home Manager";
+        hyprland-home.plugins.hycov.enable = lib.mkEnableOption "the hycov plugin";
+        hyprland-home.plugins.hyprspace.enable = lib.mkEnableOption "the hyprspace plugin";
+        hyprland-home.plugins.hyprsplit.enable = lib.mkEnableOption "the hyprsplit plugin";
     };
 
     config = lib.mkMerge

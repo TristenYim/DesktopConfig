@@ -2,7 +2,7 @@
 
     # Set a toggle to override Xfce settings
     options = {
-        xfconf-home.enable = lib.mkEnableOption "Enables XFCE configuration with home manager";
+        xfconf-home.enable = lib.mkEnableOption "XFCE configuration";
     };
  
     config = lib.mkIf config.xfconf-home.enable 

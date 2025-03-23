@@ -6,7 +6,7 @@
     ];
 
     options = {
-        rofi-home.enable = lib.mkEnableOption "Enables Rofi with Home Manager";
+        rofi-home.enable = lib.mkEnableOption "Rofi";
     };
  
     config = lib.mkIf config.rofi-home.enable 

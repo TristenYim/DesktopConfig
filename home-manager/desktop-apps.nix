@@ -6,27 +6,27 @@ let
 in
 {
     options = {
-        anki-home.enable = lib.mkEnableOption "Enables Anki";
+        anki-home.enable = lib.mkEnableOption "Anki";
         bottles-home.enable = lib.mkEnableOption "Use Bottles!";
-        chromium-home.enable = lib.mkEnableOption "Enables Chromium";
-        cider-home.enable = lib.mkEnableOption "Enables Cider";
-        copyq-home.enable = lib.mkEnableOption "Enables CopyQ";
-        darktable-home.enable = lib.mkEnableOption "Enables darktable";
-        fileRoller-home.enable = lib.mkEnableOption "Enables File Roller (For managing archives)";
-        heroic-home.enable = lib.mkEnableOption "Enables Heroic Games Launcher (For playing Epic Games)";
-        jan-home.enable = lib.mkEnableOption "Enables Jan local AI";
-        libreOffice-home.enable = lib.mkEnableOption "Enables LibreOffice";
-        mousepad-home.enable = lib.mkEnableOption "Enables Mousepad";
-        mpv-home.enable = lib.mkEnableOption "Enables mpv";
-        obs-home.enable = lib.mkEnableOption "Enables OBS Studio";
-        octave-home.enable = lib.mkEnableOption "Enables GNU Octave";
-        wps-home.enable = lib.mkEnableOption "Enables WPS Office";
-        prusaSlicer-home.enable = lib.mkEnableOption "Enables PrusaSlicer";
-        prismLauncher-home.enable = lib.mkEnableOption "Enables PrusaSlicer";
-        qalculate-home.enable = lib.mkEnableOption "Enables Qalculate!";
-        slack-home.enable = lib.mkEnableOption "Enables Slack";
-        steam-home.enable = lib.mkEnableOption "Enables Steam";
-        zoom-home.enable = lib.mkEnableOption "Enables Zoom";
+        chromium-home.enable = lib.mkEnableOption "Chromium";
+        cider-home.enable = lib.mkEnableOption "Cider";
+        copyq-home.enable = lib.mkEnableOption "CopyQ";
+        darktable-home.enable = lib.mkEnableOption "darktable";
+        fileRoller-home.enable = lib.mkEnableOption "File Roller (For managing archives)";
+        heroic-home.enable = lib.mkEnableOption "Heroic Games Launcher (For playing Epic Games)";
+        jan-home.enable = lib.mkEnableOption "Jan local AI";
+        libreOffice-home.enable = lib.mkEnableOption "LibreOffice";
+        mousepad-home.enable = lib.mkEnableOption "Mousepad";
+        mpv-home.enable = lib.mkEnableOption "mpv";
+        obs-home.enable = lib.mkEnableOption "OBS Studio";
+        octave-home.enable = lib.mkEnableOption "GNU Octave";
+        wps-home.enable = lib.mkEnableOption "WPS Office";
+        prusaSlicer-home.enable = lib.mkEnableOption "PrusaSlicer";
+        prismLauncher-home.enable = lib.mkEnableOption "PrusaSlicer";
+        qalculate-home.enable = lib.mkEnableOption "Qalculate!";
+        slack-home.enable = lib.mkEnableOption "Slack";
+        steam-home.enable = lib.mkEnableOption "Steam";
+        zoom-home.enable = lib.mkEnableOption "Zoom";
     };
 
     # Allows us to combine multiple modules into one file

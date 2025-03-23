@@ -2,7 +2,7 @@
 
     # Set a toggle to enable alias config 
     options = {
-        alias-home.enable = lib.mkEnableOption "Enables alias configuration";
+        alias-home.enable = lib.mkEnableOption "alias configuration";
     };
  
     config = lib.mkIf config.alias-home.enable 

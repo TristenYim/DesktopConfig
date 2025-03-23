@@ -5,7 +5,7 @@
 
 { config, lib, ... }: {
     options = {
-        hypridle-home.enable = lib.mkEnableOption "Enables hypridle with Home Manager";
+        hypridle-home.enable = lib.mkEnableOption "hypridle";
     };
  
     config = lib.mkIf config.hypridle-home.enable 

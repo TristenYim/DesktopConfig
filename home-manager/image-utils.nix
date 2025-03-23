@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }: {
 
     options = {
-        feh-home.enable = lib.mkEnableOption "Enables feh";
-        screenshot-home.enable = lib.mkEnableOption "Enables screenshotting in HyprDE with Home Manager";
+        feh-home.enable = lib.mkEnableOption "feh";
+        screenshot-home.enable = lib.mkEnableOption "screenshotting in HyprDE";
     };
 
     config = lib.mkMerge 

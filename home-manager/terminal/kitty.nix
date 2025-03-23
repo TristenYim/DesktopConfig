@@ -7,7 +7,7 @@ let nixGLWrap = import ../nixGL/nixGLWrapper.nix {
 in {
     # Set a toggle to enable kitty
     options = {
-        kitty-home.enable = lib.mkEnableOption "Enables kitty with Home Manager";
+        kitty-home.enable = lib.mkEnableOption "kitty";
     };
  
     config = lib.mkIf config.kitty-home.enable 

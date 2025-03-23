@@ -7,7 +7,7 @@
 
     # Set a toggle to enable wlogout
     options = {
-        wlogout-home.enable = lib.mkEnableOption "Enables wlogout with Home Manager";
+        wlogout-home.enable = lib.mkEnableOption "wlogout";
     };
  
     config = lib.mkIf config.wlogout-home.enable 

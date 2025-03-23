@@ -5,7 +5,7 @@
     ];
 
     options = {
-        virtualisation.enable = lib.mkEnableOption "Enables the creation of virtual machines";
+        virtualisation.enable = lib.mkEnableOption "the creation of virtual machines";
     };
 
     config = ( lib.mkIf config.virtualisation.enable {

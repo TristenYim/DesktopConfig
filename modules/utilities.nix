@@ -4,18 +4,18 @@ let
 in
 {
     options = {
-        btop.enable = lib.mkEnableOption "Enables BTOP++";
-        cryptsetup.enable = lib.mkEnableOption "Enables cryptsetup";
-        envfs.enable = lib.mkEnableOption "Enables envfs";
-        fd.enable = lib.mkEnableOption "Enables fd";
-        flatpak.enable = lib.mkEnableOption "Enables flatpak";
-        killall.enable = lib.mkEnableOption "Enables killall";
-        nixos-cli.enable = lib.mkEnableOption "Enables nixos-cli";
-        pulse.enable = lib.mkEnableOption "Enables PulseAudio";
-        pipewire.enable = lib.mkEnableOption "Enables PipeWire";
-        ranger.enable = lib.mkEnableOption "Enables ranger";
-        sddm.enable = lib.mkEnableOption "Enables SDDM";
-        vim.enable = lib.mkEnableOption "Enables vim";
+        btop.enable = lib.mkEnableOption "BTOP++";
+        cryptsetup.enable = lib.mkEnableOption "cryptsetup";
+        envfs.enable = lib.mkEnableOption "envfs";
+        fd.enable = lib.mkEnableOption "fd";
+        flatpak.enable = lib.mkEnableOption "flatpak";
+        killall.enable = lib.mkEnableOption "killall";
+        nixos-cli.enable = lib.mkEnableOption "nixos-cli";
+        pulse.enable = lib.mkEnableOption "PulseAudio";
+        pipewire.enable = lib.mkEnableOption "PipeWire";
+        ranger.enable = lib.mkEnableOption "ranger";
+        sddm.enable = lib.mkEnableOption "SDDM";
+        vim.enable = lib.mkEnableOption "vim";
     };
 
     # Allows us to combine multiple modules into one file

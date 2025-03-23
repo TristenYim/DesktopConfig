@@ -6,7 +6,7 @@
 
 { config, lib, ... }: {
     options = {
-        virtualisation.passthrough.enable = lib.mkEnableOption "Enables single gpu passthrough in declared vms.";
+        virtualisation.passthrough.enable = lib.mkEnableOption "single gpu passthrough in declared vms.";
     };
 
     config = ( lib.mkIf (config.virtualisation.enable && config.virtualisation.passthrough.enable) {

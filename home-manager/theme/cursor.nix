@@ -3,7 +3,7 @@
     # Set a toggle to enable cursor configuration
     # By default, this is disabled
     options = {
-        cursor-home.enable = lib.mkEnableOption "Enables cursor configuration with Home Manager";
+        cursor-home.enable = lib.mkEnableOption "cursor configuration";
     };
  
     config = lib.mkIf config.cursor-home.enable 

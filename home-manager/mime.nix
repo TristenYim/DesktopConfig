@@ -3,7 +3,7 @@
 { config, lib, ... }: {
 
     options = {
-        mime-home.enable = lib.mkEnableOption "Enables MIME app management";
+        mime-home.enable = lib.mkEnableOption "MIME app management";
     };
 
     config = ( lib.mkIf config.mime-home.enable {

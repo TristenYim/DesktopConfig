@@ -4,13 +4,13 @@ let
 in
 {
     options = {
-        xfce.enable = lib.mkEnableOption "Enables Xfce";
-        catppuccin-local.enable = lib.mkEnableOption "Enables Catppuccin";
-        kitty.enable = lib.mkEnableOption "Enables kitty";
-        hyprland.enable = lib.mkEnableOption "Enables Hyprland";
-        nerdfonts.enable = lib.mkEnableOption "Enables Nerd Fonts";
-        swaylock.enable = lib.mkEnableOption "Enables Swaylock";
-        thunar.enable = lib.mkEnableOption "Enables Thunar";
+        xfce.enable = lib.mkEnableOption "Xfce";
+        catppuccin-local.enable = lib.mkEnableOption "Catppuccin";
+        kitty.enable = lib.mkEnableOption "kitty";
+        hyprland.enable = lib.mkEnableOption "Hyprland";
+        nerdfonts.enable = lib.mkEnableOption "Nerd Fonts";
+        swaylock.enable = lib.mkEnableOption "Swaylock";
+        thunar.enable = lib.mkEnableOption "Thunar";
     };
 
     # Allows us to combine multiple modules into one file

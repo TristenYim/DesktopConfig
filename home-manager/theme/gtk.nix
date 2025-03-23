@@ -2,7 +2,7 @@
 
     # Set a toggle to enable GTK
     options = {
-        gtk-home.enable = lib.mkEnableOption "Enables GTK with Home Manager";
+        gtk-home.enable = lib.mkEnableOption "GTK";
     };
  
     config = lib.mkIf config.gtk-home.enable 

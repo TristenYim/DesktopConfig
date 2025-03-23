@@ -7,7 +7,7 @@
     # Set a toggle to enable NixVim
     # By default, this is disabled
     options = {
-        nixvim-home.enable = lib.mkEnableOption "Enables NixVim with Home Manager";
+        nixvim-home.enable = lib.mkEnableOption "NixVim";
     };
 
     config = lib.mkIf config.nixvim-home.enable 

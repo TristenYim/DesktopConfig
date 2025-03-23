@@ -2,7 +2,7 @@
 
     # Set a toggle to enable Starship
     options = {
-        starship-home.enable = lib.mkEnableOption "Enables Starship with Home Manager";
+        starship-home.enable = lib.mkEnableOption "Starship";
     };
  
     config = lib.mkIf config.starship-home.enable 

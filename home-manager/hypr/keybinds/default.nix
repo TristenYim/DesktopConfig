@@ -4,7 +4,7 @@
 
 { config, lib, ... }: {
     options = {
-        hyprland-home.binds.default = lib.mkEnableOption "Enables the default HyprDE binds";
+        hyprland-home.binds.default = lib.mkEnableOption "the default HyprDE binds";
     };
 
     config = lib.mkIf config.hyprland-home.binds.default 

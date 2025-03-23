@@ -18,7 +18,7 @@
     ];
 
     options = {
-        hyprDE.enable = lib.mkEnableOption "Enables a custom \"desktop environment\" based on Hyprland";
+        hyprDE.enable = lib.mkEnableOption "a custom \"desktop environment\" based on Hyprland";
     };
 
     config = lib.mkMerge [

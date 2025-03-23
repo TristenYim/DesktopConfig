@@ -3,7 +3,7 @@
     # Set a toggle to enable bash config
     # This is required to make some packages, such as rofi, work outside NixOS
     options = {
-        bash-home.enable = lib.mkEnableOption "Enables bash configuration";
+        bash-home.enable = lib.mkEnableOption "bash configuration";
     };
  
     config = lib.mkIf config.bash-home.enable 

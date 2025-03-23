@@ -8,7 +8,7 @@
 
     # Set a toggle to enable Firefox
     options = {
-        firefox-home.enable = lib.mkEnableOption "Enables Firefox with Home Manager";
+        firefox-home.enable = lib.mkEnableOption "Firefox";
     };
     
     config = lib.mkIf config.firefox-home.enable 

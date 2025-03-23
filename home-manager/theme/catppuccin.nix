@@ -2,7 +2,7 @@
 
     # Set a toggle to enable Catppuccin
     options = {
-        catppuccin-home.enable = lib.mkEnableOption "Enables Catppuccin with Home Manager";
+        catppuccin-home.enable = lib.mkEnableOption "Catppuccin";
     };
  
     config = lib.mkIf config.catppuccin-home.enable 

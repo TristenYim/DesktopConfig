@@ -15,7 +15,7 @@ in {
     ];
 
     options = {
-        hyprland-home.enable = lib.mkEnableOption "Enables Hyprland with Home Manager";
+        hyprland-home.enable = lib.mkEnableOption "Hyprland";
     };
  
     config = lib.mkIf config.hyprland-home.enable 

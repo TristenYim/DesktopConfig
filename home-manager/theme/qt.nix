@@ -2,7 +2,7 @@
 
     # Set a toggle to enable Qt
     options = {
-        qt-home.enable = lib.mkEnableOption "Enables Qt with Home Manager";
+        qt-home.enable = lib.mkEnableOption "Qt";
     };
  
     config = lib.mkIf config.qt-home.enable 

@@ -4,7 +4,7 @@ let
 in
 {
     options = {
-        swaylock-home.enable = lib.mkEnableOption "Enables swaylock with Home Manager";
+        swaylock-home.enable = lib.mkEnableOption "swaylock";
     };
  
     config = lib.mkIf config.swaylock-home.enable 

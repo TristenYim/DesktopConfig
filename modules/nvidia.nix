@@ -3,7 +3,7 @@
 
 { config, lib, ... }: {
     options = {
-        nvidia.enable = lib.mkEnableOption "Enables proprietary NVIDIA driver settings";
+        nvidia.enable = lib.mkEnableOption "proprietary NVIDIA driver settings";
     };
 
     config = ( lib.mkIf config.nvidia.enable {

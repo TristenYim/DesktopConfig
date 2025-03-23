@@ -2,7 +2,7 @@
 
     # Set a toggle to enable zsh config
     options = {
-        zsh-home.enable = lib.mkEnableOption "Enables zsh configuration";
+        zsh-home.enable = lib.mkEnableOption "zsh configuration";
     };
  
     config = lib.mkIf config.zsh-home.enable 
