@@ -16,20 +16,6 @@ in
     # Allows us to combine multiple modules into one file
     config = lib.mkMerge
     [
-        # I want things to look nice by default
-        {
-            catppuccin.enable = lib.mkDefault true;
-            nerdfonts.enable = lib.mkDefault true;
-        }
-
-        # HyprDE
-        ( lib.mkIf config.hyprDE.enable {
-            kitty.enable = lib.mkDefault true;
-            hyprland.enable = lib.mkDefault true;
-            swaylock.enable = lib.mkDefault true;
-            thunar.enable = lib.mkDefault true;
-        })
-
         # Xfce
         ( lib.mkIf config.xfce.enable {
             services.xserver = {
