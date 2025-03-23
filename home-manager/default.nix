@@ -31,6 +31,7 @@
         ./waybar/waybar.nix
         ./wlogout/wlogout.nix
         # ../overlays/hyprland-overlay.nix
+        ../overlays/unchartedScripts/default.nix
     ];
     
     options = {

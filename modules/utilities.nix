@@ -21,9 +21,15 @@ in
     config = lib.mkMerge
     [
         {
-            environment.pathsToLink = [
-                "/share/zsh"
-            ];
+            environment = {
+                pathsToLink = [
+                    "/share/zsh"
+                ];
+
+                systemPackages = [
+                    pkgs.unchartedScripts
+                ];
+            };
         }
 
         # Btop++, added to ensure a system monitor exists without Home Manager

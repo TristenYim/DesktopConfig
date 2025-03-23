@@ -14,6 +14,7 @@
         ./utilities.nix
         ./virtualisation/virtualisation.nix
         # ../overlays/hyprland-overlay.nix
+        ../overlays/unchartedScripts/default.nix
     ];
 
     options = {
