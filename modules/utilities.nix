@@ -7,6 +7,7 @@ in
         btop.enable = lib.mkEnableOption "Enables BTOP++";
         cryptsetup.enable = lib.mkEnableOption "Enables cryptsetup";
         envfs.enable = lib.mkEnableOption "Enables envfs";
+        fd.enable = lib.mkEnableOption "Enables fd";
         flatpak.enable = lib.mkEnableOption "Enables flatpak";
         killall.enable = lib.mkEnableOption "Enables killall";
         nixos-cli.enable = lib.mkEnableOption "Enables nixos-cli";
@@ -42,6 +43,9 @@ in
         ( lib.mkIf config.envfs.enable {
             services.envfs.enable = true;
         })
+
+        # fd, faster alternative to find
+        ( myLib.nixos.enablePkgSameOptName "fd" )
 
         # Flatpak, alternative package installer
         ( lib.mkIf config.flatpak.enable {

@@ -26,6 +26,7 @@
             btop.enable = lib.mkDefault true;
             catppuccin.enable = lib.mkDefault true;
             envfs.enable = lib.mkDefault true;
+            fd.enable = lib.mkDefault true;
             flatpak.enable = lib.mkDefault true;
             killall.enable = lib.mkDefault true;
             nerdfonts.enable = lib.mkDefault true;

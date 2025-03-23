@@ -15,6 +15,7 @@
             nrt = "nixos-rebuild test --flake $FLAKE";
             ngl = "nix-env --list-generations --profile /nix/var/nix/profiles/system";
             ngd = "nix-env --delete-generations --profile /nix/var/nix/profiles/system";
+            nf = "${pkgs.unchartedScripts}/bin/nix-find-impermanent";
             rr = "${pkgs.unchartedScripts}/bin/resize-root";
         };
         programs.zsh = {
