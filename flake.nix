@@ -114,6 +114,7 @@
                 modules = [
                     ./hosts/shallow-ISO/configuration.nix
                     catppuccin.nixosModules.catppuccin
+                    impermanence.nixosModules.impermanence
                     nixos-cli.nixosModules.nixos-cli
 
                     home-manager.nixosModules.home-manager {
@@ -132,6 +133,7 @@
                                         catppuccin.homeManagerModules.catppuccin
                                         hyprland.homeManagerModules.default
                                         nixvim.homeManagerModules.nixvim
+                                        impermanence.nixosModules.home-manager.impermanence
                                     ];
                                 };
                             };

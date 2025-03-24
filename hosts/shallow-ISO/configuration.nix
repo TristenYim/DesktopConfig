@@ -20,13 +20,29 @@
         networkmanager.enable = false;
     };
 
-    # VM Guest tools
+    powerManagement.cpuFreqGovernor = "performance"; # We want maximum performance
+
     services = {
+        displayManager.autoLogin = {
+            enable = true;
+            user = "nixos";
+        };
+
+        # VM Guest tools
         spice-vdagentd.enable = true;
         qemuGuest.enable = true;
     };
 
-    powerManagement.cpuFreqGovernor = "performance"; # We want maximum performance
+    # Prevents polkit from asking for the password.
+    # Since the ISO user doesn't have a password anyway,
+    # there's no reason to ask for it.
+    security.polkit.extraConfig = ''
+        polkit.addRule(function(action, subject) {
+            if (subject.isInGroup("wheel")) {
+                return polkit.Result.YES;
+            }
+        });
+    '';
 
     # Enable custom modules
     hyprDE.enable = true;
@@ -35,11 +51,15 @@
     flatpak.enable = false;
     nixos-cli.enable = false;
     users-fathom.enable = false;
-    sddm.enable = false;
+
+    # DO NOT ENABLE ENVFS IT WILL SCREW UP EVERYTHING
+    envfs.enable = false;
 
     environment.defaultPackages = [
         pkgs.gparted
     ];
+
+    isoImage.edition = lib.mkForce "shallow";
 
     system.stateVersion = lib.trivial.release;
 }
