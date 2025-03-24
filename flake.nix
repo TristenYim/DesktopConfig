@@ -2,12 +2,6 @@
     description = "Nixos config flake";
 
     inputs = {
-        aquamarine = {
-            type = "git";
-            url = "https://github.com/hyprwm/aquamarine";
-            ref = "refs/tags/v0.5.1";
-            submodules = true;
-        };
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
         catppuccin.url = "github:catppuccin/nix";
         impermanence.url = "github:nix-community/impermanence";
@@ -22,10 +16,8 @@
         hyprland = {
             type = "git";
             url = "https://github.com/hyprwm/Hyprland";
-            ref = "refs/tags/v0.46.2";
-            submodules = true;
+            ref = "refs/tags/v0.48.0";
             inputs.nixpkgs.follows = "nixpkgs";
-            inputs.aquamarine.follows = "aquamarine";
         };
         hycov = {
             url = "github:bighu630/hycov"; # Using a fork which actually builds with Nix
@@ -35,14 +27,13 @@
             # Experimenting with using Hyprspace alongside or as a replacement to hycov
             type = "git";
             url = "https://github.com/KZDKM/Hyprspace";
-            rev = "9f2cce0a237b2add8c928567672b622aa537273e";
             inputs.hyprland.follows = "hyprland";
         };
         hyprsplit = {
             # Numbers workspaces per-monitor instead of globally
             type = "git";
             url = "https://github.com/shezdy/hyprsplit";
-            ref = "refs/tags/v0.46.2";
+            ref = "refs/tags/v0.48.0";
             inputs.hyprland.follows = "hyprland";
         };
         nixgl = {

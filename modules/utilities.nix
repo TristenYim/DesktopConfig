@@ -54,7 +54,7 @@ in
                 enable = true;
                 extraPortals = [ 
                     pkgs.xdg-desktop-portal-gtk 
-                    pkgs.xdg-desktop-portal-kde 
+                    pkgs.kdePackages.xdg-desktop-portal-kde 
                 ];
                 config.common.default = "gtk";
             };
