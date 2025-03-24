@@ -1,4 +1,4 @@
-{ config, lib, ... }: 
+{ config, pkgs, lib, ... }: 
 {
     options = {
         waybar-home.enable = lib.mkEnableOption "Waybar";
@@ -13,6 +13,8 @@
                     recursive = true;
                 };
             };
+
+            packages = [ pkgs.nerd-fonts.symbols-only ]; # Required to render the icons
         };
 
         programs.waybar = 

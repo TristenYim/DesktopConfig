@@ -15,12 +15,12 @@ in {
         programs.kitty = {
             enable = true;
             package = lib.mkDefault (nixGLWrap pkgs.kitty);
+            font = {
+                name = "jetbrains mono nerd font";
+                package = pkgs.nerd-fonts.jetbrains-mono;
+                size = 15;
+            };
             settings = {
-                font_family = "jetbrains mono nerd font";
-                font_size = "15";
-                bold_font = "auto";
-                italic_font = "auto";
-                bold_italic_font = "auto";
                 mouse_hide_wait = "2.0";
                 cursor_shape = "block";
                 url_color = "#0087bd";
