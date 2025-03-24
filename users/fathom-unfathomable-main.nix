@@ -11,6 +11,7 @@
         neofetch-home.enable = true;
         zsh-home.enable = true;
         persistence-home.enable = true;
+        isStandalone = false;
 
         # Reset packages to default instead of nixGL wrapped ones on NixOS
         programs.kitty.package = pkgs.kitty;

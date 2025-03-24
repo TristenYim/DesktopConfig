@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ config, lib, ... }: {
 
     # Set a toggle to enable Catppuccin
     options = {
@@ -11,19 +11,21 @@
             enable = true;
             flavor = "mocha";
             accent = "sky";
+
+            # Enable catppuccin in GTK and Kvantum
+            gtk.enable = true;
+            kvantum.enable = true;
+
+            # Having catppuccin enabled here causes build issues with my custom config
+            rofi.enable = false;
+            waybar.enable = false;
+            wlogout.enable = false;
         };
 
-        # Enable catppuccin in GTK and Qt
-        gtk.catppuccin.enable = true;
+        # Enable Kvantum to use catppuccin
         qt = {
-            style.catppuccin.enable = true;
             style.name = "kvantum";
             platformTheme.name = "kvantum";
         };
-
-        # Having catppuccin enabled here causes build issues with my custom config
-        catppuccin.rofi.enable = false;
-        catppuccin.waybar.enable = false;
-        catppuccin.wlogout.enable = false;
     };
 }

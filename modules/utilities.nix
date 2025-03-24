@@ -113,9 +113,6 @@ in
                 displayManager.sddm = {
                      enable = true;
                      wayland.enable = true;
-                     catppuccin.enable = false;
-                     # package = pkgs.kdePackages.sddm;
-                     # catppuccin.assertQt6Sddm = false;
                 };
             };
         })

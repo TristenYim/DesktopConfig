@@ -42,6 +42,9 @@ in
                 enable = true;
                 accent = "sky";
                 flavor = "mocha";
+
+                # Disable unwanted catppuccin configurations
+                sddm.enable = false;
             };
         })
 

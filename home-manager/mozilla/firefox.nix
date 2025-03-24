@@ -25,7 +25,7 @@ in
 
                 # This "user" profile will be automatically added by home manager.
                 profiles.user = {
-                    extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+                    extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [
                         bitwarden
                         dearrow
                         ublacklist

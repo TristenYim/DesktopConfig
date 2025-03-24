@@ -31,8 +31,7 @@
         ./theme/qt.nix
         ./waybar/waybar.nix
         ./wlogout/wlogout.nix
-        # ../overlays/hyprland-overlay.nix
-        ../overlays/unchartedScripts/default.nix
+        ../overlays/home.nix
     ];
     
     options = {
@@ -40,6 +39,7 @@
         forSchool-home.enable = lib.mkEnableOption "common apps I use for school";
         hyprDE-home.enable = lib.mkEnableOption "my custom Hyprland desktop environment";
         xfce-home.enable = lib.mkEnableOption "XFCE";
+        isStandalone = lib.mkEnableOption "standalone home-manager tools";
     };
 
     config = lib.mkMerge 
@@ -69,6 +69,8 @@
             starship-home.enable = lib.mkDefault true;
             thunderbird-home.enable = lib.mkDefault true;
             zsh-home.enable = lib.mkDefault true;
+
+            isStandalone = lib.mkDefault true;
             nixGLPrefix = "${pkgs.nixgl.auto.nixGLDefault}/bin/nixGL";
         }
 
