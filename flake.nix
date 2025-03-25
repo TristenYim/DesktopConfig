@@ -52,93 +52,27 @@
 
     outputs = { nixpkgs, catppuccin, impermanence, home-manager, hyprland, nixvim, nixos-cli, nixgl, ... }@inputs:
       let 
-        system = "x86_64-linux";
         pkgs = import nixpkgs {
             system = "x86_64-linux";
             overlays = [ nixgl.overlay ];
         };
+        flakeHelper = import ./resources/flakeHelper.nix { inherit nixpkgs catppuccin impermanence home-manager nixvim nixos-cli inputs; };
       in {
 	    nixosConfigurations = {
-            unfathomable-main = nixpkgs.lib.nixosSystem {
-                inherit system;
-                
-                # These are custom arguments
-                specialArgs = {
-                    inherit inputs; # Allows us to reference everything in inputs without having to explicitly import it
-                };
-                modules = [
-                    ./hosts/unfathomable-main/configuration.nix
-                    catppuccin.nixosModules.catppuccin
-                    impermanence.nixosModules.impermanence
-                    nixos-cli.nixosModules.nixos-cli
-
-                    # Import Home Manager profiles
-                    home-manager.nixosModules.home-manager {
-                        home-manager = {
-                            useGlobalPkgs = true;
-
-                            # Same as specialArgs but for Home Manager
-                            extraSpecialArgs = { 
-                                inherit inputs;
-                            };
-                            users = {
-                                fathom = {
-                                    imports = [
-                                        ./users/fathom-unfathomable-main.nix
-                                        catppuccin.homeManagerModules.catppuccin
-                                        hyprland.homeManagerModules.default
-                                        nixvim.homeManagerModules.nixvim
-                                        impermanence.nixosModules.home-manager.impermanence
-                                    ];
-                                };
-                                tdoggy = {
-                                    imports = [
-                                        ./users/tdoggy-unfathomable-main.nix
-                                        catppuccin.homeManagerModules.catppuccin
-                                        nixvim.homeManagerModules.nixvim
-                                        impermanence.nixosModules.home-manager.impermanence
-                                    ];
-                                };
-                            };
-                        };
-                    }
+            unfathomable-main = flakeHelper.mkHost [ ./hosts/unfathomable-main/configuration.nix ] {
+                fathom = flakeHelper.mkUserModule [
+                    ./users/fathom-unfathomable-main.nix
+                    hyprland.homeManagerModules.default
+                ];
+                tdoggy = flakeHelper.mkUserModule [ 
+                    ./users/tdoggy-unfathomable-main.nix 
                 ];
             };
-            shallow-ISO = nixpkgs.lib.nixosSystem {
-                inherit system;
 
-                specialArgs = {
-                    inherit inputs;
-                };
-                
-                modules = [
-                    ./hosts/shallow-ISO/configuration.nix
-                    catppuccin.nixosModules.catppuccin
-                    impermanence.nixosModules.impermanence
-                    nixos-cli.nixosModules.nixos-cli
-
-                    home-manager.nixosModules.home-manager {
-                        home-manager = {
-                            useGlobalPkgs = true;
-
-                            # Same as specialArgs but for Home Manager
-                            extraSpecialArgs = { 
-                                inherit inputs;
-                            };
-
-                            users = {
-                                nixos = {
-                                    imports = [
-                                        ./users/nixos-shallow-ISO.nix
-                                        catppuccin.homeManagerModules.catppuccin
-                                        hyprland.homeManagerModules.default
-                                        nixvim.homeManagerModules.nixvim
-                                        impermanence.nixosModules.home-manager.impermanence
-                                    ];
-                                };
-                            };
-                        };
-                    }
+            shallow-ISO = flakeHelper.mkHost [ ./hosts/shallow-ISO/configuration.nix ] {
+                nixos = flakeHelper.mkUserModule [
+                    ./users/nixos-shallow-ISO.nix
+                    hyprland.homeManagerModules.default
                 ];
             };
         };
