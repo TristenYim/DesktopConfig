@@ -18,6 +18,7 @@
         mousepad-home.enable = false;
         mpv-home.enable = false;
         obs-home.enable = false;
+        swaylock-home.enable = false;
         wlclip-home.enable = false;
         thunderbird-home.enable = false;
 

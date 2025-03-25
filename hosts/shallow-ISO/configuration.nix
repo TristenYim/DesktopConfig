@@ -16,8 +16,7 @@
     networking = {
         hostName = "shallow-ISO"; # Define your hostname
 
-        # Required to build
-        networkmanager.enable = false;
+        wireless.enable = false; # I prefer NetworkManager over wpa_supplicant
     };
 
     powerManagement.cpuFreqGovernor = "performance"; # We want maximum performance
@@ -31,6 +30,19 @@
         # VM Guest tools
         spice-vdagentd.enable = true;
         qemuGuest.enable = true;
+
+        # More relevant help message
+        getty.helpLine = ''
+            Welcome to shallow-ISO, a Hyprland installation ISO!
+
+            To log in over ssh you must set a password for either "nixos" or "root"
+            with `passwd` (prefix with `sudo` for "root"), or add your public key to
+            /home/nixos/.ssh/authorized_keys or /root/.ssh/authorized_keys.
+
+            If you need a wireless connection, type `nmtui`.
+
+            To install, mount your partitions and run nixos-install.
+        '';
     };
 
     # Prevents polkit from asking for the password.
@@ -50,6 +62,7 @@
     # Disable stuff not needed for the ISO build
     flatpak.enable = false;
     nixos-cli.enable = false;
+    swaylock.enable = false;
     users-fathom.enable = false;
 
     # DO NOT ENABLE ENVFS IT WILL SCREW UP EVERYTHING
