@@ -39,6 +39,7 @@
         forSchool-home.enable = lib.mkEnableOption "common apps I use for school";
         hyprDE-home.enable = lib.mkEnableOption "my custom Hyprland desktop environment";
         xfce-home.enable = lib.mkEnableOption "XFCE";
+        nvidia-home.enable = lib.mkEnableOption "options required when using Nvidia GPUs";
         isStandalone = lib.mkEnableOption "standalone home-manager tools";
     };
 

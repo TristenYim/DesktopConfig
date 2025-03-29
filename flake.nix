@@ -37,7 +37,7 @@
             inputs.hyprland.follows = "hyprland";
         };
         nixgl = {
-            url = "github:guibou/nixGL";
+            url = "github:johanneshorner/nixGL";
             inputs.nixpkgs.follows = "nixpkgs";
         };
         nixos-cli = {
@@ -85,6 +85,7 @@
                 catppuccin.homeManagerModules.catppuccin
                 hyprland.homeManagerModules.default
                 nixvim.homeManagerModules.nixvim
+                impermanence.nixosModules.home-manager.impermanence # Note: Impermanence will not function
             ];
         };
 

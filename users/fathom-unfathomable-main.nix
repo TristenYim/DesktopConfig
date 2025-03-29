@@ -10,7 +10,9 @@
         darktable-home.enable = true;
         neofetch-home.enable = true;
         zsh-home.enable = true;
+
         persistence-home.enable = true;
+        nvidia-home.enable = true;
         isStandalone = false;
 
         # Reset packages to default instead of nixGL wrapped ones on NixOS

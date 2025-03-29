@@ -1,10 +1,6 @@
 { config, pkgs, lib, inputs, ... }:
 
-# Import the nixGL wrapper
-let nixGLWrap = import ../home-manager/nixGL/nixGLWrapper.nix { 
-    inherit config pkgs; 
-};
-in {
+{
     imports = [
         ./fathom-default.nix
     ];
@@ -21,9 +17,15 @@ in {
         polkit-agent-home.enable = false;
         obs-home.enable = false;
 
+        hyprland-home.plugins.hycov.enable = false;
+        hyprland-home.plugins.hyprspace.enable = false;
+
+        nixGL = {
+            packages = inputs.nixgl.packages;
+        };
+
         wayland.windowManager.hyprland = {
-            # package = nixGLWrap pkgs.hyprland; # For hycov
-            package = nixGLWrap inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+            package = config.lib.nixGL.wrap inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
             settings = {
                 ################
                 ### MONITORS ###

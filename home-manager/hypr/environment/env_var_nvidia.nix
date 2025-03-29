@@ -4,7 +4,7 @@
 # https://wiki.hyprland.org/hyprland-wiki/pages/Nvidia/
 
 { config, lib, ... }: {
-    config = lib.mkIf config.hyprland-home.enable 
+    config = lib.mkIf (config.hyprland-home.enable && config.nvidia-home.enable)
     {
         wayland.windowManager.hyprland.settings = {
             cursor = {
@@ -26,7 +26,7 @@
 
                 # use legacy DRM interface instead of atomic mode setting. Might fix flickering issues.
                 # "WLR_DRM_NO_ATOMIC,1"
-                
+
                 "NVD_BACKEND,direct"
             ];
         };
