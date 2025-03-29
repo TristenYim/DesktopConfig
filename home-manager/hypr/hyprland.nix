@@ -16,6 +16,7 @@ in {
 
     options = {
         hyprland-home.enable = lib.mkEnableOption "Hyprland";
+        hyprland-home.uglyAFMode.default = lib.mkEnableOption "uglyAFMode in Hyprland by default";
     };
  
     config = lib.mkIf config.hyprland-home.enable 
@@ -52,6 +53,8 @@ in {
                 ### LOOK AND FEEL ###
                 #####################
 
+                "$uglyAFModeDisabled" = !config.hyprland-home.uglyAFMode.default; # Toggle for animations, shadows, and blur
+
                 # Refer to https://wiki.hyprland.org/Configuring/Variables/
 
                 # https://wiki.hyprland.org/Configuring/Variables/#general
@@ -83,7 +86,7 @@ in {
                     inactive_opacity = "0.7";
 
                     shadow = {
-                        enabled = true;
+                        enabled = "$uglyAFModeDisabled";
                         range = 4;
                         render_power = 3;
                         color = "rgba(1a1a1aee)";
@@ -91,7 +94,7 @@ in {
 
                     # https://wiki.hyprland.org/Configuring/Variables/#blur
                     blur = {
-                        enabled = true;
+                        enabled = "$uglyAFModeDisabled";
                         ignore_opacity = true;
                         size = 4;
                         passes = 4;
@@ -107,7 +110,7 @@ in {
 
                 # See https://wiki.hyprland.org/Configuring/Variables/#animations for all options
                 animations = {
-                    enabled = true;
+                    enabled = "$uglyAFModeDisabled";
 
                     # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
 

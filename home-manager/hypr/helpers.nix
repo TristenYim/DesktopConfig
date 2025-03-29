@@ -39,6 +39,9 @@
     bindWithManyDispatchers = key: dispatcherList: 
         lib.lists.forEach dispatcherList (dispatcher: key + ", " + dispatcher);
 
+    # Creates a bind which toggles a variable associated with one or more options.
+    toggleOptionsBind = key: option: variable: [ ", ${key}, execr, state=$(hyprctl getoption ${option} 2>&1 | grep int | awk \'{ print $2}\') && state=$(( ! \"\${state}\" )) && hyprctl keyword \\$\"${variable}\" $state" ];
+
     # Appends super to a list of keybinds.
     prependSuper = keybindList:
         lib.lists.forEach keybindList (keybind: "SUPER" + keybind);

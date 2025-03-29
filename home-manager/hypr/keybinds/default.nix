@@ -19,8 +19,8 @@
             ## together and modified to create a customized bind config
             workspaceBinds = import ./workspace-binds.nix { inherit helpers; };
             windowBinds = import ./window-binds.nix { inherit helpers; };
+            otherBinds = import ./other-binds.nix { inherit helpers; };
             launchers = import ./launchers.nix;
-            otherBinds = import ./other-binds.nix;
         in
 
         {
