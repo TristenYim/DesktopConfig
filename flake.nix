@@ -50,61 +50,42 @@
         };
     };
 
-    outputs = { nixpkgs, catppuccin, impermanence, home-manager, hyprland, nixvim, nixos-cli, nixgl, ... }@inputs:
+    outputs = { nixpkgs, catppuccin, impermanence, home-manager, hyprland, nixvim, nixos-cli, ... }@inputs:
       let 
-        pkgs = import nixpkgs {
-            system = "x86_64-linux";
-            overlays = [ nixgl.overlay ];
-        };
         flakeHelper = import ./resources/flakeHelper.nix { inherit nixpkgs catppuccin impermanence home-manager nixvim nixos-cli inputs; };
       in {
 	    nixosConfigurations = {
             unfathomable-main = flakeHelper.mkHost [ ./hosts/unfathomable-main/configuration.nix ] {
-                fathom = flakeHelper.mkUserModule [
+                fathom = flakeHelper.mkUser.module [
                     ./users/fathom-unfathomable-main.nix
                     hyprland.homeManagerModules.default
                 ];
-                tdoggy = flakeHelper.mkUserModule [ 
+                tdoggy = flakeHelper.mkUser.module [ 
                     ./users/tdoggy-unfathomable-main.nix 
                 ];
             };
 
             shallow-ISO = flakeHelper.mkHost [ ./hosts/shallow-ISO/configuration.nix ] {
-                nixos = flakeHelper.mkUserModule [
+                nixos = flakeHelper.mkUser.module [
                     ./users/nixos-shallow-ISO.nix
                     hyprland.homeManagerModules.default
                 ];
             };
         };
 
-        homeConfigurations."fathom@tumbling-school" = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            extraSpecialArgs = { inherit inputs; };
-            modules = [ 
+        homeConfigurations = {
+            "fathom@tumbling-school" = flakeHelper.mkUser.standalone [ 
                 ./users/fathom-tumbling-school.nix 
-                catppuccin.homeManagerModules.catppuccin
                 hyprland.homeManagerModules.default
-                nixvim.homeManagerModules.nixvim
-                impermanence.nixosModules.home-manager.impermanence # Note: Impermanence will not function
             ];
-        };
 
-        homeConfigurations.fathom = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            modules = [ 
+            fathom = flakeHelper.mkUser.standalone [ 
                 ./users/fathom-default.nix 
-                catppuccin.homeManagerModules.catppuccin
                 hyprland.homeManagerModules.default
-                nixvim.homeManagerModules.nixvim
             ];
-        };
 
-        homeConfigurations.tdoggy = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            modules = [ 
+            tdoggy = flakeHelper.mkUser.standalone [ 
                 ./users/tdoggy-default.nix
-                catppuccin.homeManagerModules.catppuccin
-                nixvim.homeManagerModules.nixvim
             ];
         };
     };
