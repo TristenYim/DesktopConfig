@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, ... }:
+{ lib, ... }:
 {
     imports = [
         ../home-manager/default.nix
@@ -25,11 +25,7 @@
         # For some reason, hycov is broken on the USB. Oh well
         hyprland-home.plugins.hycov.enable = false;
 
-        # Reset packages to default instead of nixGL wrapped ones on NixOS
-        programs.kitty.package = pkgs.kitty;
-
         wayland.windowManager.hyprland = {
-            package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
             settings = {
                 "$mon1" = "";
             };

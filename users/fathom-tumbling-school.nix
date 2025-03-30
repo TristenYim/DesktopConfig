@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, lib, ... }:
 
 {
     imports = [
@@ -7,6 +7,7 @@
 
     config = {
         forRobotics-home.enable = false;
+        nixGL.enable = true;
 
         # Broken outside of nixos
         anki-home.enable = false;
@@ -20,12 +21,7 @@
         hyprland-home.plugins.hycov.enable = false;
         hyprland-home.plugins.hyprspace.enable = false;
 
-        nixGL = {
-            packages = inputs.nixgl.packages;
-        };
-
         wayland.windowManager.hyprland = {
-            package = config.lib.nixGL.wrap inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
             settings = {
                 ################
                 ### MONITORS ###

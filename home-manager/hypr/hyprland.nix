@@ -1,10 +1,6 @@
 { config, pkgs, lib, inputs, ... }: 
 
-# Import the nixGL wrapper function.
-let nixGLWrap = import ../nixGL/nixGLWrapper.nix { 
-    inherit config pkgs; 
-};
-in {
+{
     imports = [
         ./hypridle.nix
         ./plugins.nix
@@ -24,7 +20,12 @@ in {
         wayland.windowManager.hyprland = 
         {
             enable = true;
-            package = lib.mkDefault (nixGLWrap inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland);
+            package = 
+              let
+                unwrapped = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+              in 
+                if config.nixGL.enable then config.lib.nixGL.wrap unwrapped else unwrapped;
+
             settings = 
             {
                 # Please note not all available settings / options are set here.

@@ -7,6 +7,7 @@
         ./desktop-apps.nix
         ./image-utils.nix
         ./mime.nix
+        ./nixGL.nix
         ./persistence.nix
         ./services.nix
         ./swaylock.nix
@@ -22,7 +23,6 @@
         ./terminal/ranger.nix
         ./terminal/starship.nix
         ./terminal/zsh.nix
-        ./nixGL/nixGLOpt.nix
         ./nixvim/nixvim.nix
         ./rofi/rofi.nix
         ./theme/catppuccin.nix
@@ -72,7 +72,6 @@
             zsh-home.enable = lib.mkDefault true;
 
             isStandalone = lib.mkDefault true;
-            nixGLPrefix = "${pkgs.nixgl.auto.nixGLDefault}/bin/nixGL";
         }
 
         # These are modules which should be enabled on school accounts

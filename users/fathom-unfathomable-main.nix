@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, ... }:
 {
     imports = [
         ./fathom-default.nix
@@ -15,12 +15,7 @@
         nvidia-home.enable = true;
         isStandalone = false;
 
-        # Reset packages to default instead of nixGL wrapped ones on NixOS
-        programs.kitty.package = pkgs.kitty;
-
         wayland.windowManager.hyprland = {
-            # package = pkgs.hyprland; # For hycov
-            package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
             settings = {
                 ################
                 ### MONITORS ###
