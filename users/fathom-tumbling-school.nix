@@ -16,10 +16,10 @@
         # Remove unneeded apps to save space
         chromium-home.enable = false;
         polkit-agent-home.enable = false;
+        jan-home.enable = false;
         obs-home.enable = false;
 
-        hyprland-home.plugins.hycov.enable = false;
-        hyprland-home.plugins.hyprspace.enable = false;
+        hyprland-home.uglyAFMode.default = true;
 
         wayland.windowManager.hyprland = {
             settings = {
