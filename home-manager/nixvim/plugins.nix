@@ -144,6 +144,17 @@
                 openOnSetup = true; # Automatically open nvim-tree when Neovim is launched
             };
 
+            orgmode = {
+                # This is a reimplementation of emacs orgmode, a tool for organizing information
+                # Aids with note taking, agenda building, creating tables, and more
+
+                # See https://nvim-orgmode.github.io/ for more
+                # Or https://nix-community.github.io/nixvim/plugins/orgmode/index.html
+                # for NixVim specific Documentation
+
+                enable = true;
+            };
+
             treesitter = {
                 # Tree-sitter is a parser generator tool for recognizing language syntax.
 
