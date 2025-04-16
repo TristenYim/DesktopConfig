@@ -15,6 +15,7 @@ in
         pipewire.enable = lib.mkEnableOption "PipeWire";
         ranger.enable = lib.mkEnableOption "ranger";
         sddm.enable = lib.mkEnableOption "SDDM";
+        syncthing.enable = lib.mkEnableOption "syncthing";
         vim.enable = lib.mkEnableOption "vim";
     };
 
@@ -116,6 +117,15 @@ in
                 };
             };
         })
+
+        # Syncthing, self-hosted file synchronization platform
+        ( lib.mkIf config.syncthing.enable {
+            services.syncthing = {
+                enable = true;
+            };
+        })
+
+        ( myLib.nixos.persistIf "syncthing" [ { directory = "/var/lib/syncthing"; user = "syncthing"; group = "syncthing"; mode = "700"; } ] [ ] )
 
         # vim, added to ensure a decent text editor exists even without Home Manager
         ( myLib.nixos.enablePkgSameOptName "vim" )

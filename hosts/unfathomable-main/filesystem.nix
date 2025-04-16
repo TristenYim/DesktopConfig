@@ -55,7 +55,7 @@ in
         "/media/Hdd" = {
             device = "/dev/disk/by-uuid/0C22944922943A22";
             fsType = "ntfs";
-            options = [ "permissions" ];
+            options = [ "permissions" "acl" ];
         };
 
         "/var/lib/libvirt/images/persistent" = {

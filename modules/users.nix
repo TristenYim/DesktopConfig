@@ -15,7 +15,7 @@
             users.users.fathom = {
                 isNormalUser = lib.mkDefault true;
                 description = lib.mkDefault "Fathom, for productivity. Use with Hyprland.";
-                extraGroups = [ "networkmanager" "wheel" "nixos-config-editor" ];
+                extraGroups = [ "networkmanager" "wheel" "nixos-config-editor" "syncthing" ];
                 initialPassword = lib.mkDefault "123456";
             };
         })
@@ -25,7 +25,7 @@
             users.users.tdoggy = {
                 isNormalUser = lib.mkDefault true;
                 description = lib.mkDefault "TDoggy, for gaming. Use with XFCE.";
-                extraGroups = [ "networkmanager" "wheel" "nixos-config-editor" ];
+                extraGroups = [ "networkmanager" "wheel" "nixos-config-editor" "syncthing" ];
             };
         })
     ];
