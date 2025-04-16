@@ -1,6 +1,6 @@
 # These functions help make system and home flake configurations.
 
-{ nixpkgs, home-manager, catppuccin, impermanence, nixos-cli, nixvim, inputs, ... }:
+{ inputs, ... }:
 let
     system = "x86_64-linux";
     
@@ -10,7 +10,7 @@ let
     };
 in
 {
-    mkHost = additionalModules: userConfigs: nixpkgs.lib.nixosSystem {
+    mkHost = additionalModules: userConfigs: inputs.nixpkgs.lib.nixosSystem {
         inherit system;
         
         # These are custom arguments
@@ -20,12 +20,12 @@ in
 
         modules = additionalModules ++ [
             # Modules to be included for all hosts
-            catppuccin.nixosModules.catppuccin
-            impermanence.nixosModules.impermanence
-            nixos-cli.nixosModules.nixos-cli
+            inputs.catppuccin.nixosModules.catppuccin
+            inputs.impermanence.nixosModules.impermanence
+            inputs.nixos-cli.nixosModules.nixos-cli
 
             # Include Home Manager configurations
-            home-manager.nixosModules.home-manager {
+            inputs.home-manager.nixosModules.home-manager {
                 home-manager = {
                     inherit extraSpecialArgs;
 
@@ -41,11 +41,11 @@ in
       let
         # Modules to be imported for all users
         userImports = [
-            catppuccin.homeManagerModules.catppuccin
-            nixvim.homeManagerModules.nixvim
+            inputs.catppuccin.homeManagerModules.catppuccin
+            inputs.nixvim.homeManagerModules.nixvim
 
             # Note: Impermanence will not function in standalone mode, but still must be imported to build
-            impermanence.nixosModules.home-manager.impermanence
+            inputs.impermanence.nixosModules.home-manager.impermanence
         ];
       in
     {
@@ -53,8 +53,8 @@ in
             imports = additionalImports ++ userImports;
         };
 
-        standalone = additionalModules: home-manager.lib.homeManagerConfiguration {
-            pkgs = import nixpkgs {
+        standalone = additionalModules: inputs.home-manager.lib.homeManagerConfiguration {
+            pkgs = import inputs.nixpkgs {
                 inherit system;
             };
             inherit extraSpecialArgs;

@@ -50,9 +50,9 @@
         };
     };
 
-    outputs = { nixpkgs, catppuccin, impermanence, home-manager, hyprland, nixvim, nixos-cli, ... }@inputs:
+    outputs = { hyprland, ... } @ inputs:
       let 
-        flakeHelper = import ./resources/flakeHelper.nix { inherit nixpkgs catppuccin impermanence home-manager nixvim nixos-cli inputs; };
+        flakeHelper = import ./resources/flakeHelper.nix { inherit inputs; };
       in {
 	    nixosConfigurations = {
             unfathomable-main = flakeHelper.mkHost [ ./hosts/unfathomable-main/configuration.nix ] {
