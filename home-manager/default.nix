@@ -12,6 +12,7 @@
         ./services.nix
         ./swaylock.nix
         ./xfce.nix
+        ./ethanol/default.nix
         ./hypr/hyprland.nix
         ./mozilla/firefox.nix
         ./mozilla/thunderbird.nix
