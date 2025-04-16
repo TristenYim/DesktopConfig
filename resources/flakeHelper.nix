@@ -6,7 +6,12 @@ let
     
     # Same as specialArgs but for Home Manager
     extraSpecialArgs = {
-        inputs = inputs;
+        firefox-addons = inputs.firefox-addons;
+        hyprland = inputs.hyprland;
+        hycov = inputs.hycov;
+        hyprspace = inputs.hyprspace;
+        hyprsplit = inputs.hyprsplit;
+        nixgl = inputs.nixgl;
     };
 in
 {
@@ -14,8 +19,12 @@ in
         inherit system;
         
         # These are custom arguments
+
+        # Note that inputs is not being passed directly because I prefer for 
+        # each module to explicitly state its dependencies, rather than take
+        # the entirety of inputs as an argument.
         specialArgs = {
-            inputs = inputs; # Allows us to reference everything in inputs without having to explicitly import it
+            hyprland = inputs.hyprland;
         };
 
         modules = additionalModules ++ [

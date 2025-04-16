@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }: 
+{ config, pkgs, lib, hyprland, ... }: 
 let
     myLib = import ../resources/myLib.nix { inherit config pkgs lib; };
 in
@@ -57,8 +57,8 @@ in
         ( lib.mkIf config.hyprland.enable {
             programs.hyprland = {
                 enable = true;
-                package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-                portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+                package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+                portalPackage = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
                 # package = pkgs.hyprland;
             };
         })

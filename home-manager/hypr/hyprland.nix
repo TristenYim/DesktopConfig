@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }: 
+{ config, pkgs, lib, hyprland, ... }: 
 
 {
     imports = [
@@ -22,7 +22,7 @@
             enable = true;
             package = 
               let
-                unwrapped = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+                unwrapped = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
               in 
                 if config.nixGL.enable then config.lib.nixGL.wrap unwrapped else unwrapped;
 

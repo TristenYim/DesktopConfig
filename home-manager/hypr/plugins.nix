@@ -1,7 +1,7 @@
 # Manages Hyprland plugins
 # Note that since this is done using Home Manager, there is no need to use hyprpm
 
-{ config, pkgs, lib, inputs, ... }: 
+{ config, pkgs, lib, hycov, hyprspace, hyprsplit, ... }: 
 let
     helpers = import ./helpers.nix { inherit lib; };
     windowBinds = import ./keybinds/window-binds.nix { inherit helpers; };
@@ -20,7 +20,7 @@ in
             wayland.windowManager.hyprland = 
             {
                 plugins = [
-                    inputs.hycov.packages.${pkgs.system}.hycov
+                    hycov.packages.${pkgs.system}.hycov
                 ];
 
                 settings = {
@@ -89,7 +89,7 @@ in
         ( lib.mkIf config.hyprland-home.plugins.hyprspace.enable {
             wayland.windowManager.hyprland = {
                 plugins = [
-                    inputs.hyprspace.packages.${pkgs.system}.Hyprspace
+                    hyprspace.packages.${pkgs.system}.Hyprspace
                 ];
 
                 settings = {
@@ -125,7 +125,7 @@ in
         })
         ( lib.mkIf config.hyprland-home.plugins.hyprsplit.enable {
             wayland.windowManager.hyprland.plugins = [
-                inputs.hyprsplit.packages.${pkgs.system}.hyprsplit
+                hyprsplit.packages.${pkgs.system}.hyprsplit
             ];
         })
     ];

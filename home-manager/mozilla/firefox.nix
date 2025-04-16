@@ -1,10 +1,8 @@
-{ config, pkgs, lib, inputs, ... }: 
+{ config, pkgs, lib, firefox-addons, ... }: 
 let
     myLib = import ../../resources/myLib.nix { inherit config pkgs lib; };
 in
 {
-    # Note that inputs is from the terrible "extraSpecialArgs" syntax
-
     imports = [
         ./bookmarks-firefox.nix
         ./engines-firefox.nix
@@ -25,7 +23,7 @@ in
 
                 # This "user" profile will be automatically added by home manager.
                 profiles.user = {
-                    extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [
+                    extensions.packages = with firefox-addons.packages."x86_64-linux"; [
                         bitwarden
                         dearrow
                         ublacklist
