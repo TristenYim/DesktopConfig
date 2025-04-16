@@ -1,6 +1,33 @@
 {
     description = "Nixos config flake";
 
+    outputs = { ... } @ inputs:
+      let 
+        flakeHelper = import ./resources/flakeHelper.nix { inherit inputs; };
+      in 
+    {
+	    nixosConfigurations = {
+            unfathomable-main = flakeHelper.mkHost ./hosts/unfathomable-main/configuration.nix {
+                fathom = flakeHelper.mkUser.module ./users/fathom-unfathomable-main.nix;
+                tdoggy = flakeHelper.mkUser.module ./users/tdoggy-unfathomable-main.nix;
+            };
+
+            # Portable ISO configuration
+            shallow-ISO = flakeHelper.mkHost ./hosts/shallow-ISO/configuration.nix {
+                nixos = flakeHelper.mkUser.module ./users/nixos-shallow-ISO.nix;
+            };
+        };
+
+        homeConfigurations = {
+            # Machine-specific standalone configurations
+            "fathom@tumbling-school" = flakeHelper.mkUser.standalone ./users/fathom-tumbling-school.nix;
+
+            # Default user configurations
+            fathom = flakeHelper.mkUser.standalone ./users/fathom-default.nix;
+            tdoggy = flakeHelper.mkUser.standalone ./users/tdoggy-default.nix;
+        };
+    };
+    
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
         catppuccin.url = "github:catppuccin/nix";
@@ -47,33 +74,6 @@
         nixvim = {
             url = "github:nix-community/nixvim";
             inputs.nixpkgs.follows = "nixpkgs";
-        };
-    };
-
-    outputs = { ... } @ inputs:
-      let 
-        flakeHelper = import ./resources/flakeHelper.nix { inherit inputs; };
-      in 
-    {
-	    nixosConfigurations = {
-            unfathomable-main = flakeHelper.mkHost ./hosts/unfathomable-main/configuration.nix {
-                fathom = flakeHelper.mkUser.module ./users/fathom-unfathomable-main.nix;
-                tdoggy = flakeHelper.mkUser.module ./users/tdoggy-unfathomable-main.nix;
-            };
-
-            # Portable ISO configuration
-            shallow-ISO = flakeHelper.mkHost ./hosts/shallow-ISO/configuration.nix {
-                nixos = flakeHelper.mkUser.module ./users/nixos-shallow-ISO.nix;
-            };
-        };
-
-        homeConfigurations = {
-            # Machine-specific standalone configurations
-            "fathom@tumbling-school" = flakeHelper.mkUser.standalone ./users/fathom-tumbling-school.nix;
-
-            # Default user configurations
-            fathom = flakeHelper.mkUser.standalone ./users/fathom-default.nix;
-            tdoggy = flakeHelper.mkUser.standalone ./users/tdoggy-default.nix;
         };
     };
 }
