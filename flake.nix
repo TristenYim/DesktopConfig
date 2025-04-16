@@ -50,43 +50,30 @@
         };
     };
 
-    outputs = { hyprland, ... } @ inputs:
+    outputs = { ... } @ inputs:
       let 
         flakeHelper = import ./resources/flakeHelper.nix { inherit inputs; };
-      in {
+      in 
+    {
 	    nixosConfigurations = {
-            unfathomable-main = flakeHelper.mkHost [ ./hosts/unfathomable-main/configuration.nix ] {
-                fathom = flakeHelper.mkUser.module [
-                    ./users/fathom-unfathomable-main.nix
-                    hyprland.homeManagerModules.default
-                ];
-                tdoggy = flakeHelper.mkUser.module [ 
-                    ./users/tdoggy-unfathomable-main.nix 
-                ];
+            unfathomable-main = flakeHelper.mkHost ./hosts/unfathomable-main/configuration.nix {
+                fathom = flakeHelper.mkUser.module ./users/fathom-unfathomable-main.nix;
+                tdoggy = flakeHelper.mkUser.module ./users/tdoggy-unfathomable-main.nix;
             };
 
-            shallow-ISO = flakeHelper.mkHost [ ./hosts/shallow-ISO/configuration.nix ] {
-                nixos = flakeHelper.mkUser.module [
-                    ./users/nixos-shallow-ISO.nix
-                    hyprland.homeManagerModules.default
-                ];
+            # Portable ISO configuration
+            shallow-ISO = flakeHelper.mkHost ./hosts/shallow-ISO/configuration.nix {
+                nixos = flakeHelper.mkUser.module ./users/nixos-shallow-ISO.nix;
             };
         };
 
         homeConfigurations = {
-            "fathom@tumbling-school" = flakeHelper.mkUser.standalone [ 
-                ./users/fathom-tumbling-school.nix 
-                hyprland.homeManagerModules.default
-            ];
+            # Machine-specific standalone configurations
+            "fathom@tumbling-school" = flakeHelper.mkUser.standalone ./users/fathom-tumbling-school.nix;
 
-            fathom = flakeHelper.mkUser.standalone [ 
-                ./users/fathom-default.nix 
-                hyprland.homeManagerModules.default
-            ];
-
-            tdoggy = flakeHelper.mkUser.standalone [ 
-                ./users/tdoggy-default.nix
-            ];
+            # Default user configurations
+            fathom = flakeHelper.mkUser.standalone ./users/fathom-default.nix;
+            tdoggy = flakeHelper.mkUser.standalone ./users/tdoggy-default.nix;
         };
     };
 }

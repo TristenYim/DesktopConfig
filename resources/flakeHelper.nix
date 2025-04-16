@@ -15,7 +15,7 @@ let
     };
 in
 {
-    mkHost = additionalModules: userConfigs: inputs.nixpkgs.lib.nixosSystem {
+    mkHost = configuration: userConfigs: inputs.nixpkgs.lib.nixosSystem {
         inherit system;
         
         # These are custom arguments
@@ -27,7 +27,7 @@ in
             hyprland = inputs.hyprland;
         };
 
-        modules = additionalModules ++ [
+        modules = [ configuration ] ++ [
             # Modules to be included for all hosts
             inputs.catppuccin.nixosModules.catppuccin
             inputs.impermanence.nixosModules.impermanence
@@ -52,23 +52,24 @@ in
         userImports = [
             inputs.catppuccin.homeManagerModules.catppuccin
             inputs.nixvim.homeManagerModules.nixvim
+            inputs.hyprland.homeManagerModules.default
 
             # Note: Impermanence will not function in standalone mode, but still must be imported to build
             inputs.impermanence.nixosModules.home-manager.impermanence
         ];
       in
     {
-        module = additionalImports: {
-            imports = additionalImports ++ userImports;
+        module = configuration: {
+            imports = [ configuration ] ++ userImports;
         };
 
-        standalone = additionalModules: inputs.home-manager.lib.homeManagerConfiguration {
+        standalone = configuration: inputs.home-manager.lib.homeManagerConfiguration {
             pkgs = import inputs.nixpkgs {
                 inherit system;
             };
             inherit extraSpecialArgs;
 
-            modules = additionalModules ++ userImports;
+            modules = [ configuration ] ++ userImports;
         };
     };
 }
