@@ -1,10 +1,13 @@
 # These are Systemd services that do not need to be enabled system-wide.
 
 { config, pkgs, lib, ... }: 
-
+let
+    myLib = import ../resources/myLib.nix { inherit config pkgs lib; };
+in
 {
     options = {
         mako-home.enable = lib.mkEnableOption "mako";
+        openrgb-home.enable = lib.mkEnableOption "openrgb profile persistence";
         playerctld-home.enable = lib.mkEnableOption "playerctld";
         polkit-agent-home.enable = lib.mkEnableOption "polkit KDE agent";
     };
@@ -51,5 +54,8 @@
                 Install.WantedBy = [ "graphical-session.target" ];
             };
         })
+
+        # openrgb
+        ( myLib.home.persistIf "openrgb" [ ".config/OpenRGB" ] [ ] )
     ];
 }

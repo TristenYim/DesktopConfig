@@ -38,6 +38,7 @@
 
     flatpak.enable = true;
     cryptsetup.enable = true;
+    openrgb.enable = true;
     syncthing.enable = true;
 
     # This value determines the NixOS release from which the default

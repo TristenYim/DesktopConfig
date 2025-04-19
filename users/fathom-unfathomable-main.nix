@@ -8,6 +8,7 @@
     config = {
         darktable-home.enable = true;
         neofetch-home.enable = true;
+        openrgb-home.enable = true;
         zsh-home.enable = true;
 
         persistence-home.enable = true;

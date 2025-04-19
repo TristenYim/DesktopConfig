@@ -11,6 +11,7 @@ in
         flatpak.enable = lib.mkEnableOption "flatpak";
         killall.enable = lib.mkEnableOption "killall";
         nixos-cli.enable = lib.mkEnableOption "nixos-cli";
+        openrgb.enable = lib.mkEnableOption "openrgb";
         pulse.enable = lib.mkEnableOption "PulseAudio";
         pipewire.enable = lib.mkEnableOption "PipeWire";
         ranger.enable = lib.mkEnableOption "ranger";
@@ -71,6 +72,11 @@ in
             services.nixos-cli = {
                 enable = true;
             };
+        })
+
+        # openrgb, allows controlling connected RGB devices
+        ( lib.mkIf config.openrgb.enable {
+            services.hardware.openrgb.enable = true;
         })
 
         # Pulseaudio, sound server
