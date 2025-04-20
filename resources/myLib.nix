@@ -21,9 +21,17 @@
         enablePkgWith = packageName: optionNameWithoutHome:
             enablePkgsWith [ pkgs.${packageName} ] optionNameWithoutHome;
 
-        # Enables a single package with an identically named option.
-        enablePkgSameOptName = name:
-            enablePkgWith name name;
+        # Enables each package when its corresponding option is enabled.
+        # This is just wrapping multiple calls of persistIf into a 
+        # merged attribute set, where each element of the argument list 
+        # is a list containing the arguments for enablePkgWith.
+        enableEachPkgWith = enablePkgWithArgList:
+            lib.mkMerge ( builtins.map ( enablePkgWithArgs:
+                enablePkgWith (builtins.elemAt enablePkgWithArgs 0) (builtins.elemAt enablePkgWithArgs 1)
+            ) enablePkgWithArgList);
+
+        # Persists the given files or directories if the given option
+        # and persistence is enabled.
         persistIf = optionName: directories: files: 
             lib.mkIf (config.${optionName + "-home"}.enable && config.persistence-home.enable) {
                 home.persistence."/pers/${config.home.homeDirectory}" = {
@@ -31,6 +39,15 @@
                     files = files;
                 };
             };
+
+        # Persists each list of files and directories when its corresponding
+        # option is enabled. This is just wrapping multiple calls of
+        # persistIf into a merged attribute set, where each element of the 
+        # argument list is a list containing the arguments for persistIf.
+        persistEachIf = persistIfArgList:
+            lib.mkMerge ( builtins.map ( persistIfArgs:
+                persistIf (builtins.elemAt persistIfArgs 0) (builtins.elemAt persistIfArgs 1) (builtins.elemAt persistIfArgs 2)
+            ) persistIfArgList);
     };
     nixos = rec {
         enablePkgWith = packageName: optionName:
@@ -39,8 +56,10 @@
                     pkgs.${packageName}
                 ];
             };
-        enablePkgSameOptName = name:
-            enablePkgWith name name;
+        enableEachPkgWith = enablePkgWithArgList:
+            lib.mkMerge ( builtins.map ( enablePkgWithArgs:
+                enablePkgWith (builtins.elemAt enablePkgWithArgs 0) (builtins.elemAt enablePkgWithArgs 1)
+            ) enablePkgWithArgList);
         persistIf = optionName: directories: files: 
             lib.mkIf (config.${optionName}.enable && config.persistence.enable) {
                 environment.persistence."/pers" = {
@@ -49,4 +68,5 @@
                 };
             };
     };
+
 }

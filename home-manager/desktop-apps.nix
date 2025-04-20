@@ -32,42 +32,44 @@ in
     # Allows us to combine multiple modules into one file
     config = lib.mkMerge
     [
-        ( myLib.home.enablePkgSameOptName "anki" )
-        ( myLib.home.enablePkgSameOptName "bottles" )
-        ( myLib.home.persistIf "bottles" [ ".local/share/bottles" ] [ ] )
-        ( myLib.home.enablePkgSameOptName "cider" )
-        ( myLib.home.persistIf "cider" [ ".config/Cider/Themes" ".config/sh.cider.classic" ] [ ] )
-        ( myLib.home.enablePkgSameOptName "copyq" )
-        ( myLib.home.enablePkgSameOptName "darktable" )
-        ( myLib.home.enablePkgWith "file-roller" "fileRoller" )
-        ( myLib.home.enablePkgSameOptName "heroic" )
-        ( myLib.home.persistIf "heroic" [ ".config/heroic" ] [ ] )
-        ( myLib.home.enablePkgSameOptName "jan" )
-        ( myLib.home.persistIf "jan" [ ".config/Jan" ] [ ] )
-        ( myLib.home.enablePkgWith "libreoffice-fresh" "libreOffice" )
+        ( myLib.home.enableEachPkgWith [
+            [ "anki" "anki" ]
+            [ "bottles" "bottles" ]
+            [ "cider" "cider" ]
+            [ "copyq" "copyq" ]
+            [ "darktable" "darktable" ]
+            [ "file-roller" "fileRoller" ]
+            [ "heroic" "heroic" ]
+            [ "jan" "jan" ]
+            [ "libreoffice-fresh" "libreOffice" ]
+            [ "mpv" "mpv" ]
+            [ "obs-studio" "obs" ]
+            [ "octaveFull" "octave" ]
+            [ "prismlauncher" "prismLauncher" ]
+            [ "prusa-slicer" "prusaSlicer" ]
+            [ "qalculate-qt" "qalculate" ]
+            [ "slack" "slack" ]
+            [ "steam" "steam" ]
+            [ "wpsoffice" "wps" ]
+            [ "liberation_ttf" "wps" ]
+            [ "zoom-us" "zoom" ]
+        ])
         ( myLib.home.enablePkgsWith [ pkgs.xfce.mousepad ] "mousepad" )
-        ( myLib.home.enablePkgSameOptName "mpv" )
-        ( myLib.home.enablePkgWith "obs-studio" "obs" )
-        ( myLib.home.enablePkgWith "octaveFull" "octave" )
-        ( myLib.home.enablePkgWith "prismlauncher" "prismLauncher" )
-        ( myLib.home.persistIf "prismLauncher" [ ".local/share/PrismLauncher" ] [ ] )
-        ( myLib.home.enablePkgWith "prusa-slicer" "prusaSlicer" )
-        ( myLib.home.persistIf "prusaSlicer" [ ".config/PrusaSlicer" ] [ ] )
-        ( myLib.home.enablePkgWith "qalculate-qt" "qalculate" )
-        ( myLib.home.enablePkgSameOptName "slack" )
-        ( myLib.home.persistIf "slack" [ ".config/Slack" ] [ ] )
-        ( myLib.home.enablePkgSameOptName "steam" )
-        ( myLib.home.persistIf "steam" [ ".local/share/Steam" ] [ ] )
-        ( myLib.home.enablePkgsWith [ pkgs.wpsoffice pkgs.liberation_ttf ] "wps" )
-        ( myLib.home.enablePkgWith "zoom-us" "zoom" )
+        ( myLib.home.persistEachIf [
+            [ "bottles" [ ".local/share/bottles" ] [ ] ]
+            [ "cider" [ ".config/Cider/Themes" ".config/sh.cider.classic" ] [ ] ]
+            [ "heroic" [ ".config/heroic" ] [ ] ]
+            [ "jan" [ ".config/Jan" ] [ ] ]
+            [ "prismLauncher" [ ".local/share/PrismLauncher" ] [ ] ]
+            [ "prusaSlicer" [ ".config/PrusaSlicer" ] [ ] ]
+            [ "slack" [ ".config/Slack" ] [ ] ]
+            [ "steam" [ ".local/share/Steam" ] [ ] ]
+        ])
 
         ( lib.mkIf config.chromium-home.enable {
             programs.chromium = {
                 enable = true;
             };
         })
-
-        # For an unknown reason, the line below doesn't work
-        # ( myLib.home.enablePkgWith "xfce.mousepad" "mousepad" )
     ];
 }

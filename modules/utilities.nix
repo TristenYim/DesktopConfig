@@ -35,19 +35,19 @@ in
             };
         }
 
-        # Btop++, added to ensure a system monitor exists without Home Manager
-        ( myLib.nixos.enablePkgSameOptName "btop" )
-
-        # Cryptsetup, used to create dm-crypt/LUKS devices
-        ( myLib.nixos.enablePkgSameOptName "cryptsetup" )
+        ( myLib.nixos.enableEachPkgWith [
+            [ "btop" "btop" ] # Btop++, added to ensure a system monitor exists without Home Manager
+            [ "cryptsetup" "cryptsetup" ] # Cryptsetup, used to create dm-crypt/LUKS devices
+            [ "fd" "fd" ] # fd, faster alternative to find
+            [ "killall" "killall" ] # Killall, does what you'd expect
+            [ "ranger" "ranger" ] # Ranger, added to ensure a TUI file manager exists even without Home Manager
+            [ "vim" "vim" ] # vim, added to ensure a decent text editor exists even without Home Manager
+        ])
 
         # Envfs, restores some FHS compliance
         ( lib.mkIf config.envfs.enable {
             services.envfs.enable = true;
         })
-
-        # fd, faster alternative to find
-        ( myLib.nixos.enablePkgSameOptName "fd" )
 
         # Flatpak, alternative package installer
         ( lib.mkIf config.flatpak.enable {
@@ -63,9 +63,6 @@ in
         })
 
         ( myLib.nixos.persistIf "flatpak" [ "/var/lib/flatpak" ] [ ] )
-
-        # Killall, which does what you'd expect
-        ( myLib.nixos.enablePkgSameOptName "killall" )
 
         # nixos-cli, adds a better cli for NixOS operations
         ( lib.mkIf config.nixos-cli.enable {
@@ -111,9 +108,6 @@ in
             ];
         })
 
-        # Ranger, added to ensure a decent TUI file manager exists without Home Manager
-        ( myLib.nixos.enablePkgSameOptName "ranger" )
-
         # SDDM, display (login) manager
         ( lib.mkIf config.sddm.enable {
             services = {
@@ -132,8 +126,5 @@ in
         })
 
         ( myLib.nixos.persistIf "syncthing" [ { directory = "/var/lib/syncthing"; user = "syncthing"; group = "syncthing"; mode = "700"; } ] [ ] )
-
-        # vim, added to ensure a decent text editor exists even without Home Manager
-        ( myLib.nixos.enablePkgSameOptName "vim" )
     ];
 }

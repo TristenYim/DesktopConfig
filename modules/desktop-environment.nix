@@ -16,6 +16,11 @@ in
     # Allows us to combine multiple modules into one file
     config = lib.mkMerge
     [
+        ( myLib.nixos.enableEachPkgWith [
+            [ "kitty" "kitty" ] # This is only enabled to have a terminal by default - It doesn't require root permissions
+            [ "swaylock-effects" "swaylock" ] # Screen locker
+        ])
+
         # Xfce
         ( lib.mkIf config.xfce.enable {
             services.xserver = {
@@ -48,11 +53,6 @@ in
             };
         })
 
-        # kitty
-        # Note that this is only enabled to have a terminal enabled by default - It doesn't
-        # need to be enabled system-wide to work.
-        ( myLib.nixos.enablePkgSameOptName "kitty" )
-
         # Hyprland
         ( lib.mkIf config.hyprland.enable {
             programs.hyprland = {
@@ -67,9 +67,6 @@ in
         ( lib.mkIf config.nerdfonts.enable {
             fonts.packages = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
         })
-
-        # Swaylock
-        ( myLib.nixos.enablePkgWith "swaylock-effects" "swaylock" )
 
         # Thunar
         ( lib.mkIf config.thunar.enable {

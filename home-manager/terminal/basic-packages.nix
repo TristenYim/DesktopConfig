@@ -11,9 +11,9 @@ in
         wlclip-home.enable = lib.mkEnableOption "Enables WL clip";
     };
 
-    config = lib.mkMerge [
-        ( myLib.home.enablePkgSameOptName "cryfs" )
-        ( myLib.home.enablePkgSameOptName "neofetch" )
-        ( myLib.home.enablePkgWith "wl-clipboard-rs" "wlclip" )
+    config = myLib.home.enableEachPkgWith [
+        [ "cryfs" "cryfs" ]
+        [ "neofetch" "cryfs" ]
+        [ "wl-clipboard-rs" "wlclip" ]
     ];
 }
