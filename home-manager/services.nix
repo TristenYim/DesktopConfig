@@ -2,7 +2,7 @@
 
 { config, pkgs, lib, ... }: 
 let
-    myLib = import ../resources/myLib.nix { inherit config pkgs lib; };
+    myLib = import ../resources/myLib.nix { inherit config lib; };
 in
 {
     options = {

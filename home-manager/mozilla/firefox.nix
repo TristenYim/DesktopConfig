@@ -1,6 +1,6 @@
 { config, pkgs, lib, firefox-addons, ... }: 
 let
-    myLib = import ../../resources/myLib.nix { inherit config pkgs lib; };
+    myLib = import ../../resources/myLib.nix { inherit config lib; };
 in
 {
     imports = [

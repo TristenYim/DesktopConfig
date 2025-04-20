@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }: 
 let
-    myLib = import ../resources/myLib.nix { inherit config pkgs lib; };
+    myLib = import ../resources/myLib.nix { inherit config lib; };
 in
 {
     options = {
@@ -35,13 +35,13 @@ in
             };
         }
 
-        ( myLib.nixos.enableEachPkgWith [
-            [ "btop" "btop" ] # Btop++, added to ensure a system monitor exists without Home Manager
-            [ "cryptsetup" "cryptsetup" ] # Cryptsetup, used to create dm-crypt/LUKS devices
-            [ "fd" "fd" ] # fd, faster alternative to find
-            [ "killall" "killall" ] # Killall, does what you'd expect
-            [ "ranger" "ranger" ] # Ranger, added to ensure a TUI file manager exists even without Home Manager
-            [ "vim" "vim" ] # vim, added to ensure a decent text editor exists even without Home Manager
+        ( with pkgs; myLib.nixos.enableEachPkgWith [
+            [ btop "btop" ] # Btop++, added to ensure a system monitor exists without Home Manager
+            [ cryptsetup "cryptsetup" ] # Cryptsetup, used to create dm-crypt/LUKS devices
+            [ fd "fd" ] # fd, faster alternative to find
+            [ killall "killall" ] # Killall, does what you'd expect
+            [ ranger "ranger" ] # Ranger, added to ensure a TUI file manager exists even without Home Manager
+            [ vim "vim" ] # vim, added to ensure a decent text editor exists even without Home Manager
         ])
 
         # Envfs, restores some FHS compliance

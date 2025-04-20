@@ -2,7 +2,7 @@
 
 { config, pkgs, lib, ... }: 
 let
-    myLib = import ../resources/myLib.nix { inherit config pkgs lib; };
+    myLib = import ../resources/myLib.nix { inherit config lib; };
 in
 {
     options = {
@@ -32,29 +32,29 @@ in
     # Allows us to combine multiple modules into one file
     config = lib.mkMerge
     [
-        ( myLib.home.enableEachPkgWith [
-            [ "anki" "anki" ]
-            [ "bottles" "bottles" ]
-            [ "cider" "cider" ]
-            [ "copyq" "copyq" ]
-            [ "darktable" "darktable" ]
-            [ "file-roller" "fileRoller" ]
-            [ "heroic" "heroic" ]
-            [ "jan" "jan" ]
-            [ "libreoffice-fresh" "libreOffice" ]
-            [ "mpv" "mpv" ]
-            [ "obs-studio" "obs" ]
-            [ "octaveFull" "octave" ]
-            [ "prismlauncher" "prismLauncher" ]
-            [ "prusa-slicer" "prusaSlicer" ]
-            [ "qalculate-qt" "qalculate" ]
-            [ "slack" "slack" ]
-            [ "steam" "steam" ]
-            [ "wpsoffice" "wps" ]
-            [ "liberation_ttf" "wps" ]
-            [ "zoom-us" "zoom" ]
+        ( with pkgs; myLib.home.enableEachPkgWith [
+            [ anki "anki" ]
+            [ bottles "bottles" ]
+            [ cider "cider" ]
+            [ copyq "copyq" ]
+            [ darktable "darktable" ]
+            [ file-roller "fileRoller" ]
+            [ heroic "heroic" ]
+            [ jan "jan" ]
+            [ libreoffice-fresh "libreOffice" ]
+            [ mpv "mpv" ]
+            [ obs-studio "obs" ]
+            [ octaveFull "octave" ]
+            [ prismlauncher "prismLauncher" ]
+            [ prusa-slicer "prusaSlicer" ]
+            [ qalculate-qt "qalculate" ]
+            [ slack "slack" ]
+            [ steam "steam" ]
+            [ wpsoffice "wps" ]
+            [ liberation_ttf "wps" ]
+            [ xfce.mousepad "mousepad" ]
+            [ zoom-us "zoom" ]
         ])
-        ( myLib.home.enablePkgsWith [ pkgs.xfce.mousepad ] "mousepad" )
         ( myLib.home.persistEachIf [
             [ "bottles" [ ".local/share/bottles" ] [ ] ]
             [ "cider" [ ".config/Cider/Themes" ".config/sh.cider.classic" ] [ ] ]

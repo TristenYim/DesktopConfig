@@ -4,7 +4,7 @@
 
 # Later, I may merge things such as nixGLWrap and catppuccin colors into this.
 
-{ config, pkgs, lib }:
+{ config, lib }:
 
 {
     home = rec {
@@ -18,8 +18,8 @@
             };
 
         # Enables a single package when an option name is true.
-        enablePkgWith = packageName: optionNameWithoutHome:
-            enablePkgsWith [ pkgs.${packageName} ] optionNameWithoutHome;
+        enablePkgWith = package: optionNameWithoutHome:
+            enablePkgsWith [ package ] optionNameWithoutHome;
 
         # Enables each package when its corresponding option is enabled.
         # This is just wrapping multiple calls of persistIf into a 
@@ -50,11 +50,9 @@
             ) persistIfArgList);
     };
     nixos = rec {
-        enablePkgWith = packageName: optionName:
+        enablePkgWith = package: optionName:
             lib.mkIf config.${optionName}.enable {
-                environment.systemPackages = [
-                    pkgs.${packageName}
-                ];
+                environment.systemPackages = [ package ];
             };
         enableEachPkgWith = enablePkgWithArgList:
             lib.mkMerge ( builtins.map ( enablePkgWithArgs:

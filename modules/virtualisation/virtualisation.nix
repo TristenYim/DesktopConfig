@@ -1,7 +1,7 @@
 # This enables creating virtual machines
 { config, pkgs, lib, ... }: 
 let
-    myLib = import ../../resources/myLib.nix { inherit config pkgs lib; };
+    myLib = import ../../resources/myLib.nix { inherit config lib; };
 in
 {
     imports = [
