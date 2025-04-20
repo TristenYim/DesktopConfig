@@ -30,8 +30,11 @@
     
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-        catppuccin.url = "github:catppuccin/nix";
         impermanence.url = "github:nix-community/impermanence";
+        catppuccin = {
+            url = "github:catppuccin/nix";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
         firefox-addons = {
             url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -43,7 +46,7 @@
         hyprland = {
             type = "git";
             url = "https://github.com/hyprwm/Hyprland";
-            ref = "refs/tags/v0.48.0";
+            ref = "refs/tags/v0.48.1";
             inputs.nixpkgs.follows = "nixpkgs";
         };
         hycov = {
@@ -60,7 +63,7 @@
             # Numbers workspaces per-monitor instead of globally
             type = "git";
             url = "https://github.com/shezdy/hyprsplit";
-            ref = "refs/tags/v0.48.0";
+            ref = "refs/tags/v0.48.1";
             inputs.hyprland.follows = "hyprland";
         };
         nixgl = {

@@ -117,7 +117,7 @@
                 enable = true;
             };
             
-            nvim-jdtls = {
+            jdtls = {
                 # Extends Java LSP support.
 
                 # See https://github.com/mfussenegger/nvim-jdtls for more
@@ -126,7 +126,7 @@
 
                 enable = true;
 
-                cmd = [
+                settings.cmd = [
                     (lib.getExe pkgs.jdt-language-server)
                 ];
             };

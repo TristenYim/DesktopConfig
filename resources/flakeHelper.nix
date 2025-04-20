@@ -50,7 +50,7 @@ in
       let
         # Modules to be imported for all users
         userImports = [
-            inputs.catppuccin.homeManagerModules.catppuccin
+            inputs.catppuccin.homeModules.catppuccin
             inputs.nixvim.homeManagerModules.nixvim
             inputs.hyprland.homeManagerModules.default
 

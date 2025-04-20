@@ -1,6 +1,6 @@
 # This imports all other Home Manager modules and defines groups of default modules to enable.
 
-{ config, pkgs, lib, ... }: 
+{ config, lib, ... }: 
 
 {
     imports = [
@@ -91,7 +91,7 @@
 
         # These modules are used in my DE
         ( lib.mkIf config.hyprDE-home.enable {
-            copyq-home.enable = lib.mkDefault true;
+            # copyq-home.enable = lib.mkDefault true;
             feh-home.enable = lib.mkDefault true;
             hyprland-home.enable = lib.mkDefault true;
             hyprland-home.binds.default = lib.mkDefault true;
