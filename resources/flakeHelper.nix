@@ -3,7 +3,11 @@
 { inputs, ... }:
 let
     system = "x86_64-linux";
-    
+
+    pkgs-stable = import inputs.nixpkgs-stable {
+        system = "x86_64-linux";
+    };
+
     # Same as specialArgs but for Home Manager
     extraSpecialArgs = {
         firefox-addons = inputs.firefox-addons;
@@ -12,6 +16,7 @@ let
         hyprspace = inputs.hyprspace;
         hyprsplit = inputs.hyprsplit;
         nixgl = inputs.nixgl;
+        inherit pkgs-stable;
     };
 in
 {
@@ -25,6 +30,7 @@ in
         # the entirety of inputs as an argument.
         specialArgs = {
             hyprland = inputs.hyprland;
+            inherit pkgs-stable;
         };
 
         modules = [ configuration ] ++ [

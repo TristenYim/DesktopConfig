@@ -700,6 +700,22 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/eb9ceca17df2ea50a250b6b27f7bf6ab0186f198.tar.gz"
       }
     },
+    "nixpkgs-stable": {
+      "locked": {
+        "lastModified": 1745068291,
+        "narHash": "sha256-pWKgZ0CPAVJ8jk8Y8g0zN9+r1mNdB7aZSFseYdC/T/o=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "3b5d63ccaed2b178edc7d3278c5c6ffa625be8d1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-24.11-small",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1744932701,
@@ -797,6 +813,7 @@
         "nixgl": "nixgl",
         "nixos-cli": "nixos-cli",
         "nixpkgs": "nixpkgs_2",
+        "nixpkgs-stable": "nixpkgs-stable",
         "nixvim": "nixvim"
       }
     },
