@@ -1,10 +1,10 @@
 { config, pkgs, lib, ... }: 
 {
-    options = {
-        waybar-home.enable = lib.mkEnableOption "Waybar";
+    options.apeiron = {
+        waybar.enable = lib.mkEnableOption "Waybar";
     };
  
-    config = lib.mkIf config.waybar-home.enable 
+    config = lib.mkIf config.apeiron.waybar.enable 
     {
         home = { 
             file = {

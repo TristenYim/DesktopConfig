@@ -5,28 +5,28 @@ let
     myLib = import ../resources/myLib.nix { inherit config lib; };
 in
 {
-    options = {
-        anki-home.enable = lib.mkEnableOption "Anki";
-        bottles-home.enable = lib.mkEnableOption "Use Bottles!";
-        chromium-home.enable = lib.mkEnableOption "Chromium";
-        cider-home.enable = lib.mkEnableOption "Cider";
-        copyq-home.enable = lib.mkEnableOption "CopyQ";
-        darktable-home.enable = lib.mkEnableOption "darktable";
-        fileRoller-home.enable = lib.mkEnableOption "File Roller (For managing archives)";
-        heroic-home.enable = lib.mkEnableOption "Heroic Games Launcher (For playing Epic Games)";
-        jan-home.enable = lib.mkEnableOption "Jan local AI";
-        libreOffice-home.enable = lib.mkEnableOption "LibreOffice";
-        mousepad-home.enable = lib.mkEnableOption "Mousepad";
-        mpv-home.enable = lib.mkEnableOption "mpv";
-        obs-home.enable = lib.mkEnableOption "OBS Studio";
-        octave-home.enable = lib.mkEnableOption "GNU Octave";
-        wps-home.enable = lib.mkEnableOption "WPS Office";
-        prusaSlicer-home.enable = lib.mkEnableOption "PrusaSlicer";
-        prismLauncher-home.enable = lib.mkEnableOption "PrusaSlicer";
-        qalculate-home.enable = lib.mkEnableOption "Qalculate!";
-        slack-home.enable = lib.mkEnableOption "Slack";
-        steam-home.enable = lib.mkEnableOption "Steam";
-        zoom-home.enable = lib.mkEnableOption "Zoom";
+    options.apeiron = {
+        anki.enable = lib.mkEnableOption "Anki";
+        bottles.enable = lib.mkEnableOption "Use Bottles!";
+        chromium.enable = lib.mkEnableOption "Chromium";
+        cider.enable = lib.mkEnableOption "Cider";
+        copyq.enable = lib.mkEnableOption "CopyQ";
+        darktable.enable = lib.mkEnableOption "darktable";
+        fileRoller.enable = lib.mkEnableOption "File Roller (For managing archives)";
+        heroic.enable = lib.mkEnableOption "Heroic Games Launcher (For playing Epic Games)";
+        jan.enable = lib.mkEnableOption "Jan local AI";
+        libreOffice.enable = lib.mkEnableOption "LibreOffice";
+        mousepad.enable = lib.mkEnableOption "Mousepad";
+        mpv.enable = lib.mkEnableOption "mpv";
+        obs.enable = lib.mkEnableOption "OBS Studio";
+        octave.enable = lib.mkEnableOption "GNU Octave";
+        wps.enable = lib.mkEnableOption "WPS Office";
+        prusaSlicer.enable = lib.mkEnableOption "PrusaSlicer";
+        prismLauncher.enable = lib.mkEnableOption "PrusaSlicer";
+        qalculate.enable = lib.mkEnableOption "Qalculate!";
+        slack.enable = lib.mkEnableOption "Slack";
+        steam.enable = lib.mkEnableOption "Steam";
+        zoom.enable = lib.mkEnableOption "Zoom";
     };
 
     # Allows us to combine multiple modules into one file
@@ -66,7 +66,7 @@ in
             [ "steam" [ ".local/share/Steam" ] [ ] ]
         ])
 
-        ( lib.mkIf config.chromium-home.enable {
+        ( lib.mkIf config.apeiron.chromium.enable {
             programs.chromium = {
                 enable = true;
             };

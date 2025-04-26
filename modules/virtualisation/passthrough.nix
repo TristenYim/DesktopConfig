@@ -5,11 +5,11 @@
 # for details on what these scripts will look like
 
 { config, lib, ... }: {
-    options = {
+    options.apeiron = {
         virtualisation.passthrough.enable = lib.mkEnableOption "single gpu passthrough in declared vms.";
     };
 
-    config = ( lib.mkIf (config.virtualisation.enable && config.virtualisation.passthrough.enable) {
+    config = ( lib.mkIf (config.apeiron.virtualisation.enable && config.apeiron.virtualisation.passthrough.enable) {
 
         # See https://www.reddit.com/r/VFIO/comments/p4kmxr/tips_for_single_gpu_passthrough_on_nixos/ 
         # information about hooks, if the hook env breaks again. In practice, this doesn't appear to

@@ -1,7 +1,7 @@
 # Window, workspace, and layer rules
 
 { config, lib, ... }: {
-    config = lib.mkIf config.hyprland-home.enable 
+    config = lib.mkIf config.apeiron.hyprland.enable 
     {
         wayland.windowManager.hyprland.settings =
         {

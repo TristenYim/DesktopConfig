@@ -5,11 +5,11 @@
         ./run.nix 
     ];
 
-    options = {
-        rofi-home.enable = lib.mkEnableOption "Rofi";
+    options.apeiron = {
+        rofi.enable = lib.mkEnableOption "Rofi";
     };
  
-    config = lib.mkIf config.rofi-home.enable 
+    config = lib.mkIf config.apeiron.rofi.enable 
     {
         programs.rofi = {
             enable = true;

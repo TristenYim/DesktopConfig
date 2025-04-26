@@ -9,17 +9,16 @@
 {
     home = rec {
         # Adds a set of packages when an enable option is true.
-        # Note that since every option in my home-manager configuration adds
-        # "-home" to the end of its option names, the "-home" is excluded
-        # from the argument.
-        enablePkgsWith = packageList: optionNameWithoutHome:
-            lib.mkIf config.${optionNameWithoutHome + "-home"}.enable { 
+        # Common prefixes and suffixes need not be included, just the
+        # option name as a string.
+        enablePkgsWith = packageList: optionName:
+            lib.mkIf config.apeiron.${optionName}.enable { 
                 home.packages = packageList; 
             };
 
         # Enables a single package when an option name is true.
-        enablePkgWith = package: optionNameWithoutHome:
-            enablePkgsWith [ package ] optionNameWithoutHome;
+        enablePkgWith = package: optionName:
+            enablePkgsWith [ package ] optionName;
 
         # Enables each package when its corresponding option is enabled.
         # This is just wrapping multiple calls of persistIf into a 
@@ -33,7 +32,7 @@
         # Persists the given files or directories if the given option
         # and persistence is enabled.
         persistIf = optionName: directories: files: 
-            lib.mkIf (config.${optionName + "-home"}.enable && config.persistence-home.enable) {
+            lib.mkIf (config.apeiron.${optionName}.enable && config.apeiron.persistence.enable) {
                 home.persistence."/pers/${config.home.homeDirectory}" = {
                     directories = directories;
                     files = files;
@@ -51,7 +50,7 @@
     };
     nixos = rec {
         enablePkgWith = package: optionName:
-            lib.mkIf config.${optionName}.enable {
+            lib.mkIf config.apeiron.${optionName}.enable {
                 environment.systemPackages = [ package ];
             };
         enableEachPkgWith = enablePkgWithArgList:
@@ -59,7 +58,7 @@
                 enablePkgWith (builtins.elemAt enablePkgWithArgs 0) (builtins.elemAt enablePkgWithArgs 1)
             ) enablePkgWithArgList);
         persistIf = optionName: directories: files: 
-            lib.mkIf (config.${optionName}.enable && config.persistence.enable) {
+            lib.mkIf (config.apeiron.${optionName}.enable && config.apeiron.persistence.enable) {
                 environment.persistence."/pers" = {
                     directories = directories;
                     files = files;

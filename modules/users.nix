@@ -1,7 +1,7 @@
 { config, lib, ... }: {
-    options = {
-        users-fathom.enable = lib.mkEnableOption "fathom, the productivity user. fathom uses Hyprland.";
-        users-tdoggy.enable = lib.mkEnableOption "tdoggy, the gaming user. tdoggy uses Xfce.";
+    options.apeiron = {
+        users.fathom.enable = lib.mkEnableOption "fathom, the productivity user. fathom uses Hyprland.";
+        users.tdoggy.enable = lib.mkEnableOption "tdoggy, the gaming user. tdoggy uses Xfce.";
     };
 
     config = lib.mkMerge
@@ -11,7 +11,7 @@
         }
 
         # fathom, the productivity account
-        ( lib.mkIf config.users-fathom.enable {
+        ( lib.mkIf config.apeiron.users.fathom.enable {
             users.users.fathom = {
                 isNormalUser = lib.mkDefault true;
                 description = lib.mkDefault "Fathom, for productivity. Use with Hyprland.";
@@ -21,7 +21,7 @@
         })
 
         # tdoggy, the gaming account 
-        ( lib.mkIf config.users-tdoggy.enable {
+        ( lib.mkIf config.apeiron.users.tdoggy.enable {
             users.users.tdoggy = {
                 isNormalUser = lib.mkDefault true;
                 description = lib.mkDefault "TDoggy, for gaming. Use with XFCE.";

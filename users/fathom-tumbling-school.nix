@@ -6,20 +6,23 @@
     ];
 
     config = {
-        forRobotics-home.enable = false;
-        nixGL.enable = true;
+        # Enable custom module options
+        apeiron = {
+            forRobotics.enable = false;
+            nixGL.enable = true;
 
-        # Broken outside of nixos
-        anki-home.enable = false;
-        zoom-home.enable = false;
+            # Broken outside of nixos
+            anki.enable = false;
+            zoom.enable = false;
 
-        # Remove unneeded apps to save space
-        chromium-home.enable = false;
-        polkit-agent-home.enable = false;
-        jan-home.enable = false;
-        obs-home.enable = false;
+            # Remove unneeded apps to save space
+            chromium.enable = false;
+            polkit-agent.enable = false;
+            jan.enable = false;
+            obs.enable = false;
 
-        hyprland-home.uglyAFMode.default = true;
+            hyprland.uglyAFMode.default = true;
+        };
 
         wayland.windowManager.hyprland = {
             settings = {

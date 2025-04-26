@@ -5,25 +5,28 @@
     ];
 
     config = {
+        # Enable custom module options
         # NOTE: Make sure to disable nixvim lsp, cmp, jdtls, and vimtex when building
-        git-home.enable = true;
-        hyprDE-home.enable = true;
-        isStandalone = false;
+        apeiron = {
+            git.enable = true;
+            hyprDE.enable = true;
+            isStandalone = false;
 
-        cider-home.enable = false;
-        cryfs-home.enable = false;
-        copyq-home.enable = false;
-        jan-home.enable = false;
-        mako-home.enable = false;
-        mousepad-home.enable = false;
-        mpv-home.enable = false;
-        obs-home.enable = false;
-        swaylock-home.enable = false;
-        wlclip-home.enable = false;
-        thunderbird-home.enable = false;
+            cider.enable = false;
+            cryfs.enable = false;
+            copyq.enable = false;
+            jan.enable = false;
+            mako.enable = false;
+            mousepad.enable = false;
+            mpv.enable = false;
+            obs.enable = false;
+            swaylock.enable = false;
+            wlclip.enable = false;
+            thunderbird.enable = false;
 
-        # For some reason, hycov is broken on the USB. Oh well
-        hyprland-home.plugins.hycov.enable = false;
+            # For some reason, hycov is broken on the USB. Oh well
+            hyprland.plugins.hycov.enable = false;
+        };
 
         wayland.windowManager.hyprland = {
             settings = {

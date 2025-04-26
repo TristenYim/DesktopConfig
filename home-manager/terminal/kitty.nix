@@ -2,15 +2,15 @@
 
 {
     # Set a toggle to enable kitty
-    options = {
-        kitty-home.enable = lib.mkEnableOption "kitty";
+    options.apeiron = {
+        kitty.enable = lib.mkEnableOption "kitty";
     };
  
-    config = lib.mkIf config.kitty-home.enable 
+    config = lib.mkIf config.apeiron.kitty.enable 
     {
         programs.kitty = {
             enable = true;
-            package = if config.nixGL.enable then config.lib.nixGL.wrap pkgs.kitty else pkgs.kitty;
+            package = if config.apeiron.nixGL.enable then config.lib.nixGL.wrap pkgs.kitty else pkgs.kitty;
             font = {
                 name = "jetbrains mono nerd font";
                 package = pkgs.nerd-fonts.jetbrains-mono;

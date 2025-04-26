@@ -5,14 +5,14 @@ in
 {
     # Set a toggle to enable Thunderbird
     # By default, this is disabled
-    options = {
-        thunderbird-home.enable = lib.mkEnableOption "Thunderbird";
+    options.apeiron = {
+        thunderbird.enable = lib.mkEnableOption "Thunderbird";
     };
  
     config = lib.mkMerge [
         ( myLib.home.persistIf "thunderbird" [ ".thunderbird/user" ] [ ] )
             
-        ( lib.mkIf config.thunderbird-home.enable {
+        ( lib.mkIf config.apeiron.thunderbird.enable {
             programs.thunderbird = {
                 enable = true;
                 profiles.user = {

@@ -5,11 +5,13 @@
     ];
 
     # Override local module defaults
-    xfce-home.enable = lib.mkDefault true;  
-    bottles-home.enable = true;
-    prismLauncher-home.enable = true;
-    steam-home.enable = true;
-    heroic-home.enable = true;
+    apeiron = {
+        xfce.enable = lib.mkDefault true;  
+        bottles.enable = true;
+        prismLauncher.enable = true;
+        steam.enable = true;
+        heroic.enable = true;
+    };
 
     # Let Home Manager install and manage itself
     programs.home-manager.enable = lib.mkDefault true;

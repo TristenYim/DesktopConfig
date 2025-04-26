@@ -1,6 +1,6 @@
 { config, lib, ... }: {
 
-    config = lib.mkIf config.firefox-home.enable 
+    config = lib.mkIf config.apeiron.firefox.enable 
     {
         programs.firefox.profiles.user.bookmarks = {
             force = true;

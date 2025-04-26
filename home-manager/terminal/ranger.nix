@@ -1,11 +1,11 @@
-{ config, pkgs, lib, ... }: {
+{ config, lib, ... }: {
 
     # Set a toggle to enable ranger
-    options = {
-        ranger-home.enable = lib.mkEnableOption "ranger";
+    options.apeiron = {
+        ranger.enable = lib.mkEnableOption "ranger";
     };
  
-    config = lib.mkIf config.ranger-home.enable 
+    config = lib.mkIf config.apeiron.ranger.enable 
     {
         programs.ranger = {
             enable = true;

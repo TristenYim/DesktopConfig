@@ -3,8 +3,8 @@
 
 # See https://wiki.hyprland.org/Configuring/Environment-variables/ for more info
 
-{ config, pkgs, lib, ... }: {
-    config = lib.mkIf config.hyprland-home.enable 
+{ config, lib, ... }: {
+    config = lib.mkIf config.apeiron.hyprland.enable 
     {
         wayland.windowManager.hyprland.settings.env = [ 
             "XCURSOR_SIZE,24"

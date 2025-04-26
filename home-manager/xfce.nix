@@ -5,14 +5,14 @@ in
 {
 
     # Set a toggle to override Xfce settings
-    options = {
-        xfconf-home.enable = lib.mkEnableOption "XFCE configuration";
+    options.apeiron = {
+        xfconf.enable = lib.mkEnableOption "XFCE configuration";
     };
  
     config = lib.mkMerge [
         ( myLib.home.persistIf "xfconf" [ ] [ ".nvidia-settings-rc" ] ) # These settings are only relevant for gaming
             
-        ( lib.mkIf config.xfconf-home.enable {
+        ( lib.mkIf config.apeiron.xfconf.enable {
             xfconf.settings =
             {
                 xfce4-keyboard-shortcuts = {

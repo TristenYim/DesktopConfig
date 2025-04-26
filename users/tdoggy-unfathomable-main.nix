@@ -6,9 +6,12 @@
     ];
 
     config = {
-        neofetch-home.enable = true;
-        persistence-home.enable = true;
-        isStandalone = false;
+        # Enable custom module options
+        apeiron = {
+            neofetch.enable = true;
+            persistence.enable = true;
+            isStandalone = false;
+        };
 
         home.sessionVariables = {
             FLAKE = "/etc/nixos";

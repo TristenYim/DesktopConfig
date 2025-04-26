@@ -3,11 +3,11 @@
 # See https://wiki.hyprland.org/Configuring/Binds/ for more info
 
 { config, lib, ... }: {
-    options = {
-        hyprland-home.binds.default = lib.mkEnableOption "the default HyprDE binds";
+    options.apeiron = {
+        hyprland.binds.default = lib.mkEnableOption "the default HyprDE binds";
     };
 
-    config = lib.mkIf config.hyprland-home.binds.default 
+    config = lib.mkIf config.apeiron.hyprland.binds.default 
     {
         wayland.windowManager.hyprland = 
 

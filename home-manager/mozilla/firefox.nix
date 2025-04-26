@@ -9,14 +9,14 @@ in
     ];
 
     # Set a toggle to enable Firefox
-    options = {
-        firefox-home.enable = lib.mkEnableOption "Firefox";
+    options.apeiron = {
+        firefox.enable = lib.mkEnableOption "Firefox";
     };
     
     config = lib.mkMerge [
         ( myLib.home.persistIf "firefox" [ ".mozilla/firefox/user" ] [ ] ) # Saves extension settings
             
-        ( lib.mkIf config.firefox-home.enable {
+        ( lib.mkIf config.apeiron.firefox.enable {
             programs.firefox = {
                 enable = true;
                 package = pkgs.firefox-beta;

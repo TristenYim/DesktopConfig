@@ -1,12 +1,12 @@
-{ config, pkgs, lib, ... }: {
+{ config, lib, ... }: {
 
     # Set a toggle to enable bash config
     # This is required to make some packages, such as rofi, work outside NixOS
-    options = {
-        bash-home.enable = lib.mkEnableOption "bash configuration";
+    options.apeiron = {
+        bash.enable = lib.mkEnableOption "bash configuration";
     };
  
-    config = lib.mkIf config.bash-home.enable 
+    config = lib.mkIf config.apeiron.bash.enable 
     {
         programs.bash = {
             enable = true;

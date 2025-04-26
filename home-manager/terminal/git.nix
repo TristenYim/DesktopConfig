@@ -1,14 +1,14 @@
 { config, lib, ... }: {
 
     # Set a toggle to enable git
-    options = {
-        git-home.enable = lib.mkEnableOption "git";
-        lazygit-home.enable = lib.mkEnableOption "git";
+    options.apeiron = {
+        git.enable = lib.mkEnableOption "git";
+        lazygit.enable = lib.mkEnableOption "git";
     };
  
     config = lib.mkMerge
     [
-        (lib.mkIf config.git-home.enable {
+        (lib.mkIf config.apeiron.git.enable {
             programs.git = {
                 enable = true;
                 userEmail = "unfathomy@proton.me";
@@ -22,9 +22,9 @@
                     };
                 };
             };
-            lazygit-home.enable = lib.mkDefault true;
+            apeiron.lazygit.enable = lib.mkDefault true;
         })
-        (lib.mkIf config.lazygit-home.enable {
+        (lib.mkIf config.apeiron.lazygit.enable {
             programs.lazygit.enable = true;
         })
     ];

@@ -3,7 +3,7 @@ let
     myLib = import ../resources/myLib.nix { inherit config lib; };
 in
 {
-    options = {
+    options.apeiron = {
         btop.enable = lib.mkEnableOption "BTOP++";
         cryptsetup.enable = lib.mkEnableOption "cryptsetup";
         envfs.enable = lib.mkEnableOption "envfs";
@@ -45,12 +45,12 @@ in
         ])
 
         # Envfs, restores some FHS compliance
-        ( lib.mkIf config.envfs.enable {
+        ( lib.mkIf config.apeiron.envfs.enable {
             services.envfs.enable = true;
         })
 
         # Flatpak, alternative package installer
-        ( lib.mkIf config.flatpak.enable {
+        ( lib.mkIf config.apeiron.flatpak.enable {
             services.flatpak.enable = true;
             xdg.portal = {            
                 enable = true;
@@ -65,19 +65,19 @@ in
         ( myLib.nixos.persistIf "flatpak" [ "/var/lib/flatpak" ] [ ] )
 
         # nixos-cli, adds a better cli for NixOS operations
-        ( lib.mkIf config.nixos-cli.enable {
+        ( lib.mkIf config.apeiron.nixos-cli.enable {
             services.nixos-cli = {
                 enable = true;
             };
         })
 
         # openrgb, allows controlling connected RGB devices
-        ( lib.mkIf config.openrgb.enable {
+        ( lib.mkIf config.apeiron.openrgb.enable {
             services.hardware.openrgb.enable = true;
         })
 
         # Pulseaudio, sound server
-        ( lib.mkIf config.pulse.enable {
+        ( lib.mkIf config.apeiron.pulse.enable {
             hardware.pulseaudio = {
                 enable = true;
                 package = pkgs.pulseaudioFull;
@@ -92,7 +92,7 @@ in
         })
 
         # PipeWire, the better sound server and more
-        ( lib.mkIf config.pipewire.enable {
+        ( lib.mkIf config.apeiron.pipewire.enable {
             services.pipewire = {
                 enable = true;
                 pulse.enable = true;
@@ -109,7 +109,7 @@ in
         })
 
         # SDDM, display (login) manager
-        ( lib.mkIf config.sddm.enable {
+        ( lib.mkIf config.apeiron.sddm.enable {
             services = {
                 displayManager.sddm = {
                      enable = true;
@@ -119,7 +119,7 @@ in
         })
 
         # Syncthing, self-hosted file synchronization platform
-        ( lib.mkIf config.syncthing.enable {
+        ( lib.mkIf config.apeiron.syncthing.enable {
             services.syncthing = {
                 enable = true;
             };

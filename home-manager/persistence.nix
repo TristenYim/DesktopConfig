@@ -2,11 +2,11 @@
 # See https://github.com/nix-community/impermanence for more info.
 
 { config, lib, ... }: {
-    options = {
-        persistence-home.enable = lib.mkEnableOption "persistence of files in an impermanence configuration";
+    options.apeiron = {
+        persistence.enable = lib.mkEnableOption "persistence of files in an impermanence configuration";
     };
 
-    config = lib.mkIf config.persistence-home.enable {
+    config = lib.mkIf config.apeiron.persistence.enable {
         home.persistence."/pers/${config.home.homeDirectory}" = {
             directories = [
                 # The Freedesktop directories, except for useless ones like "Desktop"

@@ -4,13 +4,15 @@
         ../home-manager/default.nix
     ];
 
-    # Override local module defaults
-    git-home.enable = lib.mkDefault true;
-    jan-home.enable = lib.mkDefault true;
+    # Custom module defaults
+    apeiron = {
+        git.enable = lib.mkDefault true;
+        jan.enable = lib.mkDefault true;
 
-    hyprDE-home.enable = lib.mkDefault true;
-    forSchool-home.enable = lib.mkDefault true;
-    forRobotics-home.enable = lib.mkDefault true;
+        hyprDE.enable = lib.mkDefault true;
+        forSchool.enable = lib.mkDefault true;
+        forRobotics.enable = lib.mkDefault true;
+    };
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = lib.mkDefault true;

@@ -6,17 +6,20 @@
     ];
 
     config = {
-        darktable-home.enable = true;
-        neofetch-home.enable = true;
-        openrgb-home.enable = true;
-        zsh-home.enable = true;
+        # Enable custom module options
+        apeiron = {
+            darktable.enable = true;
+            neofetch.enable = true;
+            openrgb.enable = true;
+            zsh.enable = true;
 
-        persistence-home.enable = true;
-        nvidia-home.enable = true;
-        isStandalone = false;
+            persistence.enable = true;
+            nvidia.enable = true;
+            isStandalone = false;
 
-        ethanol-home.enable = true;
-        ethanol-home.affinity.enable = true;
+            ethanol.enable = true;
+            ethanol.affinity.enable = true;
+        };
 
         wayland.windowManager.hyprland = {
             settings = {

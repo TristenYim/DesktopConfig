@@ -3,11 +3,11 @@ let
     catppuccin = (import ./theme/catppuccin-colors.nix);
 in
 {
-    options = {
-        swaylock-home.enable = lib.mkEnableOption "swaylock";
+    options.apeiron = {
+        swaylock.enable = lib.mkEnableOption "swaylock";
     };
  
-    config = lib.mkIf config.swaylock-home.enable 
+    config = lib.mkIf config.apeiron.swaylock.enable 
     {
         home.file.".config/swaylock/config" = {
             text = ''

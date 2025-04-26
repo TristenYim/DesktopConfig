@@ -8,7 +8,7 @@ in
         ./passthrough.nix
     ];
 
-    options = {
+    options.apeiron = {
         virtualisation.enable = lib.mkEnableOption "the creation of virtual machines";
     };
 
@@ -18,7 +18,7 @@ in
             "/var/lib/libvirt/hooks/custom" # Custom startup hooks, mostly useful for passthrough
         ] [ ] )
 
-        ( lib.mkIf config.virtualisation.enable {
+        ( lib.mkIf config.apeiron.virtualisation.enable {
             # Libvirt is the virtualisation library
             virtualisation = {
                 libvirtd = {

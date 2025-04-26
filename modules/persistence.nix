@@ -2,11 +2,11 @@
 # See https://github.com/nix-community/impermanence for more info.
 
 { config, lib, ... }: {
-    options = {
+    options.apeiron = {
         persistence.enable = lib.mkEnableOption "persistence of files in an impermanence configuration";
     };
 
-    config = lib.mkIf config.persistence.enable {
+    config = lib.mkIf config.apeiron.persistence.enable {
         environment.persistence."/pers" = {
             hideMounts = true;
             directories = [

@@ -8,15 +8,15 @@ let
     workspaceBinds = import ./keybinds/workspace-binds.nix { inherit helpers; };
 in
 {
-    options = {
-        hyprland-home.plugins.hycov.enable = lib.mkEnableOption "the hycov plugin";
-        hyprland-home.plugins.hyprspace.enable = lib.mkEnableOption "the hyprspace plugin";
-        hyprland-home.plugins.hyprsplit.enable = lib.mkEnableOption "the hyprsplit plugin";
+    options.apeiron.hyprland.plugins = {
+        hycov.enable = lib.mkEnableOption "the hycov plugin";
+        hyprspace.enable = lib.mkEnableOption "the hyprspace plugin";
+        hyprsplit.enable = lib.mkEnableOption "the hyprsplit plugin";
     };
 
     config = lib.mkMerge
     [
-        ( lib.mkIf config.hyprland-home.plugins.hycov.enable {
+        ( lib.mkIf config.apeiron.hyprland.plugins.hycov.enable {
             wayland.windowManager.hyprland = 
             {
                 plugins = [
@@ -86,7 +86,7 @@ in
                 );
             };
         })
-        ( lib.mkIf config.hyprland-home.plugins.hyprspace.enable {
+        ( lib.mkIf config.apeiron.hyprland.plugins.hyprspace.enable {
             wayland.windowManager.hyprland = {
                 plugins = [
                     hyprspace.packages.${pkgs.system}.Hyprspace
@@ -123,7 +123,7 @@ in
                 );
             };
         })
-        ( lib.mkIf config.hyprland-home.plugins.hyprsplit.enable {
+        ( lib.mkIf config.apeiron.hyprland.plugins.hyprsplit.enable {
             wayland.windowManager.hyprland.plugins = [
                 hyprsplit.packages.${pkgs.system}.hyprsplit
             ];

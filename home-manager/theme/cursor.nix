@@ -2,11 +2,11 @@
 
     # Set a toggle to enable cursor configuration
     # By default, this is disabled
-    options = {
-        cursor-home.enable = lib.mkEnableOption "cursor configuration";
+    options.apeiron = {
+        cursor.enable = lib.mkEnableOption "cursor configuration";
     };
  
-    config = lib.mkIf config.cursor-home.enable 
+    config = lib.mkIf config.apeiron.cursor.enable 
     {
         home.pointerCursor = {
             name = "Qogir-dark";

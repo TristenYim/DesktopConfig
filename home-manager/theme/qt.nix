@@ -1,11 +1,11 @@
-{ config, pkgs, lib, ... }: {
+{ config, lib, ... }: {
 
     # Set a toggle to enable Qt
-    options = {
-        qt-home.enable = lib.mkEnableOption "Qt";
+    options.apeiron = {
+        qt.enable = lib.mkEnableOption "Qt";
     };
  
-    config = lib.mkIf config.qt-home.enable 
+    config = lib.mkIf config.apeiron.qt.enable 
     {
         qt = {
             enable = true;

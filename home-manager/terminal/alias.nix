@@ -1,11 +1,11 @@
 { config, pkgs, lib, ... }: {
 
     # Set a toggle to enable alias config 
-    options = {
-        alias-home.enable = lib.mkEnableOption "alias configuration";
+    options.apeiron = {
+        alias.enable = lib.mkEnableOption "alias configuration";
     };
  
-    config = lib.mkIf config.alias-home.enable 
+    config = lib.mkIf config.apeiron.alias.enable 
     {
         home.shellAliases = {
             sudo = "sudo ";

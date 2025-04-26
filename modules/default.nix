@@ -17,35 +17,39 @@
         ../overlays/default.nix
     ];
 
-    options = {
+    options.apeiron = {
         hyprDE.enable = lib.mkEnableOption "a custom \"desktop environment\" based on Hyprland";
     };
 
     config = lib.mkMerge [
         {
-            btop.enable = lib.mkDefault true;
-            catppuccin-local.enable = lib.mkDefault true;
-            envfs.enable = lib.mkDefault true;
-            fd.enable = lib.mkDefault true;
-            flatpak.enable = lib.mkDefault true;
-            killall.enable = lib.mkDefault true;
-            nerdfonts.enable = lib.mkDefault true;
-            # nixos-cli.enable = lib.mkDefault true; # Disabled until build issues can get fixed
-            # pulse.enable = lib.mkDefault true;
-            pipewire.enable = lib.mkDefault true;
-            ranger.enable = lib.mkDefault true;
-            sddm.enable = lib.mkDefault true;
-            vim.enable = lib.mkDefault true;
+            apeiron = {
+                btop.enable = lib.mkDefault true;
+                catppuccin-local.enable = lib.mkDefault true;
+                envfs.enable = lib.mkDefault true;
+                fd.enable = lib.mkDefault true;
+                flatpak.enable = lib.mkDefault true;
+                killall.enable = lib.mkDefault true;
+                nerdfonts.enable = lib.mkDefault true;
+                # nixos-cli.enable = lib.mkDefault true; # Disabled until build issues can get fixed
+                # pulse.enable = lib.mkDefault true;
+                pipewire.enable = lib.mkDefault true;
+                ranger.enable = lib.mkDefault true;
+                sddm.enable = lib.mkDefault true;
+                vim.enable = lib.mkDefault true;
 
-            users-fathom.enable = lib.mkDefault true;
+                users.fathom.enable = lib.mkDefault true;
+            };
         }
 
         # HyprDE
-        ( lib.mkIf config.hyprDE.enable {
-            kitty.enable = lib.mkDefault true;
-            hyprland.enable = lib.mkDefault true;
-            swaylock.enable = lib.mkDefault true;
-            thunar.enable = lib.mkDefault true;
+        ( lib.mkIf config.apeiron.hyprDE.enable {
+            apeiron = {
+                kitty.enable = lib.mkDefault true;
+                hyprland.enable = lib.mkDefault true;
+                swaylock.enable = lib.mkDefault true;
+                thunar.enable = lib.mkDefault true;
+            };
         })
     ];
 }

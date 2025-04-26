@@ -5,11 +5,11 @@
 
 { config, lib, nixgl, ... }: {
 
-    options = {
+    options.apeiron = {
         nixGL.enable = lib.mkEnableOption "nixGL wrapping of necessary packages";
     };
 
-    config = lib.mkIf config.nixGL.enable {
+    config = lib.mkIf config.apeiron.nixGL.enable {
         # Set nixGL package
         nixGL.packages = nixgl.packages;
     };

@@ -2,11 +2,11 @@
 
 { config, lib, ... }: {
 
-    options = {
-        mime-home.enable = lib.mkEnableOption "MIME app management";
+    options.apeiron = {
+        mime.enable = lib.mkEnableOption "MIME app management";
     };
 
-    config = ( lib.mkIf config.mime-home.enable {
+    config = ( lib.mkIf config.apeiron.mime.enable {
         xdg.mimeApps = {
             enable = true;
             associations.added = {

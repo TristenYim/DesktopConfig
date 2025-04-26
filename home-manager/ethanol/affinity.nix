@@ -1,11 +1,11 @@
 # Configuration for the affinity ethanol bottles
 
 { config, pkgs, lib, ... }: {
-    options = {
-        ethanol-home.affinity.enable = lib.mkEnableOption "affinity photo with ethanol";
+    options.apeiron = {
+        ethanol.affinity.enable = lib.mkEnableOption "affinity photo with ethanol";
     };
  
-    config = lib.mkIf config.ethanol-home.affinity.enable {
+    config = lib.mkIf config.apeiron.ethanol.affinity.enable {
         programs.ethanol.bottles.affinity = {
             winePackage = pkgs.affinity-wine; # A custom version of wine is needed to run the Affinity suite
 

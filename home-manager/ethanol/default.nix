@@ -13,12 +13,12 @@ in
     # implementation of ethanol, while ethanol-home controls MY ethanol
     # configuration. Basically, think of programs.ethanol as a part of Home
     # Manager itself, while ethanol-home is part of my configuration.
-    options = {
-        ethanol-home.enable = lib.mkEnableOption "ethanol";
+    options.apeiron = {
+        ethanol.enable = lib.mkEnableOption "ethanol";
     };
 
     config = lib.mkMerge [
-        ( lib.mkIf (config.ethanol-home.enable) {
+        ( lib.mkIf (config.apeiron.ethanol.enable) {
             programs.ethanol.enable = true;
         })
         ( myLib.home.persistIf "ethanol" [ ".local/share/ethanol" ] [ ] )

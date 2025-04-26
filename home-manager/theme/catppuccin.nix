@@ -1,11 +1,11 @@
 { config, lib, ... }: {
 
     # Set a toggle to enable Catppuccin
-    options = {
-        catppuccin-home.enable = lib.mkEnableOption "Catppuccin";
+    options.apeiron = {
+        catppuccin.enable = lib.mkEnableOption "Catppuccin";
     };
  
-    config = lib.mkIf config.catppuccin-home.enable 
+    config = lib.mkIf config.apeiron.catppuccin.enable 
     {
         catppuccin = {
             enable = true;

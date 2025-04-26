@@ -2,11 +2,11 @@
 # See https://nixos.wiki/wiki/Nvidia for more
 
 { config, lib, ... }: {
-    options = {
+    options.apeiron = {
         nvidia.enable = lib.mkEnableOption "proprietary NVIDIA driver settings";
     };
 
-    config = ( lib.mkIf config.nvidia.enable {
+    config = ( lib.mkIf config.apeiron.nvidia.enable {
         # Manually sets tty resolution
         # Required for switching to tty with the NVIDIA framebuffer
         # when the resolution of multiple monitors differ, for some

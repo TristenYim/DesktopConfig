@@ -10,8 +10,8 @@ in
 
     # Set a toggle to enable NixVim
     # By default, this is disabled
-    options = {
-        nixvim-home.enable = lib.mkEnableOption "NixVim";
+    options.apeiron = {
+        nixvim.enable = lib.mkEnableOption "NixVim";
     };
 
     config = lib.mkMerge 
@@ -19,7 +19,7 @@ in
         # This prevents the spell file from needing to be redownloaded on reboot
         ( myLib.home.persistIf "nixvim" [ ".local/share/nvim/site/spell" ] [ ] )
 
-        ( lib.mkIf config.nixvim-home.enable {
+        ( lib.mkIf config.apeiron.nixvim.enable {
             programs.nixvim = {
                 enable = true;
                 keymaps = [

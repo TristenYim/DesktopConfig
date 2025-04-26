@@ -1,14 +1,14 @@
 { config, pkgs, lib, ... }: {
 
-    options = {
-        feh-home.enable = lib.mkEnableOption "feh";
-        screenshot-home.enable = lib.mkEnableOption "screenshotting in HyprDE";
+    options.apeiron = {
+        feh.enable = lib.mkEnableOption "feh";
+        screenshot.enable = lib.mkEnableOption "screenshotting in HyprDE";
     };
 
     config = lib.mkMerge 
     [
         # feh, image viewer
-        ( lib.mkIf config.feh-home.enable {
+        ( lib.mkIf config.apeiron.feh.enable {
             home = {
                 packages = [ 
                     pkgs.feh 
@@ -23,7 +23,7 @@
         })
 
         # Screenshot utils
-        (lib.mkIf config.screenshot-home.enable {
+        (lib.mkIf config.apeiron.screenshot.enable {
             home = {
                 packages = [
                     pkgs.grim # The tool that actually captures the screen

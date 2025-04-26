@@ -3,7 +3,7 @@
         ./default.nix
     ];
 
-    config = lib.mkIf (!config.isStandalone) {
+    config = lib.mkIf (!config.apeiron.isStandalone) {
         nixpkgs.overlays = lib.mkForce null;
     };
 }

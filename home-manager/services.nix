@@ -5,18 +5,18 @@ let
     myLib = import ../resources/myLib.nix { inherit config lib; };
 in
 {
-    options = {
-        mako-home.enable = lib.mkEnableOption "mako";
-        openrgb-home.enable = lib.mkEnableOption "openrgb profile persistence";
-        playerctld-home.enable = lib.mkEnableOption "playerctld";
-        polkit-agent-home.enable = lib.mkEnableOption "polkit KDE agent";
+    options.apeiron = {
+        mako.enable = lib.mkEnableOption "mako";
+        openrgb.enable = lib.mkEnableOption "openrgb profile persistence";
+        playerctld.enable = lib.mkEnableOption "playerctld";
+        polkit-agent.enable = lib.mkEnableOption "polkit KDE agent";
     };
  
     # Allows us to combine multiple modules into one file
     config = lib.mkMerge
     [
         # mako
-        ( lib.mkIf config.mako-home.enable {
+        ( lib.mkIf config.apeiron.mako.enable {
             services.mako = {
                 enable = true;
                 borderRadius = 5;
@@ -29,12 +29,12 @@ in
         })
        
         # playerctld
-        ( lib.mkIf config.playerctld-home.enable {
+        ( lib.mkIf config.apeiron.playerctld.enable {
             services.playerctld.enable = true;
         })
        
         # polkit KDE agent
-        ( lib.mkIf config.polkit-agent-home.enable {
+        ( lib.mkIf config.apeiron.polkit-agent.enable {
             home.packages = [
                 pkgs.polkit_gnome
             ];

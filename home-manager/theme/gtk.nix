@@ -1,11 +1,11 @@
 { config, pkgs, lib, ... }: {
 
     # Set a toggle to enable GTK
-    options = {
-        gtk-home.enable = lib.mkEnableOption "GTK";
+    options.apeiron = {
+        gtk.enable = lib.mkEnableOption "GTK";
     };
  
-    config = lib.mkIf config.gtk-home.enable 
+    config = lib.mkIf config.apeiron.gtk.enable 
     {
         gtk = {
             enable = true;

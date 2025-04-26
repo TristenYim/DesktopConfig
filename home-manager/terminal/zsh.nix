@@ -1,11 +1,11 @@
-{ config, pkgs, lib, ... }: {
+{ config, lib, ... }: {
 
     # Set a toggle to enable zsh config
-    options = {
-        zsh-home.enable = lib.mkEnableOption "zsh configuration";
+    options.apeiron = {
+        zsh.enable = lib.mkEnableOption "zsh configuration";
     };
  
-    config = lib.mkIf config.zsh-home.enable 
+    config = lib.mkIf config.apeiron.zsh.enable 
     {
         programs = {
             zsh = {

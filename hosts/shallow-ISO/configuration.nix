@@ -57,16 +57,19 @@
     '';
 
     # Enable custom modules
-    hyprDE.enable = true;
+    apeiron = {
+        hyprDE.enable = true;
 
-    # Disable stuff not needed for the ISO build
-    flatpak.enable = false;
-    nixos-cli.enable = false;
-    swaylock.enable = false;
-    users-fathom.enable = false;
+        # Disable stuff not needed for the ISO build
+        users.fathom.enable = false;
 
-    # DO NOT ENABLE ENVFS IT WILL SCREW UP EVERYTHING
-    envfs.enable = false;
+        flatpak.enable = false;
+        nixos-cli.enable = false;
+        swaylock.enable = false;
+
+        # DO NOT ENABLE ENVFS IT WILL SCREW UP EVERYTHING
+        envfs.enable = false;
+    };
 
     environment.defaultPackages = [
         pkgs.gparted

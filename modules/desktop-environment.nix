@@ -3,7 +3,7 @@ let
     myLib = import ../resources/myLib.nix { inherit config lib; };
 in
 {
-    options = {
+    options.apeiron = {
         xfce.enable = lib.mkEnableOption "Xfce";
         catppuccin-local.enable = lib.mkEnableOption "Catppuccin";
         kitty.enable = lib.mkEnableOption "kitty";
@@ -22,7 +22,7 @@ in
         ])
 
         # Xfce
-        ( lib.mkIf config.xfce.enable {
+        ( lib.mkIf config.apeiron.xfce.enable {
             services.xserver = {
                 enable = true;
                 desktopManager = {
@@ -38,11 +38,11 @@ in
                 pkgs.xfce.ristretto 
                 pkgs.xterm
             ];
-            thunar.enable = lib.mkDefault true;
+            apeiron.thunar.enable = lib.mkDefault true;
         })
 
         # Catppuccin
-        ( lib.mkIf config.catppuccin-local.enable {
+        ( lib.mkIf config.apeiron.catppuccin-local.enable {
             catppuccin = {
                 enable = true;
                 accent = "sky";
@@ -54,7 +54,7 @@ in
         })
 
         # Hyprland
-        ( lib.mkIf config.hyprland.enable {
+        ( lib.mkIf config.apeiron.hyprland.enable {
             programs.hyprland = {
                 enable = true;
                 package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
@@ -64,12 +64,12 @@ in
         })
 
         # Nerd Fonts
-        ( lib.mkIf config.nerdfonts.enable {
+        ( lib.mkIf config.apeiron.nerdfonts.enable {
             fonts.packages = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
         })
 
         # Thunar
-        ( lib.mkIf config.thunar.enable {
+        ( lib.mkIf config.apeiron.thunar.enable {
             programs.thunar = {
                 enable = true;
 
