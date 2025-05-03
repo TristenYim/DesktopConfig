@@ -3,24 +3,22 @@ let
     myLib = import ../resources/myLib.nix { inherit config lib; };
 in
 {
+    imports = with pkgs; [
+        ( myLib.nixos.mkPkgModule kitty [ "kitty" ] ) # This is only enabled to have a terminal by default - It doesn't require root permissions
+        ( myLib.nixos.mkPkgModule swaylock-effects [ "swaylock" ] ) # Screen locker
+    ];
+
     options.apeiron = {
         xfce.enable = lib.mkEnableOption "Xfce";
         catppuccin-local.enable = lib.mkEnableOption "Catppuccin";
-        kitty.enable = lib.mkEnableOption "kitty";
         hyprland.enable = lib.mkEnableOption "Hyprland";
         nerdfonts.enable = lib.mkEnableOption "Nerd Fonts";
-        swaylock.enable = lib.mkEnableOption "Swaylock";
         thunar.enable = lib.mkEnableOption "Thunar";
     };
 
     # Allows us to combine multiple modules into one file
     config = lib.mkMerge
     [
-        ( with pkgs; myLib.nixos.enableEachPkgWith [
-            [ kitty "kitty" ] # This is only enabled to have a terminal by default - It doesn't require root permissions
-            [ swaylock-effects "swaylock" ] # Screen locker
-        ])
-
         # Xfce
         ( lib.mkIf config.apeiron.xfce.enable {
             services.xserver = {

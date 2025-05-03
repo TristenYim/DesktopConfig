@@ -3,21 +3,24 @@ let
     myLib = import ../resources/myLib.nix { inherit config lib; };
 in
 {
+    imports = with pkgs; [
+        ( myLib.nixos.mkPkgModule btop [ "btop" ] ) # Btop++, added to ensure a system monitor exists without Home Manager
+        ( myLib.nixos.mkPkgModule cryptsetup [ "cryptsetup" ] ) # Cryptsetup, used to create dm-crypt/LUKS devices
+        ( myLib.nixos.mkPkgModule fd [ "fd" ] ) # fd, faster alternative to find
+        ( myLib.nixos.mkPkgModule killall [ "killall" ] ) # Killall, does what you'd expect
+        ( myLib.nixos.mkPkgModule ranger [ "ranger" ] ) # Ranger, added to ensure a TUI file manager exists even without Home Manager
+        ( myLib.nixos.mkPkgModule vim [ "vim" ] ) # vim, added to ensure a decent text editor exists even without Home Manager
+    ];
+
     options.apeiron = {
-        btop.enable = lib.mkEnableOption "BTOP++";
-        cryptsetup.enable = lib.mkEnableOption "cryptsetup";
         envfs.enable = lib.mkEnableOption "envfs";
-        fd.enable = lib.mkEnableOption "fd";
         flatpak.enable = lib.mkEnableOption "flatpak";
-        killall.enable = lib.mkEnableOption "killall";
         nixos-cli.enable = lib.mkEnableOption "nixos-cli";
         openrgb.enable = lib.mkEnableOption "openrgb";
         pulse.enable = lib.mkEnableOption "PulseAudio";
         pipewire.enable = lib.mkEnableOption "PipeWire";
-        ranger.enable = lib.mkEnableOption "ranger";
         sddm.enable = lib.mkEnableOption "SDDM";
         syncthing.enable = lib.mkEnableOption "syncthing";
-        vim.enable = lib.mkEnableOption "vim";
     };
 
     # Allows us to combine multiple modules into one file
@@ -34,15 +37,6 @@ in
                 ];
             };
         }
-
-        ( with pkgs; myLib.nixos.enableEachPkgWith [
-            [ btop "btop" ] # Btop++, added to ensure a system monitor exists without Home Manager
-            [ cryptsetup "cryptsetup" ] # Cryptsetup, used to create dm-crypt/LUKS devices
-            [ fd "fd" ] # fd, faster alternative to find
-            [ killall "killall" ] # Killall, does what you'd expect
-            [ ranger "ranger" ] # Ranger, added to ensure a TUI file manager exists even without Home Manager
-            [ vim "vim" ] # vim, added to ensure a decent text editor exists even without Home Manager
-        ])
 
         # Envfs, restores some FHS compliance
         ( lib.mkIf config.apeiron.envfs.enable {

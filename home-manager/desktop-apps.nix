@@ -5,56 +5,37 @@ let
     myLib = import ../resources/myLib.nix { inherit config lib; };
 in
 {
+    imports = with pkgs; [
+        ( myLib.home.mkPkgModule anki [ "anki" ] )
+        ( myLib.home.mkPkgModule bottles [ "bottles" ] )
+        ( myLib.home.mkPkgModule cider [ "cider" ] )
+        ( myLib.home.mkPkgModule copyq [ "copyq" ] )
+        ( myLib.home.mkPkgModule darktable [ "darktable" ] )
+        ( myLib.home.mkPkgModule file-roller [ "fileRoller" ] )
+        ( myLib.home.mkPkgModule heroic [ "heroic" ] )
+        ( myLib.home.mkPkgModule jan [ "jan" ] )
+        ( myLib.home.mkPkgModule libreoffice-fresh [ "libreOffice" ] )
+        ( myLib.home.mkPkgModule xfce.mousepad [ "mousepad" ] )
+        ( myLib.home.mkPkgModule mpv [ "mpv" ] )
+        ( myLib.home.mkPkgModule obs-studio [ "obs" ] )
+        ( myLib.home.mkPkgModule octaveFull [ "octave" ] )
+        ( myLib.home.mkPkgModule prismlauncher [ "prismLauncher" ] )
+        ( myLib.home.mkPkgModule prusa-slicer [ "prusaSlicer" ] )
+        ( myLib.home.mkPkgModule qalculate-qt [ "qalculate" ] )
+        ( myLib.home.mkPkgModule slack [ "slack" ] )
+        ( myLib.home.mkPkgModule steam [ "steam" ] )
+        ( myLib.home.mkPkgModule zoom-us [ "zoom" ] )
+
+        ( myLib.home.mkPkgsModule [ wpsoffice liberation_ttf ] [ "wps" ] )
+    ];
+
     options.apeiron = {
-        anki.enable = lib.mkEnableOption "Anki";
-        bottles.enable = lib.mkEnableOption "Use Bottles!";
         chromium.enable = lib.mkEnableOption "Chromium";
-        cider.enable = lib.mkEnableOption "Cider";
-        copyq.enable = lib.mkEnableOption "CopyQ";
-        darktable.enable = lib.mkEnableOption "darktable";
-        fileRoller.enable = lib.mkEnableOption "File Roller (For managing archives)";
-        heroic.enable = lib.mkEnableOption "Heroic Games Launcher (For playing Epic Games)";
-        jan.enable = lib.mkEnableOption "Jan local AI";
-        libreOffice.enable = lib.mkEnableOption "LibreOffice";
-        mousepad.enable = lib.mkEnableOption "Mousepad";
-        mpv.enable = lib.mkEnableOption "mpv";
-        obs.enable = lib.mkEnableOption "OBS Studio";
-        octave.enable = lib.mkEnableOption "GNU Octave";
-        wps.enable = lib.mkEnableOption "WPS Office";
-        prusaSlicer.enable = lib.mkEnableOption "PrusaSlicer";
-        prismLauncher.enable = lib.mkEnableOption "PrusaSlicer";
-        qalculate.enable = lib.mkEnableOption "Qalculate!";
-        slack.enable = lib.mkEnableOption "Slack";
-        steam.enable = lib.mkEnableOption "Steam";
-        zoom.enable = lib.mkEnableOption "Zoom";
     };
 
     # Allows us to combine multiple modules into one file
     config = lib.mkMerge
     [
-        ( with pkgs; myLib.home.enableEachPkgWith [
-            [ anki "anki" ]
-            [ bottles "bottles" ]
-            [ cider "cider" ]
-            [ copyq "copyq" ]
-            [ darktable "darktable" ]
-            [ file-roller "fileRoller" ]
-            [ heroic "heroic" ]
-            [ jan "jan" ]
-            [ libreoffice-fresh "libreOffice" ]
-            [ mpv "mpv" ]
-            [ obs-studio "obs" ]
-            [ octaveFull "octave" ]
-            [ prismlauncher "prismLauncher" ]
-            [ prusa-slicer "prusaSlicer" ]
-            [ qalculate-qt "qalculate" ]
-            [ slack "slack" ]
-            [ steam "steam" ]
-            [ wpsoffice "wps" ]
-            [ liberation_ttf "wps" ]
-            [ xfce.mousepad "mousepad" ]
-            [ zoom-us "zoom" ]
-        ])
         ( myLib.home.persistEachIf [
             [ "bottles" [ ".local/share/bottles" ] [ ] ]
             [ "cider" [ ".config/Cider/Themes" ".config/sh.cider.classic" ] [ ] ]

@@ -5,29 +5,26 @@
 # Later, I may merge things such as nixGLWrap and catppuccin colors into this.
 
 { config, lib }:
+let
+    # Creates a module with an option to conditionally enable the
+    # provided packages. The option is named based on optionNamePart,
+    # following the format config.apeiron.[optionNamePart].enable.
 
+    # Note this function isn't meant to be called externally, just
+    # to share code between home/nixos.mkPkgsModule.
+
+    baseMkPackagesModule = configAttrset: packageListOption: packages: optionNamePart:
+        { config, lib, ... }: {
+            options.apeiron = lib.setAttrByPath optionNamePart { enable = lib.mkEnableOption "adding the ${lib.lists.last optionNamePart} package to ${configAttrset}.${packageListOption}"; };
+            config.${configAttrset}.${packageListOption} = lib.mkIf (lib.getAttrFromPath (optionNamePart ++ [ "enable" ]) config.apeiron) packages;
+        };
+in
 {
     home = rec {
-        # Adds a set of packages when an enable option is true.
-        # Common prefixes and suffixes need not be included, just the
-        # option name as a string.
-        enablePkgsWith = packageList: optionName:
-            lib.mkIf config.apeiron.${optionName}.enable { 
-                home.packages = packageList; 
-            };
-
-        # Enables a single package when an option name is true.
-        enablePkgWith = package: optionName:
-            enablePkgsWith [ package ] optionName;
-
-        # Enables each package when its corresponding option is enabled.
-        # This is just wrapping multiple calls of persistIf into a 
-        # merged attribute set, where each element of the argument list 
-        # is a list containing the arguments for enablePkgWith.
-        enableEachPkgWith = enablePkgWithArgList:
-            lib.mkMerge ( builtins.map ( enablePkgWithArgs:
-                enablePkgWith (builtins.elemAt enablePkgWithArgs 0) (builtins.elemAt enablePkgWithArgs 1)
-            ) enablePkgWithArgList);
+        # Since options with many arguments are really just nested functions,
+        # it's possible to "partially" evaluate functions like this.
+        mkPkgsModule = baseMkPackagesModule "home" "packages";
+        mkPkgModule = package: mkPkgsModule [ package ];
 
         # Persists the given files or directories if the given option
         # and persistence is enabled.
@@ -49,14 +46,9 @@
             ) persistIfArgList);
     };
     nixos = rec {
-        enablePkgWith = package: optionName:
-            lib.mkIf config.apeiron.${optionName}.enable {
-                environment.systemPackages = [ package ];
-            };
-        enableEachPkgWith = enablePkgWithArgList:
-            lib.mkMerge ( builtins.map ( enablePkgWithArgs:
-                enablePkgWith (builtins.elemAt enablePkgWithArgs 0) (builtins.elemAt enablePkgWithArgs 1)
-            ) enablePkgWithArgList);
+        mkPkgsModule = baseMkPackagesModule "environment" "systemPackages";
+        mkPkgModule = package: mkPkgsModule [ package ];
+
         persistIf = optionName: directories: files: 
             lib.mkIf (config.apeiron.${optionName}.enable && config.apeiron.persistence.enable) {
                 environment.persistence."/pers" = {

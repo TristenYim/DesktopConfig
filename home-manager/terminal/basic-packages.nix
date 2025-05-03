@@ -5,15 +5,9 @@ let
     myLib = import ../../resources/myLib.nix { inherit config lib; };
 in
 {
-    options.apeiron = {
-        cryfs.enable = lib.mkEnableOption "CryFS";
-        neofetch.enable = lib.mkEnableOption "neofetch";
-        wlclip.enable = lib.mkEnableOption "Enables WL clip";
-    };
-
-    config = with pkgs; myLib.home.enableEachPkgWith [
-        [ cryfs "cryfs" ]
-        [ neofetch "cryfs" ]
-        [ wl-clipboard-rs "wlclip" ]
+    imports = with pkgs; [
+        ( myLib.home.mkPkgModule cryfs [ "cryfs" ] )
+        ( myLib.home.mkPkgModule neofetch [ "neofetch" ] )
+        ( myLib.home.mkPkgModule wl-clipboard-rs [ "wlclip" ] )
     ];
 }
