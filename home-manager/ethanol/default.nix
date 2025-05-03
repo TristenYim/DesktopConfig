@@ -6,6 +6,8 @@ in
     imports = [
         ./ethanol.nix
         ./affinity.nix
+
+        ( myLib.home.mkPersistenceModule [ ".local/share/ethanol" ] [ ] [ "ethanol" ] )
     ];
 
     # It might seem confusing to have two separate options for ethanol, but 
@@ -17,10 +19,7 @@ in
         ethanol.enable = lib.mkEnableOption "ethanol";
     };
 
-    config = lib.mkMerge [
-        ( lib.mkIf (config.apeiron.ethanol.enable) {
-            programs.ethanol.enable = true;
-        })
-        ( myLib.home.persistIf "ethanol" [ ".local/share/ethanol" ] [ ] )
-    ];
+    config = lib.mkIf (config.apeiron.ethanol.enable) {
+        programs.ethanol.enable = true;
+    };
 }

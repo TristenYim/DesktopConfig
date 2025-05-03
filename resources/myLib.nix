@@ -18,6 +18,29 @@ let
             options.apeiron = lib.setAttrByPath optionNamePart { enable = lib.mkEnableOption "adding the ${lib.lists.last optionNamePart} package to ${configAttrset}.${packageListOption}"; };
             config.${configAttrset}.${packageListOption} = lib.mkIf (lib.getAttrFromPath (optionNamePart ++ [ "enable" ]) config.apeiron) packages;
         };
+
+    # Creates a module with an option to conditionally persist the provided
+    # directories and files. This option is enabled by default, but the config
+    # is only active if persistence is enabled globally and the module is
+    # enabled. The option name is based on optionNamePart, following the 
+    # format config.apeiron.[optionName].persist
+    baseMkPersistenceModule = config: configAttrset: persistentRoot: directories: files: optionNamePart: { 
+        options.apeiron = lib.setAttrByPath optionNamePart { 
+            persist = lib.mkOption { 
+                default = true; 
+                example = false; 
+                description = "Whether to enable persistence of files related to ${lib.lists.last optionNamePart}.";
+                type = lib.types.bool; 
+            }; 
+        };
+        config.${configAttrset}.persistence.${persistentRoot} = lib.mkIf (
+            config.apeiron.persistence.enable && 
+            (lib.getAttrFromPath (optionNamePart ++ [ "enable" ]) config.apeiron) && 
+            (lib.getAttrFromPath (optionNamePart ++ [ "persist" ]) config.apeiron)
+        ) {
+            inherit directories files;
+        };
+    };
 in
 {
     home = rec {
@@ -26,36 +49,12 @@ in
         mkPkgsModule = baseMkPackagesModule "home" "packages";
         mkPkgModule = package: mkPkgsModule [ package ];
 
-        # Persists the given files or directories if the given option
-        # and persistence is enabled.
-        persistIf = optionName: directories: files: 
-            lib.mkIf (config.apeiron.${optionName}.enable && config.apeiron.persistence.enable) {
-                home.persistence."/pers/${config.home.homeDirectory}" = {
-                    directories = directories;
-                    files = files;
-                };
-            };
-
-        # Persists each list of files and directories when its corresponding
-        # option is enabled. This is just wrapping multiple calls of
-        # persistIf into a merged attribute set, where each element of the 
-        # argument list is a list containing the arguments for persistIf.
-        persistEachIf = persistIfArgList:
-            lib.mkMerge ( builtins.map ( persistIfArgs:
-                persistIf (builtins.elemAt persistIfArgs 0) (builtins.elemAt persistIfArgs 1) (builtins.elemAt persistIfArgs 2)
-            ) persistIfArgList);
+        mkPersistenceModule = directories: files: optionNamePart: { config, ... }: baseMkPersistenceModule config "home" "/pers/${config.home.homeDirectory}" directories files optionNamePart;
     };
     nixos = rec {
         mkPkgsModule = baseMkPackagesModule "environment" "systemPackages";
         mkPkgModule = package: mkPkgsModule [ package ];
 
-        persistIf = optionName: directories: files: 
-            lib.mkIf (config.apeiron.${optionName}.enable && config.apeiron.persistence.enable) {
-                environment.persistence."/pers" = {
-                    directories = directories;
-                    files = files;
-                };
-            };
+        mkPersistenceModule = directories: files: optionNamePart: { config, ... }: baseMkPersistenceModule config "environment" "/pers" directories files optionNamePart;
     };
-
 }

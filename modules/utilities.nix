@@ -10,6 +10,9 @@ in
         ( myLib.nixos.mkPkgModule killall [ "killall" ] ) # Killall, does what you'd expect
         ( myLib.nixos.mkPkgModule ranger [ "ranger" ] ) # Ranger, added to ensure a TUI file manager exists even without Home Manager
         ( myLib.nixos.mkPkgModule vim [ "vim" ] ) # vim, added to ensure a decent text editor exists even without Home Manager
+
+        ( myLib.nixos.mkPersistenceModule [ "/var/lib/flatpak" ] [ ] [ "flatpak" ] )
+        ( myLib.nixos.mkPersistenceModule [ { directory = "/var/lib/syncthing"; user = "syncthing"; group = "syncthing"; mode = "700"; } ] [ ] [ "syncthing" ] )
     ];
 
     options.apeiron = {
@@ -55,8 +58,6 @@ in
                 config.common.default = "gtk";
             };
         })
-
-        ( myLib.nixos.persistIf "flatpak" [ "/var/lib/flatpak" ] [ ] )
 
         # nixos-cli, adds a better cli for NixOS operations
         ( lib.mkIf config.apeiron.nixos-cli.enable {
@@ -118,7 +119,5 @@ in
                 enable = true;
             };
         })
-
-        ( myLib.nixos.persistIf "syncthing" [ { directory = "/var/lib/syncthing"; user = "syncthing"; group = "syncthing"; mode = "700"; } ] [ ] )
     ];
 }

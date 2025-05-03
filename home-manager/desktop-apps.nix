@@ -27,6 +27,15 @@ in
         ( myLib.home.mkPkgModule zoom-us [ "zoom" ] )
 
         ( myLib.home.mkPkgsModule [ wpsoffice liberation_ttf ] [ "wps" ] )
+
+        ( myLib.home.mkPersistenceModule [ ".local/share/bottles" ] [ ] [ "bottles" ] )
+        ( myLib.home.mkPersistenceModule [ ".config/Cider/Themes" ".config/sh.cider.classic" ] [ ] [ "cider" ] )
+        ( myLib.home.mkPersistenceModule [ ".config/heroic" ] [ ] [ "heroic" ] )
+        ( myLib.home.mkPersistenceModule [ ".config/Jan" ] [ ] [ "jan" ] )
+        ( myLib.home.mkPersistenceModule [ ".local/share/PrismLauncher" ] [ ] [ "prismLauncher" ] )
+        ( myLib.home.mkPersistenceModule [ ".config/PrusaSlicer" ] [ ] [ "prusaSlicer" ] )
+        ( myLib.home.mkPersistenceModule [ ".config/Slack" ] [ ] [ "slack" ] )
+        ( myLib.home.mkPersistenceModule [ ".local/share/Steam" ] [ ] [ "steam" ] )
     ];
 
     options.apeiron = {
@@ -34,23 +43,9 @@ in
     };
 
     # Allows us to combine multiple modules into one file
-    config = lib.mkMerge
-    [
-        ( myLib.home.persistEachIf [
-            [ "bottles" [ ".local/share/bottles" ] [ ] ]
-            [ "cider" [ ".config/Cider/Themes" ".config/sh.cider.classic" ] [ ] ]
-            [ "heroic" [ ".config/heroic" ] [ ] ]
-            [ "jan" [ ".config/Jan" ] [ ] ]
-            [ "prismLauncher" [ ".local/share/PrismLauncher" ] [ ] ]
-            [ "prusaSlicer" [ ".config/PrusaSlicer" ] [ ] ]
-            [ "slack" [ ".config/Slack" ] [ ] ]
-            [ "steam" [ ".local/share/Steam" ] [ ] ]
-        ])
-
-        ( lib.mkIf config.apeiron.chromium.enable {
-            programs.chromium = {
-                enable = true;
-            };
-        })
-    ];
+    config = lib.mkIf config.apeiron.chromium.enable {
+        programs.chromium = {
+            enable = true;
+        };
+    };
 }

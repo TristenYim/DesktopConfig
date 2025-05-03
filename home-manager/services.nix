@@ -5,6 +5,10 @@ let
     myLib = import ../resources/myLib.nix { inherit config lib; };
 in
 {
+    imports = [
+        ( myLib.home.mkPersistenceModule [ ".config/OpenRGB" ] [ ] [ "openrgb" ] )
+    ];
+
     options.apeiron = {
         mako.enable = lib.mkEnableOption "mako";
         openrgb.enable = lib.mkEnableOption "openrgb profile persistence";
@@ -54,8 +58,5 @@ in
                 Install.WantedBy = [ "graphical-session.target" ];
             };
         })
-
-        # openrgb
-        ( myLib.home.persistIf "openrgb" [ ".config/OpenRGB" ] [ ] )
     ];
 }
