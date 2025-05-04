@@ -1,10 +1,6 @@
 # These are desktop apps with little to no special configurations that don't need to be installed system-wide
 
-{ config, pkgs, lib, ... }: 
-let
-    myLib = import ../resources/myLib.nix { inherit config lib; };
-in
-{
+{ config, pkgs, lib, myLib, ... }: {
     imports = with pkgs; [
         ( myLib.home.mkPkgModule anki [ "anki" ] )
         ( myLib.home.mkPkgModule bottles [ "bottles" ] )

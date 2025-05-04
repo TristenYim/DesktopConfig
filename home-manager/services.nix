@@ -1,10 +1,6 @@
 # These are Systemd services that do not need to be enabled system-wide.
 
-{ config, pkgs, lib, ... }: 
-let
-    myLib = import ../resources/myLib.nix { inherit config lib; };
-in
-{
+{ config, pkgs, lib, myLib, ... }: {
     imports = [
         ( myLib.home.mkPersistenceModule [ ".config/OpenRGB" ] [ ] [ "openrgb" ] )
     ];

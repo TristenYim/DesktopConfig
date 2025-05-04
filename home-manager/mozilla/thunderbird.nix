@@ -1,8 +1,4 @@
-{ config, lib, ... }: 
-let
-    myLib = import ../../resources/myLib.nix { inherit config lib; };
-in
-{
+{ config, lib, myLib, ... }: {
     imports = [
         ( myLib.home.mkPersistenceModule [ ".thunderbird/user" ] [ ] [ "thunderbird" ] )
     ];

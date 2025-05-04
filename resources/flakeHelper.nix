@@ -4,6 +4,9 @@
 let
     system = "x86_64-linux";
 
+    # Custom library of functions used in this flake
+    myLib = import ./myLib.nix { lib = inputs.nixpkgs.lib; };
+
     pkgs-stable = import inputs.nixpkgs-stable {
         system = "x86_64-linux";
     };
@@ -16,7 +19,7 @@ let
         hyprspace = inputs.hyprspace;
         hyprsplit = inputs.hyprsplit;
         nixgl = inputs.nixgl;
-        inherit pkgs-stable;
+        inherit myLib pkgs-stable;
     };
 in
 {
@@ -30,7 +33,7 @@ in
         # the entirety of inputs as an argument.
         specialArgs = {
             hyprland = inputs.hyprland;
-            inherit pkgs-stable;
+            inherit myLib pkgs-stable;
         };
 
         modules = [ configuration ] ++ [

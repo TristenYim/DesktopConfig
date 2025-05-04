@@ -1,8 +1,4 @@
-{ config, pkgs, lib, firefox-addons, ... }: 
-let
-    myLib = import ../../resources/myLib.nix { inherit config lib; };
-in
-{
+{ config, pkgs, lib, myLib, firefox-addons, ... }: {
     imports = [
         ./bookmarks-firefox.nix
         ./engines-firefox.nix

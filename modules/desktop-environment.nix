@@ -1,7 +1,5 @@
-{ config, pkgs, lib, hyprland, ... }: 
-let
-    myLib = import ../resources/myLib.nix { inherit config lib; };
-in
+{ config, pkgs, lib, myLib, hyprland, ... }: 
+
 {
     imports = with pkgs; [
         ( myLib.nixos.mkPkgModule kitty [ "kitty" ] ) # This is only enabled to have a terminal by default - It doesn't require root permissions

@@ -1,7 +1,5 @@
-{ config, pkgs, lib, ... }: 
-let
-    myLib = import ../resources/myLib.nix { inherit config lib; };
-in
+{ config, pkgs, lib, myLib, ... }: 
+
 {
     imports = with pkgs; [
         ( myLib.nixos.mkPkgModule btop [ "btop" ] ) # Btop++, added to ensure a system monitor exists without Home Manager

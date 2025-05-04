@@ -1,10 +1,6 @@
 # These are terminal packages with little to no special configurations that don't need to be installed system-wide
 
-{ config, pkgs, lib, ... }: 
-let
-    myLib = import ../../resources/myLib.nix { inherit config lib; };
-in
-{
+{ pkgs, myLib, ... }: {
     imports = with pkgs; [
         ( myLib.home.mkPkgModule cryfs [ "cryfs" ] )
         ( myLib.home.mkPkgModule neofetch [ "neofetch" ] )

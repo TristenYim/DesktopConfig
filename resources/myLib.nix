@@ -4,7 +4,7 @@
 
 # Later, I may merge things such as nixGLWrap and catppuccin colors into this.
 
-{ config, lib }:
+{ lib }:
 let
     # Creates a module with an option to conditionally enable the
     # provided packages. The option is named based on optionNamePart,
