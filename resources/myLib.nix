@@ -43,6 +43,16 @@ let
     };
 in
 {
+    # Call function f with each list of arguments in argLists.
+    mapCalls = f: argLists: 
+        builtins.map ( argList: 
+            let
+                len = builtins.length argList;
+                callWithList = n: f: if n == len then f else callWithList (n + 1) (f (builtins.elemAt argList n));
+            in
+            callWithList 0 (f)
+        ) argLists;
+
     home = rec {
         # Since options with many arguments are really just nested functions,
         # it's possible to "partially" evaluate functions like this.
@@ -51,6 +61,7 @@ in
 
         mkPersistenceModule = directories: files: optionNamePart: { config, ... }: baseMkPersistenceModule config "home" "/pers/${config.home.homeDirectory}" directories files optionNamePart;
     };
+
     nixos = rec {
         mkPkgsModule = baseMkPackagesModule "environment" "systemPackages";
         mkPkgModule = package: mkPkgsModule [ package ];

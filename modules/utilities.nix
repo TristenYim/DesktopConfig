@@ -2,15 +2,17 @@
 
 {
     imports = with pkgs; [
-        ( myLib.nixos.mkPkgModule btop [ "btop" ] ) # Btop++, added to ensure a system monitor exists without Home Manager
-        ( myLib.nixos.mkPkgModule cryptsetup [ "cryptsetup" ] ) # Cryptsetup, used to create dm-crypt/LUKS devices
-        ( myLib.nixos.mkPkgModule fd [ "fd" ] ) # fd, faster alternative to find
-        ( myLib.nixos.mkPkgModule killall [ "killall" ] ) # Killall, does what you'd expect
-        ( myLib.nixos.mkPkgModule ranger [ "ranger" ] ) # Ranger, added to ensure a TUI file manager exists even without Home Manager
-        ( myLib.nixos.mkPkgModule vim [ "vim" ] ) # vim, added to ensure a decent text editor exists even without Home Manager
-
         ( myLib.nixos.mkPersistenceModule [ "/var/lib/flatpak" ] [ ] [ "flatpak" ] )
         ( myLib.nixos.mkPersistenceModule [ { directory = "/var/lib/syncthing"; user = "syncthing"; group = "syncthing"; mode = "700"; } ] [ ] [ "syncthing" ] )
+    ]
+    ++ myLib.mapCalls (myLib.nixos.mkPkgModule)
+    [
+        [ btop [ "btop" ] ] # Btop++, added to ensure a system monitor exists without Home Manager
+        [ cryptsetup [ "cryptsetup" ] ] # Cryptsetup, used to create dm-crypt/LUKS devices
+        [ fd [ "fd" ] ] # fd, faster alternative to find
+        [ killall [ "killall" ] ] # Killall, does what you'd expect
+        [ ranger [ "ranger" ] ] # Ranger, added to ensure a TUI file manager exists even without Home Manager
+        [ vim [ "vim" ] ] # vim, added to ensure a decent text editor exists even without Home Manager
     ];
 
     options.apeiron = {

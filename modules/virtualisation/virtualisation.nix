@@ -4,6 +4,7 @@
 {
     imports = [
         ./passthrough.nix
+
         ( myLib.nixos.mkPersistenceModule [ "/var/lib/libvirt/qemu" "/var/lib/libvirt/hooks/custom" ] [ ] [ "virtualisation" ] )
     ];
 
