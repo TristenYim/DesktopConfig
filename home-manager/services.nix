@@ -19,9 +19,11 @@
         ( lib.mkIf config.apeiron.mako.enable {
             services.mako = {
                 enable = true;
-                borderRadius = 5;
-                borderSize = 2;
-                font = "Merienda 10";
+                settings = {
+                    borderRadius = 5;
+                    borderSize = 2;
+                    font = "Merienda 10";
+                };
             };
             home.packages = [ 
                 pkgs.libnotify

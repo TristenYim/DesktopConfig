@@ -6,7 +6,7 @@
         flakeHelper = import ./resources/flakeHelper.nix { inherit inputs; };
       in 
     {
-	    nixosConfigurations = {
+        nixosConfigurations = {
             unfathomable-main = flakeHelper.mkHost ./hosts/unfathomable-main/configuration.nix {
                 fathom = flakeHelper.mkUser.module ./users/fathom-unfathomable-main.nix;
                 tdoggy = flakeHelper.mkUser.module ./users/tdoggy-unfathomable-main.nix;
@@ -58,6 +58,7 @@
             # Experimenting with using Hyprspace alongside or as a replacement to hycov
             type = "git";
             url = "https://github.com/KZDKM/Hyprspace";
+            rev = "5b62529c2011ede6069445de9b5b3f8a1f10ecfe"; # Pinning version until I update Hyprland
             inputs.hyprland.follows = "hyprland";
         };
         hyprsplit = {
