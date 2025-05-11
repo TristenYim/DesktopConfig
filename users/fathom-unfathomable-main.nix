@@ -21,6 +21,8 @@
             ethanol.affinity.enable = true;
         };
 
+        programs.nixvim.plugins.orgmode.settings.org_agenda_files = "/media/Hdd/Sync/Notes/Todo.org";
+
         wayland.windowManager.hyprland = {
             settings = {
                 ################
