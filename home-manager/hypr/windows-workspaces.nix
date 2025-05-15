@@ -65,6 +65,7 @@
                 "special:BTOP, on-created-empty: [maximize] kitty btop"
                 "special:CIDER, on-created-empty: [float; size 1000 800; move 10 50] cider"
                 "special:CONFIG, on-created-empty: [maximize] kitty nvim $FLAKE"
+                "special:AGENDA, on-created-empty: [maximize] kitty nvim ${config.programs.nixvim.plugins.orgmode.settings.org_agenda_files} +\"Org agenda a\"" # This opens the org agenda, but doesn't close NvimTree or the default file. It's not clear how to do this or if it's possible since NeoVim documentation is extremely unintuitive.
             ];
         };
     };

@@ -18,11 +18,12 @@
     forMail = [ ", F2, workspace, name:MAIL" ];
 
     # Special workspaces
-    specialAll = specialBtop ++ specialCider ++ specialConfig;
+    specialAll = specialBtop ++ specialCider ++ specialConfig ++ specialAgenda;
 
     specialBtop = [ ", B, togglespecialworkspace, BTOP" ];
     specialCider = [ ", P, togglespecialworkspace, CIDER" ];
     specialConfig = [ ", M, togglespecialworkspace, CONFIG" ];
+    specialAgenda = [ ", W, togglespecialworkspace, AGENDA" ];
 
     # Scrolls between workspaces
     scroll = [ ", mouse_up, split:workspace, e-1" ", mouse_down, workspace, e+1" ];
