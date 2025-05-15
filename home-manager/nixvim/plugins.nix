@@ -153,6 +153,12 @@
                 # for NixVim specific Documentation
 
                 enable = true;
+                settings = {
+                    org_deadline_warning_days = 7;
+                    org_agenda_start_on_weekday = false;
+                    org_agenda_start_day = "-1d";
+                    org_agenda_skip_scheduled_if_done = true;
+                };
             };
 
             treesitter = {
