@@ -20,8 +20,8 @@
             services.mako = {
                 enable = true;
                 settings = {
-                    borderRadius = 5;
-                    borderSize = 2;
+                    border-radius = 5;
+                    border-size = 2;
                     font = "Merienda 10";
                 };
             };
