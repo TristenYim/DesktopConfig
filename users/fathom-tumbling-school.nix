@@ -11,17 +11,25 @@
             forRobotics.enable = false;
             nixGL.enable = true;
 
-            # Broken outside of nixos
-            anki.enable = false;
-            zoom.enable = false;
+            desktop = {
+                applications = {
+                    jan.enable = false;
+                    obs.enable = false;
+                };
+
+                browsers.chromium.enable = false;
+
+                hyprland.uglyAFMode.default = true;
+            };
 
             # Remove unneeded apps to save space
-            chromium.enable = false;
-            polkit-agent.enable = false;
-            jan.enable = false;
-            obs.enable = false;
+            services.polkit-agent.enable = false;
 
-            hyprland.uglyAFMode.default = true;
+            # Broken outside of nixos
+            work = {
+                anki.enable = false;
+                zoom.enable = false;
+            };
         };
 
         programs.nixvim.plugins.orgmode.settings.org_agenda_files = "/home/fathom/Documents/Sync/Notes/Todo.org";

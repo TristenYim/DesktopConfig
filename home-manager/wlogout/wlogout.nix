@@ -6,11 +6,11 @@
     ];
 
     # Set a toggle to enable wlogout
-    options.apeiron = {
+    options.apeiron.desktop.utilities = {
         wlogout.enable = lib.mkEnableOption "wlogout";
     };
  
-    config = lib.mkIf config.apeiron.wlogout.enable 
+    config = lib.mkIf config.apeiron.desktop.utilities.wlogout.enable 
     {
         home.file = {
             ".config/wlogout/assets" = {

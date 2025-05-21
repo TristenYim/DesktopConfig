@@ -8,17 +8,20 @@
     config = {
         # Enable custom module options
         apeiron = {
-            darktable.enable = true;
-            neofetch.enable = true;
-            openrgb.enable = true;
-            zsh.enable = true;
-
             persistence.enable = true;
             nvidia.enable = true;
             isStandalone = false;
 
-            ethanol.enable = true;
-            ethanol.affinity.enable = true;
+            ethanol = {
+                enable = true;
+                affinity.enable = true;
+            };
+
+            services.openrgb.enable = true;
+
+            terminal.neofetch.enable = true;
+
+            work.darktable.enable = true;
         };
 
         programs.nixvim.plugins.orgmode.settings.org_agenda_files = "/media/Hdd/Sync/Notes/Todo.org";

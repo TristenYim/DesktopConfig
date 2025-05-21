@@ -3,12 +3,14 @@
 
 { config, pkgs, lib, hycov, hyprspace, hyprsplit, ... }: 
 let
+    cfg = config.apeiron.desktop.hyprland.plugins;
+
     helpers = import ./helpers.nix { inherit lib; };
     windowBinds = import ./keybinds/window-binds.nix { inherit helpers; };
     workspaceBinds = import ./keybinds/workspace-binds.nix { inherit helpers; };
 in
 {
-    options.apeiron.hyprland.plugins = {
+    options.apeiron.desktop.hyprland.plugins = {
         hycov.enable = lib.mkEnableOption "the hycov plugin";
         hyprspace.enable = lib.mkEnableOption "the hyprspace plugin";
         hyprsplit.enable = lib.mkEnableOption "the hyprsplit plugin";
@@ -16,7 +18,7 @@ in
 
     config = lib.mkMerge
     [
-        ( lib.mkIf config.apeiron.hyprland.plugins.hycov.enable {
+        ( lib.mkIf cfg.hycov.enable {
             wayland.windowManager.hyprland = 
             {
                 plugins = [
@@ -86,7 +88,8 @@ in
                 );
             };
         })
-        ( lib.mkIf config.apeiron.hyprland.plugins.hyprspace.enable {
+
+        ( lib.mkIf cfg.hyprspace.enable {
             wayland.windowManager.hyprland = {
                 plugins = [
                     hyprspace.packages.${pkgs.system}.Hyprspace
@@ -123,7 +126,8 @@ in
                 );
             };
         })
-        ( lib.mkIf config.apeiron.hyprland.plugins.hyprsplit.enable {
+
+        ( lib.mkIf cfg.hyprsplit.enable {
             wayland.windowManager.hyprland.plugins = [
                 hyprsplit.packages.${pkgs.system}.hyprsplit
             ];

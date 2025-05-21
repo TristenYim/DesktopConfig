@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }: {
 
-    options.apeiron = {
+    options.apeiron.desktop.utilities = {
         feh.enable = lib.mkEnableOption "feh";
         screenshot.enable = lib.mkEnableOption "screenshotting in HyprDE";
     };
@@ -8,7 +8,7 @@
     config = lib.mkMerge 
     [
         # feh, image viewer
-        ( lib.mkIf config.apeiron.feh.enable {
+        ( lib.mkIf config.apeiron.desktop.utilities.feh.enable {
             home = {
                 packages = [ 
                     pkgs.feh 
@@ -23,7 +23,7 @@
         })
 
         # Screenshot utils
-        (lib.mkIf config.apeiron.screenshot.enable {
+        (lib.mkIf config.apeiron.desktop.utilities.screenshot.enable {
             home = {
                 packages = [
                     pkgs.grim # The tool that actually captures the screen

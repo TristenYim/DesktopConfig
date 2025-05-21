@@ -6,8 +6,8 @@
 
     # Custom module defaults
     apeiron = {
-        git.enable = lib.mkDefault true;
-        jan.enable = lib.mkDefault true;
+        terminal.git.enable = lib.mkDefault true;
+        desktop.applications.jan.enable = lib.mkDefault true;
 
         hyprDE.enable = lib.mkDefault true;
         forSchool.enable = lib.mkDefault true;

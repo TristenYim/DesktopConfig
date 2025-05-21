@@ -3,7 +3,7 @@ let
     catppuccin = (import ../theme/catppuccin-colors.nix);
 in
 {
-    config = lib.mkIf config.apeiron.rofi.enable 
+    config = lib.mkIf config.apeiron.desktop.utilities.rofi.enable 
     {
         home.file.".config/rofi/run.rasi" = {
             text = ''

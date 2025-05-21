@@ -1,11 +1,11 @@
 { config, lib, ... }: {
 
     # Set a toggle to enable ranger
-    options.apeiron = {
+    options.apeiron.terminal = {
         ranger.enable = lib.mkEnableOption "ranger";
     };
  
-    config = lib.mkIf config.apeiron.ranger.enable 
+    config = lib.mkIf config.apeiron.terminal.ranger.enable 
     {
         programs.ranger = {
             enable = true;

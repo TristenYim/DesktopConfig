@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }: {
 
-    config = lib.mkIf config.apeiron.nixvim.enable 
+    config = lib.mkIf config.apeiron.terminal.nixvim.enable 
     {
         # One of the big advantages of NixVim is how it provides modules for
         # popular vim plugins

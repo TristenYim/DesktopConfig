@@ -1,11 +1,15 @@
 # These are Systemd services that do not need to be enabled system-wide.
 
-{ config, pkgs, lib, myLib, ... }: {
+{ config, pkgs, lib, myLib, ... }: 
+let
+    cfg = config.apeiron.services;
+in
+{
     imports = [
-        ( myLib.home.mkPersistenceModule [ ".config/OpenRGB" ] [ ] [ "openrgb" ] )
+        ( myLib.home.mkPersistenceModule [ ".config/OpenRGB" ] [ ] [ "services" "openrgb" ] )
     ];
 
-    options.apeiron = {
+    options.apeiron.services = {
         mako.enable = lib.mkEnableOption "mako";
         openrgb.enable = lib.mkEnableOption "openrgb profile persistence";
         playerctld.enable = lib.mkEnableOption "playerctld";
@@ -16,7 +20,7 @@
     config = lib.mkMerge
     [
         # mako
-        ( lib.mkIf config.apeiron.mako.enable {
+        ( lib.mkIf cfg.mako.enable {
             services.mako = {
                 enable = true;
                 settings = {
@@ -31,12 +35,12 @@
         })
        
         # playerctld
-        ( lib.mkIf config.apeiron.playerctld.enable {
+        ( lib.mkIf cfg.playerctld.enable {
             services.playerctld.enable = true;
         })
        
         # polkit KDE agent
-        ( lib.mkIf config.apeiron.polkit-agent.enable {
+        ( lib.mkIf cfg.polkit-agent.enable {
             home.packages = [
                 pkgs.polkit_gnome
             ];

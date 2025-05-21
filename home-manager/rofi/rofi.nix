@@ -5,11 +5,11 @@
         ./run.nix 
     ];
 
-    options.apeiron = {
+    options.apeiron.desktop.utilities = {
         rofi.enable = lib.mkEnableOption "Rofi";
     };
  
-    config = lib.mkIf config.apeiron.rofi.enable 
+    config = lib.mkIf config.apeiron.desktop.utilities.rofi.enable 
     {
         programs.rofi = {
             enable = true;

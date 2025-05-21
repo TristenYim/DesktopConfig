@@ -2,11 +2,11 @@
 
 { config, lib, ... }: {
 
-    options.apeiron = {
+    options.apeiron.desktop.utilities = {
         mime.enable = lib.mkEnableOption "MIME app management";
     };
 
-    config = ( lib.mkIf config.apeiron.mime.enable {
+    config = ( lib.mkIf config.apeiron.desktop.utilities.mime.enable {
         xdg.mimeApps = {
             enable = true;
             associations.added = {

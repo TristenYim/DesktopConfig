@@ -2,11 +2,11 @@
 
 {
     # Set a toggle to enable kitty
-    options.apeiron = {
-        kitty.enable = lib.mkEnableOption "kitty";
+    options.apeiron.terminal = {
+        emulators.kitty.enable = lib.mkEnableOption "kitty";
     };
  
-    config = lib.mkIf config.apeiron.kitty.enable 
+    config = lib.mkIf config.apeiron.terminal.emulators.kitty.enable 
     {
         programs.kitty = {
             enable = true;

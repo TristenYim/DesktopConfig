@@ -8,7 +8,7 @@
     config = {
         # Enable custom module options
         apeiron = {
-            neofetch.enable = true;
+            terminal.neofetch.enable = true;
             persistence.enable = true;
             isStandalone = false;
         };

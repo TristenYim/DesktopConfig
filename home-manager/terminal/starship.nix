@@ -1,11 +1,11 @@
 { config, lib, ... }: {
 
     # Set a toggle to enable Starship
-    options.apeiron = {
+    options.apeiron.terminal = {
         starship.enable = lib.mkEnableOption "Starship";
     };
  
-    config = lib.mkIf config.apeiron.starship.enable 
+    config = lib.mkIf config.apeiron.terminal.starship.enable 
     {
         programs.starship = {
             enable = true;

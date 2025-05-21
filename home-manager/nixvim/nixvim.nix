@@ -4,16 +4,16 @@
         ./plugins.nix
 
         # This prevents the spell file from needing to be redownloaded on reboot
-        ( myLib.home.mkPersistenceModule [ ".local/share/nvim/site/spell" ] [ ] [ "nixvim" ] )
+        ( myLib.home.mkPersistenceModule [ ".local/share/nvim/site/spell" ] [ ] [ "terminal" "nixvim" ] )
     ];
 
     # Set a toggle to enable NixVim
     # By default, this is disabled
     options.apeiron = {
-        nixvim.enable = lib.mkEnableOption "NixVim";
+        terminal.nixvim.enable = lib.mkEnableOption "NixVim";
     };
 
-    config = lib.mkIf config.apeiron.nixvim.enable {
+    config = lib.mkIf config.apeiron.terminal.nixvim.enable {
         programs.nixvim = {
             enable = true;
             keymaps = [

@@ -2,11 +2,11 @@
 
     # Set a toggle to enable cursor configuration
     # By default, this is disabled
-    options.apeiron = {
+    options.apeiron.desktop.theme = {
         cursor.enable = lib.mkEnableOption "cursor configuration";
     };
  
-    config = lib.mkIf config.apeiron.cursor.enable 
+    config = lib.mkIf config.apeiron.desktop.theme.cursor.enable 
     {
         home.pointerCursor = {
             name = "Qogir-dark";

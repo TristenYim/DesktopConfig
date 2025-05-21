@@ -4,11 +4,11 @@
 # See https://wiki.hyprland.org/Hypr-Ecosystem/hypridle/ for more info
 
 { config, lib, ... }: {
-    options.apeiron = {
+    options.apeiron.services = {
         hypridle.enable = lib.mkEnableOption "hypridle";
     };
  
-    config = lib.mkIf config.apeiron.hypridle.enable 
+    config = lib.mkIf config.apeiron.services.hypridle.enable 
     {
         services.hypridle = {
             enable = true;

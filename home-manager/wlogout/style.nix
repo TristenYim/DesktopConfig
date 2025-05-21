@@ -3,7 +3,7 @@
         catppuccin = (import ../theme/catppuccin-colors.nix);
     in
 {
-    config = lib.mkIf config.apeiron.wlogout.enable {
+    config = lib.mkIf config.apeiron.desktop.utilities.wlogout.enable {
         programs.wlogout.style = ''
             * {
             	background-image: none;

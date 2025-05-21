@@ -1,10 +1,10 @@
 { config, pkgs, lib, ... }: 
 {
-    options.apeiron = {
+    options.apeiron.desktop.utilities = {
         waybar.enable = lib.mkEnableOption "Waybar";
     };
  
-    config = lib.mkIf config.apeiron.waybar.enable 
+    config = lib.mkIf config.apeiron.desktop.utilities.waybar.enable 
     {
         home = { 
             file = {

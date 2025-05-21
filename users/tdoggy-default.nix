@@ -7,10 +7,13 @@
     # Override local module defaults
     apeiron = {
         xfce.enable = lib.mkDefault true;  
-        bottles.enable = true;
-        prismLauncher.enable = true;
-        steam.enable = true;
-        heroic.enable = true;
+        desktop.applications.bottles.enable = true;
+
+        gaming = {
+            heroic.enable = true;
+            prismLauncher.enable = true;
+            steam.enable = true;
+        };
     };
 
     # Let Home Manager install and manage itself

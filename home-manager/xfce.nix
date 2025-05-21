@@ -1,14 +1,14 @@
 { config, lib, myLib, ... }: {
     imports = [
-        ( myLib.home.mkPersistenceModule [ ] [ ".nvidia-settings-rc" ] [ "xfconf" ] ) # These settings are only relevant for gaming
+        ( myLib.home.mkPersistenceModule [ ] [ ".nvidia-settings-rc" ] [ "desktop" "xfce" "xfconf" ] ) # These settings are only relevant for gaming
     ];
 
     # Set a toggle to override Xfce settings
-    options.apeiron = {
+    options.apeiron.desktop.xfce = {
         xfconf.enable = lib.mkEnableOption "XFCE configuration";
     };
  
-    config = lib.mkIf config.apeiron.xfconf.enable {
+    config = lib.mkIf config.apeiron.desktop.xfce.xfconf.enable {
         xfconf.settings = {
             xfce4-keyboard-shortcuts = {
                 "commands/custom/override" = true;

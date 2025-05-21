@@ -3,15 +3,15 @@
         ./bookmarks-firefox.nix
         ./engines-firefox.nix
 
-        ( myLib.home.mkPersistenceModule [ ".mozilla/firefox/user" ] [ ] [ "firefox" ] ) # Saves user profile
+        ( myLib.home.mkPersistenceModule [ ".mozilla/firefox/user" ] [ ] [ "desktop" "browsers" "firefox" ] ) # Saves user profile
     ];
 
     # Set a toggle to enable Firefox
-    options.apeiron = {
+    options.apeiron.desktop.browsers = {
         firefox.enable = lib.mkEnableOption "Firefox";
     };
     
-    config = lib.mkIf config.apeiron.firefox.enable {
+    config = lib.mkIf config.apeiron.desktop.browsers.firefox.enable {
         programs.firefox = {
             enable = true;
             package = pkgs.firefox-beta;

@@ -2,8 +2,8 @@
 
 { pkgs, myLib, ... }: {
     imports = with pkgs; myLib.mapCalls (myLib.home.mkPkgModule) [
-        [ cryfs [ "cryfs" ] ]
-        [ neofetch [ "neofetch" ] ]
-        [ wl-clipboard-rs [ "wlclip" ] ]
+        [ cryfs [ "terminal" "cryfs" ] ]
+        [ neofetch [ "terminal" "neofetch" ] ]
+        [ wl-clipboard-rs [ "terminal" "wlclip" ] ]
     ];
 }

@@ -10,12 +10,12 @@
         ./environment/env_var_nvidia.nix
     ];
 
-    options.apeiron.hyprland = {
+    options.apeiron.desktop.hyprland = {
         enable = lib.mkEnableOption "Hyprland";
         uglyAFMode.default = lib.mkEnableOption "uglyAFMode in Hyprland by default";
     };
  
-    config = lib.mkIf config.apeiron.hyprland.enable 
+    config = lib.mkIf config.apeiron.desktop.hyprland.enable 
     {
         wayland.windowManager.hyprland = 
         {
@@ -54,7 +54,7 @@
                 ### LOOK AND FEEL ###
                 #####################
 
-                "$uglyAFModeDisabled" = !config.apeiron.hyprland.uglyAFMode.default; # Toggle for animations, shadows, and blur
+                "$uglyAFModeDisabled" = !config.apeiron.desktop.hyprland.uglyAFMode.default; # Toggle for animations, shadows, and blur
 
                 # Refer to https://wiki.hyprland.org/Configuring/Variables/
 

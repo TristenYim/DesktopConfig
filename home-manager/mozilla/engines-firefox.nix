@@ -1,6 +1,6 @@
 { config, lib, ... }: {
 
-    config = lib.mkIf config.apeiron.firefox.enable 
+    config = lib.mkIf config.apeiron.desktop.browsers.firefox.enable 
     {
         programs.firefox.profiles.user.search = {
             force = true;

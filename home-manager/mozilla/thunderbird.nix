@@ -1,15 +1,15 @@
 { config, lib, myLib, ... }: {
     imports = [
-        ( myLib.home.mkPersistenceModule [ ".thunderbird/user" ] [ ] [ "thunderbird" ] )
+        ( myLib.home.mkPersistenceModule [ ".thunderbird/user" ] [ ] [ "desktop" "applications" "thunderbird" ] )
     ];
 
     # Set a toggle to enable Thunderbird
     # By default, this is disabled
-    options.apeiron = {
+    options.apeiron.desktop.applications = {
         thunderbird.enable = lib.mkEnableOption "Thunderbird";
     };
  
-    config = lib.mkIf config.apeiron.thunderbird.enable {
+    config = lib.mkIf config.apeiron.desktop.applications.thunderbird.enable {
         programs.thunderbird = {
             enable = true;
             profiles.user = {
