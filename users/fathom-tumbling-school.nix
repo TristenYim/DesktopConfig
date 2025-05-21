@@ -24,6 +24,8 @@
             hyprland.uglyAFMode.default = true;
         };
 
+        programs.nixvim.plugins.orgmode.settings.org_agenda_files = "/home/fathom/Documents/Sync/Notes/Todo.org";
+
         wayland.windowManager.hyprland = {
             settings = {
                 ################
