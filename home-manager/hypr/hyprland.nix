@@ -174,6 +174,7 @@
 
                 # See https://wiki.hyprland.org/Configuring/Variables/#misc for all options
                 misc = {
+                    enable_anr_dialog = false;
                     force_default_wallpaper = 2;
                     disable_autoreload = true;
                 };

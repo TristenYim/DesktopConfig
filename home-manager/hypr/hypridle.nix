@@ -14,19 +14,19 @@
             enable = true;
             settings = {
                 general = {
-                    lock_cmd = "swaylock";
+                    lock_cmd = "pidof swaylock || swaylock";
                     before_sleep_cmd = "loginctl lock-session";
-                    after_sleep_cmd = "hyprctl dispatch dpms on";
+                    after_sleep_cmd = "hyprctl dispatch dpms on${if config.apeiron.services.openrgb.enable then " & openrgb --profile latest" else ""}";
                 };
                 listener = [
                     {
                         timeout = 300;
-                        on-timeout = "swaylock";
+                        on-timeout = "loginctl lock-session";
                     }
                     {
                         timeout = 600;
-                        on-timeout = "hyprctl dispatch dpms off & killall slack & killall Discord";
-                        on-resume = "hyprctl dispatch dpms on";
+                        on-timeout = "killall -SIGSTOP slack & killall -SIGSTOP Discord & hyprctl dispatch dpms off${if config.apeiron.services.openrgb.enable then " & (openrgb --save-profile latest && openrgb --profile alloff)" else ""}";
+                        on-resume = "killall -SIGCONT slack & killall -SIGCONT Discord & hyprctl dispatch dpms on${if config.apeiron.services.openrgb.enable then " & openrgb --profile latest" else ""}";
                     }
                 ];
             };
