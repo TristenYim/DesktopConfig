@@ -33,6 +33,7 @@ in
         # the entirety of inputs as an argument.
         specialArgs = {
             hyprland = inputs.hyprland;
+            nixos-hardware = inputs.nixos-hardware;
             inherit myLib pkgs-stable;
         };
 

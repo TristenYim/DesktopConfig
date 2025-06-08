@@ -12,6 +12,10 @@
                 tdoggy = flakeHelper.mkUser.module ./users/tdoggy-unfathomable-main.nix;
             };
 
+            sklodowska-curie = flakeHelper.mkHost ./hosts/sklodowska-curie/configuration.nix {
+                fathom = flakeHelper.mkUser.module ./users/fathom-sklodowska-curie.nix;
+            };
+
             # Portable ISO configuration
             shallow-ISO = flakeHelper.mkHost ./hosts/shallow-ISO/configuration.nix {
                 nixos = flakeHelper.mkUser.module ./users/nixos-shallow-ISO.nix;
@@ -31,6 +35,7 @@
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
         nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11-small";
+        nixos-hardware.url = "github:NixOS/nixos-hardware/master";
         impermanence.url = "github:nix-community/impermanence";
         catppuccin = {
             url = "github:catppuccin/nix";
