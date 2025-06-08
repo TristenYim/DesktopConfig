@@ -52,7 +52,7 @@
         hyprland = {
             type = "git";
             url = "https://github.com/hyprwm/Hyprland";
-            ref = "refs/tags/v0.48.1";
+            ref = "refs/tags/v0.49.0";
             inputs.nixpkgs.follows = "nixpkgs";
         };
         hycov = {
@@ -63,14 +63,13 @@
             # Experimenting with using Hyprspace alongside or as a replacement to hycov
             type = "git";
             url = "https://github.com/KZDKM/Hyprspace";
-            rev = "5b62529c2011ede6069445de9b5b3f8a1f10ecfe"; # Pinning version until I update Hyprland
             inputs.hyprland.follows = "hyprland";
         };
         hyprsplit = {
             # Numbers workspaces per-monitor instead of globally
             type = "git";
             url = "https://github.com/shezdy/hyprsplit";
-            ref = "refs/tags/v0.48.1";
+            ref = "refs/tags/v0.49.0";
             inputs.hyprland.follows = "hyprland";
         };
         nixgl = {

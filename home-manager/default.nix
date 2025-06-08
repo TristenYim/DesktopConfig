@@ -126,7 +126,8 @@
                         enable = lib.mkDefault true;
                         binds.default = lib.mkDefault true;
                         plugins = {
-                            hycov.enable = lib.mkDefault true;
+                            # Hycov is broken yet again. It's probably time to delete it soon.
+                            # hycov.enable = lib.mkDefault true;
                             hyprspace.enable = lib.mkDefault true;
                             hyprsplit.enable = lib.mkDefault true;
                         };
