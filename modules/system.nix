@@ -87,4 +87,7 @@
     # networking.firewall.allowedUDPPorts = lib.mkDefault [ ... ];
     # Or disable the firewall altogether
     # networking.firewall.enable = lib.mkDefault false;
+
+    # Compress memory through zram instead of writing to a swap file
+    zramSwap.enable = true;
 }
