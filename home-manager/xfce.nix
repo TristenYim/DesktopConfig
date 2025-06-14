@@ -30,5 +30,11 @@
                 "Net/ThemeName" = "catppuccin-mocha-lavender-standard+default";
             };
         };
+
+        # Setting display settings declaratively doesn't make sense when
+        # it's so setup-dependent, so it is being persisted instead.
+        home.persistence."/pers/${config.home.homeDirectory}" = lib.mkIf config.apeiron.persistence.enable {
+            files = [ ".config/xfce4/xfconf/xfce-perchannel-xml/displays.xml" ];
+        };
     };
 }

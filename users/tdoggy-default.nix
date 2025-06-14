@@ -1,4 +1,4 @@
-{ lib, ... }: 
+{ config, lib, ... }: 
 {
     imports = [
         ../home-manager/default.nix
@@ -29,5 +29,10 @@
         };
     
         stateVersion = lib.mkDefault "24.05"; 
+
+        # Game-specific persistence
+        persistence."/pers/home/tdoggy" = lib.mkIf config.apeiron.persistence.enable {
+            directories = [ ".local/share/PUNKCAKE Delicieux/Shotgun King - The Final Checkmate" ];
+        };
     };
 }
