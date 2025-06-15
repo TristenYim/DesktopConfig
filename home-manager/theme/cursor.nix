@@ -9,7 +9,8 @@
     config = lib.mkIf config.apeiron.desktop.theme.cursor.enable 
     {
         home.pointerCursor = {
-            name = "Qogir-dark";
+            enable = true;
+            name = "Qogir-Dark";
             package = pkgs.qogir-icon-theme;
             size = 24;
             x11.enable = true;
