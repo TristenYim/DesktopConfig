@@ -16,7 +16,7 @@
                 extraConfig = {
                     safe = {
                         directory = [
-                            "/etc/nixos"
+                            "/etc/nixos/source"
                             "/media/Hdd/SchoolNotes"
                         ];
                     };

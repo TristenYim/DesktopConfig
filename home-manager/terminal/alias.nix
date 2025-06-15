@@ -7,12 +7,21 @@
  
     config = lib.mkIf config.apeiron.terminal.alias.enable 
     {
-        home.shellAliases = {
+        home.shellAliases = let
+            # Prevents annoying git flake errors by copying the entire
+            # flake (minus git files and the result symlink) to a build 
+            # directory outside the repo before building.
+
+            # $FLAKE specifies the root directory of the configuration,
+            # with $FLAKE/source containing the repo for this flake and
+            # $FLAKE/build containing the temporary build files
+            wrapBuild = buildCommand: "rm -rf $FLAKE/build && mkdir $FLAKE/build && find $FLAKE/source -maxdepth 1 ! -name \".*\" ! -name result -exec cp -r {} $FLAKE/build \\; && ${buildCommand} --flake $FLAKE/build";
+        in {
             sudo = "sudo ";
-            hms = "home-manager switch --flake $FLAKE --impure";
-            nrb = "nixos-rebuild boot --flake $FLAKE";
-            nrs = "nixos-rebuild switch --flake $FLAKE";
-            nrt = "nixos-rebuild test --flake $FLAKE";
+            hms = wrapBuild "home-manager switch --impure";
+            nrb = wrapBuild "sudo nixos-rebuild boot";
+            nrs = wrapBuild "sudo nixos-rebuild switch";
+            nrt = wrapBuild "sudo nixos-rebuild test";
             ngl = "nix-env --list-generations --profile /nix/var/nix/profiles/system";
             ngd = "nix-env --delete-generations --profile /nix/var/nix/profiles/system";
             nf = "${pkgs.unchartedScripts}/bin/nix-find-impermanent";
