@@ -55,10 +55,6 @@
             ref = "refs/tags/v0.49.0";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        hycov = {
-            url = "github:bighu630/hycov"; # Using a fork which actually builds with Nix
-            inputs.hyprland.follows = "hyprland";
-        };
         hyprspace = {
             # Experimenting with using Hyprspace alongside or as a replacement to hycov
             type = "git";

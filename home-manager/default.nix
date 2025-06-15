@@ -128,15 +128,12 @@
                         enable = lib.mkDefault true;
                         binds.default = lib.mkDefault true;
                         plugins = {
-                            # Hycov is broken yet again. It's probably time to delete it soon.
-                            # hycov.enable = lib.mkDefault true;
                             hyprspace.enable = lib.mkDefault true;
                             hyprsplit.enable = lib.mkDefault true;
                         };
                     };
 
                     utilities = {
-                        # copyq.enable = lib.mkDefault true;
                         feh.enable = lib.mkDefault true;
                         rofi.enable = lib.mkDefault true;
                         screenshot.enable = lib.mkDefault true;

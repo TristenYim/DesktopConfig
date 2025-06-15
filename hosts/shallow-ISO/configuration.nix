@@ -64,11 +64,7 @@
         users.fathom.enable = false;
 
         flatpak.enable = false;
-        nixos-cli.enable = false;
         swaylock.enable = false;
-
-        # DO NOT ENABLE ENVFS IT WILL SCREW UP EVERYTHING
-        envfs.enable = false;
     };
 
     environment.defaultPackages = [

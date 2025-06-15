@@ -26,12 +26,10 @@
             apeiron = {
                 btop.enable = lib.mkDefault true;
                 catppuccin-local.enable = lib.mkDefault true;
-                envfs.enable = lib.mkDefault true;
                 fd.enable = lib.mkDefault true;
                 flatpak.enable = lib.mkDefault true;
                 killall.enable = lib.mkDefault true;
                 nerdfonts.enable = lib.mkDefault true;
-                # pulse.enable = lib.mkDefault true;
                 pipewire.enable = lib.mkDefault true;
                 ranger.enable = lib.mkDefault true;
                 sddm.enable = lib.mkDefault true;

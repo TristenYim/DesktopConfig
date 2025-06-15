@@ -21,13 +21,7 @@
                     thunderbird.enable = false;
                 };
 
-                # For some reason, hycov is broken on the USB. Oh well
-                hyprland.plugins.hycov.enable = false;
-
-                utilities = {
-                    copyq.enable = false;
-                    swaylock.enable = false;
-                };
+                utilities.swaylock.enable = false;
             };
 
             terminal = {

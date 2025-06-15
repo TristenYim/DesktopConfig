@@ -203,36 +203,6 @@
         "type": "github"
       }
     },
-    "hycov": {
-      "inputs": {
-        "hyprland": [
-          "hyprland"
-        ],
-        "nixpkgs": [
-          "hycov",
-          "hyprland",
-          "nixpkgs"
-        ],
-        "systems": [
-          "hycov",
-          "hyprland",
-          "systems"
-        ]
-      },
-      "locked": {
-        "lastModified": 1738584259,
-        "narHash": "sha256-zr+dZm4Q9XXo96FO6r+AgsFLNNmufm7gQi1OBDNLqww=",
-        "owner": "bighu630",
-        "repo": "hycov",
-        "rev": "663f9ba00c36ff48fb251b34ee1e55b96887e032",
-        "type": "github"
-      },
-      "original": {
-        "owner": "bighu630",
-        "repo": "hycov",
-        "type": "github"
-      }
-    },
     "hyprcursor": {
       "inputs": {
         "hyprlang": [
@@ -744,7 +714,6 @@
         "catppuccin": "catppuccin",
         "firefox-addons": "firefox-addons",
         "home-manager": "home-manager",
-        "hycov": "hycov",
         "hyprland": "hyprland",
         "hyprspace": "hyprspace",
         "hyprsplit": "hyprsplit",

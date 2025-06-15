@@ -16,10 +16,8 @@
     ];
 
     options.apeiron = {
-        envfs.enable = lib.mkEnableOption "envfs";
         flatpak.enable = lib.mkEnableOption "flatpak";
         openrgb.enable = lib.mkEnableOption "openrgb";
-        pulse.enable = lib.mkEnableOption "PulseAudio";
         pipewire.enable = lib.mkEnableOption "PipeWire";
         sddm.enable = lib.mkEnableOption "SDDM";
         syncthing.enable = lib.mkEnableOption "syncthing";
@@ -40,11 +38,6 @@
             };
         }
 
-        # Envfs, restores some FHS compliance
-        ( lib.mkIf config.apeiron.envfs.enable {
-            services.envfs.enable = true;
-        })
-
         # Flatpak, alternative package installer
         ( lib.mkIf config.apeiron.flatpak.enable {
             services.flatpak.enable = true;
@@ -61,21 +54,6 @@
         # openrgb, allows controlling connected RGB devices
         ( lib.mkIf config.apeiron.openrgb.enable {
             services.hardware.openrgb.enable = true;
-        })
-
-        # Pulseaudio, sound server
-        ( lib.mkIf config.apeiron.pulse.enable {
-            hardware.pulseaudio = {
-                enable = true;
-                package = pkgs.pulseaudioFull;
-                support32Bit = true;
-            };
-            nixpkgs.config.pulseaudio = true;
-
-            environment.systemPackages = [
-                pkgs.pavucontrol
-                pkgs.pamixer
-            ];
         })
 
         # PipeWire, the better sound server and more

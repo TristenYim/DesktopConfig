@@ -15,7 +15,6 @@ let
     extraSpecialArgs = {
         firefox-addons = inputs.firefox-addons;
         hyprland = inputs.hyprland;
-        hycov = inputs.hycov;
         hyprspace = inputs.hyprspace;
         hyprsplit = inputs.hyprsplit;
         nixgl = inputs.nixgl;
