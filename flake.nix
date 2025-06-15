@@ -23,9 +23,6 @@
         };
 
         homeConfigurations = {
-            # Machine-specific standalone configurations
-            "fathom@tumbling-school" = flakeHelper.mkUser.standalone ./users/fathom-tumbling-school.nix;
-
             # Default user configurations
             fathom = flakeHelper.mkUser.standalone ./users/fathom-default.nix;
             tdoggy = flakeHelper.mkUser.standalone ./users/tdoggy-default.nix;
