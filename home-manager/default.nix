@@ -83,6 +83,7 @@
                     cryfs.enable = lib.mkDefault true;
                     git.enable = lib.mkDefault true;
                     nixvim.enable = lib.mkDefault true;
+                    optnix.enable = lib.mkDefault true;
                     ranger.enable = lib.mkDefault true;
                     starship.enable = lib.mkDefault true;
                     wlclip.enable = lib.mkDefault true;

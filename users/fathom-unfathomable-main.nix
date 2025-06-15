@@ -19,7 +19,10 @@
 
             services.openrgb.enable = true;
 
-            terminal.neofetch.enable = true;
+            terminal = {
+                neofetch.enable = true;
+                optnix.hostname = "unfathomable-main";
+            };
 
             work.darktable.enable = true;
         };
