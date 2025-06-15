@@ -18,7 +18,6 @@
     options.apeiron = {
         envfs.enable = lib.mkEnableOption "envfs";
         flatpak.enable = lib.mkEnableOption "flatpak";
-        nixos-cli.enable = lib.mkEnableOption "nixos-cli";
         openrgb.enable = lib.mkEnableOption "openrgb";
         pulse.enable = lib.mkEnableOption "PulseAudio";
         pipewire.enable = lib.mkEnableOption "PipeWire";
@@ -56,13 +55,6 @@
                     pkgs.kdePackages.xdg-desktop-portal-kde 
                 ];
                 config.common.default = "gtk";
-            };
-        })
-
-        # nixos-cli, adds a better cli for NixOS operations
-        ( lib.mkIf config.apeiron.nixos-cli.enable {
-            services.nixos-cli = {
-                enable = true;
             };
         })
 

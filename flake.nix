@@ -76,10 +76,6 @@
             url = "github:johanneshorner/nixGL";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        nixos-cli = {
-            url = "github:water-sucks/nixos";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
         nixvim = {
             url = "github:nix-community/nixvim";
             inputs.nixpkgs.follows = "nixpkgs";

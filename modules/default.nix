@@ -31,7 +31,6 @@
                 flatpak.enable = lib.mkDefault true;
                 killall.enable = lib.mkDefault true;
                 nerdfonts.enable = lib.mkDefault true;
-                # nixos-cli.enable = lib.mkDefault true; # Disabled until build issues can get fixed
                 # pulse.enable = lib.mkDefault true;
                 pipewire.enable = lib.mkDefault true;
                 ranger.enable = lib.mkDefault true;

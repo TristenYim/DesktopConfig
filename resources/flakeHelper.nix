@@ -41,7 +41,6 @@ in
             # Modules to be included for all hosts
             inputs.catppuccin.nixosModules.catppuccin
             inputs.impermanence.nixosModules.impermanence
-            inputs.nixos-cli.nixosModules.nixos-cli
 
             # Include Home Manager configurations
             inputs.home-manager.nixosModules.home-manager {
