@@ -21,6 +21,7 @@
         ./terminal/basic-packages.nix
         ./terminal/git.nix
         ./terminal/kitty.nix
+        ./terminal/optnix.nix
         ./terminal/ranger.nix
         ./terminal/starship.nix
         ./terminal/zsh.nix

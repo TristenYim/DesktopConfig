@@ -80,5 +80,9 @@
             url = "github:nix-community/nixvim";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        optnix = {
+            url = "github:water-sucks/optnix";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 }

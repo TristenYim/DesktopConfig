@@ -19,6 +19,7 @@ let
         hyprspace = inputs.hyprspace;
         hyprsplit = inputs.hyprsplit;
         nixgl = inputs.nixgl;
+        optnix = inputs.optnix;
         inherit myLib pkgs-stable;
     };
 in
