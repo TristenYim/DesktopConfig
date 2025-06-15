@@ -8,7 +8,7 @@ let
     # Defines options for wine bottles in ethanol
     bottleType = lib.types.submodule {
         options = {
-            enable = "this bottle in ethanol.";
+            enable = lib.mkEnableOption "this bottle in ethanol.";
             winePackage = lib.mkPackageOption pkgs "wineWowPackages.unstableFull" { };
             initScript = lib.mkOption {
                 type = lib.types.lines;
