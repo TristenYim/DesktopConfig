@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, optnix, ... }: {
 
     # Set a toggle to enable alias config 
     options.apeiron.terminal = {
@@ -25,10 +25,12 @@
             ngl = "nix-env --list-generations --profile /nix/var/nix/profiles/system";
             ngd = "nix-env --delete-generations --profile /nix/var/nix/profiles/system";
             nf = "${pkgs.unchartedScripts}/bin/nix-find-impermanent";
+            noh = "${optnix.packages.${pkgs.system}.optnix}/bin/optnix -i -s home";
+            non = "${optnix.packages.${pkgs.system}.optnix}/bin/optnix -i -s nixos";
             rr = "${pkgs.unchartedScripts}/bin/resize-root";
         };
         programs.zsh = {
-            initExtra = 
+            initContent = 
             ''
                 function nixShellPackages() {
                     packages=""
