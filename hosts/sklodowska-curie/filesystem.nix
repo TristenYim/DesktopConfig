@@ -33,5 +33,7 @@ in
         "/nix" = mkZfsMount "nix";
 
         "/pers" = mkZfsMount "encrypted/persistent";
+
+        "/pers/home" = mkZfsMount "encrypted/home";
     };
 }

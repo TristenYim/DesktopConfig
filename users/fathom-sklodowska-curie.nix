@@ -8,7 +8,7 @@
     config = {
         # Enable custom module options
         apeiron = {
-            # persistence.enable = true;
+            persistence.enable = true;
             isStandalone = false;
         };
 
