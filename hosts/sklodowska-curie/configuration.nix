@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ nixos-hardware, ... }:
+{ pkgs, nixos-hardware, ... }:
 
 {
     imports =
@@ -13,6 +13,8 @@
         ./../../secrets/nixos.nix # This contains information that's too sensitive to put on github
         nixos-hardware.nixosModules.hp-elitebook-845g8
     ];
+
+    boot.kernelPackages = pkgs.linuxPackages; # zfs is currently broken in the latest kernel
 
     networking.hostName = "sklodowska-curie"; # Define your hostname
 
