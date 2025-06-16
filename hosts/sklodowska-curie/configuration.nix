@@ -26,6 +26,7 @@
     apeiron = {
         hyprDE.enable = true;
         persistence.enable = true;
+        wifi.enable = true;
     };
 
     # This value determines the NixOS release from which the default

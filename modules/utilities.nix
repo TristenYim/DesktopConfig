@@ -4,6 +4,7 @@
     imports = with pkgs; [
         ( myLib.nixos.mkPersistenceModule [ "/var/lib/flatpak" ] [ ] [ "flatpak" ] )
         ( myLib.nixos.mkPersistenceModule [ { directory = "/var/lib/syncthing"; user = "syncthing"; group = "syncthing"; mode = "700"; } ] [ ] [ "syncthing" ] )
+        ( myLib.nixos.mkPersistenceModule [ "/etc/NetworkManager/system-connections" ] [ ] [ "wifi" ] )
     ]
     ++ myLib.mapCalls (myLib.nixos.mkPkgModule)
     [
@@ -21,6 +22,7 @@
         pipewire.enable = lib.mkEnableOption "PipeWire";
         sddm.enable = lib.mkEnableOption "SDDM";
         syncthing.enable = lib.mkEnableOption "syncthing";
+        wifi.enable = lib.mkEnableOption "wifi";
     };
 
     # Allows us to combine multiple modules into one file
