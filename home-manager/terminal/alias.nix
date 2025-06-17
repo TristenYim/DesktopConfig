@@ -19,6 +19,7 @@
         in {
             sudo = "sudo ";
             hms = wrapBuild "home-manager switch --impure";
+            ncd = "cd $FLAKE/source";
             nrb = wrapBuild "sudo nixos-rebuild boot";
             nrs = wrapBuild "sudo nixos-rebuild switch";
             nrt = wrapBuild "sudo nixos-rebuild test";
