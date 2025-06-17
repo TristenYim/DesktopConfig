@@ -27,22 +27,8 @@
             nf = "${pkgs.unchartedScripts}/bin/nix-find-impermanent";
             noh = "${optnix.packages.${pkgs.system}.optnix}/bin/optnix -i -s home";
             non = "${optnix.packages.${pkgs.system}.optnix}/bin/optnix -i -s nixos";
+            ns = "${pkgs.unchartedScripts}/bin/nix-shell-from-nixpkgs $FLAKE/build";
             rr = "${pkgs.unchartedScripts}/bin/resize-root";
-        };
-        programs.zsh = {
-            initContent = 
-            ''
-                function nixShellPackages() {
-                    packages=""
-                    for package in "$@"; do
-                        packages+=" nixpkgs#$package"
-                    done
-                    eval nix shell --inputs-from $FLAKE $packages
-                }
-            '';
-            shellAliases = {
-                ns = "nixShellPackages";
-            };
         };
     };
 }
