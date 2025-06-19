@@ -21,9 +21,11 @@
         ./terminal/basic-packages.nix
         ./terminal/git.nix
         ./terminal/kitty.nix
+        ./terminal/nix-search-tv.nix
         ./terminal/optnix.nix
         ./terminal/ranger.nix
         ./terminal/starship.nix
+        ./terminal/television.nix
         ./terminal/zsh.nix
         ./nixvim/nixvim.nix
         ./rofi/rofi.nix
@@ -91,6 +93,11 @@
                     shells = {
                         bash.enable = lib.mkDefault true;
                         zsh.enable = lib.mkDefault true;
+                    };
+
+                    television = {
+                        enable = true;
+                        nix-search-tv.enable = true;
                     };
                 };
 

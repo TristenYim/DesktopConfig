@@ -29,6 +29,7 @@
             noh = "${optnix.packages.${pkgs.system}.optnix}/bin/optnix -i -s home";
             non = "${optnix.packages.${pkgs.system}.optnix}/bin/optnix -i -s nixos";
             ns = "${pkgs.unchartedScripts}/bin/nix-shell-from-nixpkgs $FLAKE/build";
+            np = "tv pkgs";
             rr = "${pkgs.unchartedScripts}/bin/resize-root";
         };
     };
