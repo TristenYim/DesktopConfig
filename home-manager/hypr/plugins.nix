@@ -24,11 +24,16 @@ in
                 ];
 
                 settings = {
-                    bind = helpers.bindWithManyDispatchers ", ALT_L" [ "overview:open, all" "submap, altl" ];
+                    bind = helpers.bindWithManyDispatchers ", ALT_L" [ "overview:open, all" "exec, hyprctl keyword general:gaps_out 10,170,190,170" "submap, altl" ];
                     
                     plugin.overview = {
+                        affectStrut = false;
                         autoScroll = false;
                         exitOnClick = false;
+                        exitKey = "";
+                        hideRealLayers = false;
+                        onBottom = true;
+                        panelHeight = 180;
                         switchOnDrop = true;
                         showNewWorkspace = false;
                         showEmptyWorkspace = false;
@@ -40,6 +45,7 @@ in
                     (
                         # Exit overview
                         helpers.bindsWithSameDispatcher [ ", ESCAPE" ", ALT_L" ", ENTER" ", SUPER_L" ] "overview:close, all"
+                        ++ helpers.bindsWithSameDispatcher [ ", ESCAPE" ", ALT_L" ", ENTER" ", SUPER_L" ] "exec, hyprctl keyword general:gaps_out ${builtins.toString config.wayland.windowManager.hyprland.settings.general.gaps_out}"
                         ++ helpers.bindsWithSameDispatcher [ ", ESCAPE" ", ALT_L" ", ENTER" ", SUPER_L" ] "submap, reset"
 
                         ++ windowBinds.allBinds
