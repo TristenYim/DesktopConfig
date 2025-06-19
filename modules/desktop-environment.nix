@@ -51,12 +51,7 @@
 
         # Hyprland
         ( lib.mkIf config.apeiron.hyprland.enable {
-            programs.hyprland = {
-                enable = true;
-                package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-                portalPackage = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-                # package = pkgs.hyprland;
-            };
+            programs.hyprland.enable = true;
         })
 
         # Nerd Fonts

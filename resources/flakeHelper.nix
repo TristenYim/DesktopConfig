@@ -14,9 +14,6 @@ let
     # Same as specialArgs but for Home Manager
     extraSpecialArgs = {
         firefox-addons = inputs.firefox-addons;
-        hyprland = inputs.hyprland;
-        hyprspace = inputs.hyprspace;
-        hyprsplit = inputs.hyprsplit;
         nixgl = inputs.nixgl;
         optnix = inputs.optnix;
         inherit myLib pkgs-stable;
@@ -32,7 +29,6 @@ in
         # each module to explicitly state its dependencies, rather than take
         # the entirety of inputs as an argument.
         specialArgs = {
-            hyprland = inputs.hyprland;
             nixos-hardware = inputs.nixos-hardware;
             inherit myLib pkgs-stable;
         };
@@ -61,7 +57,6 @@ in
         userImports = [
             inputs.catppuccin.homeModules.catppuccin
             inputs.nixvim.homeManagerModules.nixvim
-            inputs.hyprland.homeManagerModules.default
 
             # Note: Impermanence will not function in standalone mode, but still must be imported to build
             inputs.impermanence.nixosModules.home-manager.impermanence

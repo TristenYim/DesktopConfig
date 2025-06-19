@@ -46,25 +46,6 @@
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        hyprland = {
-            type = "git";
-            url = "https://github.com/hyprwm/Hyprland";
-            ref = "refs/tags/v0.49.0";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-        hyprspace = {
-            # Experimenting with using Hyprspace alongside or as a replacement to hycov
-            type = "git";
-            url = "https://github.com/KZDKM/Hyprspace";
-            inputs.hyprland.follows = "hyprland";
-        };
-        hyprsplit = {
-            # Numbers workspaces per-monitor instead of globally
-            type = "git";
-            url = "https://github.com/shezdy/hyprsplit";
-            ref = "refs/tags/v0.49.0";
-            inputs.hyprland.follows = "hyprland";
-        };
         nixgl = {
             url = "github:johanneshorner/nixGL";
             inputs.nixpkgs.follows = "nixpkgs";

@@ -22,7 +22,7 @@
             enable = true;
             package = 
               let
-                unwrapped = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+                unwrapped = pkgs.hyprland;
               in 
                 if config.apeiron.nixGL.enable then config.lib.nixGL.wrap unwrapped else unwrapped;
 

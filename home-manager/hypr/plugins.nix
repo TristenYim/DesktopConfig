@@ -20,7 +20,7 @@ in
         ( lib.mkIf cfg.hyprspace.enable {
             wayland.windowManager.hyprland = {
                 plugins = [
-                    hyprspace.packages.${pkgs.system}.Hyprspace
+                    pkgs.hyprlandPlugins.hyprspace
                 ];
 
                 settings = {
@@ -30,7 +30,7 @@ in
                         affectStrut = false;
                         autoScroll = false;
                         exitOnClick = false;
-                        exitKey = "";
+                        exitKey = 0;
                         hideRealLayers = false;
                         onBottom = true;
                         panelHeight = 180;
@@ -63,7 +63,7 @@ in
 
         ( lib.mkIf cfg.hyprsplit.enable {
             wayland.windowManager.hyprland.plugins = [
-                hyprsplit.packages.${pkgs.system}.hyprsplit
+                pkgs.hyprlandPlugins.hyprsplit
             ];
         })
     ];
