@@ -31,6 +31,7 @@
         ./rofi/rofi.nix
         ./theme/catppuccin.nix
         ./theme/cursor.nix
+        ./theme/font.nix
         ./theme/gtk.nix
         ./theme/qt.nix
         ./waybar/waybar.nix
@@ -138,6 +139,11 @@
                             hyprspace.enable = lib.mkDefault true;
                             hyprsplit.enable = lib.mkDefault true;
                         };
+                    };
+
+                    theme.fonts = {
+                        enable = true;
+                        merienda.enable = true;
                     };
 
                     utilities = {

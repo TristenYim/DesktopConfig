@@ -16,7 +16,6 @@
                 "Videos"
 
                 ".ssh" # Stores a lot of information, including github keys and trusted host
-                ".local/share/fonts" # Local fonts
                 ".local/state/wireplumber" # Audio settings, includes volume and gain per-device
             ];
             files = [
