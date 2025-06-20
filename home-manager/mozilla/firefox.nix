@@ -44,6 +44,7 @@
                     "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
                     "browser.preferences.defaultPerformanecSettings.enabled" = false;
                     "browser.search.suggest.enabled.private" = true;
+                    "browser.shell.checkDefaultBrowser" = false;
                     "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
                     "browser.urlbar.suggest.quicksuggest.sponsored" = false;
                     "datareporting.healthreport.uploadEnabled" = false;
@@ -68,6 +69,11 @@
             policies = {
                 AutofillAddressEnabled = false;
                 AutofillCreditCardEnabled = false;
+                Cookies.Allow = [
+                    "https://bitwarden.com"
+                    "https://search.brave.com"
+                    "https://proton.me"
+                ];
                 DisablePocket = true;
                 DisableTelemetry = true;
                 EnableTrackingProtection = true;
