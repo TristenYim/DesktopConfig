@@ -34,6 +34,10 @@
         nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11-small";
         nixos-hardware.url = "github:NixOS/nixos-hardware/master";
         impermanence.url = "github:nix-community/impermanence";
+        betterfox = {
+            url = "github:HeitorAugustoLN/betterfox-nix";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
         catppuccin = {
             url = "github:catppuccin/nix";
             inputs.nixpkgs.follows = "nixpkgs";

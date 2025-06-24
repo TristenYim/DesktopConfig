@@ -14,15 +14,23 @@
     config = lib.mkIf config.apeiron.desktop.browsers.firefox.enable {
         programs.firefox = {
             enable = true;
+            betterfox.enable = true;
             package = pkgs.firefox-beta;
 
             # This "user" profile will be automatically added by home manager.
             profiles.user = {
+                betterfox = {
+                    enable = true;
+                    enableAllSections = true;
+                };
+
                 extensions.packages = with firefox-addons.packages."x86_64-linux"; [
                     bitwarden
+                    canvasblocker
                     dearrow
                     ublacklist
                     ublock-origin
+                    user-agent-string-switcher
                     sponsorblock
                     web-scrobbler
                 ];
@@ -36,27 +44,20 @@
                     "gfx.x11-egl.force-enabled" = true;
                     "media.ffmpeg.vaapi.enabled" = true;
 
-                    "app.shield.optoutstudies.enabled" = false;
-                    "browser.aboutConfig.showWarning" = false;
-                    "browser.discovery.enabled" = false;
                     "browser.download.useDownloadDir" = false;
                     "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
-                    "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
-                    "browser.preferences.defaultPerformanecSettings.enabled" = false;
+                    "browser.preferences.defaultPerformanceSettings.enabled" = false;
                     "browser.search.suggest.enabled.private" = true;
-                    "browser.shell.checkDefaultBrowser" = false;
                     "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
                     "browser.urlbar.suggest.quicksuggest.sponsored" = false;
-                    "datareporting.healthreport.uploadEnabled" = false;
-                    "extensions.pocket.enabled" = false;
                     "extensions.autoDisableScopes" = 0;
                     "extensions.formautofill.addresses.enabled" = false;
                     "extensions.formautofill.creditCards.enabled" = false;
                     "geo.enabled" = false;
                     "signon.rememberSignons" = false;
-                    "privacy.firstparty.isolate" = true;
                     "privacy.donottrackheader.enabled" = true;
-                    "privacy.globalprivacycontrol.enabled" = true;
+                    "privacy.fingerprintingProtection" = true;
+                    "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme";
                     "privacy.sanitize.sanitizeOnShutdown" = true;
                     "pref.privacy.disable_button.view_passwords" = false;
                     "trailhead.firstrun.didSeeAboutWelcome" = true;

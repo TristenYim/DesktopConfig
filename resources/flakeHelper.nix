@@ -56,6 +56,7 @@ in
         # Modules to be imported for all users
         userImports = [
             inputs.catppuccin.homeModules.catppuccin
+            inputs.betterfox.homeManagerModules.betterfox
             inputs.nixvim.homeManagerModules.nixvim
 
             # Note: Impermanence will not function in standalone mode, but still must be imported to build
