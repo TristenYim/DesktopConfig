@@ -26,6 +26,7 @@
               in 
                 if config.apeiron.nixGL.enable then config.lib.nixGL.wrap unwrapped else unwrapped;
 
+            systemd.enable = false; # Required for UWSM
             settings = 
             {
                 # Please note not all available settings / options are set here.
@@ -33,22 +34,6 @@
                 # https://wiki.hyprland.org/Configuring/Configuring-Hyprland/
 
                 # Monitors must be manually configured per-computer, and is not included in the repo
-
-                #################
-                ### AUTOSTART ###
-                #################
-
-                # Autostart necessary processes (like notifications daemons, status bars, etc.)
-                # Or execute your favorite apps at launch like this:
-
-                exec-once = [
-                    "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-                    "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-                    "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
-                    "blueman-applet"
-                    "nm-applet --indicator"
-                    "wl-paste --watch cliphist store"
-                ];
 
                 #####################
                 ### LOOK AND FEEL ###

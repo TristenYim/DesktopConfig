@@ -1,4 +1,4 @@
-{ config, pkgs, lib, myLib, hyprland, ... }: 
+{ config, pkgs, lib, myLib, ... }: 
 
 {
     imports = with pkgs; [
@@ -51,7 +51,10 @@
 
         # Hyprland
         ( lib.mkIf config.apeiron.hyprland.enable {
-            programs.hyprland.enable = true;
+            programs.hyprland = {
+                enable = true;
+                withUWSM = true;
+            };
         })
 
         # Nerd Fonts

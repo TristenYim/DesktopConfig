@@ -60,12 +60,12 @@
             # See https://wiki.hyprland.org/Configuring/Workspace-Rules/ for more info
             workspace = [
                 "1, monitor:$mon1, default:true"
-                "name:CHAT, monitor:$mon1, on-created-empty:hyprctl dispatch exec slack && flatpak run --branch=stable --arch=x86_64 --command=com.discordapp.Discord com.discordapp.Discord --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto"
-                "name:MAIL, monitor:$mon1, on-created-empty:hyprctl dispatch exec thunderbird"
-                "special:BTOP, on-created-empty: [maximize] kitty btop"
-                "special:CIDER, on-created-empty: [float; size 1000 800; move 10 50] cider"
-                "special:CONFIG, on-created-empty: [maximize] kitty nvim $FLAKE/source"
-                "special:AGENDA, on-created-empty: [maximize] kitty nvim ${config.programs.nixvim.plugins.orgmode.settings.org_agenda_files} +\"Org agenda a\"" # This opens the org agenda, but doesn't close NvimTree or the default file. It's not clear how to do this or if it's possible since NeoVim documentation is extremely unintuitive.
+                "name:CHAT, monitor:$mon1, on-created-empty:hyprctl dispatch exec uwsm app -- slack && uwsm app -- flatpak run --branch=stable --arch=x86_64 --command=com.discordapp.Discord com.discordapp.Discord --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto"
+                "name:MAIL, monitor:$mon1, on-created-empty:hyprctl dispatch exec uwsm app -- thunderbird"
+                "special:BTOP, on-created-empty: [maximize] uwsm app -- kitty btop"
+                "special:CIDER, on-created-empty: [float; size 1000 800; move 10 50] uwsm app -- cider"
+                "special:CONFIG, on-created-empty: [maximize] uwsm app -- kitty nvim $FLAKE/source"
+                "special:AGENDA, on-created-empty: [maximize] uwsm app -- kitty nvim ${config.programs.nixvim.plugins.orgmode.settings.org_agenda_files} +\"Org agenda a\"" # This opens the org agenda, but doesn't close NvimTree or the default file. It's not clear how to do this or if it's possible since NeoVim documentation is extremely unintuitive.
             ];
         };
     };
