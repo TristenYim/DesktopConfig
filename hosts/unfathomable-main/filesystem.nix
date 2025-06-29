@@ -24,6 +24,16 @@ in
             options = [ "defaults" "size=500M" "mode=755" ];
         };
 
+        # Many programs (including nix) need to temporarily write gigabytes of data to /tmp.
+        # To avoid having to resize root every time this happens, /tmp needs to be mounted
+        # to its own bigger tmpfs.
+        "/tmp" = {
+            device = "none";
+            fsType = "tmpfs";
+            neededForBoot = true;
+            options = [ "defaults" "size=80%" "mode=777" ];
+        };
+
         "/nix" = {
             device = rootPartition;
             fsType = "btrfs";
