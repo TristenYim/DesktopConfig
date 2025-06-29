@@ -26,8 +26,8 @@
             ngl = "nix-env --list-generations --profile /nix/var/nix/profiles/system";
             ngd = "nix-env --delete-generations --profile /nix/var/nix/profiles/system";
             nf = "${pkgs.unchartedScripts}/bin/nix-find-impermanent";
-            noh = "${optnix.packages.${pkgs.system}.optnix}/bin/optnix -i -s home";
-            non = "${optnix.packages.${pkgs.system}.optnix}/bin/optnix -i -s nixos";
+            noh = "${optnix.packages.${pkgs.system}.optnix}/bin/optnix -s home";
+            non = "${optnix.packages.${pkgs.system}.optnix}/bin/optnix -s nixos";
             ns = "${pkgs.unchartedScripts}/bin/nix-shell-from-nixpkgs $FLAKE/build";
             np = "tv pkgs";
             rr = "${pkgs.unchartedScripts}/bin/resize-root";
