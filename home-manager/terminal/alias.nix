@@ -31,6 +31,7 @@
             ns = "${pkgs.unchartedScripts}/bin/nix-shell-from-nixpkgs $FLAKE/build";
             np = "tv pkgs";
             rr = "${pkgs.unchartedScripts}/bin/resize-root";
+            secrets = "sh -c 'zpool import -l -d /dev/disk/by-id/usb-SanDisk_Cruzer_Blade_4C530001310430107285-0:0-part4 secrets && vim /mnt/secrets && zfs unmount secrets && zpool export secrets'";
         };
     };
 }
