@@ -5,5 +5,6 @@
         [ cryfs [ "terminal" "cryfs" ] ]
         [ neofetch [ "terminal" "neofetch" ] ]
         [ wl-clipboard-rs [ "terminal" "wlclip" ] ]
+        [ brightnessctl [ "terminal" "brightnessctl" ] ]
     ];
 }

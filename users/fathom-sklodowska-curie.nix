@@ -8,6 +8,7 @@
     config = {
         # Enable custom module options
         apeiron = {
+            terminal.brightnessctl.enable = true;
             persistence.enable = true;
             isStandalone = false;
         };
