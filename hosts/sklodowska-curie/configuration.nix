@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, nixos-hardware, ... }:
+{ nixos-hardware, ... }:
 
 {
     imports =
@@ -14,8 +14,6 @@
         nixos-hardware.nixosModules.hp-elitebook-845g8
     ];
 
-    boot.kernelPackages = pkgs.linuxPackages; # zfs is currently broken in the latest kernel
-
     networking.hostName = "sklodowska-curie"; # Define your hostname
 
     # Disable default password for Fathom
@@ -26,6 +24,7 @@
     apeiron = {
         hyprDE.enable = true;
         persistence.enable = true;
+        syncthing.enable = true;
         wifi.enable = true;
     };
 

@@ -35,5 +35,7 @@ in
         "/pers" = mkZfsMount "encrypted/persistent";
 
         "/pers/home" = mkZfsMount "encrypted/home";
+
+        "/media/Sync" = mkZfsMount "encrypted/sync";
     };
 }

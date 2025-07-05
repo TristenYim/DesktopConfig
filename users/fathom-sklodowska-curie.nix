@@ -14,7 +14,7 @@
             isStandalone = false;
         };
 
-        programs.nixvim.plugins.orgmode.settings.org_agenda_files = "/home/fathom/Sync/Notes/Todo.org"; # TODO: Replace with real agenda file location
+        programs.nixvim.plugins.orgmode.settings.org_agenda_files = "/media/Sync/Notes/Todo.org";
 
         wayland.windowManager.hyprland = {
             settings = {
