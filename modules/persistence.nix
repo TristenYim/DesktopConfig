@@ -15,6 +15,7 @@
 
                 "/var/log" # System log directory
                 "/var/lib/systemd/coredump" # Systemd coredump logs
+                "/var/lib/systemd/timers" # Systemd timers
             ];
         };
     };
