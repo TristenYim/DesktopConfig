@@ -28,6 +28,7 @@
                 catppuccin-local.enable = lib.mkDefault true;
                 fd.enable = lib.mkDefault true;
                 flatpak.enable = lib.mkDefault true;
+                fwupd.enable = lib.mkDefault true;
                 killall.enable = lib.mkDefault true;
                 nerdfonts.enable = lib.mkDefault true;
                 pipewire.enable = lib.mkDefault true;

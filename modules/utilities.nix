@@ -18,6 +18,7 @@
 
     options.apeiron = {
         flatpak.enable = lib.mkEnableOption "flatpak";
+        fwupd.enable = lib.mkEnableOption "fwupd";
         openrgb.enable = lib.mkEnableOption "openrgb";
         pipewire.enable = lib.mkEnableOption "PipeWire";
         sddm.enable = lib.mkEnableOption "SDDM";
@@ -51,6 +52,11 @@
                 ];
                 config.common.default = "gtk";
             };
+        })
+
+        # fwupd, daemon for installing firmware updates in the OS
+        ( lib.mkIf config.apeiron.fwupd.enable {
+            services.fwupd.enable = true;
         })
 
         # openrgb, allows controlling connected RGB devices
