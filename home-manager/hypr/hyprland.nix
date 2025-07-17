@@ -60,8 +60,6 @@
 
                     # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
                     allow_tearing = false;
-
-                    layout = "dwindle";
                 };
 
                 # https://wiki.hyprland.org/Configuring/Variables/#decoration
@@ -117,14 +115,9 @@
                 ### LAYOUT ###
                 ##############
 
-                # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-                dwindle = {
-                    pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-                };
-
                 # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
                 master = {
-                    new_status = "master";
+                    mfact = 0.75;
                 };
 
                 #############

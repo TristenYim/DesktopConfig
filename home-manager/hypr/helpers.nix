@@ -39,8 +39,12 @@
     bindWithManyDispatchers = key: dispatcherList: 
         lib.lists.forEach dispatcherList (dispatcher: key + ", " + dispatcher);
 
+    # Creates a bind which cycles a variable associated with one or more options.
+    # The cycler expression should be used to determine how the state changes.
+    cycleOptionsBind = cycler: key: option: variable: [ ", ${key}, execr, state=$(hyprctl getoption ${option} 2>&1 | grep -m1 \"\" | awk \'{ print $2}\') && ${cycler} && hyprctl keyword ${variable} $state" ];
+
     # Creates a bind which toggles a variable associated with one or more options.
-    toggleOptionsBind = key: option: variable: [ ", ${key}, execr, state=$(hyprctl getoption ${option} 2>&1 | grep int | awk \'{ print $2}\') && state=$(( ! \"\${state}\" )) && hyprctl keyword \\$\"${variable}\" $state" ];
+    toggleOptionsBind = cycleOptionsBind "state=$(( ! \"\${state}\" ))";
 
     # Appends super to a list of keybinds.
     prependSuper = keybindList:
