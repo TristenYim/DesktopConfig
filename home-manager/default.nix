@@ -59,6 +59,7 @@
                         mousepad.enable = lib.mkDefault true;
                         mpv.enable = lib.mkDefault true;
                         obs.enable = lib.mkDefault true;
+                        signal.enable = lib.mkDefault true;
                         qalculate.enable = lib.mkDefault true;
                         thunderbird.enable = lib.mkDefault true;
                     };

@@ -20,6 +20,7 @@
         [ prismlauncher [ "gaming" "prismLauncher" ] ]
         [ prusa-slicer [ "work" "prusaSlicer" ] ]
         [ qalculate-qt [ "desktop" "applications" "qalculate" ] ]
+        [ signal-desktop [ "desktop" "applications" "signal" ] ]
         [ slack [ "work" "slack" ] ]
         [ steam [ "gaming" "steam" ] ]
         [ zoom-us [ "work" "zoom" ] ]
@@ -32,6 +33,7 @@
         [ [ ".config/Jan" ] [ ] [ "desktop" "applications" "jan" ] ]
         [ [ ".local/share/PrismLauncher" ] [ ] [ "gaming" "prismLauncher" ] ]
         [ [ ".config/PrusaSlicer" ] [ ] [ "work" "prusaSlicer" ] ]
+        [ [ ".config/Signal" ] [ ] [ "desktop" "applications" "signal" ] ]
         [ [ ".config/Slack" ] [ ] [ "work" "slack" ] ]
         [ [ ".local/share/Steam" ] [ ] [ "gaming" "steam" ] ]
     ];

@@ -60,7 +60,7 @@
             # See https://wiki.hyprland.org/Configuring/Workspace-Rules/ for more info
             workspace = [
                 "1, monitor:$mon1, default:true"
-                "name:CHAT, monitor:$mon1, on-created-empty:hyprctl dispatch exec uwsm app -- slack && uwsm app -- flatpak run --branch=stable --arch=x86_64 --command=com.discordapp.Discord com.discordapp.Discord --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto"
+                "name:CHAT, monitor:$mon1, on-created-empty:hyprctl dispatch exec uwsm app -- slack & uwsm app -- signal-desktop & uwsm app -- flatpak run --branch=stable --arch=x86_64 --command=com.discordapp.Discord com.discordapp.Discord --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto"
                 "name:MAIL, monitor:$mon1, on-created-empty:hyprctl dispatch exec uwsm app -- thunderbird"
                 "special:BTOP, on-created-empty: [maximize] uwsm app -- kitty btop"
                 "special:CIDER, on-created-empty: [float; size 1000 800; move 10 50] uwsm app -- cider"
