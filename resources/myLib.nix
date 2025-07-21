@@ -53,6 +53,27 @@ in
             callWithList 0 (f)
         ) argLists;
 
+    # Utility functions to map keybinds defined in a custom
+    # format to program configurations.
+    keybinds = let
+        modList = [ "SUPER" "SHIFT" "ALT" ];
+    in {
+        toHyprConf = keys: action: 
+            let 
+                convertList = separator: i:
+                    let
+                        e = builtins.elemAt keys i;
+                    in if ! builtins.elem e modList then ", ${e}, " else " ${e}" + convertList "_" (i + 1);
+            in (convertList "" 0) + action;
+        toXfConf = keys: action:
+            let
+                convertList = i:
+                    let
+                        e = builtins.elemAt keys i;
+                    in if ! builtins.elem e modList then lib.toLower e else "<${e}>" + convertList (i + 1);
+            in { "commands/custom/${convertList 0}" = action; };
+    };
+
     home = rec {
         # Since options with many arguments are really just nested functions,
         # it's possible to "partially" evaluate functions like this.

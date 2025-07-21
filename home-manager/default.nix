@@ -1,10 +1,11 @@
 # This imports all other Home Manager modules and defines groups of default modules to enable.
 
-{ config, lib, ... }: 
+{ config, pkgs, lib, ... }: 
 
 {
     imports = [
         ./desktop-apps.nix
+        ./desktop-binds.nix
         ./image-utils.nix
         ./mime.nix
         ./nixGL.nix
@@ -46,6 +47,16 @@
         xfce.enable = lib.mkEnableOption "XFCE";
         nvidia.enable = lib.mkEnableOption "options required when using Nvidia GPUs";
         isStandalone = lib.mkEnableOption "standalone home-manager tools";
+
+        # This config will not build unless all default apps are set.
+        # This was done intentionally to ensure all integrations and
+        # keybinds work properly.
+        desktop.defaultApps = {
+            appLauncher = lib.mkPackageOption pkgs "default app launcher" { default = null; };
+            browser = lib.mkPackageOption pkgs "default browser" { default = null; };
+            fileManager = lib.mkPackageOption pkgs "default file manager" { default = null; };
+            terminalEmulator = lib.mkPackageOption pkgs "default terminal emulator" { default = null; };
+        };
     };
 
     config = lib.mkMerge 
@@ -133,6 +144,13 @@
         ( lib.mkIf config.apeiron.hyprDE.enable {
             apeiron = {
                 desktop = {
+                    defaultApps = {
+                        appLauncher = pkgs.writeShellScriptBin "rofi-hyprDE" "${lib.getExe config.programs.rofi.package} -theme $HOME/.config/rofi/run.rasi -show drun -run-command \"uwsm app -- {cmd}\"";
+                        browser = config.programs.firefox.package;
+                        fileManager = pkgs.xfce.thunar;
+                        terminalEmulator = config.programs.kitty.package;
+                    };
+
                     hyprland = {
                         enable = lib.mkDefault true;
                         binds.default = lib.mkDefault true;
@@ -170,7 +188,16 @@
 
         # These modules are used for XFCE profiles
         ( lib.mkIf config.apeiron.xfce.enable {
-            apeiron.desktop.xfce.xfconf.enable = lib.mkDefault true;
+            apeiron.desktop = {
+                defaultApps = {
+                    appLauncher = pkgs.xfce.xfce4-appfinder;
+                    browser = config.programs.firefox.package;
+                    fileManager = pkgs.xfce.thunar;
+                    terminalEmulator = pkgs.xfce.xfce4-terminal;
+                };
+
+                xfce.xfconf.enable = lib.mkDefault true;
+            };
         })
     ];
 }

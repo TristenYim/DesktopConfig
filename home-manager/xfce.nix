@@ -10,22 +10,24 @@
  
     config = lib.mkIf config.apeiron.desktop.xfce.xfconf.enable {
         xfconf.settings = {
-            xfce4-keyboard-shortcuts = {
+            xfce4-keyboard-shortcuts = let
+                toXfConf = myLib.keybinds.toXfConf;
+            in {
                 "commands/custom/override" = true;
-                "commands/custom/<Super>apostrophe" = "exo-open --launch TerminalEmulator";
-                "commands/custom/<Super>grave" = "exo-open --launch TerminalEmulator btop";
-                "commands/custom/<Super>j" = "xfce4-screenshotter";
-                "commands/custom/<Super>q" = "exo-open --launch WebBrowser";
-                "commands/custom/<Super>space" = "xfce4-appfinder";
-                "commands/custom/<Super>u" = "thunar";
-            };
+            }
+            // toXfConf [ "SUPER" "grave" ] "exo-open --launch TerminalEmulator btop"
+            // toXfConf [ "SUPER" "j" ] "xfce4-screenshotter"
+            // lib.mergeAttrsList (lib.mapAttrsToList (name: value: toXfConf value.keys value.action) config.apeiron.desktop.keybinds.launchers);
+
             xfce4-terminal = {
                 "run-custom-command" = true;
                 "custom-command" = "zsh";
             };
+
             xfwm4 = {
                 "general/use_compositing" = false;
             };
+
             xsettings = {
                 "Net/ThemeName" = "catppuccin-mocha-lavender-standard+default";
             };
