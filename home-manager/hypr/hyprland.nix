@@ -157,11 +157,6 @@
                     disable_autoreload = true;
                 };
 
-                render = {
-                    explicit_sync = 1;
-                    explicit_sync_kms = 1;
-                };
-
                 # Cry about it Vaxry
                 ecosystem = {
                     no_update_news = true;

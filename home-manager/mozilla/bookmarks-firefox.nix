@@ -2,7 +2,7 @@
 
     config = lib.mkIf config.apeiron.desktop.browsers.firefox.enable 
     {
-        programs.firefox.profiles.user.bookmarks = {
+        programs.firefox.profiles.default.bookmarks = {
             force = true;
             settings = [
                 {

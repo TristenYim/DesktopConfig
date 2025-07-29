@@ -2,7 +2,7 @@
 
     config = lib.mkIf config.apeiron.desktop.browsers.firefox.enable 
     {
-        programs.firefox.profiles.user.search = {
+        programs.firefox.profiles.default.search = {
             force = true;
             default = "Brave";
             engines = {

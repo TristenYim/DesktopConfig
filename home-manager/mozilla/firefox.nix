@@ -3,7 +3,7 @@
         ./bookmarks-firefox.nix
         ./engines-firefox.nix
 
-        ( myLib.home.mkPersistenceModule [ ".mozilla/firefox/user" ] [ ] [ "desktop" "browsers" "firefox" ] ) # Saves user profile
+        ( myLib.home.mkPersistenceModule [ ".mozilla/firefox/default" ] [ ] [ "desktop" "browsers" "firefox" ] ) # Saves default profile data
     ];
 
     # Set a toggle to enable Firefox
@@ -17,23 +17,25 @@
             betterfox.enable = true;
             package = pkgs.firefox-beta;
 
-            # This "user" profile will be automatically added by home manager.
-            profiles.user = {
+            profiles.default = {
                 betterfox = {
                     enable = true;
                     enableAllSections = true;
                 };
 
-                extensions.packages = with firefox-addons.packages."x86_64-linux"; [
-                    bitwarden
-                    canvasblocker
-                    dearrow
-                    ublacklist
-                    ublock-origin
-                    user-agent-string-switcher
-                    sponsorblock
-                    web-scrobbler
-                ];
+                extensions = {
+                    force = true;
+                    packages = with firefox-addons.packages."x86_64-linux"; [
+                        bitwarden
+                        canvasblocker
+                        dearrow
+                        ublacklist
+                        ublock-origin
+                        user-agent-string-switcher
+                        sponsorblock
+                        web-scrobbler
+                    ];
+                };
 
                 # See "about:config" for more settings.
                 settings = {

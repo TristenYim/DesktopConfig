@@ -24,7 +24,7 @@
                 optnix.hostname = "unfathomable-main";
             };
 
-            work.darktable.enable = true;
+            # work.darktable.enable = true; # Currently relies on an old insecure version of a library, re-enable once updated
         };
 
         programs.nixvim.plugins.orgmode.settings.org_agenda_files = "/media/Hdd/Sync/Notes/Todo.org";

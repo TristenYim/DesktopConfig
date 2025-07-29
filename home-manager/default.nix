@@ -190,7 +190,7 @@
         ( lib.mkIf config.apeiron.xfce.enable {
             apeiron.desktop = {
                 defaultApps = {
-                    appLauncher = pkgs.xfce.xfce4-appfinder;
+                    appLauncher = pkgs.xfce.xfce4-appfinder.overrideAttrs (final: prev: { meta.mainProgram = "xfce4-appfinder"; });
                     browser = config.programs.firefox.package;
                     fileManager = pkgs.xfce.thunar;
                     terminalEmulator = pkgs.xfce.xfce4-terminal;
