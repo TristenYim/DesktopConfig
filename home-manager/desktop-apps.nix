@@ -11,6 +11,7 @@
         [ cider [ "desktop" "applications" "cider" ] ]
         [ darktable [ "work" "darktable" ] ]
         [ file-roller [ "desktop" "utilities" "fileRoller" ] ]
+        [ grayjay [ "desktop" "applications" "grayjay" ] ]
         [ heroic [ "gaming" "heroic" ] ]
         [ jan [ "desktop" "applications" "jan" ] ]
         [ xfce.mousepad [ "desktop" "applications" "mousepad" ] ]
@@ -29,6 +30,7 @@
     [
         [ [ ".local/share/bottles" ] [ ] [ "desktop" "applications" "bottles" ] ]
         [ [ ".config/Cider/Themes" ".config/sh.cider.classic" ] [ ] [ "desktop" "applications" "cider" ] ]
+        [ [ ".local/share/Grayjay" ] [ ] [ "desktop" "applications" "grayjay" ] ]
         [ [ ".config/heroic" ] [ ] [ "gaming" "heroic" ] ]
         [ [ ".config/Jan" ] [ ] [ "desktop" "applications" "jan" ] ]
         [ [ ".local/share/PrismLauncher" ] [ ] [ "gaming" "prismLauncher" ] ]

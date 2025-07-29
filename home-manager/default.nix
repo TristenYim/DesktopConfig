@@ -67,6 +67,7 @@
                 desktop = {
                     applications = {
                         cider.enable = lib.mkDefault true;
+                        grayjay.enable = lib.mkDefault true;
                         mousepad.enable = lib.mkDefault true;
                         mpv.enable = lib.mkDefault true;
                         obs.enable = lib.mkDefault true;
