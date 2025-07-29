@@ -56,8 +56,14 @@
     console.keyMap = lib.mkDefault "dvorak";
 
     nix = {
-        # Enable flakes and the nix command
-        settings.experimental-features = lib.mkDefault [ "nix-command" "flakes" ];
+        settings = {
+            # Enable flakes and the nix command
+            experimental-features = lib.mkDefault [ "nix-command" "flakes" ];
+            
+            # Add nix-community cachix (allows using cached builds for some unfree and community packages)
+            substituters = [ "https://nix-community.cachix.org" ];
+            trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
+        };
 
         # Automatically optimise (hard link duplicate files) in the store
         optimise.automatic = lib.mkDefault true;
