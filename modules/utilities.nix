@@ -19,6 +19,7 @@
     options.apeiron = {
         flatpak.enable = lib.mkEnableOption "flatpak";
         fwupd.enable = lib.mkEnableOption "fwupd";
+        greetd.enable = lib.mkEnableOption "greetd";
         openrgb.enable = lib.mkEnableOption "openrgb";
         pipewire.enable = lib.mkEnableOption "PipeWire";
         sddm.enable = lib.mkEnableOption "SDDM";
@@ -57,6 +58,23 @@
         # fwupd, daemon for installing firmware updates in the OS
         ( lib.mkIf config.apeiron.fwupd.enable {
             services.fwupd.enable = true;
+        })
+
+        # greetd, login manager daemon
+        ( lib.mkIf config.apeiron.greetd.enable {
+            environment.systemPackages = [ pkgs.greetd.tuigreet ]; # TUI-based greeter for greetd
+
+            services.greetd = {
+                enable = true;
+                settings.default_session = let
+                    allSessions = config.services.displayManager.sessionData.desktops;
+                in {
+                    command = "${lib.getExe pkgs.greetd.tuigreet} --user-menu --time --sessions ${allSessions}/share/wayland-sessions --xsessions ${allSessions}/share/xsessions";
+                    user = "greeter";
+                };
+            };
+
+            services.xserver.displayManager.startx.enable = true; # Required to start xsessions with tuigreet
         })
 
         # openrgb, allows controlling connected RGB devices

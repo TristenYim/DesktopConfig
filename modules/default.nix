@@ -26,6 +26,7 @@
             apeiron = {
                 btop.enable = lib.mkDefault true;
                 catppuccin-local.enable = lib.mkDefault true;
+                greetd.enable = lib.mkDefault true;
                 fd.enable = lib.mkDefault true;
                 flatpak.enable = lib.mkDefault true;
                 fwupd.enable = lib.mkDefault true;
@@ -33,7 +34,6 @@
                 nerdfonts.enable = lib.mkDefault true;
                 pipewire.enable = lib.mkDefault true;
                 ranger.enable = lib.mkDefault true;
-                sddm.enable = lib.mkDefault true;
                 vim.enable = lib.mkDefault true;
 
                 users.fathom.enable = lib.mkDefault true;
