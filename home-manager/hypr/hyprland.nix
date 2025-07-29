@@ -60,6 +60,9 @@
 
                     # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
                     allow_tearing = false;
+
+                    # Set the default layout to master/stack
+                    layout = "master";
                 };
 
                 # https://wiki.hyprland.org/Configuring/Variables/#decoration
