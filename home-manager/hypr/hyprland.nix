@@ -1,5 +1,8 @@
 { config, pkgs, lib, hyprland, ... }: 
-
+let
+    cfg = config.apeiron.desktop.compositors.settings;
+    fromHex = hex: "rgb(${lib.removePrefix "#" hex})";
+in
 {
     imports = [
         ./hypridle.nix
@@ -30,77 +33,47 @@
             settings = 
             {
                 # Please note not all available settings / options are set here.
-                # For a full list, see the wiki
-                # https://wiki.hyprland.org/Configuring/Configuring-Hyprland/
+                # Refer to https://wiki.hyprland.org/Configuring/Variables for more
 
-                # Monitors must be manually configured per-computer, and is not included in the repo
+                # Note monitors must be manually configured per-user
 
-                #####################
-                ### LOOK AND FEEL ###
-                #####################
+                # Import compositor-agnostic settings, see ../compositor-options.nix
+                general.gaps_in = cfg.aesthetics.gaps.inner;
+                general.gaps_out = cfg.aesthetics.gaps.outer;
+                general.border_size = cfg.aesthetics.border.width;
+                general."col.active_border" = fromHex cfg.aesthetics.border.colors.focused;
+                general."col.inactive_border" = fromHex cfg.aesthetics.border.colors.unfocused;
+                decoration.rounding = cfg.aesthetics.border.radius;
+                decoration.blur.contrast = cfg.aesthetics.blur.contrast;
+                decoration.blur.brightness = cfg.aesthetics.blur.brightness;
+                decoration.blur.noise = cfg.aesthetics.blur.noise;
+                decoration.blur.size = cfg.aesthetics.blur.radius;
+                decoration.blur.passes = cfg.aesthetics.blur.passes;
+                decoration.inactive_opacity = cfg.aesthetics.unfocusedOpacity;
+                decoration.shadow.color = fromHex cfg.aesthetics.shadows.color;
+                decoration.shadow.range = cfg.aesthetics.shadows.size;
+                input.kb_layout = cfg.input.keyboard.layouts;
+                input.kb_variant = cfg.input.keyboard.variants;
+                input.kb_options = cfg.input.keyboard.extraOptions;
+                master.mfact = cfg.behavior.layouts.master.ratio;
 
-                "$uglyAFModeDisabled" = !config.apeiron.desktop.hyprland.uglyAFMode.default; # Toggle for animations, shadows, and blur
+                # Toggle for animations, shadows, and blur
+                "$uglyAFModeDisabled" = !config.apeiron.desktop.hyprland.uglyAFMode.default;
+                animations.enabled = "$uglyAFModeDisabled";
+                decoration.blur.enabled = "$uglyAFModeDisabled";
+                decoration.shadow.enabled = "$uglyAFModeDisabled";
 
-                # Refer to https://wiki.hyprland.org/Configuring/Variables/
+                # Set the default layout to master/stack
+                general.layout = "master";
 
-                # https://wiki.hyprland.org/Configuring/Variables/#general
-                general = {
-                    gaps_in = 5;
-                    gaps_out = 10;
-
-                    border_size = 2;
-
-                    # https://wiki.hyprland.org/Configuring/Variables/#variable-types for info about colors
-                    # Note that the catppuccin module allows these variables to be referenced outside nix code
-                    "col.active_border" = "$sky";
-                    "col.inactive_border" = "$surface0";
-
-                    # Set to true enable resizing windows by clicking and dragging on borders and gaps
-                    resize_on_border = false;
-
-                    # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
-                    allow_tearing = false;
-
-                    # Set the default layout to master/stack
-                    layout = "master";
-                };
-
-                # https://wiki.hyprland.org/Configuring/Variables/#decoration
+                # Dim every window except the one in focus
                 decoration = {
-                    rounding = 5;
-    
-                    # Change transparency of focused and unfocused windows
-                    inactive_opacity = "0.7";
-
-                    shadow = {
-                        enabled = "$uglyAFModeDisabled";
-                        range = 4;
-                        render_power = 3;
-                        color = "rgba(1a1a1aee)";
-                    };
-
-                    # https://wiki.hyprland.org/Configuring/Variables/#blur
-                    blur = {
-                        enabled = "$uglyAFModeDisabled";
-                        ignore_opacity = true;
-                        size = 4;
-                        passes = 4;
-                        new_optimizations = true;
-                        contrast = "1.0";
-                        noise = "0.0";
-                    };
-
-                    blurls = "lockscreen";
                     dim_inactive = true;
-                        dim_strength = 0.3;
+                    dim_strength = 0.3;
                 };
 
-                # See https://wiki.hyprland.org/Configuring/Variables/#animations for all options
+                # TODO Customize animations
                 animations = {
-                    enabled = "$uglyAFModeDisabled";
-
-                    # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
-
                     bezier = "myBezier, 0.10, 0.9, 0.1, 1.05";
 
                     animation = [
@@ -114,50 +87,14 @@
                     ];
                 };
 
-                ##############
-                ### LAYOUT ###
-                ##############
+                input.sensitivity = "-0.2"; # -1.0 - 1.0, 0 means no modification.
 
-                # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-                master = {
-                    mfact = 0.75;
-                };
+                gestures.workspace_swipe = "off"; # This gesture was too prone to accidentally activating
 
-                #############
-                ### INPUT ###
-                #############
-
-                # See https://wiki.hyprland.org/Configuring/Variables/#input for all options
-                input = {
-                    kb_layout = "us, us, us";
-                    kb_variant = "dvorak, dvorak-intl, "; # A blank value implies qwerty
-                    kb_model = "";
-                    kb_options = "grp:ralt_rshift_toggle"; # Unintuitively, this is LALT + RSHIFT, not RALT
-                    kb_rules = "";
-
-                    follow_mouse = 1;
-
-                    touchpad = {
-                        natural_scroll = false;
-                    };
-
-                    sensitivity = "-0.2"; # -1.0 - 1.0, 0 means no modification.
-                };
-
-                # See https://wiki.hyprland.org/Configuring/Variables/#gestures for all options
-                gestures = {
-                    workspace_swipe = "off";
-                };
-
-                #############
-                ### OTHER ###
-                #############
-
-                # See https://wiki.hyprland.org/Configuring/Variables/#misc for all options
                 misc = {
-                    enable_anr_dialog = false;
-                    force_default_wallpaper = 2;
-                    disable_autoreload = true;
+                    enable_anr_dialog = false; # "App not responding" ends up being more annoying than useful
+                    force_default_wallpaper = 2; # Force hypr-chan
+                    disable_autoreload = true; # Not necessary with nix
                 };
 
                 # Cry about it Vaxry

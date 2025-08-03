@@ -4,6 +4,7 @@
 
 {
     imports = [
+        ./compositor-options.nix
         ./desktop-apps.nix
         ./desktop-binds.nix
         ./image-utils.nix
