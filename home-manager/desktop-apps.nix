@@ -10,6 +10,7 @@
         [ bottles [ "desktop" "applications" "bottles" ] ]
         [ cider [ "desktop" "applications" "cider" ] ]
         [ darktable [ "work" "darktable" ] ]
+        [ dissent [ "desktop" "applications" "dissent" ] ]
         [ file-roller [ "desktop" "utilities" "fileRoller" ] ]
         [ grayjay [ "desktop" "applications" "grayjay" ] ]
         [ heroic [ "gaming" "heroic" ] ]
@@ -30,6 +31,7 @@
     [
         [ [ ".local/share/bottles" ] [ ] [ "desktop" "applications" "bottles" ] ]
         [ [ ".config/Cider/Themes" ".config/sh.cider.classic" ] [ ] [ "desktop" "applications" "cider" ] ]
+        [ [ ".config/dissent" ] [ ] [ "desktop" "applications" "dissent" ] ]
         [ [ ".local/share/Grayjay" ] [ ] [ "desktop" "applications" "grayjay" ] ]
         [ [ ".config/heroic" ] [ ] [ "gaming" "heroic" ] ]
         [ [ ".config/Jan" ] [ ] [ "desktop" "applications" "jan" ] ]
