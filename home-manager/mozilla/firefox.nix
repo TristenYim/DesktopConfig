@@ -28,11 +28,9 @@
                     packages = with firefox-addons.packages."x86_64-linux"; [
                         bitwarden
                         canvasblocker
-                        dearrow
                         ublacklist
                         ublock-origin
                         user-agent-string-switcher
-                        sponsorblock
                         web-scrobbler
                     ];
                 };
