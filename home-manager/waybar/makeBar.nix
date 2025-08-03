@@ -3,11 +3,7 @@
 name: display: {
     layer = "top";
     position = "top";
-    mod = "dock";
-    exclusive = true;
     passthrough = false;
-    gtk-layer-shell = true;
-    reload_style_on_change = true;
     name = name;
     output = display;
 
@@ -33,7 +29,6 @@ name: display: {
         orientation = "horizontal";
         modules = [
             "custom/power_btn#${name}"
-            "custom/lock_screen#${name}"
             "idle_inhibitor#${name}"
         ];
     };
@@ -42,7 +37,6 @@ name: display: {
         orientation = "horizontal";
         modules = [
             "custom/nix_config#${name}"
-            "custom/updates#${name}"
         ];
     };
 
@@ -52,6 +46,7 @@ name: display: {
             "tray#${name}"
             "battery#${name}"
             "backlight#${name}"
+            "network#${name}"
         ];
     };
 
@@ -68,21 +63,13 @@ name: display: {
         modules = [
             "cpu#${name}"
             "memory#${name}"
-            # "temperature#${name}"
-            "network#${name}"
         ];
     };
 
     "custom/power_btn#${name}" = {
         format = "";
         on-click = "sh -c '(wlogout --protocol layer-shell)' & disown";
-        tooltip-format = "Logout";
-    };
-
-    "custom/lock_screen#${name}" = {
-        format = "󰷛";
-        on-click = "sh -c '(swaylock)' & disown";
-        tooltip-format = "Lock";
+        tooltip = false;
     };
 
     "idle_inhibitor#${name}" = {
@@ -91,7 +78,6 @@ name: display: {
             activated = "󰛐";
             deactivated = "󰛑";
         };
-        tooltip = true;
     };
 
     "mpris#${name}" = {
@@ -119,15 +105,7 @@ name: display: {
     "custom/nix_config#${name}" = {
         format = "";
         on-click = "hyprctl dispatch togglespecialworkspace CONFIG";
-        tooltip-format = "Config";
-    };
-
-    "custom/updates#${name}" = {
-        format = "{}";
-        exec = "$HOME/.config/waybar/scripts/update-sys";
-        on-click = "$HOME/.config/waybar/scripts/update-sys update";
-        interval = 300;
-        tooltip = true;
+        tooltip = false;
     };
 
     "hyprland/workspaces#${name}" = {
@@ -177,30 +155,31 @@ name: display: {
     "backlight#${name}" = {
         format = "{icon}{percent}%";
         format-icons = [" " " " " " "󰃝 " "󰃞 " "󰃟 " "󰃠 "];
-        tooltip-format = "backlight {percent}%";
+        tooltip = false;
         icon-size = 10;
-        on-scroll-up = "$HOME/.config/waybar/scripts/Brightness.sh --inc";
-        on-scroll-down = "$HOME/.config/waybar/scripts/Brightness.sh --dec";
-        smooth-scrolling-threshold = 1;
+        on-scroll-up = "brightnessctl set +2%";
+        on-scroll-down = "brightnessctl set 2%-";
     };
 
     "battery#${name}" = {
-        design-capacity = false;
-        states = {
-            good = 95;
-            warning = 30;
-            critical = 15;
-        };
         format = "{icon} {capacity}%";
         format-charging = " {capacity}%";
         format-plugged = "󱘖 {capacity}%";
         format-alt-click = "click";
         format-full = "{icon} Full";
-        format-alt = "{icon} {time}";
-        format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+        format-alt = "{icon} {power:0.2f} W";
+        format-icons = ["󰂃" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
         format-time = "{H}h {M}min";
-        tooltip = true;
-        tooltip-format = "{timeTo} {power}";
+    };
+
+    "network#${name}" = {
+        format-ethernet = " ";
+        format-wifi = "{icon}";
+        format-disconnected = " ";
+        format-icons = ["󰤯 " "󰤟 " "󰤢 " "󰤥 " "󰤨 "];
+        tooltip-format-ethernet = "  {bandwidthUpBits},   {bandwidthDownBits}, IP: {ipaddr}";
+        tooltip-format-wifi = "  {bandwidthUpBits},   {bandwidthDownBits}, IP: {ipaddr}";
+        on-click = "nm-connection-editor";
     };
 
     "tray#${name}" = {
@@ -211,11 +190,10 @@ name: display: {
     "pulseaudio#${name}" = {
         format = "{icon} {volume}%";
         format-muted = "󰝟 ";
-        on-click = "$HOME/.config/waybar/scripts/volume --toggle";
+        on-click = "pamixer --toggle-mute";
         on-click-right = "pavucontrol --tab 3";
-        on-scroll-up = "$HOME/.config/waybar/scripts/volume --inc";
-        on-scroll-down = "$HOME/.config/waybar/scripts/volume --dec";
-        scroll-step = 1;
+        on-scroll-up = "pamixer --increase 1";
+        on-scroll-down = "pamixer --decrease 1";
         format-icons = {
             headphone = "";
             hands-free = "";
@@ -225,7 +203,6 @@ name: display: {
             car = "";
             default = ["󰕿" "󰖀" "󰕾 "];
         };
-        tooltip = true;
         tooltip-format = "{icon} {desc}";
     };
 
@@ -233,12 +210,10 @@ name: display: {
         format = "{format_source}";
         format-source = " {volume}% ";
         format-source-muted = "  ";
-        on-click = "$HOME/.config/waybar/scripts/volume --toggle-mic";
+        on-click = "pamixer --default-source --toggle-mute";
         on-click-right = "pavucontrol --tab 4";
-        on-scroll-up = "$HOME/.config/waybar/scripts/volume --mic-inc";
-        on-scroll-down = "$HOME/.config/waybar/scripts/volume --mic-dec";
-        scroll-step = 1;
-        tooltip = true;
+        on-scroll-up = "pamixer --default-source --increase 1";
+        on-scroll-down = "pamixer --default-source --decrease 1";
         tooltip-format = " {desc}";
     };
 
@@ -258,26 +233,5 @@ name: display: {
         format-alt-click = "click-right";
         format-alt = "   {percentage}%";
         on-click = "hyprctl dispatch togglespecialworkspace BTOP";
-    };
-
-    "temperature#${name}" = {
-        # thermal-zone = 2;
-        # hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
-        critical-threshold = 80;
-        format-critical = "{temperatureC}°C {icon}";
-        format = "{icon} {temperatureC}°C";
-        format-icons = ["" "" ""];
-        on-click = "hyprctl dispatch togglespecialworkspace BTOP";
-    };
-
-    "network#${name}" = {
-        format-ethernet = "  {bandwidthTotalBits}";
-        format-wifi = "󰖩 {bandwidthTotalBits}";
-        format-disconnected = "";
-        interval = 10;
-        max-length = 10;
-        tooltip-format-ethernet = "IP: {ipaddr},  {bandwidthUpBits},  {bandwidthDownBits}, {ifname}";
-        tooltip-format-wifi = "IP: {ipaddr},  {bandwidthUpBits},  {bandwidthDownBits}, {ifname}";
-        on-click = "nm-connection-editor";
     };
 }
