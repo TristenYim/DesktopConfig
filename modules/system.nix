@@ -58,7 +58,7 @@
     nix = {
         settings = {
             # Enable flakes and the nix command
-            experimental-features = lib.mkDefault [ "nix-command" "flakes" ];
+            experimental-features = lib.mkDefault [ "nix-command" "flakes" "pipe-operators" ];
             
             # Add nix-community cachix (allows using cached builds for some unfree and community packages)
             substituters = [ "https://nix-community.cachix.org" ];
