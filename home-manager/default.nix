@@ -4,7 +4,6 @@
 
 {
     imports = [
-        ./compositor-options.nix
         ./desktop-apps.nix
         ./desktop-binds.nix
         ./image-utils.nix
@@ -14,6 +13,8 @@
         ./services.nix
         ./swaylock.nix
         ./xfce.nix
+        ./compositor-options/default.nix
+        ./compositor-options/rules.nix
         ./ethanol/default.nix
         ./hypr/hyprland.nix
         ./mozilla/firefox.nix

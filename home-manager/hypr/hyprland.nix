@@ -7,7 +7,6 @@ in
     imports = [
         ./hypridle.nix
         ./plugins.nix
-        ./windows-workspaces.nix
         ./keybinds/default.nix
         ./environment/env_var.nix
         ./environment/env_var_nvidia.nix
@@ -36,26 +35,6 @@ in
                 # Refer to https://wiki.hyprland.org/Configuring/Variables for more
 
                 # Note monitors must be manually configured per-user
-
-                # Import compositor-agnostic settings, see ../compositor-options.nix
-                general.gaps_in = cfg.aesthetics.gaps.inner;
-                general.gaps_out = cfg.aesthetics.gaps.outer;
-                general.border_size = cfg.aesthetics.border.width;
-                general."col.active_border" = fromHex cfg.aesthetics.border.colors.focused;
-                general."col.inactive_border" = fromHex cfg.aesthetics.border.colors.unfocused;
-                decoration.rounding = cfg.aesthetics.border.radius;
-                decoration.blur.contrast = cfg.aesthetics.blur.contrast;
-                decoration.blur.brightness = cfg.aesthetics.blur.brightness;
-                decoration.blur.noise = cfg.aesthetics.blur.noise;
-                decoration.blur.size = cfg.aesthetics.blur.radius;
-                decoration.blur.passes = cfg.aesthetics.blur.passes;
-                decoration.inactive_opacity = cfg.aesthetics.unfocusedOpacity;
-                decoration.shadow.color = fromHex cfg.aesthetics.shadows.color;
-                decoration.shadow.range = cfg.aesthetics.shadows.size;
-                input.kb_layout = cfg.input.keyboard.layouts;
-                input.kb_variant = cfg.input.keyboard.variants;
-                input.kb_options = cfg.input.keyboard.extraOptions;
-                master.mfact = cfg.behavior.layouts.master.ratio;
 
                 # Toggle for animations, shadows, and blur
                 "$uglyAFModeDisabled" = !config.apeiron.desktop.hyprland.uglyAFMode.default;
@@ -102,6 +81,60 @@ in
                     no_update_news = true;
                     no_donation_nag = true;
                 };
+
+                # See https://wiki.hyprland.org/Configuring/Workspace-Rules/ for more info
+                workspace = [
+                    "1, monitor:$mon1, default:true"
+                    "name:CHAT, monitor:$mon1, on-created-empty:hyprctl dispatch exec uwsm app -- slack & uwsm app -- signal-desktop & uwsm app -- flatpak run --branch=stable --arch=x86_64 --command=com.discordapp.Discord com.discordapp.Discord --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto"
+                    "name:MAIL, monitor:$mon1, on-created-empty:hyprctl dispatch exec uwsm app -- thunderbird"
+                    "special:BTOP, on-created-empty: [maximize] uwsm app -- kitty btop"
+                    "special:CIDER, on-created-empty: [float; size 1000 800; move 10 50] uwsm app -- cider"
+                    "special:CONFIG, on-created-empty: [maximize] uwsm app -- kitty nvim $FLAKE/source"
+                    "special:AGENDA, on-created-empty: [maximize] uwsm app -- kitty nvim ${config.programs.nixvim.plugins.orgmode.settings.org_agenda_files} +\"Org agenda a\""
+                ];
+
+                # Import compositor-agnostic settings, see ../compositor-options.nix
+                general.gaps_in = cfg.aesthetics.gaps.inner;
+                general.gaps_out = cfg.aesthetics.gaps.outer;
+                general.border_size = cfg.aesthetics.border.width;
+                general."col.active_border" = fromHex cfg.aesthetics.border.colors.focused;
+                general."col.inactive_border" = fromHex cfg.aesthetics.border.colors.unfocused;
+                decoration.rounding = cfg.aesthetics.border.radius;
+                decoration.blur.contrast = cfg.aesthetics.blur.contrast;
+                decoration.blur.brightness = cfg.aesthetics.blur.brightness;
+                decoration.blur.noise = cfg.aesthetics.blur.noise;
+                decoration.blur.size = cfg.aesthetics.blur.radius;
+                decoration.blur.passes = cfg.aesthetics.blur.passes;
+                decoration.inactive_opacity = cfg.aesthetics.unfocusedOpacity;
+                decoration.shadow.color = fromHex cfg.aesthetics.shadows.color;
+                decoration.shadow.range = cfg.aesthetics.shadows.size;
+                input.kb_layout = cfg.input.keyboard.layouts;
+                input.kb_variant = cfg.input.keyboard.variants;
+                input.kb_options = cfg.input.keyboard.extraOptions;
+                master.mfact = cfg.behavior.layouts.master.ratio;
+
+                layerrule = [ "ignorezero, ^(rofi)$" ] ++ (cfg.rules.layers |> builtins.map ( rule:
+                    let
+                        mkParameter = value: prefix: xToString:
+                            if value == null then [] else "${prefix}${xToString value}";
+                    in
+                        mkParameter rule.parameters.blur "blur" (x: ", ") + rule.namespace
+                ));
+
+                windowrulev2 = builtins.concatLists (cfg.rules.windows |> builtins.map ( rule:
+                    let
+                        mkMatcher = value: prefix: if value == "" then "" else ", ${prefix}:${value}";
+                        mkParameter = value: prefix: xToString: 
+                            if value == null then [] else [(
+                                "${prefix}${xToString value}"
+                                + mkMatcher rule.matchers.title "title"
+                                + mkMatcher rule.matchers.appID "class"
+                            )];
+                    in
+                        mkParameter rule.parameters.opacity "opacity " lib.strings.floatToString
+                        ++ mkParameter rule.parameters.openFloating "float" (x: "")
+                        ++ mkParameter rule.parameters.openFullscreen "maximize" (x: "")
+                )) ++ [ "animation popin, class:^(thunar)$" ];
             };
         };
     };

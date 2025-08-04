@@ -3,7 +3,7 @@
 
 { lib, ... }: 
 let
-    catppuccin = import ./theme/catppuccin-colors.nix;
+    catppuccin = import ../theme/catppuccin-colors.nix;
 
     # Simple functions to reduce options boilerplate
     mkIntOption = default: descriptionExtra: lib.mkOption {
