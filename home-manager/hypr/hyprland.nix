@@ -1,17 +1,9 @@
-{ config, pkgs, lib, hyprland, ... }: 
+{ config, pkgs, lib, ... }: 
 let
     cfg = config.apeiron.desktop.compositors.settings;
     fromHex = hex: "rgb(${lib.removePrefix "#" hex})";
 in
 {
-    imports = [
-        ./hypridle.nix
-        ./plugins.nix
-        ./keybinds/default.nix
-        ./environment/env_var.nix
-        ./environment/env_var_nvidia.nix
-    ];
-
     options.apeiron.desktop.hyprland = {
         enable = lib.mkEnableOption "Hyprland";
         uglyAFMode.default = lib.mkEnableOption "uglyAFMode in Hyprland by default";
@@ -22,6 +14,8 @@ in
         wayland.windowManager.hyprland = 
         {
             enable = true;
+
+            # Wrap the package with nixGL, if applicable
             package = 
               let
                 unwrapped = pkgs.hyprland;

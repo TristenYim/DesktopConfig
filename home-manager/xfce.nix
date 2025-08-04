@@ -1,4 +1,4 @@
-{ config, lib, myLib, ... }: {
+{ config, pkgs, lib, myLib, ... }: {
     imports = [
         ( myLib.home.mkPersistenceModule [ ] [ ".nvidia-settings-rc" ] [ "desktop" "xfce" "xfconf" ] ) # These settings are only relevant for gaming
     ];
@@ -11,13 +11,23 @@
     config = lib.mkIf config.apeiron.desktop.xfce.xfconf.enable {
         xfconf.settings = {
             xfce4-keyboard-shortcuts = let
-                toXfConf = myLib.keybinds.toXfConf;
+                # Used for generating a launch executable action from a default app
+                actionFromApp = app: if ! builtins.hasAttr "flags" app then lib.getExe app else lib.getExe app.package + " " + app.flags;
+
+                # Generates one or more binds sharing a dispatcher from the compositor-agnostic keybind format
+                mkBinds = keys: action: 
+                    let
+                        convertList = i:
+                            let
+                                e = builtins.elemAt keys i;
+                                modList = [ "SUPER" "SHIFT" "ALT" ];
+                            in if ! builtins.elem e modList then lib.toLower e else "<${e}>" + convertList (i + 1);
+                    in { "commands/custom/${convertList 0}" = action; };
             in {
                 "commands/custom/override" = true;
             }
-            // toXfConf [ "SUPER" "grave" ] "exo-open --launch TerminalEmulator btop"
-            // toXfConf [ "SUPER" "j" ] "xfce4-screenshotter"
-            // lib.mergeAttrsList (lib.mapAttrsToList (name: value: toXfConf value.keys value.action) config.apeiron.desktop.keybinds.launchers);
+            // mkBinds [ "SUPER" "grave" ] "exo-open --launch TerminalEmulator btop"
+            // lib.mergeAttrsList (builtins.map (bind: mkBinds bind.keys (actionFromApp bind.app)) config.apeiron.desktop.compositors.settings.keybinds.launchers);
 
             xfce4-terminal = {
                 "run-custom-command" = true;

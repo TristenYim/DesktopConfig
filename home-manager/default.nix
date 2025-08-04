@@ -5,7 +5,6 @@
 {
     imports = [
         ./desktop-apps.nix
-        ./desktop-binds.nix
         ./image-utils.nix
         ./mime.nix
         ./nixGL.nix
@@ -14,9 +13,15 @@
         ./swaylock.nix
         ./xfce.nix
         ./compositor-options/default.nix
+        ./compositor-options/keybinds.nix
         ./compositor-options/rules.nix
         ./ethanol/default.nix
         ./hypr/hyprland.nix
+        ./hypr/hypridle.nix
+        ./hypr/keybinds.nix
+        ./hypr/plugins.nix
+        ./hypr/environment/env_var.nix
+        ./hypr/environment/env_var_nvidia.nix
         ./mozilla/firefox.nix
         ./mozilla/thunderbird.nix
         ./terminal/alias.nix
@@ -53,11 +58,28 @@
         # This config will not build unless all default apps are set.
         # This was done intentionally to ensure all integrations and
         # keybinds work properly.
-        desktop.defaultApps = {
-            appLauncher = lib.mkPackageOption pkgs "default app launcher" { default = null; };
-            browser = lib.mkPackageOption pkgs "default browser" { default = null; };
-            fileManager = lib.mkPackageOption pkgs "default file manager" { default = null; };
-            terminalEmulator = lib.mkPackageOption pkgs "default terminal emulator" { default = null; };
+        desktop.defaultApps = let
+            mkDefaultAppOption = descriptionExtra: lib.mkOption {
+                type = lib.types.either lib.types.package (lib.types.submodule {
+                        options.package = lib.mkPackageOption pkgs descriptionExtra { default = null; };
+                        options.flags = lib.mkOption {
+                            type = lib.types.str;
+                            default = null;
+                            description = "The default ${descriptionExtra} launch flags.";
+                        };
+                    }
+                );
+                default = null;
+                description = "The default ${descriptionExtra} app to use.";
+            };
+        in {
+            appLauncher = mkDefaultAppOption "app launcher";
+            browser = mkDefaultAppOption "browser";
+            fileManager = mkDefaultAppOption "file manager";
+            logoutMenu = mkDefaultAppOption "logout menu";
+            terminalEmulator = mkDefaultAppOption "terminal emulator";
+            screenlocker = mkDefaultAppOption "screen lock utility";
+            screenshotter = mkDefaultAppOption "screenshot utility";
         };
     };
 
@@ -149,15 +171,23 @@
             apeiron = {
                 desktop = {
                     defaultApps = {
-                        appLauncher = pkgs.writeShellScriptBin "rofi-hyprDE" "${lib.getExe config.programs.rofi.package} -theme $HOME/.config/rofi/run.rasi -show drun -run-command \"uwsm app -- {cmd}\"";
+                        appLauncher = { 
+                            package = config.programs.rofi.package; 
+                            flags = "-theme $HOME/.config/rofi/run.rasi -show drun -run-command \"uwsm app -- {cmd}\"";
+                        };
                         browser = config.programs.firefox.package;
                         fileManager = pkgs.xfce.thunar;
+                        logoutMenu = {
+                            package = config.programs.wlogout.package;
+                            flags = "--protocol layer-shell";
+                        };
                         terminalEmulator = config.programs.kitty.package;
+                        screenlocker = pkgs.swaylock-effects;
+                        screenshotter = pkgs.writeShellScriptBin "screenshot-apeiron" "${lib.getExe pkgs.grim} -g \"$(${lib.getExe pkgs.slurp} -w 0)\" - | ${lib.getExe pkgs.swappy} -f -";
                     };
 
                     hyprland = {
                         enable = lib.mkDefault true;
-                        binds.default = lib.mkDefault true;
                         plugins = {
                             hyprspace.enable = lib.mkDefault true;
                             hyprsplit.enable = lib.mkDefault true;
@@ -197,7 +227,10 @@
                     appLauncher = pkgs.xfce.xfce4-appfinder.overrideAttrs (final: prev: { meta.mainProgram = "xfce4-appfinder"; });
                     browser = config.programs.firefox.package;
                     fileManager = pkgs.xfce.thunar;
+                    logoutMenu = pkgs.xfce.xfce4-session.overrideAttrs (final: prev: { meta.mainProgram = "xfce4-session-logout"; });
                     terminalEmulator = pkgs.xfce.xfce4-terminal;
+                    screenlocker = pkgs.writeShellScript "empty" "echo temp"; # TODO configure xflock4 lock package
+                    screenshotter = pkgs.xfce.xfce4-screenshooter;
                 };
 
                 xfce.xfconf.enable = lib.mkDefault true;
