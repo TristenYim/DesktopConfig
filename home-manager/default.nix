@@ -179,24 +179,26 @@
                     };
 
                     defaultApps = {
-                        appLauncher = { 
+                        appLauncher = lib.mkDefault { 
                             package = config.programs.rofi.package; 
                             flags = "-theme $HOME/.config/rofi/run.rasi -show drun -run-command \"uwsm app -- {cmd}\"";
                         };
-                        browser = config.programs.firefox.package;
-                        fileManager = pkgs.xfce.thunar;
-                        logoutMenu = {
+                        browser = lib.mkDefault config.programs.firefox.package;
+                        fileManager = lib.mkDefault pkgs.xfce.thunar;
+                        logoutMenu = lib.mkDefault {
                             package = config.programs.wlogout.package;
                             flags = "--protocol layer-shell";
                         };
-                        terminalEmulator = config.programs.kitty.package;
-                        screenlocker = pkgs.swaylock-effects;
-                        screenshotter = pkgs.writeShellScriptBin "screenshot-apeiron" "${lib.getExe pkgs.grim} -g \"$(${lib.getExe pkgs.slurp} -w 0)\" - | ${lib.getExe pkgs.swappy} -f -";
+                        terminalEmulator = lib.mkDefault config.programs.kitty.package;
+                        screenlocker = lib.mkDefault pkgs.swaylock-effects;
+                        screenshotter = lib.mkDefault (pkgs.writeShellScriptBin "screenshot-apeiron" "${lib.getExe pkgs.grim} -g \"$(${lib.getExe pkgs.slurp} -w 0)\" - | ${lib.getExe pkgs.swappy} -f -");
                     };
 
-                    theme.fonts = {
-                        enable = true;
-                        merienda.enable = true;
+                    theme = {
+                        fonts = {
+                            enable = lib.mkDefault true;
+                            merienda.enable = lib.mkDefault true;
+                        };
                     };
 
                     utilities = {
@@ -224,13 +226,13 @@
         ( lib.mkIf config.apeiron.xfce.enable {
             apeiron.desktop = {
                 defaultApps = {
-                    appLauncher = pkgs.xfce.xfce4-appfinder.overrideAttrs (final: prev: { meta.mainProgram = "xfce4-appfinder"; });
-                    browser = config.programs.firefox.package;
-                    fileManager = pkgs.xfce.thunar;
-                    logoutMenu = pkgs.xfce.xfce4-session.overrideAttrs (final: prev: { meta.mainProgram = "xfce4-session-logout"; });
-                    terminalEmulator = pkgs.xfce.xfce4-terminal;
-                    screenlocker = pkgs.writeShellScript "empty" "echo temp"; # TODO configure xflock4 lock package
-                    screenshotter = pkgs.xfce.xfce4-screenshooter;
+                    appLauncher = lib.mkDefault (pkgs.xfce.xfce4-appfinder.overrideAttrs (final: prev: { meta.mainProgram = "xfce4-appfinder"; }));
+                    browser = lib.mkDefault config.programs.firefox.package;
+                    fileManager = lib.mkDefault pkgs.xfce.thunar;
+                    logoutMenu = lib.mkDefault (pkgs.xfce.xfce4-session.overrideAttrs (final: prev: { meta.mainProgram = "xfce4-session-logout"; }));
+                    terminalEmulator = lib.mkDefault pkgs.xfce.xfce4-terminal;
+                    screenlocker = lib.mkDefault (pkgs.writeShellScript "empty" "echo temp"); # TODO configure xflock4 lock package
+                    screenshotter = lib.mkDefault pkgs.xfce.xfce4-screenshooter;
                 };
 
                 xfce.xfconf.enable = lib.mkDefault true;
