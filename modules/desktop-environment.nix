@@ -10,6 +10,7 @@
         xfce.enable = lib.mkEnableOption "Xfce";
         catppuccin-local.enable = lib.mkEnableOption "Catppuccin";
         hyprland.enable = lib.mkEnableOption "Hyprland";
+        mango.enable = lib.mkEnableOption "Mango Wayland Compositor (Previously Maomaowm)";
         nerdfonts.enable = lib.mkEnableOption "Nerd Fonts";
         thunar.enable = lib.mkEnableOption "Thunar";
     };
@@ -55,6 +56,20 @@
                 enable = true;
                 withUWSM = true;
             };
+        })
+
+        # MangoWC
+        ( lib.mkIf config.apeiron.mango.enable {
+            programs.mango.enable = true;
+
+            # TODO fix mango UWSM. It currently crashes at startup
+
+            # programs.uwsm.enable = true;
+            # programs.uwsm.waylandCompositors.mango = {
+            #     prettyName = "MangoWC";
+            #     comment = "Mango Wayland Compositor managed by UWSM";
+            #     binPath = "/run/current-system/sw/bin/mango";
+            # };
         })
 
         # Nerd Fonts

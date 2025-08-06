@@ -50,6 +50,12 @@
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        mango = {
+            type = "git";
+            url = "https://github.com/DreamMaoMao/mango";
+            ref = "refs/tags/0.8.0";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
         nixgl = {
             url = "github:johanneshorner/nixGL";
             inputs.nixpkgs.follows = "nixpkgs";

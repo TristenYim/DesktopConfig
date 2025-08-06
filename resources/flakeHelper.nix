@@ -37,6 +37,7 @@ in
             # Modules to be included for all hosts
             inputs.catppuccin.nixosModules.catppuccin
             inputs.impermanence.nixosModules.impermanence
+            inputs.mango.nixosModules.mango
 
             # Include Home Manager configurations
             inputs.home-manager.nixosModules.home-manager {
@@ -57,6 +58,7 @@ in
         userImports = [
             inputs.catppuccin.homeModules.catppuccin
             inputs.betterfox.homeManagerModules.betterfox
+            inputs.mango.hmModules.mango
             inputs.nixvim.homeManagerModules.nixvim
 
             # Note: Impermanence will not function in standalone mode, but still must be imported to build

@@ -22,6 +22,9 @@
         ./hypr/plugins.nix
         ./hypr/environment/env_var.nix
         ./hypr/environment/env_var_nvidia.nix
+        ./mango/configAttrs.nix
+        ./mango/keybinds.nix
+        ./mango/mango.nix
         ./mozilla/firefox.nix
         ./mozilla/thunderbird.nix
         ./terminal/alias.nix
@@ -178,10 +181,13 @@
                         };
                     };
 
+                    compositors.mango.enable = lib.mkDefault true;
+
                     defaultApps = {
                         appLauncher = lib.mkDefault { 
                             package = config.programs.rofi.package; 
-                            flags = "-theme $HOME/.config/rofi/run.rasi -show drun -run-command \"uwsm app -- {cmd}\"";
+                            # flags = "-theme $HOME/.config/rofi/run.rasi -show drun -run-command \"uwsm app -- {cmd}\"";
+                            flags = "-theme $HOME/.config/rofi/run.rasi -show drun";
                         };
                         browser = lib.mkDefault config.programs.firefox.package;
                         fileManager = lib.mkDefault pkgs.xfce.thunar;

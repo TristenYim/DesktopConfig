@@ -45,6 +45,7 @@
             apeiron = {
                 kitty.enable = lib.mkDefault true;
                 hyprland.enable = lib.mkDefault true;
+                mango.enable = lib.mkDefault true;
                 swaylock.enable = lib.mkDefault true;
                 thunar.enable = lib.mkDefault true;
             };

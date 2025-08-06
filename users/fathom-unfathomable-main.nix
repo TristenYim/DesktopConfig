@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
     imports = [
         ./fathom-default.nix
@@ -31,10 +31,6 @@
 
         wayland.windowManager.hyprland = {
             settings = {
-                ################
-                ### MONITORS ###
-                ################
-    
                 "$mon1" = "HDMI-A-1";
                 "$mon2" = "DP-1";
     
@@ -44,6 +40,15 @@
                     "DP-1,1920x1080@120,2560x0,1.0"
                 ];
             };
+            mango.configAttrs.monitorrule = let
+                masterRatio = lib.strings.floatToString config.apeiron.desktop.compositors.settings.behavior.layouts.master.ratio;
+            in [
+                # Let the resolution be determined automatically since mango is for
+                # some reason setting the wrong resolution, but only if manually
+                # configured.
+                "HDMI-A-1,${masterRatio},1,tile,0,1,0,0,0,0,60"
+                "DP-1,${masterRatio},1,tile,0,1,2560,0,0,0,144" # TODO figure out how to make mango respect resolution
+            ];
         };
 
         programs.waybar = 
