@@ -45,6 +45,7 @@
         ./theme/font.nix
         ./theme/gtk.nix
         ./theme/qt.nix
+        ./theme/wallpaper.nix
         ./waybar/waybar.nix
         ./wlogout/wlogout.nix
         ../overlays/home.nix
@@ -205,6 +206,7 @@
                             enable = lib.mkDefault true;
                             merienda.enable = lib.mkDefault true;
                         };
+                        wallpaper.enable = lib.mkDefault true;
                     };
 
                     utilities = {
