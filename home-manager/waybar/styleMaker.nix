@@ -40,7 +40,7 @@ in
         }
 
         window#waybar {
-            background: transparent;
+            background: rgba(17, 17, 27, 0.3);
         }
 
         #workspaces {
@@ -50,6 +50,25 @@ in
 
         #workspaces button {
             color: black;
+            background: transparent;
+        }
+
+        #tags {
+            background: ${catppuccin.yellow};
+            padding: 0;
+        }
+
+        #tags button {
+            color: black;
+            background: transparent;
+        }
+
+        #tags button:not(.occupied):not(.focused) {
+            font-size: 0;
+            min-width: 0;
+            margin: 0;
+            padding: 0;
+            color: transparent;
             background: transparent;
         }
 
@@ -64,6 +83,7 @@ in
         ${mkSimple "mpris" catppuccin.pink}
         ${mkSimple "window" catppuccin.pink}
         ${mkSimple "workspaces button.active" catppuccin.peach}
+        ${mkSimple "tags button.focused" catppuccin.peach}
         ${mkSimple "clock" catppuccin.green}
         ${mkSimple "config" catppuccin.teal}
     '';
@@ -95,6 +115,21 @@ in
             font-size: ${toString fontSize}px;
         }
 
+        .modules-left {
+            margin-top: ${gapHalfString}px;
+            margin-bottom: ${gapHalfString}px;
+        }
+
+        .modules-center {
+            margin-top: ${gapHalfString}px;
+            margin-bottom: ${gapHalfString}px;
+        }
+
+        .modules-right {
+            margin-top: ${gapHalfString}px;
+            margin-bottom: ${gapHalfString}px;
+        }
+
         #lock.${name} {
             ${borderString};
             ${paddingGrouped};
@@ -124,6 +159,17 @@ in
             min-width: ${toString borderRadius}px;
         }
 
+        #tags.${name} {
+            ${borderString};
+            margin-right: ${gapString}px;
+        }
+
+        #tags.${name} button {
+            ${borderString};
+            ${paddingInside};
+            min-width: ${toString borderRadius}px;
+        }
+
         #clock.${name} {
             ${borderString};
             ${paddingUngrouped};
@@ -144,7 +190,7 @@ in
         #trayicons.${name} {
             ${borderString};
             ${paddingGrouped};
-            margin-left: ${gapString}px;
+            margin-right: ${gapString}px;
         }
 
         #audio.${name} {

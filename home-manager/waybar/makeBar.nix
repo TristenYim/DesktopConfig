@@ -15,6 +15,7 @@ name: display: {
 
     modules-center = [
         "hyprland/workspaces#${name}"
+        "dwl/tags#${name}"
         "clock#${name}"
         "group/config#${name}"
     ];
@@ -67,7 +68,7 @@ name: display: {
     };
 
     "custom/power_btn#${name}" = {
-        format = "";
+        format = "󰜂";
         on-click = "sh -c '(wlogout --protocol layer-shell)' & disown";
         tooltip = false;
     };
@@ -104,7 +105,7 @@ name: display: {
 
     "custom/nix_config#${name}" = {
         format = "";
-        on-click = "hyprctl dispatch togglespecialworkspace CONFIG";
+        # on-click = "hyprctl dispatch togglespecialworkspace CONFIG"; # TODO fix when mango dispatchers are fixed
         tooltip = false;
     };
 
@@ -141,6 +142,14 @@ name: display: {
             "OVERVIEW" = "     ";
             "default" = "uwu";
         };
+    };
+
+    "dwl/tags#${name}" = {
+        num-tags = 9;
+        tag-labels = [
+            "I" "II" "III" "IV" "V" "VI" "VII" "VIII" "IX"
+            # "α" "β" "γ" "δ" "ε" "ζ" "η" "θ" "ι"
+        ];
     };
 
     "clock#${name}" = {
@@ -223,7 +232,7 @@ name: display: {
         max-length = 10;
         format-alt-click = "click-right";
         format-alt = "  {avg_frequency} GHz";
-        on-click = "hyprctl dispatch togglespecialworkspace BTOP";
+        # on-click = "hyprctl dispatch togglespecialworkspace BTOP"; # TODO fix when mango dispatchers are fixed
     };
 
     "memory#${name}" = {
@@ -232,6 +241,6 @@ name: display: {
         max-length = 10;
         format-alt-click = "click-right";
         format-alt = "   {percentage}%";
-        on-click = "hyprctl dispatch togglespecialworkspace BTOP";
+        # on-click = "hyprctl dispatch togglespecialworkspace BTOP"; # TODO fix when mango dispatchers are fixed
     };
 }
