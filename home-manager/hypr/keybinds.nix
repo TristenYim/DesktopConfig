@@ -60,9 +60,6 @@ in
             ++ bindForEachWorkspace [ "SUPER" ] "split:workspace"
             ++ bindForEachWorkspace [ "SUPER" "SHIFT" ] "split:movetoworkspace"
             ++ ( [
-                # Cycle layouts
-                [ [ "SUPER" "L" ] (cycleOptionsDispatcher "if [[ $state == dwindle ]]; then state=master; elif [[ $state == master ]]; then state=dwindle; fi" "general:layout" "general:layout") ]
-
                 # Toggle animations, blur, and shadows
                 [ [ "SUPER" "V" ] (toggleOptionsDispatcher "animations:enabled" "\\$\"uglyAFModeDisabled\"") ]
 
@@ -70,32 +67,30 @@ in
                 [ [ "SUPER" "mouse_up" ] "split:workspace, e-1" ]
                 [ [ "SUPER" "mouse_down" ] "split:workspace, e+1" ]
 
-                # Switch monitor focus
-                [ [ "SUPER" "GRAVE" ] "focusmonitor, +1" ]
-
-                # Swap monitor content
-                [ [ "SUPER" "SHIFT" "GRAVE" ] "split:swapactiveworkspaces, current +1" ]
-
                 # Jump to named workspaces
                 [ [ "SUPER" "F1" ] "workspace, name:CHAT" ]
                 [ [ "SUPER" "F2" ] "workspace, name:MAIL" ]
 
-                # Import compositor-agnostic keybinds, see ../compositor-options.nix
+                # Import compositor-agnostic keybinds, see ../compositor-options/keybinds.nix
                 [ cfg.scratchpads.agenda "togglespecialworkspace, AGENDA" ]
                 [ cfg.scratchpads.btop "togglespecialworkspace, BTOP" ]
                 [ cfg.scratchpads.cider "togglespecialworkspace, CIDER" ]
                 [ cfg.scratchpads.config "togglespecialworkspace, CONFIG" ]
+                [ cfg.misc.cycleLayouts (cycleOptionsDispatcher "if [[ $state == dwindle ]]; then state=master; elif [[ $state == master ]]; then state=dwindle; fi" "general:layout" "general:layout") ]
+                [ cfg.misc.reload "execr, hyprctl reload" ]
+                [ cfg.misc.quit "exit," ]
                 [ cfg.windowManagement.cycleMasterFromTop "layoutmsg, rollnext" ]
+                [ cfg.windowManagement.focusAcrossMonitors "focusmonitor, +1" ]
                 [ cfg.windowManagement.focusLeft "movefocus, l" ]
                 [ cfg.windowManagement.focusRight "movefocus, r" ]
                 [ cfg.windowManagement.focusUp "movefocus, u" ]
                 [ cfg.windowManagement.focusDown "movefocus, d" ]
                 [ cfg.windowManagement.kill "killactive," ]
+                [ cfg.windowManagement.swapAcrossMonitors "split:swapactiveworkspaces, current +1" ]
                 [ cfg.windowManagement.swapLeft "swapwindow, l" ]
                 [ cfg.windowManagement.swapRight "swapwindow, r" ]
                 [ cfg.windowManagement.swapUp "swapwindow, u" ]
                 [ cfg.windowManagement.swapDown "swapwindow, d" ]
-                [ cfg.windowManagement.quit "exit," ]
                 [ cfg.windowManagement.toggleFloat "togglefloating," ]
             ] |> myLib.mapCalls mkBinds |> builtins.concatLists);
     

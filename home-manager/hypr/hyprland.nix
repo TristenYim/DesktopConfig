@@ -87,7 +87,7 @@ in
                     "special:AGENDA, on-created-empty: [maximize] uwsm app -- kitty nvim ${config.programs.nixvim.plugins.orgmode.settings.org_agenda_files} +\"Org agenda a\""
                 ];
 
-                # Import compositor-agnostic settings, see ../compositor-options.nix
+                # Import compositor-agnostic settings, see ../compositor-options/settings.nix
                 general.gaps_in = cfg.aesthetics.gaps.inner;
                 general.gaps_out = cfg.aesthetics.gaps.outer;
                 general.border_size = cfg.aesthetics.border.width;

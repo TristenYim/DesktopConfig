@@ -12,7 +12,7 @@
         ./services.nix
         ./swaylock.nix
         ./xfce.nix
-        ./compositor-options/default.nix
+        ./compositor-options/settings.nix
         ./compositor-options/keybinds.nix
         ./compositor-options/rules.nix
         ./ethanol/default.nix
