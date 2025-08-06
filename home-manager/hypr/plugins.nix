@@ -3,10 +3,10 @@
 
 { config, pkgs, lib, ... }: 
 let
-    cfg = config.apeiron.desktop.hyprland.plugins;
+    cfg = config.apeiron.desktop.compositors.hyprland.plugins;
 in
 {
-    options.apeiron.desktop.hyprland.plugins = {
+    options.apeiron.desktop.compositors.hyprland.plugins = {
         hyprspace.enable = lib.mkEnableOption "the hyprspace plugin";
         hyprsplit.enable = lib.mkEnableOption "the hyprsplit plugin";
     };

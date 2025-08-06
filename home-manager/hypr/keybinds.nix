@@ -53,7 +53,7 @@ let
     toggleOptionsDispatcher = cycleOptionsDispatcher "state=$(( ! \"\${state}\" ))";
 in 
 {
-    config.wayland.windowManager.hyprland.settings = lib.mkIf config.apeiron.desktop.hyprland.enable 
+    config.wayland.windowManager.hyprland.settings = lib.mkIf config.apeiron.desktop.compositors.hyprland.enable 
     {
         bind = 
             builtins.map (bind: mkBind bind.keys (actionFromApp bind.app)) cfg.launchers

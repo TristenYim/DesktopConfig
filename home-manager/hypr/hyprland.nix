@@ -4,12 +4,12 @@ let
     fromHex = hex: "rgb(${lib.removePrefix "#" hex})";
 in
 {
-    options.apeiron.desktop.hyprland = {
+    options.apeiron.desktop.compositors.hyprland = {
         enable = lib.mkEnableOption "Hyprland";
         uglyAFMode.default = lib.mkEnableOption "uglyAFMode in Hyprland by default";
     };
  
-    config = lib.mkIf config.apeiron.desktop.hyprland.enable 
+    config = lib.mkIf config.apeiron.desktop.compositors.hyprland.enable 
     {
         wayland.windowManager.hyprland = 
         {
@@ -31,7 +31,7 @@ in
                 # Note monitors must be manually configured per-user
 
                 # Toggle for animations, shadows, and blur
-                "$uglyAFModeDisabled" = !config.apeiron.desktop.hyprland.uglyAFMode.default;
+                "$uglyAFModeDisabled" = !config.apeiron.desktop.compositors.hyprland.uglyAFMode.default;
                 animations.enabled = "$uglyAFModeDisabled";
                 decoration.blur.enabled = "$uglyAFModeDisabled";
                 decoration.shadow.enabled = "$uglyAFModeDisabled";

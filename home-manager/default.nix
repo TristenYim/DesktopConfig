@@ -170,6 +170,14 @@
         ( lib.mkIf config.apeiron.hyprDE.enable {
             apeiron = {
                 desktop = {
+                    compositors.hyprland = {
+                        enable = lib.mkDefault true;
+                        plugins = {
+                            hyprspace.enable = lib.mkDefault true;
+                            hyprsplit.enable = lib.mkDefault true;
+                        };
+                    };
+
                     defaultApps = {
                         appLauncher = { 
                             package = config.programs.rofi.package; 
@@ -184,14 +192,6 @@
                         terminalEmulator = config.programs.kitty.package;
                         screenlocker = pkgs.swaylock-effects;
                         screenshotter = pkgs.writeShellScriptBin "screenshot-apeiron" "${lib.getExe pkgs.grim} -g \"$(${lib.getExe pkgs.slurp} -w 0)\" - | ${lib.getExe pkgs.swappy} -f -";
-                    };
-
-                    hyprland = {
-                        enable = lib.mkDefault true;
-                        plugins = {
-                            hyprspace.enable = lib.mkDefault true;
-                            hyprsplit.enable = lib.mkDefault true;
-                        };
                     };
 
                     theme.fonts = {

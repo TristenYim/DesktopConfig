@@ -4,7 +4,7 @@
 # https://wiki.hyprland.org/hyprland-wiki/pages/Nvidia/
 
 { config, lib, ... }: {
-    config = lib.mkIf (config.apeiron.desktop.hyprland.enable && config.apeiron.nvidia.enable)
+    config = lib.mkIf (config.apeiron.desktop.compositors.hyprland.enable && config.apeiron.nvidia.enable)
     {
         wayland.windowManager.hyprland.settings = {
             cursor = {
