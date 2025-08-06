@@ -10,6 +10,6 @@
     {
         services.swww.enable = true;
 
-        wayland.windowManager.mango.configAttrs.exec-once = [ "${lib.getExe' config.services.swww.package "swww-daemon"}" "${lib.getExe config.services.swww.package} img $FLAKE/source/home-manager/theme/mango1.png" ];
+        wayland.windowManager.mango.configAttrs.exec-once = [ "${lib.getExe' config.services.swww.package "swww-daemon"}" "${lib.getExe config.services.swww.package} img ${config.home.sessionVariables.FLAKE}/source/home-manager/theme/mango1.png" ];
     };
 }

@@ -65,7 +65,7 @@ in
                 [ cfg.scratchpads.agenda "toggle_named_scratchpad,scratchpad-agenda,none,1,1,kitty --app-id=scratchpad-agenda nvim ${config.programs.nixvim.plugins.orgmode.settings.org_agenda_files} +\"Org agenda a\"" ]
                 [ cfg.scratchpads.btop "toggle_named_scratchpad,scratchpad-btop,none,1,1,kitty --app-id=scratchpad-btop btop" ]
                 [ cfg.scratchpads.cider "toggle_named_scratchpad,scratchpad-cider,none,1,1,cider" ]
-                [ cfg.scratchpads.config "toggle_named_scratchpad,scratchpad-config,none,1,1,kitty --app-id=scratchpad-config nvim $FLAKE/source" ]
+                [ cfg.scratchpads.config "toggle_named_scratchpad,scratchpad-config,none,1,1,kitty --app-id=scratchpad-config nvim ${config.home.sessionVariables.FLAKE}/source" ]
                 [ cfg.misc.cycleLayouts "switch_layout," ]
                 [ cfg.misc.reload "reload_config," ]
                 [ cfg.misc.quit "quit," ]

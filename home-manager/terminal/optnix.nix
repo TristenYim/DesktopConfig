@@ -62,7 +62,7 @@
                             nixos = {
                                 description = "NixOS configuration for ${cfg.hostname}";
                                 options-list-cmd = ''
-                                    nix eval "$FLAKE/build#nixosConfigurations.${cfg.hostname}" --json --apply 'input: let
+                                    nix eval "${config.home.sessionVariables.FLAKE}/build#nixosConfigurations.${cfg.hostname}" --json --apply 'input: let
                                         inherit (input) options pkgs;
 
                                         optionsList = builtins.filter
@@ -74,14 +74,14 @@
 
                                 # Does not produce useful output despite being nearly
                                 # identical to the example. Will fix later
-                                evaluator = "nix eval $FLAKE/build#nixosConfigurations.${cfg.hostname}.config.{{ .Option }}";
+                                evaluator = "nix eval ${config.home.sessionVariables.FLAKE}/build#nixosConfigurations.${cfg.hostname}.config.{{ .Option }}";
                             };
 
                             # TODO Fix home options-list-cmd
                             home = {
                                 description = "Home configuration for ${config.home.username}";
                                 options-list-cmd = ''
-                                    nix eval "$FLAKE/build#homeConfigurations.${config.home.username}" --json --apply 'input: let
+                                    nix eval "${config.home.sessionVariables.FLAKE}/build#homeConfigurations.${config.home.username}" --json --apply 'input: let
                                         inherit (input) options pkgs;
 
                                         optionsList = builtins.filter

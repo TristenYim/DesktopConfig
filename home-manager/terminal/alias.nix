@@ -19,7 +19,7 @@
         in {
             sudo = "sudo ";
             hms = wrapBuild "home-manager switch --impure";
-            ncd = "cd $FLAKE/source";
+            ncd = "cd ${config.home.sessionVariables.FLAKE}/source";
             nrb = wrapBuild "sudo nixos-rebuild boot";
             nrs = wrapBuild "sudo nixos-rebuild switch";
             nrt = wrapBuild "sudo nixos-rebuild test";
@@ -28,7 +28,7 @@
             nf = "${pkgs.unchartedScripts}/bin/nix-find-impermanent";
             noh = "${optnix.packages.${pkgs.system}.optnix}/bin/optnix -s home";
             non = "${optnix.packages.${pkgs.system}.optnix}/bin/optnix -s nixos";
-            ns = "${pkgs.unchartedScripts}/bin/nix-shell-from-nixpkgs $FLAKE/build";
+            ns = "${pkgs.unchartedScripts}/bin/nix-shell-from-nixpkgs ${config.home.sessionVariables.FLAKE}/build";
             np = "tv pkgs";
             rr = "${pkgs.unchartedScripts}/bin/resize-root";
             secrets = "sh -c 'zpool import -l -d /dev/disk/by-id/usb-SanDisk_Cruzer_Blade_4C530001310430107285-0:0-part4 secrets && vim /mnt/secrets && zfs unmount secrets && zpool export secrets'";

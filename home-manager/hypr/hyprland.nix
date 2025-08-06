@@ -83,7 +83,7 @@ in
                     "name:MAIL, monitor:$mon1, on-created-empty:hyprctl dispatch exec uwsm app -- thunderbird"
                     "special:BTOP, on-created-empty: [maximize] uwsm app -- kitty btop"
                     "special:CIDER, on-created-empty: [float; size 1000 800; move 10 50] uwsm app -- cider"
-                    "special:CONFIG, on-created-empty: [maximize] uwsm app -- kitty nvim $FLAKE/source"
+                    "special:CONFIG, on-created-empty: [maximize] uwsm app -- kitty nvim ${config.home.sessionVariables.FLAKE}/source"
                     "special:AGENDA, on-created-empty: [maximize] uwsm app -- kitty nvim ${config.programs.nixvim.plugins.orgmode.settings.org_agenda_files} +\"Org agenda a\""
                 ];
 

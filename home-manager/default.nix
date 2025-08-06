@@ -16,12 +16,12 @@
         ./compositor-options/keybinds.nix
         ./compositor-options/rules.nix
         ./ethanol/default.nix
-        ./hypr/hyprland.nix
-        ./hypr/hypridle.nix
-        ./hypr/keybinds.nix
-        ./hypr/plugins.nix
-        ./hypr/environment/env_var.nix
-        ./hypr/environment/env_var_nvidia.nix
+        ./fuckVaxry/buggyland.nix
+        ./fuckVaxry/buggyidle.nix
+        ./fuckVaxry/keybinds.nix
+        ./fuckVaxry/plugins.nix
+        ./fuckVaxry/environment/env_var.nix
+        ./fuckVaxry/environment/env_var_nvidia.nix
         ./mango/configAttrs.nix
         ./mango/keybinds.nix
         ./mango/mango.nix
@@ -54,7 +54,7 @@
     options.apeiron = {
         forRobotics.enable = lib.mkEnableOption "common apps I use for robotics";
         forSchool.enable = lib.mkEnableOption "common apps I use for school";
-        hyprDE.enable = lib.mkEnableOption "my custom Hyprland desktop environment";
+        mangoDE.enable = lib.mkEnableOption "my custom mangoWC desktop environment";
         xfce.enable = lib.mkEnableOption "XFCE";
         nvidia.enable = lib.mkEnableOption "options required when using Nvidia GPUs";
         isStandalone = lib.mkEnableOption "standalone home-manager tools";
@@ -171,17 +171,9 @@
         })
 
         # These modules are used in my DE
-        ( lib.mkIf config.apeiron.hyprDE.enable {
+        ( lib.mkIf config.apeiron.mangoDE.enable {
             apeiron = {
                 desktop = {
-                    compositors.hyprland = {
-                        enable = lib.mkDefault true;
-                        plugins = {
-                            hyprspace.enable = lib.mkDefault true;
-                            hyprsplit.enable = lib.mkDefault true;
-                        };
-                    };
-
                     compositors.mango.enable = lib.mkDefault true;
 
                     defaultApps = {
@@ -220,7 +212,6 @@
                 };
 
                 services = {
-                    hypridle.enable = lib.mkDefault true;
                     mako.enable = lib.mkDefault true;
                     playerctld.enable = lib.mkDefault true;
                     polkit-agent.enable = lib.mkDefault true;
