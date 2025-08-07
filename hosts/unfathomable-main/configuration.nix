@@ -27,7 +27,7 @@
     apeiron = {
         users.tdoggy.enable = true;
 
-        hyprDE.enable = true;
+        mangoDE.enable = true;
         nvidia.enable = true;
         xfce.enable = true;
         persistence.enable = true;

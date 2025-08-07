@@ -1,8 +1,3 @@
-# Hypridle is Hyprland's idle management daemon
-# Used for putting the computer "to sleep" automatically
-
-# See https://wiki.hyprland.org/Hypr-Ecosystem/hypridle/ for more info
-
 { config, lib, ... }: {
     options.apeiron.services = {
         hypridle.enable = lib.mkEnableOption "hypridle";

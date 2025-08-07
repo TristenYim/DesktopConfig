@@ -18,7 +18,7 @@
     ];
 
     options.apeiron = {
-        hyprDE.enable = lib.mkEnableOption "a custom \"desktop environment\" based on Hyprland";
+        mangoDE.enable = lib.mkEnableOption "a custom \"desktop environment\" based on MangoWC";
     };
 
     config = lib.mkMerge [
@@ -40,11 +40,10 @@
             };
         }
 
-        # HyprDE
-        ( lib.mkIf config.apeiron.hyprDE.enable {
+        # MangoDE
+        ( lib.mkIf config.apeiron.mangoDE.enable {
             apeiron = {
                 kitty.enable = lib.mkDefault true;
-                hyprland.enable = lib.mkDefault true;
                 mango.enable = lib.mkDefault true;
                 swaylock.enable = lib.mkDefault true;
                 thunar.enable = lib.mkDefault true;

@@ -9,7 +9,7 @@
         terminal.git.enable = lib.mkDefault true;
         desktop.applications.jan.enable = lib.mkDefault true;
 
-        hyprDE.enable = lib.mkDefault true;
+        mangoDE.enable = lib.mkDefault true;
         forSchool.enable = lib.mkDefault true;
         forRobotics.enable = lib.mkDefault true;
     };

@@ -1,6 +1,3 @@
-# All hyprland keybinds (except ones defined in plugins)
-
-# See https://wiki.hyprland.org/Configuring/Binds/ for more info
 { config, lib, myLib, ... }: 
 let
     cfg = config.apeiron.desktop.compositors.settings.keybinds;

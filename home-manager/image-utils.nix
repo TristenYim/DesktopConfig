@@ -2,7 +2,7 @@
 
     options.apeiron.desktop.utilities = {
         feh.enable = lib.mkEnableOption "feh";
-        screenshot.enable = lib.mkEnableOption "screenshotting in HyprDE";
+        screenshot.enable = lib.mkEnableOption "screenshotting";
     };
 
     config = lib.mkMerge 

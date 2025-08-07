@@ -22,7 +22,7 @@
 
     # Enable custom modules
     apeiron = {
-        hyprDE.enable = true;
+        mangoDE.enable = true;
         persistence.enable = true;
         syncthing.enable = true;
         wifi.enable = true;

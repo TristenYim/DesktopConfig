@@ -1,6 +1,3 @@
-# Manages Hyprland plugins
-# Note that since this is done using Home Manager, there is no need to use hyprpm
-
 { config, pkgs, lib, ... }: 
 let
     cfg = config.apeiron.desktop.compositors.hyprland.plugins;

@@ -17,6 +17,8 @@
                 affinity.enable = true;
             };
 
+            mangoDE.enable = true;
+
             services.openrgb.enable = true;
 
             terminal = {
@@ -29,17 +31,8 @@
 
         programs.nixvim.plugins.orgmode.settings.org_agenda_files = "/media/Hdd/Sync/Notes/Todo.org";
 
-        wayland.windowManager.hyprland = {
-            settings = {
-                "$mon1" = "HDMI-A-1";
-                "$mon2" = "DP-1";
-    
-                # See https://wiki.hyprland.org/Configuring/Monitors/ for more
-                monitor = [
-                    "HDMI-A-1,2560x1440@60,0x0,1.0"
-                    "DP-1,1920x1080@120,2560x0,1.0"
-                ];
-            };
+        # Set compositor monitor settings
+        wayland.windowManager = {
             mango.configAttrs.monitorrule = let
                 masterRatio = lib.strings.floatToString config.apeiron.desktop.compositors.settings.behavior.layouts.master.ratio;
             in [

@@ -33,7 +33,7 @@
 
         # More relevant help message
         getty.helpLine = ''
-            Welcome to shallow-ISO, a Hyprland installation ISO!
+            Welcome to shallow-ISO, a MangoWC installation ISO!
 
             To log in over ssh you must set a password for either "nixos" or "root"
             with `passwd` (prefix with `sudo` for "root"), or add your public key to
@@ -58,7 +58,7 @@
 
     # Enable custom modules
     apeiron = {
-        hyprDE.enable = true;
+        mangoDE.enable = true;
 
         # Disable stuff not needed for the ISO build
         users.fathom.enable = false;

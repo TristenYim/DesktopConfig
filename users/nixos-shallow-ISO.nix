@@ -8,7 +8,7 @@
         # Enable custom module options
         # NOTE: Make sure to disable nixvim lsp, cmp, jdtls, and vimtex when building
         apeiron = {
-            hyprDE.enable = true;
+            mangoDE.enable = true;
             isStandalone = false;
 
             desktop = {
@@ -31,12 +31,6 @@
             };
 
             services.mako.enable = false;
-        };
-
-        wayland.windowManager.hyprland = {
-            settings = {
-                "$mon1" = "";
-            };
         };
 
         home = {

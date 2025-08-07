@@ -58,8 +58,8 @@
                             name = "Linux";
                             bookmarks = [
                                 {
-                                    name = "Hyprland";
-                                    url = "https://wiki.hyprland.org";
+                                    name = "MangoWC";
+                                    url = "https://github.com/DreamMaoMao/mangowc/wiki";
                                 }
                                 {
                                     name = "kitty";
