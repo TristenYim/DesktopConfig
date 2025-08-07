@@ -62,6 +62,8 @@
         ( lib.mkIf config.apeiron.mango.enable {
             programs.mango.enable = true;
 
+            programs.dconf.enable = true; # Required to make gtk work
+
             # TODO fix mango UWSM. It currently crashes at startup
 
             # programs.uwsm.enable = true;
